@@ -13,6 +13,7 @@ body {
   color: white;
 }
 
+/* HEADER */
 header {
   text-align: center;
   padding: 60px 20px;
@@ -41,24 +42,70 @@ h2 { color: #38bdf8; }
   font-weight: bold;
 }
 
-ul { line-height: 1.8; }
-
-/* 🔥 GLOBAL LINK FIX */
+/* LINKS FIX */
 a {
   color: #e2e8f0;
   text-decoration: none;
   transition: 0.3s;
 }
-
 a:hover {
   color: #38bdf8;
 }
 
-/* CONTACT ICON STYLE */
-.contact p {
-  margin: 10px 0;
+/* STATS */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-top: 20px;
 }
 
+.stat-box {
+  background: #020617;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid #1e293b;
+  transition: 0.3s;
+}
+
+.stat-box:hover {
+  transform: scale(1.05);
+  border-color: #38bdf8;
+}
+
+.stat-box h3 {
+  margin: 0;
+  color: #38bdf8;
+  font-size: 24px;
+}
+
+.stat-box p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+/* GRAPH */
+.graph {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  height: 150px;
+  margin-top: 20px;
+}
+
+.bar {
+  width: 20%;
+  background: #38bdf8;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.bar:hover {
+  background: #7dd3fc;
+}
+
+/* FOOTER */
 .footer {
   text-align: center;
   padding: 30px;
@@ -77,6 +124,30 @@ a:hover {
 
 <div class="section">
 
+  <!-- STATS -->
+  <div class="card">
+    <h2>Performance Snapshot</h2>
+    <div class="stats">
+      <div class="stat-box">
+        <h3>421K+</h3>
+        <p>Conversions</p>
+      </div>
+      <div class="stat-box">
+        <h3>₹32</h3>
+        <p>Avg CPA</p>
+      </div>
+      <div class="stat-box">
+        <h3>100+</h3>
+        <p>Locations</p>
+      </div>
+      <div class="stat-box">
+        <h3>15%</h3>
+        <p>Growth</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
   <div class="card">
     <h2>About Me</h2>
     <p>
@@ -85,57 +156,39 @@ a:hover {
     </p>
   </div>
 
+  <!-- GRAPH -->
+  <div class="card">
+    <h2>Performance Growth</h2>
+    <div class="graph">
+      <div class="bar" style="height: 40%"></div>
+      <div class="bar" style="height: 60%"></div>
+      <div class="bar" style="height: 75%"></div>
+      <div class="bar" style="height: 90%"></div>
+    </div>
+  </div>
+
+  <!-- ACHIEVEMENTS -->
   <div class="card">
     <h2>Key Achievements</h2>
     <ul>
       <li>Generated <b>421,000+ conversions</b> at ₹32 CPA</li>
       <li>Managed campaigns across <b>100+ retail locations</b></li>
-      <li>Improved CTR by <b>18%</b> through creative testing</li>
-      <li>Boosted conversion rate by <b>11%</b> via CRO</li>
-      <li>Improved local discoverability by <b>15%</b> (APAC)</li>
+      <li>Improved CTR by <b>18%</b></li>
+      <li>Boosted conversion rate by <b>11%</b></li>
+      <li>Improved discoverability by <b>15%</b></li>
     </ul>
   </div>
 
+  <!-- CASE STUDY -->
   <div class="card">
-    <h2>Case Study: Lenovo Retail (APAC)</h2>
-    <p><b>Problem:</b> Low store visits & inefficient ad spend</p>
-    <p><b>Strategy:</b></p>
-    <ul>
-      <li>Performance Max + Search campaigns</li>
-      <li>Audience segmentation & retargeting</li>
-      <li>Smart bidding (Target CPA & ROAS)</li>
-    </ul>
-    <p><b>Result:</b></p>
-    <ul>
-      <li>+15% increase in local discoverability</li>
-      <li>Scaled conversions across regions</li>
-      <li>Maintained ₹32 CPA</li>
-    </ul>
+    <h2>Case Study: Lenovo (APAC)</h2>
+    <p><b>Problem:</b> Low store visits</p>
+    <p><b>Strategy:</b> PMax + Audience targeting + Smart bidding</p>
+    <p><b>Result:</b> +15% visibility, scalable conversions, ₹32 CPA maintained</p>
   </div>
 
+  <!-- CONTACT -->
   <div class="card">
-    <h2>Case Study: E-commerce (Britannia)</h2>
-    <p><b>Problem:</b> Low conversion rate</p>
-    <p><b>Strategy:</b></p>
-    <ul>
-      <li>GA4 funnel analysis</li>
-      <li>Landing page optimization</li>
-      <li>UX improvements</li>
-    </ul>
-    <p><b>Result:</b></p>
-    <ul>
-      <li>+11% increase in conversion rate in 3 months</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>Skills & Tools</h2>
-    <p>
-      Google Ads | Meta Ads | GA4 | GTM | Looker Studio | Shopify | CRO | Performance Max | Smart Bidding
-    </p>
-  </div>
-
-  <div class="card contact">
     <h2>Contact</h2>
     <p>📧 <a href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a></p>
     <p>📞 <a href="tel:+919742037878">+91 97420 37878</a></p>
