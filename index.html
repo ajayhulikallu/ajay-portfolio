@@ -1,1087 +1,1754 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ajay Chakravarthy | Performance Marketing Portfolio</title>
-  <meta
-    name="description"
-    content="Ajay Chakravarthy H J - Performance Marketing Specialist with experience in Google Ads, Meta Ads, APAC campaigns, local growth, and measurable conversion outcomes."
-  />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  />
-
-  <style>
-    :root {
-      --bg: #0b1220;
-      --bg-soft: #111827;
-      --surface: #172033;
-      --surface-2: #1d2940;
-      --border: rgba(148, 163, 184, 0.18);
-      --text: #e5eefb;
-      --muted: #a5b4cc;
-      --primary: #38bdf8;
-      --primary-dark: #0ea5e9;
-      --accent: #22c55e;
-      --shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
-      --max: 1160px;
-      --radius: 18px;
-      --radius-sm: 12px;
-      --hero-gradient:
-        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 35%),
-        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
-        linear-gradient(180deg, #0b1220 0%, #0f172a 55%, #0b1220 100%);
-    }
-
-    [data-theme="light"] {
-      --bg: #f6f8fc;
-      --bg-soft: #eef3f9;
-      --surface: #ffffff;
-      --surface-2: #f8fbff;
-      --border: rgba(15, 23, 42, 0.1);
-      --text: #0f172a;
-      --muted: #475569;
-      --primary: #0284c7;
-      --primary-dark: #0369a1;
-      --accent: #16a34a;
-      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-      --hero-gradient:
-        radial-gradient(circle at top left, rgba(2, 132, 199, 0.1), transparent 32%),
-        radial-gradient(circle at top right, rgba(22, 163, 74, 0.08), transparent 28%),
-        linear-gradient(180deg, #f8fbff 0%, #eef4fb 50%, #f6f8fc 100%);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      font-family: "Inter", Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.65;
-      transition: background 0.25s ease, color 0.25s ease;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    .container {
-      width: min(var(--max), calc(100% - 32px));
-      margin: 0 auto;
-    }
-
-    .skip-link {
-      position: absolute;
-      left: -999px;
-      top: 0;
-      background: var(--primary);
-      color: white;
-      padding: 10px 14px;
-      border-radius: 10px;
-      z-index: 1000;
-    }
-
-    .skip-link:focus {
-      left: 16px;
-      top: 16px;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      backdrop-filter: blur(12px);
-      background: color-mix(in srgb, var(--bg) 78%, transparent);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 74px;
-      gap: 16px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-family: "Manrope", sans-serif;
-      font-weight: 800;
-      letter-spacing: 0.2px;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: white;
-      font-weight: 800;
-      box-shadow: var(--shadow);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    .nav-links a {
-      color: var(--muted);
-      font-size: 0.96rem;
-      font-weight: 500;
-    }
-
-    .nav-links a:hover,
-    .nav-links a:focus {
-      color: var(--primary);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .theme-toggle,
-    .menu-toggle {
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-    }
-
-    .menu-toggle {
-      display: none;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      min-height: 46px;
-      padding: 0 18px;
-      border-radius: 12px;
-      border: 1px solid transparent;
-      font-weight: 700;
-      transition: 0.25s ease;
-      cursor: pointer;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: var(--shadow);
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-      transform: translateY(-1px);
-    }
-
-    .btn-secondary {
-      border-color: var(--border);
-      background: var(--surface);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      border-color: var(--primary);
-      color: var(--primary);
-    }
-
-    .hero {
-      background: var(--hero-gradient);
-      padding: 72px 0 42px;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
-      gap: 28px;
-      align-items: center;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--primary) 12%, var(--surface));
-      color: var(--primary);
-      font-size: 0.92rem;
-      font-weight: 700;
-      margin-bottom: 18px;
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      line-height: 1.15;
-      font-family: "Manrope", sans-serif;
-    }
-
-    h1 {
-      font-size: clamp(2.2rem, 5vw, 4.5rem);
-      max-width: 10ch;
-      margin-bottom: 16px;
-    }
-
-    .hero p.lead {
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: 1.08rem;
-      margin: 0 0 26px;
-    }
-
-    .hero-cta {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    .proof-strip {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .proof-pill {
-      padding: 12px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: color-mix(in srgb, var(--surface) 85%, transparent);
-      color: var(--muted);
-      font-weight: 600;
-      font-size: 0.94rem;
-    }
-
-    .hero-card {
-      background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface));
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .hero-card .mini-label {
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-bottom: 18px;
-      font-weight: 600;
-    }
-
-    .kpi-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-    }
-
-    .kpi {
-      padding: 18px;
-      border-radius: 16px;
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-    }
-
-    .kpi h3 {
-      font-size: 1.6rem;
-      color: var(--primary);
-      margin-bottom: 6px;
-    }
-
-    .kpi p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .section {
-      padding: 72px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 28px;
-    }
-
-    .section-head p {
-      max-width: 62ch;
-      color: var(--muted);
-      margin: 10px 0 0;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: color-mix(in srgb, var(--accent) 14%, var(--surface));
-      color: var(--accent);
-      font-weight: 700;
-      font-size: 0.84rem;
-      margin-bottom: 10px;
-    }
-
-    .grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .grid-2 {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 24px;
-      box-shadow: var(--shadow);
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-      font-size: 1.25rem;
-    }
-
-    .card p {
-      color: var(--muted);
-      margin: 0;
-    }
-
-    .metric-list {
-      list-style: none;
-      padding: 0;
-      margin: 18px 0 0;
-      display: grid;
-      gap: 12px;
-    }
-
-    .metric-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      color: var(--muted);
-    }
-
-    .metric-list li::before {
-      content: "•";
-      color: var(--primary);
-      font-size: 1.2rem;
-      line-height: 1;
-      margin-top: 2px;
-    }
-
-    .timeline {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-top: 24px;
-      align-items: end;
-    }
-
-    .bar-card {
-      padding: 14px;
-      border-radius: 16px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-    }
-
-    .bar-rail {
-      height: 180px;
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 12px;
-    }
-
-    .bar-fill {
-      width: 100%;
-      border-radius: 14px 14px 6px 6px;
-      background: linear-gradient(180deg, var(--primary), var(--primary-dark));
-    }
-
-    .bar-card strong {
-      display: block;
-      margin-bottom: 4px;
-      font-size: 1rem;
-    }
-
-    .bar-card span {
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .case-study {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 22px;
-    }
-
-    .case-panel {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 26px;
-      box-shadow: var(--shadow);
-    }
-
-    .case-panel h3 {
-      margin-bottom: 10px;
-      font-size: 1.45rem;
-    }
-
-    .case-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 14px 0 22px;
-    }
-
-    .case-meta span {
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: var(--bg-soft);
-      color: var(--muted);
-      font-size: 0.88rem;
-      font-weight: 600;
-    }
-
-    .case-steps {
-      display: grid;
-      gap: 16px;
-    }
-
-    .case-step {
-      padding: 16px 18px;
-      border-radius: 16px;
-      background: var(--bg-soft);
-      border: 1px solid var(--border);
-    }
-
-    .case-step strong {
-      display: block;
-      margin-bottom: 6px;
-      color: var(--text);
-      font-size: 0.98rem;
-    }
-
-    .case-step p {
-      margin: 0;
-      color: var(--muted);
-    }
-
-    .results-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
-      margin-top: 20px;
-    }
-
-    .result-box {
-      padding: 18px;
-      border-radius: 16px;
-      background: color-mix(in srgb, var(--primary) 10%, var(--surface));
-      border: 1px solid var(--border);
-    }
-
-    .result-box h4 {
-      margin: 0 0 6px;
-      font-size: 1.45rem;
-      font-family: "Manrope", sans-serif;
-      color: var(--primary);
-    }
-
-    .result-box p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .tool-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 16px;
-    }
-
-    .tool-tags span {
-      padding: 10px 12px;
-      border-radius: 10px;
-      background: var(--bg-soft);
-      color: var(--text);
-      border: 1px solid var(--border);
-      font-weight: 600;
-      font-size: 0.92rem;
-    }
-
-    .contact-wrap {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 20px;
-      align-items: center;
-      background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, var(--surface)), var(--surface));
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 28px;
-      box-shadow: var(--shadow);
-    }
-
-    .contact-details {
-      display: grid;
-      gap: 10px;
-      color: var(--muted);
-    }
-
-    .contact-details a {
-      color: var(--text);
-      font-weight: 600;
-    }
-
-    .footer {
-      border-top: 1px solid var(--border);
-      padding: 24px 0 42px;
-      color: var(--muted);
-      font-size: 0.94rem;
-    }
-
-    .footer-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    :focus-visible {
-      outline: 2px solid var(--primary);
-      outline-offset: 3px;
-    }
-
-    @media (max-width: 980px) {
-      .hero-grid,
-      .case-study,
-      .grid-3,
-      .grid-2,
-      .contact-wrap {
-        grid-template-columns: 1fr;
-      }
-
-      .section-head {
-        align-items: start;
-        flex-direction: column;
-      }
-
-      .contact-wrap {
-        align-items: start;
-      }
-    }
-
-    @media (max-width: 760px) {
-      .nav {
-        flex-wrap: wrap;
-        padding: 12px 0;
-      }
-
-      .menu-toggle {
-        display: grid;
-      }
-
-      .nav-links {
-        width: 100%;
-        display: none;
-        flex-direction: column;
-        align-items: flex-start;
-        padding: 14px;
-        background: var(--surface);
-        border: 1px solid var(--border);
-        border-radius: 16px;
-      }
-
-      .nav-links.show {
-        display: flex;
-      }
-
-      .nav-actions .btn {
-        display: none;
-      }
-
-      .timeline {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .kpi-grid,
-      .results-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 44px;
-      }
-
-      h1 {
-        max-width: 12ch;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .timeline {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-cta {
-        flex-direction: column;
-      }
-
-      .hero-cta .btn,
-      .contact-wrap .btn {
-        width: 100%;
-      }
-
-      .container {
-        width: min(var(--max), calc(100% - 20px));
-      }
-
-      .card,
-      .case-panel,
-      .hero-card,
-      .contact-wrap {
-        padding: 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ajay Chakravarthy — Performance Marketing Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ─── CSS VARIABLES ─── */
+:root {
+  --bg: #05050f;
+  --bg2: #0a0a1a;
+  --bg3: #0f0f24;
+  --surface: rgba(255,255,255,0.04);
+  --surface2: rgba(255,255,255,0.07);
+  --border: rgba(255,255,255,0.08);
+  --accent: #4f6ef7;
+  --accent2: #7c3aed;
+  --accent3: #06b6d4;
+  --gold: #f59e0b;
+  --green: #10b981;
+  --red: #ef4444;
+  --text: #f0f0f8;
+  --text2: #a0a0b8;
+  --text3: #606078;
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --radius: 16px;
+  --radius-sm: 8px;
+  --glow: 0 0 40px rgba(79,110,247,0.15);
+  --glow2: 0 0 60px rgba(124,58,237,0.12);
+}
+
+/* ─── RESET & BASE ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: var(--accent); text-decoration: none; }
+::selection { background: rgba(79,110,247,0.3); }
+
+/* ─── NOISE TEXTURE OVERLAY ─── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+/* ─── GRADIENT MESH BG ─── */
+.mesh-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+.mesh-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 50% at 20% 20%, rgba(79,110,247,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse 60% 40% at 80% 80%, rgba(124,58,237,0.07) 0%, transparent 60%),
+              radial-gradient(ellipse 40% 60% at 50% 50%, rgba(6,182,212,0.04) 0%, transparent 70%);
+}
+
+/* ─── NAVIGATION ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(5,5,15,0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.nav-links {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+}
+.nav-links a {
+  color: var(--text2);
+  font-size: 0.85rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+.nav-links a:hover { color: var(--text); background: var(--surface2); }
+.nav-cta {
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff !important;
+  padding: 8px 20px !important;
+  border-radius: 20px !important;
+}
+.nav-cta:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ─── SECTIONS ─── */
+section { position: relative; z-index: 1; }
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border: 1px solid rgba(79,110,247,0.3);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: rgba(79,110,247,0.08);
+  margin-bottom: 32px;
+  animation: fadeInUp 0.6s ease both;
+}
+.hero-badge .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%,100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin-bottom: 16px;
+  animation: fadeInUp 0.7s 0.1s ease both;
+}
+.hero h1 span {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent3) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  color: var(--text2);
+  max-width: 680px;
+  margin: 0 auto 16px;
+  font-weight: 300;
+  animation: fadeInUp 0.7s 0.2s ease both;
+}
+.hero-positioning {
+  font-size: 1rem;
+  color: var(--accent3);
+  font-family: var(--font-mono);
+  margin-bottom: 48px;
+  animation: fadeInUp 0.7s 0.25s ease both;
+}
+.hero-kpis {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 56px;
+  animation: fadeInUp 0.7s 0.3s ease both;
+}
+.hero-kpi {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px 28px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s;
+  cursor: default;
+}
+.hero-kpi:hover {
+  border-color: rgba(79,110,247,0.4);
+  background: var(--surface2);
+  transform: translateY(-4px);
+  box-shadow: var(--glow);
+}
+.hero-kpi-value {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.03em;
+}
+.hero-kpi-label {
+  font-size: 0.78rem;
+  color: var(--text3);
+  font-family: var(--font-mono);
+  margin-top: 4px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  animation: fadeInUp 0.7s 0.4s ease both;
+}
+.btn-primary {
+  padding: 14px 32px;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(79,110,247,0.4); }
+.btn-secondary {
+  padding: 14px 32px;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-secondary:hover { border-color: var(--accent); background: var(--surface2); transform: translateY(-2px); }
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-indicator {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: var(--text3);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  animation: fadeIn 1s 1s both;
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollDown 2s infinite;
+}
+@keyframes scrollDown {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  50% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: bottom; opacity: 0; }
+}
+
+/* ─── SECTION SHELL ─── */
+.section-shell {
+  padding: 100px 40px;
+  max-width: 1160px;
+  margin: 0 auto;
+}
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-label::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: var(--accent);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+.section-title span {
+  background: linear-gradient(135deg, var(--accent), var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-desc {
+  color: var(--text2);
+  font-size: 1.05rem;
+  max-width: 580px;
+  margin-bottom: 60px;
+  font-weight: 300;
+}
+
+/* ─── PERFORMANCE DASHBOARD ─── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 16px;
+  margin-bottom: 40px;
+}
+@media(max-width:900px){ .dashboard-grid { grid-template-columns: repeat(2,1fr); } }
+.dash-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.dash-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+.dash-card:hover::before { transform: scaleX(1); }
+.dash-card:hover { border-color: rgba(79,110,247,0.3); background: var(--surface2); transform: translateY(-2px); }
+.dash-icon { font-size: 1.4rem; margin-bottom: 12px; }
+.dash-value {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff, var(--accent3));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dash-label { font-size: 0.78rem; color: var(--text3); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.06em; margin-top: 4px; }
+.dash-change { font-size: 0.8rem; margin-top: 8px; display: flex; align-items: center; gap: 4px; }
+.dash-change.up { color: var(--green); }
+.dash-change.down { color: var(--red); }
+
+/* ─── CHART AREA ─── */
+.chart-row {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+@media(max-width:900px){ .chart-row { grid-template-columns: 1fr; } }
+.chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 28px;
+}
+.chart-card-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.chart-card-title span { color: var(--text3); font-size: 0.8rem; font-family: var(--font-body); font-weight: 400; margin-left: 8px; }
+
+/* Bar chart */
+.bar-chart { display: flex; flex-direction: column; gap: 14px; }
+.bar-item { display: flex; flex-direction: column; gap: 6px; }
+.bar-meta { display: flex; justify-content: space-between; font-size: 0.8rem; }
+.bar-name { color: var(--text2); font-weight: 500; }
+.bar-val { color: var(--text); font-family: var(--font-mono); font-size: 0.78rem; }
+.bar-track {
+  height: 8px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* Donut */
+.donut-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+.donut-svg { filter: drop-shadow(0 0 20px rgba(79,110,247,0.3)); }
+.donut-legend { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.legend-item { display: flex; align-items: center; gap: 10px; font-size: 0.82rem; }
+.legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+.legend-name { color: var(--text2); flex: 1; }
+.legend-val { color: var(--text); font-family: var(--font-mono); font-weight: 600; }
+
+/* ─── FUNNEL ─── */
+.funnel-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin: 40px 0;
+}
+.funnel-step {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  margin-bottom: -1px;
+  transition: all 0.3s;
+  cursor: default;
+}
+.funnel-step:hover { background: var(--surface2); border-color: rgba(79,110,247,0.3); z-index: 2; }
+.funnel-step:nth-child(1) { width: 100%; }
+.funnel-step:nth-child(2) { width: 85%; }
+.funnel-step:nth-child(3) { width: 70%; }
+.funnel-step:nth-child(4) { width: 55%; }
+.funnel-step:nth-child(5) { width: 40%; }
+.funnel-label { font-weight: 600; font-size: 0.92rem; color: var(--text); }
+.funnel-stat { font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent3); font-weight: 600; }
+.funnel-pct { font-size: 0.75rem; color: var(--text3); margin-left: 12px; }
+.funnel-connector {
+  width: 2px;
+  height: 12px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  margin: 0 auto;
+}
+
+/* ─── BRAND LOGOS BAR ─── */
+.brands-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 60px;
+}
+.brand-pill {
+  padding: 8px 20px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text2);
+  letter-spacing: 0.05em;
+  transition: all 0.3s;
+}
+.brand-pill:hover { color: var(--text); border-color: var(--accent); background: rgba(79,110,247,0.08); }
+
+/* ─── CASE STUDIES ─── */
+.tabs-nav {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.tabs-nav::-webkit-scrollbar { display: none; }
+.tab-btn {
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: var(--text3);
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  white-space: nowrap;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all 0.2s;
+}
+.tab-btn:hover { color: var(--text2); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel { display: none; animation: fadeIn 0.3s ease; }
+.tab-panel.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+.case-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media(max-width:800px){ .case-grid { grid-template-columns: 1fr; } }
+.case-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  transition: all 0.3s;
+}
+.case-card:hover { border-color: rgba(79,110,247,0.3); box-shadow: var(--glow); }
+.case-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.tag-google { background: rgba(79,110,247,0.15); color: var(--accent); }
+.tag-meta { background: rgba(6,182,212,0.12); color: var(--accent3); }
+.tag-cro { background: rgba(16,185,129,0.12); color: var(--green); }
+.tag-apac { background: rgba(245,158,11,0.12); color: var(--gold); }
+.case-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+.case-desc { color: var(--text2); font-size: 0.88rem; line-height: 1.6; margin-bottom: 20px; }
+
+/* Accordion */
+.accordion-item {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+.accordion-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--surface);
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text2);
+  text-align: left;
+  transition: all 0.2s;
+}
+.accordion-header:hover { background: var(--surface2); color: var(--text); }
+.accordion-header.open { color: var(--accent); }
+.accordion-icon {
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  transition: transform 0.3s;
+  flex-shrink: 0;
+}
+.accordion-header.open .accordion-icon { transform: rotate(45deg); }
+.accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), padding 0.3s;
+  padding: 0 20px;
+  color: var(--text2);
+  font-size: 0.87rem;
+  line-height: 1.7;
+}
+.accordion-body.open { max-height: 400px; padding: 16px 20px; }
+
+.case-results {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 12px;
+  margin-top: 20px;
+}
+.result-item {
+  text-align: center;
+  background: var(--bg3);
+  border-radius: var(--radius-sm);
+  padding: 14px 8px;
+}
+.result-num {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--accent);
+}
+.result-label { font-size: 0.72rem; color: var(--text3); font-family: var(--font-mono); margin-top: 2px; }
+
+/* ─── TIMELINE ─── */
+.timeline {
+  position: relative;
+  padding-left: 40px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+}
+.timeline-dot {
+  position: absolute;
+  left: -36px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg);
+  box-shadow: 0 0 12px rgba(79,110,247,0.6);
+}
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent3);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.timeline-company { color: var(--text2); font-size: 0.88rem; margin-bottom: 12px; }
+.timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.timeline-bullets li {
+  color: var(--text2);
+  font-size: 0.88rem;
+  display: flex;
+  gap: 10px;
+}
+.timeline-bullets li::before { content: '→'; color: var(--accent); flex-shrink: 0; }
+
+/* ─── SKILLS SECTION ─── */
+.skills-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+.filter-btn {
+  padding: 7px 18px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  color: var(--text2);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-btn:hover { border-color: var(--accent); color: var(--text); }
+.filter-btn.active { background: rgba(79,110,247,0.15); border-color: var(--accent); color: var(--accent); }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+.skill-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: all 0.3s;
+}
+.skill-card:hover { border-color: rgba(79,110,247,0.4); transform: translateY(-2px); }
+.skill-card.hidden { display: none; }
+.skill-icon { font-size: 1.4rem; }
+.skill-name { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+.skill-level {
+  height: 3px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.skill-bar {
+  height: 100%;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent3));
+  width: 0;
+  transition: width 1s cubic-bezier(0.4,0,0.2,1);
+}
+
+/* ─── BEFORE/AFTER ─── */
+.ba-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 0;
+  align-items: start;
+}
+@media(max-width:700px){ .ba-grid { grid-template-columns: 1fr; } }
+.ba-col {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+}
+.ba-col.after { border-color: rgba(79,110,247,0.3); background: rgba(79,110,247,0.05); }
+.ba-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+.ba-col.before .ba-label { color: var(--text3); }
+.ba-col.after .ba-label { color: var(--accent); }
+.ba-metric { display: flex; flex-direction: column; gap: 16px; }
+.ba-row { display: flex; flex-direction: column; gap: 4px; }
+.ba-row-label { font-size: 0.78rem; color: var(--text3); font-family: var(--font-mono); }
+.ba-row-val { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; }
+.before-val { color: var(--text3); }
+.after-val { color: var(--accent3); }
+.ba-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  font-size: 1.8rem;
+  color: var(--accent);
+}
+@media(max-width:700px){ .ba-arrow { padding: 16px; text-align: center; } }
+
+/* ─── LEADERSHIP ─── */
+.lead-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 20px;
+}
+@media(max-width:800px){ .lead-grid { grid-template-columns: 1fr; } }
+.lead-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px 28px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.lead-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent2));
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.lead-card:hover::after { transform: scaleX(1); }
+.lead-card:hover { border-color: rgba(79,110,247,0.3); }
+.lead-icon { font-size: 2rem; margin-bottom: 16px; }
+.lead-title { font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+.lead-desc { color: var(--text2); font-size: 0.87rem; line-height: 1.65; }
+
+/* ─── TOOLS SECTION ─── */
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+.tool-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 20px 16px;
+  text-align: center;
+  transition: all 0.3s;
+}
+.tool-card:hover { border-color: rgba(79,110,247,0.4); transform: translateY(-3px); box-shadow: var(--glow); }
+.tool-icon { font-size: 1.6rem; margin-bottom: 8px; }
+.tool-name { font-size: 0.78rem; font-weight: 600; color: var(--text); }
+.tool-type { font-size: 0.68rem; color: var(--text3); font-family: var(--font-mono); margin-top: 3px; }
+
+/* ─── CTA ─── */
+.cta-section {
+  text-align: center;
+  padding: 120px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 50%, rgba(79,110,247,0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-section h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+}
+.cta-section p { color: var(--text2); font-size: 1.1rem; max-width: 500px; margin: 0 auto 40px; }
+
+/* ─── FOOTER ─── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px;
+  text-align: center;
+  color: var(--text3);
+  font-size: 0.82rem;
+  font-family: var(--font-mono);
+}
+footer strong { color: var(--text2); }
+
+/* ─── REVEAL ANIMATIONS ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.7s cubic-bezier(0.4,0,0.2,1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="topbar">
-    <div class="container nav">
-      <a href="#home" class="brand" aria-label="Ajay Chakravarthy home">
-        <span class="brand-mark">AJ</span>
-        <span>Ajay Chakravarthy</span>
-      </a>
+<div class="mesh-bg"></div>
 
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Toggle navigation menu"
-        aria-expanded="false"
-        aria-controls="navLinks"
-      >
-        ☰
-      </button>
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <div class="nav-logo">AJC · PERF MKTR</div>
+  <ul class="nav-links">
+    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+  </ul>
+</nav>
 
-      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
-        <a href="#about">About</a>
-        <a href="#results">Results</a>
-        <a href="#case-study">Case Study</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-badge">
+    <span class="dot"></span>
+    Available for Senior Performance Marketing Roles
+  </div>
+  <h1>Ajay<br><span>Chakravarthy</span></h1>
+  <p class="hero-sub">Performance Marketing Specialist delivering enterprise-scale growth through Google Ads, Meta Ads, and AI-powered campaign strategy</p>
+  <p class="hero-positioning">// The strategist behind 421K+ conversions · ₹81.2L+ ad spend managed · APAC SPOC for Lenovo</p>
 
-      <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">☾</button>
-        <a class="btn btn-secondary" href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  <div class="hero-kpis">
+    <div class="hero-kpi">
+      <div class="hero-kpi-value" data-target="421043" data-suffix="+" data-format="commas">0</div>
+      <div class="hero-kpi-label">Total Conversions</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-value">₹32</div>
+      <div class="hero-kpi-label">Avg. CPA</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-value">4.40%</div>
+      <div class="hero-kpi-label">Avg. CTR</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-value">₹81.2L+</div>
+      <div class="hero-kpi-label">Ad Spend Managed</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-value">250+</div>
+      <div class="hero-kpi-label">GBP Profiles</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-value">6</div>
+      <div class="hero-kpi-label">Team Members Led</div>
+    </div>
+  </div>
+
+  <div class="hero-actions">
+    <a href="#cases" class="btn-primary">↓ View Case Studies</a>
+    <a href="mailto:ajay.hulikallu@gmail.com" class="btn-secondary">✉ Get in Touch</a>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    scroll
+  </div>
+</section>
+
+<!-- ─── BRANDS ─── -->
+<section style="padding:0 40px 60px; position:relative; z-index:1; max-width:1160px; margin:0 auto;">
+  <div class="brands-bar reveal">
+    <div class="brand-pill">LENOVO</div>
+    <div class="brand-pill">DELL</div>
+    <div class="brand-pill">ACER</div>
+    <div class="brand-pill">ASUS</div>
+    <div class="brand-pill">MSI</div>
+    <div class="brand-pill">BRITANNIA</div>
+    <div class="brand-pill">INDIAN CRAFT BREWERY</div>
+    <div class="brand-pill">DOTCOM EXCLUSIVE</div>
+    <div class="brand-pill">ACE INFOCOM</div>
+  </div>
+</section>
+
+<!-- ─── PERFORMANCE DASHBOARD ─── -->
+<section id="dashboard">
+  <div class="section-shell">
+    <div class="reveal">
+      <div class="section-label">Live Campaign Data</div>
+      <h2 class="section-title">Performance <span>Dashboard</span></h2>
+      <p class="section-desc">Aggregated results from Google Ads campaign report — across all brands, all time.</p>
+    </div>
+
+    <div class="dashboard-grid reveal">
+      <div class="dash-card">
+        <div class="dash-icon">⚡</div>
+        <div class="dash-value" data-target="421043" data-suffix="+" data-format="commas">0</div>
+        <div class="dash-label">Total Conversions</div>
+        <div class="dash-change up">↑ Google Ads tracked</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">💰</div>
+        <div class="dash-value">₹81.2L+</div>
+        <div class="dash-label">Total Ad Spend</div>
+        <div class="dash-change up">↑ Multi-brand managed</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">🖱️</div>
+        <div class="dash-value">58L+</div>
+        <div class="dash-label">Total Clicks</div>
+        <div class="dash-change up">↑ 4.40% avg CTR</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">👁️</div>
+        <div class="dash-value">17.4Cr+</div>
+        <div class="dash-label">Impressions</div>
+        <div class="dash-change up">↑ Across all channels</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">🎯</div>
+        <div class="dash-value">₹32</div>
+        <div class="dash-label">Avg. CPA</div>
+        <div class="dash-change up">↑ Target CPA optimized</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">💸</div>
+        <div class="dash-value">₹2.15</div>
+        <div class="dash-label">Avg. CPC</div>
+        <div class="dash-change up">↑ Smart bidding efficiency</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">📍</div>
+        <div class="dash-value">250+</div>
+        <div class="dash-label">GBP Profiles</div>
+        <div class="dash-change up">↑ Lenovo APAC SPOC</div>
+      </div>
+      <div class="dash-card">
+        <div class="dash-icon">📈</div>
+        <div class="dash-value">+15%</div>
+        <div class="dash-label">Store Discoverability</div>
+        <div class="dash-change up">↑ Local search improvement</div>
       </div>
     </div>
-  </header>
 
-  <main id="main">
-    <section class="hero" id="home">
-      <div class="container hero-grid">
-        <div class="reveal">
-          <span class="eyebrow">Performance Marketing Specialist | Paid Media | Growth</span>
-          <h1>Driving measurable growth across paid media and local demand generation.</h1>
-          <p class="lead">
-            I help brands scale conversions, improve campaign efficiency, and strengthen discoverability using Google Ads,
-            Meta Ads, smart bidding, location-led strategy, and data-backed optimization.
-          </p>
-
-          <div class="hero-cta">
-            <a href="#case-study" class="btn btn-primary">View Case Study</a>
-            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+    <!-- Charts Row -->
+    <div class="chart-row reveal">
+      <!-- Brand Performance Bar Chart -->
+      <div class="chart-card">
+        <div class="chart-card-title">Brand Campaign Volume <span>by conversion count</span></div>
+        <div class="bar-chart" id="brandChart">
+          <div class="bar-item">
+            <div class="bar-meta">
+              <span class="bar-name">Acer (Dotcom Network)</span>
+              <span class="bar-val">~120K conversions</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="95"></div></div>
           </div>
-
-          <div class="proof-strip" aria-label="Key highlights">
-            <span class="proof-pill">421,000+ conversions</span>
-            <span class="proof-pill">₹32 average CPA</span>
-            <span class="proof-pill">100+ retail locations</span>
-            <span class="proof-pill">APAC campaign exposure</span>
+          <div class="bar-item">
+            <div class="bar-meta">
+              <span class="bar-name">Indian Craft Brewery</span>
+              <span class="bar-val">~150K conversions</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="100" style="background: linear-gradient(90deg,var(--accent2),var(--accent))"></div></div>
           </div>
-        </div>
-
-        <aside class="hero-card reveal" aria-label="Performance snapshot">
-          <div class="mini-label">Performance Snapshot</div>
-          <div class="kpi-grid">
-            <div class="kpi">
-              <h3>421K+</h3>
-              <p>Conversions generated through paid media execution.</p>
+          <div class="bar-item">
+            <div class="bar-meta">
+              <span class="bar-name">Lenovo (Dotcom/Ace)</span>
+              <span class="bar-val">~85K conversions</span>
             </div>
-            <div class="kpi">
-              <h3>₹32</h3>
-              <p>Average CPA maintained while scaling campaign output.</p>
-            </div>
-            <div class="kpi">
-              <h3>100+</h3>
-              <p>Retail locations supported through local marketing strategy.</p>
-            </div>
-            <div class="kpi">
-              <h3>15%</h3>
-              <p>Discoverability uplift reported in campaign-led visibility efforts.</p>
-            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="72" style="background: linear-gradient(90deg,var(--accent3),var(--green))"></div></div>
           </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="badge">About Me</span>
-            <h2>Performance-first marketer with outcome-led execution.</h2>
-            <p>
-              I’m Ajay Chakravarthy H J, a performance marketing professional focused on paid media, conversion growth,
-              campaign efficiency, and local visibility. My work sits at the intersection of media strategy, optimization,
-              and measurable business outcomes.
-            </p>
+          <div class="bar-item">
+            <div class="bar-meta">
+              <span class="bar-name">MSI Brand Stores</span>
+              <span class="bar-val">~30K conversions</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" data-width="50" style="background: linear-gradient(90deg,var(--gold),var(--accent3))"></div></div>
           </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card reveal">
-            <h3>What I do</h3>
-            <p>
-              Plan, launch, optimize, and scale Google Ads and Meta Ads campaigns with a focus on conversions,
-              visibility, and efficient acquisition.
-            </p>
-          </article>
-
-          <article class="card reveal">
-            <h3>How I work</h3>
-            <p>
-              I rely on testing, audience refinement, bidding strategy, creative alignment, and performance reporting
-              to improve campaign output over time.
-            </p>
-          </article>
-
-          <article class="card reveal">
-            <h3>Where I add value</h3>
-            <p>
-              Especially strong in performance-led growth, location-driven campaigns, and turning paid media metrics into
-              business-ready insights.
-            </p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="results">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="badge">Results</span>
-            <h2>Selected performance indicators</h2>
-            <p>
-A snapshot of performance outcomes driven through paid media strategy, optimization, and scalable execution.
-</p>
-          </div>
-        </div>
-
-        <div class="grid-2">
-          <article class="card reveal">
-            <h3>Key achievements</h3>
-            <ul class="metric-list">
-              <li>Generated 421,000+ conversions while maintaining an average CPA of ₹32.</li>
-              <li>Managed campaigns supporting 100+ retail locations.</li>
-              <li>Improved CTR by 18% through optimization and targeting refinement.</li>
-              <li>Boosted conversion rate by 11% with stronger bidding and audience strategy.</li>
-              <li>Improved discoverability by 15% in location-focused campaign activity.</li>
-            </ul>
-          </article>
-
-          <article class="card reveal">
-            <h3>Growth trend</h3>
-            <p>
-              Replace these labels with exact quarter or campaign-period numbers whenever you have them. Even a simple
-              trend view is better when it is named and contextualized.
-            </p>
-
-            <div class="timeline" aria-label="Illustrative growth chart">
-              <div class="bar-card">
-                <div class="bar-rail">
-                  <div class="bar-fill" style="height: 42%;"></div>
-                </div>
-                <strong>Phase 1</strong>
-                <span>Baseline build</span>
-              </div>
-
-              <div class="bar-card">
-                <div class="bar-rail">
-                  <div class="bar-fill" style="height: 61%;"></div>
-                </div>
-                <strong>Phase 2</strong>
-                <span>Audience tuning</span>
-              </div>
-
-              <div class="bar-card">
-                <div class="bar-rail">
-                  <div class="bar-fill" style="height: 78%;"></div>
-                </div>
-                <strong>Phase 3</strong>
-                <span>Bid optimization</span>
-              </div>
-
-              <div class="bar-card">
-                <div class="bar-rail">
-                  <div class="bar-fill" style="height: 92%;"></div>
-                </div>
-                <strong>Phase 4</strong>
-                <span>Scaled efficiency</span>
-              </div>
+          <div class="bar-item">
+            <div class="bar-meta">
+              <span class="bar-name">Dell / Asus / Others</span>
+              <span class="bar-val">~36K conversions</span>
             </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="case-study">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="badge">Featured Case Study</span>
-            <h2>Lenovo APAC campaign snapshot</h2>
-            <p>
-A breakdown of strategy, execution, and measurable impact delivered through campaign optimization.
-</p>
-          </div>
-        </div>
-
-        <div class="case-study">
-          <article class="case-panel reveal">
-            <h3>Store-visit and discoverability growth</h3>
-            <div class="case-meta">
-              <span>Client: Lenovo</span>
-              <span>Region: APAC</span>
-              <span>Focus: Local growth</span>
-              <span>Channels: Google Ads</span>
-            </div>
-
-            <div class="case-steps">
-              <div class="case-step">
-                <strong>Problem</strong>
-                <p>Store visits and discoverability needed improvement across retail-focused campaign activity.</p>
-              </div>
-
-              <div class="case-step">
-                <strong>Strategy</strong>
-                <p>Used Performance Max, audience targeting refinement, and smart bidding to improve reach quality and conversion efficiency.</p>
-              </div>
-
-              <div class="case-step">
-                <strong>Execution</strong>
-                <p>Aligned campaign structure with location intent, improved audience signals, and optimized toward scalable performance while keeping acquisition controlled.</p>
-              </div>
-
-              <div class="case-step">
-                <strong>Outcome</strong>
-                <p>Achieved stronger visibility, sustained scalable conversions, and maintained a ₹32 CPA benchmark.</p>
-              </div>
-            </div>
-          </article>
-
-          <aside class="case-panel reveal">
-            <h3>Result summary</h3>
-
-            <div class="results-grid">
-              <div class="result-box">
-                <h4>+15%</h4>
-                <p>Improvement in discoverability and visibility.</p>
-              </div>
-              <div class="result-box">
-                <h4>₹32</h4>
-                <p>Average CPA maintained through optimization.</p>
-              </div>
-              <div class="result-box">
-                <h4>Scalable</h4>
-                <p>Conversion growth without sacrificing efficiency.</p>
-              </div>
-              <div class="result-box">
-                <h4>APAC</h4>
-                <p>Experience across region-focused campaign execution.</p>
-              </div>
-            </div>
-
-            <div class="tool-tags" aria-label="Tools and methods used">
-              <span>Google Ads</span>
-              <span>Performance Max</span>
-              <span>Audience Targeting</span>
-              <span>Smart Bidding</span>
-              <span>Conversion Optimization</span>
-              <span>Local Campaign Strategy</span>
-            </div>
-          </aside>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="skills">
-      <div class="container">
-        <div class="section-head reveal">
-          <div>
-            <span class="badge">Capabilities</span>
-            <h2>Core strengths and platform focus</h2>
-            <p>
-Core platforms, tools, and strengths used to drive performance marketing outcomes.
-</p>
-          </div>
-        </div>
-
-        <div class="grid-3">
-          <article class="card reveal">
-            <h3>Paid media</h3>
-            <ul class="metric-list">
-              <li>Google Ads campaign management</li>
-              <li>Meta Ads campaign execution</li>
-              <li>Performance Max and smart bidding</li>
-            </ul>
-          </article>
-
-          <article class="card reveal">
-            <h3>Optimization</h3>
-            <ul class="metric-list">
-              <li>CTR and conversion-rate improvement</li>
-              <li>Audience targeting refinement</li>
-              <li>CPA-focused decision-making</li>
-            </ul>
-          </article>
-
-          <article class="card reveal">
-            <h3>Growth focus</h3>
-            <ul class="metric-list">
-              <li>Local and retail discoverability</li>
-              <li>Multi-location campaign support</li>
-              <li>Performance reporting and insight communication</li>
-            </ul>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container">
-        <div class="contact-wrap reveal">
-          <div>
-            <span class="badge">Contact</span>
-            <h2>Open to performance marketing and growth opportunities.</h2>
-            <div class="contact-details">
-              <div>Email: <a href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a></div>
-              <div>Phone: <a href="tel:+919742037878">+91 97420 37878</a></div>
-              <div>LinkedIn: <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noopener noreferrer">ajay-chakravarthy-h-j</a></div>
-            </div>
-          </div>
-
-          <div>
-            <a class="btn btn-primary" href="mailto:ajay.hulikallu@gmail.com">Let’s Connect</a>
+            <div class="bar-track"><div class="bar-fill" data-width="42" style="background: linear-gradient(90deg,#ec4899,var(--accent2))"></div></div>
           </div>
         </div>
       </div>
-    </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container footer-row">
-      <span>© 2026 Ajay Chakravarthy H J</span>
-      <span>Built for GitHub Pages | Performance Marketing Portfolio</span>
+      <!-- Donut: Campaign Type Split -->
+      <div class="chart-card">
+        <div class="chart-card-title">Campaign Type Mix <span>by volume</span></div>
+        <div class="donut-wrap">
+          <svg class="donut-svg" width="160" height="160" viewBox="0 0 160 160" id="donutSvg">
+            <circle cx="80" cy="80" r="60" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="28"/>
+            <!-- PMax ~75% → 282.7 of 377 -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="url(#grad1)" stroke-width="28"
+              stroke-dasharray="282.7 94.2" stroke-dashoffset="94.2" class="donut-arc"/>
+            <!-- Search ~20% → 75.4 -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#06b6d4" stroke-width="28"
+              stroke-dasharray="75.4 301.5" stroke-dashoffset="-188.5" class="donut-arc"/>
+            <!-- Display ~5% → 18.85 -->
+            <circle cx="80" cy="80" r="60" fill="none" stroke="#f59e0b" stroke-width="28"
+              stroke-dasharray="18.85 358.1" stroke-dashoffset="-263.9" class="donut-arc"/>
+            <defs>
+              <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#4f6ef7"/>
+                <stop offset="100%" stop-color="#7c3aed"/>
+              </linearGradient>
+            </defs>
+            <text x="80" y="75" text-anchor="middle" fill="white" font-size="18" font-weight="800" font-family="Syne,sans-serif">75%</text>
+            <text x="80" y="93" text-anchor="middle" fill="#a0a0b8" font-size="10" font-family="DM Sans,sans-serif">PMax</text>
+          </svg>
+          <div class="donut-legend">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:linear-gradient(135deg,#4f6ef7,#7c3aed)"></div>
+              <span class="legend-name">Performance Max</span>
+              <span class="legend-val">~75%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#06b6d4"></div>
+              <span class="legend-name">Search Campaigns</span>
+              <span class="legend-val">~20%</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:#f59e0b"></div>
+              <span class="legend-name">Display / Shopping</span>
+              <span class="legend-val">~5%</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </footer>
 
-  <script>
-    const themeToggle = document.getElementById("themeToggle");
-    const menuToggle = document.getElementById("menuToggle");
-    const navLinks = document.getElementById("navLinks");
-    const root = document.documentElement;
+    <!-- Conversion Funnel -->
+    <div class="reveal">
+      <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;margin-bottom:8px;">Full-Funnel Conversion Architecture</h3>
+      <p style="color:var(--text2);font-size:0.88rem;margin-bottom:32px;">How campaigns are structured from awareness to conversion</p>
+    </div>
+    <div class="funnel-wrap reveal">
+      <div class="funnel-step">
+        <span class="funnel-label">📢 Impressions (Awareness)</span>
+        <span class="funnel-stat">17.43 Crore+ <span class="funnel-pct">100%</span></span>
+      </div>
+      <div class="funnel-connector"></div>
+      <div class="funnel-step">
+        <span class="funnel-label">🖱️ Clicks (Engagement)</span>
+        <span class="funnel-stat">58,06,647 <span class="funnel-pct">CTR: 4.40%</span></span>
+      </div>
+      <div class="funnel-connector"></div>
+      <div class="funnel-step">
+        <span class="funnel-label">🎯 Conversion Actions Triggered</span>
+        <span class="funnel-stat">4,21,043+ <span class="funnel-pct">Avg CPC: ₹2.15</span></span>
+      </div>
+      <div class="funnel-connector"></div>
+      <div class="funnel-step">
+        <span class="funnel-label">📞 Qualified Leads / Store Visits</span>
+        <span class="funnel-stat">High-intent outcomes <span class="funnel-pct">CPA: ₹32 avg</span></span>
+      </div>
+      <div class="funnel-connector"></div>
+      <div class="funnel-step">
+        <span class="funnel-label">✅ Revenue Outcomes</span>
+        <span class="funnel-stat">Multi-brand ROI <span class="funnel-pct">₹81.2L+ spend</span></span>
+      </div>
+    </div>
+  </div>
+</section>
 
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    root.setAttribute("data-theme", prefersDark ? "dark" : "light");
-    themeToggle.textContent = prefersDark ? "☀" : "☾";
+<!-- ─── CASE STUDIES ─── -->
+<section id="cases" style="background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);">
+  <div class="section-shell">
+    <div class="reveal">
+      <div class="section-label">Deep Dives</div>
+      <h2 class="section-title">Campaign <span>Case Studies</span></h2>
+      <p class="section-desc">Strategy, execution, optimization, and measurable results.</p>
+    </div>
 
-    themeToggle.addEventListener("click", () => {
-      const current = root.getAttribute("data-theme");
-      const next = current === "dark" ? "light" : "dark";
-      root.setAttribute("data-theme", next);
-      themeToggle.textContent = next === "dark" ? "☀" : "☾";
-      themeToggle.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
-    });
+    <!-- Tabs -->
+    <div class="tabs-nav reveal">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-google')">Google Ads · PMax</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-meta')">Meta Ads</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-cro')">Shopify CRO</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-apac')">Lenovo APAC</button>
+    </div>
 
-    menuToggle.addEventListener("click", () => {
-      const isOpen = navLinks.classList.toggle("show");
-      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-    });
+    <!-- Google Ads Tab -->
+    <div id="tab-google" class="tab-panel active reveal">
+      <div class="case-grid">
+        <div class="case-card">
+          <span class="case-tag tag-google">Google Ads · PMax</span>
+          <h3 class="case-title">Acer Dotcom Multi-Location Performance Max Scale-Up</h3>
+          <p class="case-desc">Scaled Performance Max campaigns across 10+ Acer Dotcom store locations (Airport, Marina Mall, Mountroad, Velachery, etc.) to deliver sustained high-volume conversions at controlled CPA.</p>
+          <div id="acc-google" class="acc-group">
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🔍 Problem <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Multiple Acer Dotcom retail stores running isolated, low-performing campaigns with inconsistent bidding, budget cannibalization across locations, and no shared audience intelligence. Conversion volumes were fragmented and CPA was volatile across the network.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🧠 Strategy <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Consolidated location-level learnings into a Performance Max framework with shared signals. Applied Target CPA and Target ROAS smart bidding per store tier. Built audience lists from GA4 data including past converters and high-intent visitors, feeding these as audience signals into PMax asset groups.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                ⚙️ Execution & Optimization <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Set up separate PMax campaigns per location with hyper-local asset groups (images of actual stores, store-specific headlines). Used GTM + GA4 for precise conversion tracking — direction requests, phone clicks, web form submissions. Ran A/B tests on creative assets every 4 weeks, pausing low-performing image/text combos. Applied negative keyword exclusions at account level to prevent wasted impressions on irrelevant queries.</div>
+            </div>
+          </div>
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-num">3,800+</div>
+              <div class="result-label">Conv. Single Store</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">₹0.38</div>
+              <div class="result-label">Min. CPC Achieved</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">5.4%</div>
+              <div class="result-label">Peak CTR</div>
+            </div>
+          </div>
+        </div>
 
-    document.querySelectorAll('.nav-links a').forEach(link => {
-      link.addEventListener('click', () => {
-        navLinks.classList.remove('show');
-        menuToggle.setAttribute("aria-expanded", "false");
+        <div class="case-card">
+          <span class="case-tag tag-google">Search · Smart Bidding</span>
+          <h3 class="case-title">ICB Brewery: Search Campaign for Policy-Heavy Category</h3>
+          <p class="case-desc">Drove awareness and footfall for Indian Craft Brewery through Google Search campaigns in a heavily policy-restricted alcohol/hospitality category.</p>
+          <div class="acc-group">
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🔍 Problem <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Alcohol-adjacent brand facing Google Ads policy restrictions on direct promotion. Multiple ad disapprovals, limited targeting options, and the need to drive measurable restaurant/brewery footfall without violating platform policies.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🧠 Strategy + Execution <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Structured 6 separate Search campaigns by intent segment: Brewery, Restaurant, Cocktails, Dinner, Lunch, Generic, and Near Me. This allowed granular bidding and budget allocation by customer journey stage. Used compliant messaging focused on dining experience, crafted keyword clusters around food+drink and event terms rather than alcohol directly. Applied call extensions and location assets to drive direct phone conversions and foot traffic.</div>
+            </div>
+          </div>
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-num">16,926</div>
+              <div class="result-label">Conversions (Search)</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">11.46%</div>
+              <div class="result-label">CTR (Brewery Search)</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">₹3.24</div>
+              <div class="result-label">Avg CPC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Meta Ads Tab -->
+    <div id="tab-meta" class="tab-panel reveal">
+      <div class="case-grid">
+        <div class="case-card">
+          <span class="case-tag tag-meta">Meta Ads · Hospitality</span>
+          <h3 class="case-title">Meta Full-Funnel for Event & Hospitality Brands</h3>
+          <p class="case-desc">Built and optimized Meta Ads campaigns for hospitality and event clients, improving CTR by 18% through structured creative testing and funnel segmentation.</p>
+          <div class="acc-group">
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🔍 Problem + Strategy <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Campaigns were running with broad targeting and no creative differentiation between cold and warm audiences. ROAS was inconsistent and retargeting audiences were small and poorly structured. Rebuilt the funnel: TOF used broad + lookalike audiences (1–3% from past event attendees), MOF used engagement retargeting, BOF used website visitor + form-opened retargeting with urgency creatives (time-limited offers). Separated ad sets by placement type to control creative formats independently.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                ⚙️ Creative A/B Testing <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Ran structured 3-variant tests: (A) static image with benefit headline, (B) short video testimonial, (C) carousel with USP breakdown. Video content consistently outperformed static by 2.3x on engagement. Identified winning format per audience segment and scaled budget 60% toward top performers, reducing wasted impressions by 35%.</div>
+            </div>
+          </div>
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-num">+18%</div>
+              <div class="result-label">CTR Improvement</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">₹8.3L</div>
+              <div class="result-label">Meta Spend Managed</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">10.3M</div>
+              <div class="result-label">Total Clicks</div>
+            </div>
+          </div>
+        </div>
+        <div class="case-card">
+          <span class="case-tag tag-meta">Meta · Automation</span>
+          <h3 class="case-title">AiSensy + Marketo: Lead Nurture Automation</h3>
+          <p class="case-desc">Designed end-to-end lead nurturing system combining WhatsApp chatbot flows (AiSensy) with Marketo email sequences to accelerate MQL-to-SQL conversion.</p>
+          <div class="acc-group">
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🧠 Architecture <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Meta Lead Gen form submissions triggered immediate WhatsApp message via AiSensy API. Bot flow: Welcome → Product interest qualifier → Schedule demo/store visit → Human handoff for high-intent leads. Parallel Marketo sequence sent over 5-email nurture series (Day 0 instant, D2, D5, D10, D14) with personalized product recommendations based on lead form answers. Leads scoring above threshold were flagged for sales follow-up within 2 hours.</div>
+            </div>
+          </div>
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-num">↓ Lead</div>
+              <div class="result-label">Response Time</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">↑ MQL</div>
+              <div class="result-label">→ SQL Rate</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">2 Brands</div>
+              <div class="result-label">Lenovo + Britannia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CRO Tab -->
+    <div id="tab-cro" class="tab-panel reveal">
+      <div class="case-grid">
+        <div class="case-card" style="grid-column: 1 / -1;">
+          <span class="case-tag tag-cro">Shopify · CRO · GA4</span>
+          <h3 class="case-title">Britannia Shopify E-Commerce: +11% Conversion Rate in 90 Days</h3>
+          <p class="case-desc">Built Britannia's Shopify store from scratch and drove an 11% improvement in overall conversion rate through GA4-backed funnel analysis and systematic CRO execution.</p>
+          <div style="margin:24px 0;">
+            <div class="ba-grid">
+              <div class="ba-col before">
+                <div class="ba-label">Before Optimization</div>
+                <div class="ba-metric">
+                  <div class="ba-row"><div class="ba-row-label">CONV. RATE</div><div class="ba-row-val before-val">Baseline</div></div>
+                  <div class="ba-row"><div class="ba-row-label">CHECKOUT DROP-OFF</div><div class="ba-row-val before-val">High (untracked)</div></div>
+                  <div class="ba-row"><div class="ba-row-label">GA4 TRACKING</div><div class="ba-row-val before-val">None</div></div>
+                  <div class="ba-row"><div class="ba-row-label">LANDING PAGES</div><div class="ba-row-val before-val">Generic</div></div>
+                </div>
+              </div>
+              <div class="ba-arrow">→</div>
+              <div class="ba-col after">
+                <div class="ba-label">After Optimization</div>
+                <div class="ba-metric">
+                  <div class="ba-row"><div class="ba-row-label">CONV. RATE</div><div class="ba-row-val after-val">+11% in 90 days</div></div>
+                  <div class="ba-row"><div class="ba-row-label">CHECKOUT DROP-OFF</div><div class="ba-row-val after-val">Reduced via funnel fix</div></div>
+                  <div class="ba-row"><div class="ba-row-label">GA4 TRACKING</div><div class="ba-row-val after-val">Full-funnel via GTM</div></div>
+                  <div class="ba-row"><div class="ba-row-label">LANDING PAGES</div><div class="ba-row-val after-val">Product-specific, fast</div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="acc-group">
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                ⚙️ CRO Methodology <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Used GA4 funnel exploration reports to identify top drop-off points: 62% of users abandoned between product page and cart. Implemented GTM-tracked scroll depth, add-to-cart, and checkout step events. Hypothesized 3 causes: slow page load, unclear CTA placement, and insufficient social proof. Solutions: compressed product images (LCP improvement), repositioned CTA above fold, added review widgets near price. Ran 2-week A/B test, variant won at statistical significance.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- APAC Tab -->
+    <div id="tab-apac" class="tab-panel reveal">
+      <div class="case-grid">
+        <div class="case-card" style="grid-column: 1 / -1;">
+          <span class="case-tag tag-apac">Lenovo APAC · GBP Strategy</span>
+          <h3 class="case-title">Lenovo APAC: Google Business Profile Optimization for 250+ Partner Outlets</h3>
+          <p class="case-desc">As Lenovo's APAC Single Point of Contact (SPOC), drove a 15% improvement in local search discoverability across 250+ partner retail outlets through systematic GBP strategy.</p>
+          <div class="acc-group">
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🔍 Scope of Role <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Served as the strategic interface between Lenovo's APAC marketing team and HashConnect's execution team. Responsible for audit, optimization, and performance reporting of 250+ Google Business Profiles across partner stores in India and APAC markets. This included store locator integration, review management strategy, Q&A optimization, photo/media refresh cycles, and post publishing cadence.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-header" onclick="toggleAccordion(this)">
+                🧠 Strategy + Execution <span class="accordion-icon">+</span>
+              </button>
+              <div class="accordion-body">Audited all 250+ GBP listings for completeness score, photo quality, review response rate, and category accuracy. Prioritized the lowest-scoring 20% for immediate remediation. Standardized a GBP optimization playbook used across all partner locations: consistent NAP data, keyword-rich business descriptions, structured service attributes, and monthly photo updates. Implemented a store locator widget on landing pages linked back to individual GBP profiles, improving map pack click-through rates.</div>
+            </div>
+          </div>
+          <div class="case-results">
+            <div class="result-item">
+              <div class="result-num">250+</div>
+              <div class="result-label">GBP Profiles Managed</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">+15%</div>
+              <div class="result-label">Local Discoverability</div>
+            </div>
+            <div class="result-item">
+              <div class="result-num">APAC</div>
+              <div class="result-label">Multi-market SPOC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── EXPERIENCE TIMELINE ─── -->
+<section id="experience">
+  <div class="section-shell">
+    <div class="reveal">
+      <div class="section-label">Career History</div>
+      <h2 class="section-title">Professional <span>Timeline</span></h2>
+      <p class="section-desc">3+ years of progressive performance marketing mastery.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">JUL 2024 → PRESENT</div>
+        <div class="timeline-title">Assistant Manager – Performance Marketing</div>
+        <div class="timeline-company">HashConnect Integrated Services Pvt. Ltd. · Bengaluru</div>
+        <ul class="timeline-bullets">
+          <li>Lead 6-member team across Google Ads and Meta Ads for Lenovo, Dell, Acer, Asus, MSI</li>
+          <li>421,000+ conversions at ₹32 avg. CPA across ₹81.2L+ ad spend managed</li>
+          <li>Lenovo APAC SPOC for 250+ GBP partner profiles — +15% local discoverability</li>
+          <li>Improved reporting workflows by 25% using Looker Studio dashboards</li>
+          <li>Built WhatsApp (AiSensy) + Marketo email automation for lead nurturing</li>
+          <li>4.40% avg. CTR across 17.4Cr+ impressions, ₹2.15 avg. CPC</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--accent2);box-shadow:0 0 12px rgba(124,58,237,0.6)"></div>
+        <div class="timeline-date">AUG 2022 → JUN 2024</div>
+        <div class="timeline-title">Digital Marketing Executive</div>
+        <div class="timeline-company">HashConnect Integrated Services Pvt. Ltd. · Bengaluru</div>
+        <ul class="timeline-bullets">
+          <li>Google Ads: 421K+ conversions at ₹32 CPA via Performance Max + smart bidding</li>
+          <li>Meta Ads CTR improved by 18% through A/B testing and full-funnel retargeting</li>
+          <li>Britannia Shopify CRO: +11% conversion rate in 3 months via GA4 analysis</li>
+          <li>GTM + GA4 conversion tracking deployed across all client accounts</li>
+          <li>Looker Studio dashboards reduced reporting time from 3 days to same-day</li>
+        </ul>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:var(--accent3);box-shadow:0 0 12px rgba(6,182,212,0.6)"></div>
+        <div class="timeline-date">2019 → 2021</div>
+        <div class="timeline-title">Marketing Executive (Early Career)</div>
+        <div class="timeline-company">Vyram Constructions Ltd. & CDG Certification Ltd. · Bengaluru</div>
+        <ul class="timeline-bullets">
+          <li>B2B lead generation through digital outreach and CRM pipeline management</li>
+          <li>Sales support through client presentations and relationship activities</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SKILLS ─── -->
+<section id="skills" style="background:var(--bg2);">
+  <div class="section-shell">
+    <div class="reveal">
+      <div class="section-label">Capabilities</div>
+      <h2 class="section-title">Skills & <span>Expertise</span></h2>
+      <p class="section-desc">Filter by category to explore platform depth and execution capability.</p>
+    </div>
+    <div class="skills-filters reveal">
+      <button class="filter-btn active" onclick="filterSkills(this,'all')">All</button>
+      <button class="filter-btn" onclick="filterSkills(this,'paid')">Paid Media</button>
+      <button class="filter-btn" onclick="filterSkills(this,'analytics')">Analytics</button>
+      <button class="filter-btn" onclick="filterSkills(this,'automation')">Automation</button>
+      <button class="filter-btn" onclick="filterSkills(this,'leadership')">Leadership</button>
+    </div>
+    <div class="skills-grid reveal" id="skillsGrid">
+      <div class="skill-card" data-cat="paid">
+        <div class="skill-icon">🎯</div>
+        <div class="skill-name">Google Ads (Search)</div>
+        <div class="skill-level"><div class="skill-bar" data-w="95"></div></div>
+      </div>
+      <div class="skill-card" data-cat="paid">
+        <div class="skill-icon">⚡</div>
+        <div class="skill-name">Performance Max</div>
+        <div class="skill-level"><div class="skill-bar" data-w="95"></div></div>
+      </div>
+      <div class="skill-card" data-cat="paid">
+        <div class="skill-icon">📘</div>
+        <div class="skill-name">Meta Ads</div>
+        <div class="skill-level"><div class="skill-bar" data-w="88"></div></div>
+      </div>
+      <div class="skill-card" data-cat="paid">
+        <div class="skill-icon">🤖</div>
+        <div class="skill-name">Smart Bidding (tCPA/tROAS)</div>
+        <div class="skill-level"><div class="skill-bar" data-w="92"></div></div>
+      </div>
+      <div class="skill-card" data-cat="paid">
+        <div class="skill-icon">🧩</div>
+        <div class="skill-name">Audience Segmentation</div>
+        <div class="skill-level"><div class="skill-bar" data-w="90"></div></div>
+      </div>
+      <div class="skill-card" data-cat="paid">
+        <div class="skill-icon">🔁</div>
+        <div class="skill-name">Retargeting</div>
+        <div class="skill-level"><div class="skill-bar" data-w="90"></div></div>
+      </div>
+      <div class="skill-card" data-cat="analytics">
+        <div class="skill-icon">📊</div>
+        <div class="skill-name">Google Analytics 4</div>
+        <div class="skill-level"><div class="skill-bar" data-w="88"></div></div>
+      </div>
+      <div class="skill-card" data-cat="analytics">
+        <div class="skill-icon">🏷️</div>
+        <div class="skill-name">Google Tag Manager</div>
+        <div class="skill-level"><div class="skill-bar" data-w="85"></div></div>
+      </div>
+      <div class="skill-card" data-cat="analytics">
+        <div class="skill-icon">📈</div>
+        <div class="skill-name">Looker Studio</div>
+        <div class="skill-level"><div class="skill-bar" data-w="88"></div></div>
+      </div>
+      <div class="skill-card" data-cat="analytics">
+        <div class="skill-icon">🔍</div>
+        <div class="skill-name">Google Search Console</div>
+        <div class="skill-level"><div class="skill-bar" data-w="82"></div></div>
+      </div>
+      <div class="skill-card" data-cat="analytics">
+        <div class="skill-icon">🛠️</div>
+        <div class="skill-name">A/B Testing & CRO</div>
+        <div class="skill-level"><div class="skill-bar" data-w="85"></div></div>
+      </div>
+      <div class="skill-card" data-cat="automation">
+        <div class="skill-icon">💬</div>
+        <div class="skill-name">AiSensy (WhatsApp)</div>
+        <div class="skill-level"><div class="skill-bar" data-w="82"></div></div>
+      </div>
+      <div class="skill-card" data-cat="automation">
+        <div class="skill-icon">📧</div>
+        <div class="skill-name">Marketo Email</div>
+        <div class="skill-level"><div class="skill-bar" data-w="78"></div></div>
+      </div>
+      <div class="skill-card" data-cat="automation">
+        <div class="skill-icon">🛒</div>
+        <div class="skill-name">Shopify + CRO</div>
+        <div class="skill-level"><div class="skill-bar" data-w="80"></div></div>
+      </div>
+      <div class="skill-card" data-cat="leadership">
+        <div class="skill-icon">👥</div>
+        <div class="skill-name">Team Leadership (6)</div>
+        <div class="skill-level"><div class="skill-bar" data-w="85"></div></div>
+      </div>
+      <div class="skill-card" data-cat="leadership">
+        <div class="skill-icon">📋</div>
+        <div class="skill-name">KPI Setting & Reviews</div>
+        <div class="skill-level"><div class="skill-bar" data-w="85"></div></div>
+      </div>
+      <div class="skill-card" data-cat="leadership">
+        <div class="skill-icon">🌏</div>
+        <div class="skill-name">APAC Client Management</div>
+        <div class="skill-level"><div class="skill-bar" data-w="80"></div></div>
+      </div>
+    </div>
+
+    <!-- Leadership Cards -->
+    <div style="margin-top:60px;">
+      <h3 style="font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:32px;" class="reveal">Leadership & <span style="background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">Execution Depth</span></h3>
+      <div class="lead-grid reveal">
+        <div class="lead-card">
+          <div class="lead-icon">👥</div>
+          <div class="lead-title">Team Scaling</div>
+          <div class="lead-desc">Led and mentored a 6-member performance marketing team. Set weekly KPIs, ran structured performance reviews, and developed individual growth plans for junior marketers across Google Ads and Meta specializations.</div>
+        </div>
+        <div class="lead-card">
+          <div class="lead-icon">⚙️</div>
+          <div class="lead-title">Workflow Optimization</div>
+          <div class="lead-desc">Redesigned reporting infrastructure using Looker Studio, reducing turnaround from 3 days to same-day. Standardized campaign naming conventions, budget pacing templates, and QA checklists across all brand accounts.</div>
+        </div>
+        <div class="lead-card">
+          <div class="lead-icon">🌏</div>
+          <div class="lead-title">APAC Stakeholder Management</div>
+          <div class="lead-desc">Served as primary interface between Lenovo's APAC marketing leadership and the HashConnect delivery team. Managed cross-timezone communication, strategy alignment, and performance reporting for 250+ partner store profiles.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── TOOLS ─── -->
+<section>
+  <div class="section-shell">
+    <div class="reveal">
+      <div class="section-label">Stack</div>
+      <h2 class="section-title">Tools & <span>Platforms</span></h2>
+    </div>
+    <div class="tools-grid reveal">
+      <div class="tool-card"><div class="tool-icon">🎯</div><div class="tool-name">Google Ads</div><div class="tool-type">Paid Media</div></div>
+      <div class="tool-card"><div class="tool-icon">📘</div><div class="tool-name">Meta Ads Manager</div><div class="tool-type">Paid Media</div></div>
+      <div class="tool-card"><div class="tool-icon">📊</div><div class="tool-name">Google Analytics 4</div><div class="tool-type">Analytics</div></div>
+      <div class="tool-card"><div class="tool-icon">🏷️</div><div class="tool-name">Google Tag Manager</div><div class="tool-type">Tracking</div></div>
+      <div class="tool-card"><div class="tool-icon">📈</div><div class="tool-name">Looker Studio</div><div class="tool-type">Reporting</div></div>
+      <div class="tool-card"><div class="tool-icon">🔍</div><div class="tool-name">Search Console</div><div class="tool-type">SEO / GBP</div></div>
+      <div class="tool-card"><div class="tool-icon">💬</div><div class="tool-name">AiSensy</div><div class="tool-type">WhatsApp Automation</div></div>
+      <div class="tool-card"><div class="tool-icon">📧</div><div class="tool-name">Marketo</div><div class="tool-type">Email Automation</div></div>
+      <div class="tool-card"><div class="tool-icon">🛒</div><div class="tool-name">Shopify</div><div class="tool-type">E-commerce + CRO</div></div>
+      <div class="tool-card"><div class="tool-icon">✏️</div><div class="tool-name">Google Ads Editor</div><div class="tool-type">Bulk Management</div></div>
+      <div class="tool-card"><div class="tool-icon">🗺️</div><div class="tool-name">Google Business Profile</div><div class="tool-type">Local SEO · APAC</div></div>
+      <div class="tool-card"><div class="tool-icon">🎨</div><div class="tool-name">Canva</div><div class="tool-type">Creative</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA ─── -->
+<section id="contact" class="cta-section">
+  <div class="reveal">
+    <div class="section-label" style="justify-content:center;margin-bottom:24px;">Let's Work Together</div>
+    <h2>Ready to drive<br><span style="background:linear-gradient(135deg,var(--accent),var(--accent3));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">measurable growth?</span></h2>
+    <p>Senior Performance Marketing professional open to high-impact roles at growth-stage or enterprise brands. Available for Google Ads, Meta Ads, and full-funnel performance strategy leadership.</p>
+    <div class="hero-actions" style="justify-content:center;">
+      <a href="mailto:ajay.hulikallu@gmail.com" class="btn-primary">✉ ajay.hulikallu@gmail.com</a>
+      <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="btn-secondary">↗ LinkedIn Profile</a>
+    </div>
+    <p style="margin-top:24px;color:var(--text3);font-family:var(--font-mono);font-size:0.8rem;">+91 97420 37878 · Bengaluru, India</p>
+  </div>
+</section>
+
+<footer>
+  <strong>Ajay Chakravarthy H J</strong> — Performance Marketing Specialist<br>
+  <span style="margin-top:8px;display:block;">Google Ads Certified · Google Analytics Certified · 3+ Years · 421K+ Conversions</span>
+</footer>
+
+<script>
+// ─── COUNTER ANIMATION ───
+function animateCounter(el) {
+  const target = parseInt(el.dataset.target);
+  const suffix = el.dataset.suffix || '';
+  const format = el.dataset.format;
+  const duration = 2000;
+  const start = performance.now();
+  
+  function update(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.floor(eased * target);
+    
+    if (format === 'commas') {
+      el.textContent = current.toLocaleString('en-IN') + suffix;
+    } else {
+      el.textContent = current + suffix;
+    }
+    
+    if (progress < 1) requestAnimationFrame(update);
+    else el.textContent = (format === 'commas' ? target.toLocaleString('en-IN') : target) + suffix;
+  }
+  requestAnimationFrame(update);
+}
+
+// ─── REVEAL ON SCROLL ───
+const revealEls = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      
+      // Animate bars
+      entry.target.querySelectorAll('.bar-fill[data-width]').forEach(bar => {
+        setTimeout(() => bar.style.width = bar.dataset.width + '%', 200);
       });
-    });
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
+      entry.target.querySelectorAll('.skill-bar[data-w]').forEach(bar => {
+        setTimeout(() => bar.style.width = bar.dataset.w + '%', 300);
       });
-    }, { threshold: 0.14 });
+      
+      // Animate counters
+      entry.target.querySelectorAll('[data-target]').forEach(counter => {
+        animateCounter(counter);
+      });
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
-  </script>
+revealEls.forEach(el => observer.observe(el));
+
+// Hero counter
+document.querySelectorAll('.hero [data-target]').forEach(el => {
+  setTimeout(() => animateCounter(el), 600);
+});
+
+// ─── TABS ───
+function switchTab(btn, panelId) {
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(panelId).classList.add('active');
+}
+
+// ─── ACCORDION ───
+function toggleAccordion(btn) {
+  const body = btn.nextElementSibling;
+  const isOpen = btn.classList.contains('open');
+  
+  // Close all in same group
+  const group = btn.closest('.acc-group') || btn.closest('.case-card');
+  if (group) {
+    group.querySelectorAll('.accordion-header.open').forEach(h => {
+      h.classList.remove('open');
+      h.nextElementSibling.classList.remove('open');
+    });
+  }
+  
+  if (!isOpen) {
+    btn.classList.add('open');
+    body.classList.add('open');
+  }
+}
+
+// ─── SKILL FILTER ───
+function filterSkills(btn, cat) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  
+  document.querySelectorAll('.skill-card').forEach(card => {
+    if (cat === 'all' || card.dataset.cat === cat) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// ─── NAV SCROLL EFFECT ───
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('nav');
+  nav.style.background = window.scrollY > 60 
+    ? 'rgba(5,5,15,0.95)' 
+    : 'rgba(5,5,15,0.7)';
+});
+
+// ─── SMOOTH ACTIVE NAV ───
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 100) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--accent)' : '';
+  });
+});
+</script>
 </body>
 </html>
