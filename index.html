@@ -1,205 +1,1090 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ajay Chakravarthy | Performance Marketing Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ajay Chakravarthy | Performance Marketing Portfolio</title>
+  <meta
+    name="description"
+    content="Ajay Chakravarthy H J - Performance Marketing Specialist with experience in Google Ads, Meta Ads, APAC campaigns, local growth, and measurable conversion outcomes."
+  />
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
-}
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
 
-/* HEADER */
-header {
-  text-align: center;
-  padding: 60px 20px;
-  background: linear-gradient(135deg, #1e293b, #020617);
-}
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #111827;
+      --surface: #172033;
+      --surface-2: #1d2940;
+      --border: rgba(148, 163, 184, 0.18);
+      --text: #e5eefb;
+      --muted: #a5b4cc;
+      --primary: #38bdf8;
+      --primary-dark: #0ea5e9;
+      --accent: #22c55e;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.28);
+      --max: 1160px;
+      --radius: 18px;
+      --radius-sm: 12px;
+      --hero-gradient:
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 35%),
+        radial-gradient(circle at top right, rgba(34, 197, 94, 0.12), transparent 30%),
+        linear-gradient(180deg, #0b1220 0%, #0f172a 55%, #0b1220 100%);
+    }
 
-h1 { font-size: 36px; margin: 0; }
-h2 { color: #38bdf8; }
+    [data-theme="light"] {
+      --bg: #f6f8fc;
+      --bg-soft: #eef3f9;
+      --surface: #ffffff;
+      --surface-2: #f8fbff;
+      --border: rgba(15, 23, 42, 0.1);
+      --text: #0f172a;
+      --muted: #475569;
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #16a34a;
+      --shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      --hero-gradient:
+        radial-gradient(circle at top left, rgba(2, 132, 199, 0.1), transparent 32%),
+        radial-gradient(circle at top right, rgba(22, 163, 74, 0.08), transparent 28%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4fb 50%, #f6f8fc 100%);
+    }
 
-.section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 40px 20px;
-}
+    * {
+      box-sizing: border-box;
+    }
 
-.card {
-  background: #1e293b;
-  padding: 25px;
-  border-radius: 12px;
-  margin-bottom: 20px;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-.highlight {
-  font-size: 22px;
-  color: #38bdf8;
-  font-weight: bold;
-}
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      transition: background 0.25s ease, color 0.25s ease;
+    }
 
-/* LINKS FIX */
-a {
-  color: #e2e8f0;
-  text-decoration: none;
-  transition: 0.3s;
-}
-a:hover {
-  color: #38bdf8;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-/* STATS */
-.stats {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
-  margin-top: 20px;
-}
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
-.stat-box {
-  background: #020617;
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  border: 1px solid #1e293b;
-  transition: 0.3s;
-}
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
 
-.stat-box:hover {
-  transform: scale(1.05);
-  border-color: #38bdf8;
-}
+    .skip-link {
+      position: absolute;
+      left: -999px;
+      top: 0;
+      background: var(--primary);
+      color: white;
+      padding: 10px 14px;
+      border-radius: 10px;
+      z-index: 1000;
+    }
 
-.stat-box h3 {
-  margin: 0;
-  color: #38bdf8;
-  font-size: 24px;
-}
+    .skip-link:focus {
+      left: 16px;
+      top: 16px;
+    }
 
-.stat-box p {
-  margin: 5px 0 0;
-  font-size: 14px;
-}
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+      background: color-mix(in srgb, var(--bg) 78%, transparent);
+      border-bottom: 1px solid var(--border);
+    }
 
-/* GRAPH */
-.graph {
-  display: flex;
-  align-items: flex-end;
-  gap: 10px;
-  height: 150px;
-  margin-top: 20px;
-}
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 74px;
+      gap: 16px;
+    }
 
-.bar {
-  width: 20%;
-  background: #38bdf8;
-  border-radius: 5px;
-  transition: 0.3s;
-}
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: "Manrope", sans-serif;
+      font-weight: 800;
+      letter-spacing: 0.2px;
+    }
 
-.bar:hover {
-  background: #7dd3fc;
-}
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
 
-/* FOOTER */
-.footer {
-  text-align: center;
-  padding: 30px;
-  background: #020617;
-}
-</style>
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-size: 0.96rem;
+      font-weight: 500;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      color: var(--primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+    }
+
+    .menu-toggle {
+      display: none;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 46px;
+      padding: 0 18px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      font-weight: 700;
+      transition: 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: #fff;
+      box-shadow: var(--shadow);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      border-color: var(--border);
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    .hero {
+      background: var(--hero-gradient);
+      padding: 72px 0 42px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--primary) 12%, var(--surface));
+      color: var(--primary);
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 18px;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      line-height: 1.15;
+      font-family: "Manrope", sans-serif;
+    }
+
+    h1 {
+      font-size: clamp(2.2rem, 5vw, 4.5rem);
+      max-width: 10ch;
+      margin-bottom: 16px;
+    }
+
+    .hero p.lead {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin: 0 0 26px;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .proof-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .proof-pill {
+      padding: 12px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: color-mix(in srgb, var(--surface) 85%, transparent);
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.94rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, transparent), var(--surface));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card .mini-label {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 18px;
+      font-weight: 600;
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .kpi {
+      padding: 18px;
+      border-radius: 16px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+    }
+
+    .kpi h3 {
+      font-size: 1.6rem;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    .kpi p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .section {
+      padding: 72px 0;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .section-head p {
+      max-width: 62ch;
+      color: var(--muted);
+      margin: 10px 0 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--accent) 14%, var(--surface));
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 0.84rem;
+      margin-bottom: 10px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .metric-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: grid;
+      gap: 12px;
+    }
+
+    .metric-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .metric-list li::before {
+      content: "•";
+      color: var(--primary);
+      font-size: 1.2rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-top: 24px;
+      align-items: end;
+    }
+
+    .bar-card {
+      padding: 14px;
+      border-radius: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+    }
+
+    .bar-rail {
+      height: 180px;
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 12px;
+    }
+
+    .bar-fill {
+      width: 100%;
+      border-radius: 14px 14px 6px 6px;
+      background: linear-gradient(180deg, var(--primary), var(--primary-dark));
+    }
+
+    .bar-card strong {
+      display: block;
+      margin-bottom: 4px;
+      font-size: 1rem;
+    }
+
+    .bar-card span {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .case-study {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+    }
+
+    .case-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .case-panel h3 {
+      margin-bottom: 10px;
+      font-size: 1.45rem;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0 22px;
+    }
+
+    .case-meta span {
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--bg-soft);
+      color: var(--muted);
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+
+    .case-steps {
+      display: grid;
+      gap: 16px;
+    }
+
+    .case-step {
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border);
+    }
+
+    .case-step strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--text);
+      font-size: 0.98rem;
+    }
+
+    .case-step p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .results-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 20px;
+    }
+
+    .result-box {
+      padding: 18px;
+      border-radius: 16px;
+      background: color-mix(in srgb, var(--primary) 10%, var(--surface));
+      border: 1px solid var(--border);
+    }
+
+    .result-box h4 {
+      margin: 0 0 6px;
+      font-size: 1.45rem;
+      font-family: "Manrope", sans-serif;
+      color: var(--primary);
+    }
+
+    .result-box p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .tool-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .tool-tags span {
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: var(--bg-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      font-weight: 600;
+      font-size: 0.92rem;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 12%, var(--surface)), var(--surface));
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-details {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .contact-details a {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0 42px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--primary);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .case-study,
+      .grid-3,
+      .grid-2,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .section-head {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .contact-wrap {
+        align-items: start;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav {
+        flex-wrap: wrap;
+        padding: 12px 0;
+      }
+
+      .menu-toggle {
+        display: grid;
+      }
+
+      .nav-links {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 14px;
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .kpi-grid,
+      .results-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      h1 {
+        max-width: 12ch;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-cta {
+        flex-direction: column;
+      }
+
+      .hero-cta .btn,
+      .contact-wrap .btn {
+        width: 100%;
+      }
+
+      .container {
+        width: min(var(--max), calc(100% - 20px));
+      }
+
+      .card,
+      .case-panel,
+      .hero-card,
+      .contact-wrap {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-<header>
-  <h1>Ajay Chakravarthy H J</h1>
-  <p>Performance Marketing Specialist | Paid Media | Growth</p>
-  <p class="highlight">421,000+ Conversions @ ₹32 CPA | APAC Campaigns | 100+ Locations</p>
-</header>
+  <header class="topbar">
+    <div class="container nav">
+      <a href="#home" class="brand" aria-label="Ajay Chakravarthy home">
+        <span class="brand-mark">AJ</span>
+        <span>Ajay Chakravarthy</span>
+      </a>
 
-<div class="section">
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        ☰
+      </button>
 
-  <!-- STATS -->
-  <div class="card">
-    <h2>Performance Snapshot</h2>
-    <div class="stats">
-      <div class="stat-box">
-        <h3>421K+</h3>
-        <p>Conversions</p>
-      </div>
-      <div class="stat-box">
-        <h3>₹32</h3>
-        <p>Avg CPA</p>
-      </div>
-      <div class="stat-box">
-        <h3>100+</h3>
-        <p>Locations</p>
-      </div>
-      <div class="stat-box">
-        <h3>15%</h3>
-        <p>Growth</p>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#about">About</a>
+        <a href="#results">Results</a>
+        <a href="#case-study">Case Study</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle" id="themeToggle" aria-label="Toggle color theme">☾</button>
+        <a class="btn btn-secondary" href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noopener noreferrer">LinkedIn</a>
       </div>
     </div>
-  </div>
+  </header>
 
-  <!-- ABOUT -->
-  <div class="card">
-    <h2>About Me</h2>
-    <p>
-      Performance Marketing Specialist with 3+ years of experience managing Google Ads and Meta Ads across APAC.
-      I specialize in scaling campaigns, reducing CPA, and driving measurable business growth through data-driven strategies.
-    </p>
-  </div>
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Performance Marketing Specialist | Paid Media | Growth</span>
+          <h1>Driving measurable growth across paid media and local demand generation.</h1>
+          <p class="lead">
+            I help brands scale conversions, improve campaign efficiency, and strengthen discoverability using Google Ads,
+            Meta Ads, smart bidding, location-led strategy, and data-backed optimization.
+          </p>
 
-  <!-- GRAPH -->
-  <div class="card">
-    <h2>Performance Growth</h2>
-    <div class="graph">
-      <div class="bar" style="height: 40%"></div>
-      <div class="bar" style="height: 60%"></div>
-      <div class="bar" style="height: 75%"></div>
-      <div class="bar" style="height: 90%"></div>
+          <div class="hero-cta">
+            <a href="#case-study" class="btn btn-primary">View Case Study</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          </div>
+
+          <div class="proof-strip" aria-label="Key highlights">
+            <span class="proof-pill">421,000+ conversions</span>
+            <span class="proof-pill">₹32 average CPA</span>
+            <span class="proof-pill">100+ retail locations</span>
+            <span class="proof-pill">APAC campaign exposure</span>
+          </div>
+        </div>
+
+        <aside class="hero-card reveal" aria-label="Performance snapshot">
+          <div class="mini-label">Performance Snapshot</div>
+          <div class="kpi-grid">
+            <div class="kpi">
+              <h3>421K+</h3>
+              <p>Conversions generated through paid media execution.</p>
+            </div>
+            <div class="kpi">
+              <h3>₹32</h3>
+              <p>Average CPA maintained while scaling campaign output.</p>
+            </div>
+            <div class="kpi">
+              <h3>100+</h3>
+              <p>Retail locations supported through local marketing strategy.</p>
+            </div>
+            <div class="kpi">
+              <h3>15%</h3>
+              <p>Discoverability uplift reported in campaign-led visibility efforts.</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="badge">About Me</span>
+            <h2>Performance-first marketer with outcome-led execution.</h2>
+            <p>
+              I’m Ajay Chakravarthy H J, a performance marketing professional focused on paid media, conversion growth,
+              campaign efficiency, and local visibility. My work sits at the intersection of media strategy, optimization,
+              and measurable business outcomes.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>What I do</h3>
+            <p>
+              Plan, launch, optimize, and scale Google Ads and Meta Ads campaigns with a focus on conversions,
+              visibility, and efficient acquisition.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <h3>How I work</h3>
+            <p>
+              I rely on testing, audience refinement, bidding strategy, creative alignment, and performance reporting
+              to improve campaign output over time.
+            </p>
+          </article>
+
+          <article class="card reveal">
+            <h3>Where I add value</h3>
+            <p>
+              Especially strong in performance-led growth, location-driven campaigns, and turning paid media metrics into
+              business-ready insights.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="badge">Results</span>
+            <h2>Selected performance indicators</h2>
+            <p>
+              This section turns your raw highlights into a clearer recruiter-facing proof block, which is stronger than
+              only listing generic achievements.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <article class="card reveal">
+            <h3>Key achievements</h3>
+            <ul class="metric-list">
+              <li>Generated 421,000+ conversions while maintaining an average CPA of ₹32.</li>
+              <li>Managed campaigns supporting 100+ retail locations.</li>
+              <li>Improved CTR by 18% through optimization and targeting refinement.</li>
+              <li>Boosted conversion rate by 11% with stronger bidding and audience strategy.</li>
+              <li>Improved discoverability by 15% in location-focused campaign activity.</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Growth trend</h3>
+            <p>
+              Replace these labels with exact quarter or campaign-period numbers whenever you have them. Even a simple
+              trend view is better when it is named and contextualized.
+            </p>
+
+            <div class="timeline" aria-label="Illustrative growth chart">
+              <div class="bar-card">
+                <div class="bar-rail">
+                  <div class="bar-fill" style="height: 42%;"></div>
+                </div>
+                <strong>Phase 1</strong>
+                <span>Baseline build</span>
+              </div>
+
+              <div class="bar-card">
+                <div class="bar-rail">
+                  <div class="bar-fill" style="height: 61%;"></div>
+                </div>
+                <strong>Phase 2</strong>
+                <span>Audience tuning</span>
+              </div>
+
+              <div class="bar-card">
+                <div class="bar-rail">
+                  <div class="bar-fill" style="height: 78%;"></div>
+                </div>
+                <strong>Phase 3</strong>
+                <span>Bid optimization</span>
+              </div>
+
+              <div class="bar-card">
+                <div class="bar-rail">
+                  <div class="bar-fill" style="height: 92%;"></div>
+                </div>
+                <strong>Phase 4</strong>
+                <span>Scaled efficiency</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="case-study">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="badge">Featured Case Study</span>
+            <h2>Lenovo APAC campaign snapshot</h2>
+            <p>
+              This format is more persuasive because it shows how you think, what you executed, and what changed after
+              optimization.
+            </p>
+          </div>
+        </div>
+
+        <div class="case-study">
+          <article class="case-panel reveal">
+            <h3>Store-visit and discoverability growth</h3>
+            <div class="case-meta">
+              <span>Client: Lenovo</span>
+              <span>Region: APAC</span>
+              <span>Focus: Local growth</span>
+              <span>Channels: Google Ads</span>
+            </div>
+
+            <div class="case-steps">
+              <div class="case-step">
+                <strong>Problem</strong>
+                <p>Store visits and discoverability needed improvement across retail-focused campaign activity.</p>
+              </div>
+
+              <div class="case-step">
+                <strong>Strategy</strong>
+                <p>Used Performance Max, audience targeting refinement, and smart bidding to improve reach quality and conversion efficiency.</p>
+              </div>
+
+              <div class="case-step">
+                <strong>Execution</strong>
+                <p>Aligned campaign structure with location intent, improved audience signals, and optimized toward scalable performance while keeping acquisition controlled.</p>
+              </div>
+
+              <div class="case-step">
+                <strong>Outcome</strong>
+                <p>Achieved stronger visibility, sustained scalable conversions, and maintained a ₹32 CPA benchmark.</p>
+              </div>
+            </div>
+          </article>
+
+          <aside class="case-panel reveal">
+            <h3>Result summary</h3>
+
+            <div class="results-grid">
+              <div class="result-box">
+                <h4>+15%</h4>
+                <p>Improvement in discoverability and visibility.</p>
+              </div>
+              <div class="result-box">
+                <h4>₹32</h4>
+                <p>Average CPA maintained through optimization.</p>
+              </div>
+              <div class="result-box">
+                <h4>Scalable</h4>
+                <p>Conversion growth without sacrificing efficiency.</p>
+              </div>
+              <div class="result-box">
+                <h4>APAC</h4>
+                <p>Experience across region-focused campaign execution.</p>
+              </div>
+            </div>
+
+            <div class="tool-tags" aria-label="Tools and methods used">
+              <span>Google Ads</span>
+              <span>Performance Max</span>
+              <span>Audience Targeting</span>
+              <span>Smart Bidding</span>
+              <span>Conversion Optimization</span>
+              <span>Local Campaign Strategy</span>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <span class="badge">Capabilities</span>
+            <h2>Core strengths and platform focus</h2>
+            <p>
+              A portfolio becomes more credible when it clearly shows platforms, methods, and operating strengths instead
+              of only broad job titles.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid-3">
+          <article class="card reveal">
+            <h3>Paid media</h3>
+            <ul class="metric-list">
+              <li>Google Ads campaign management</li>
+              <li>Meta Ads campaign execution</li>
+              <li>Performance Max and smart bidding</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Optimization</h3>
+            <ul class="metric-list">
+              <li>CTR and conversion-rate improvement</li>
+              <li>Audience targeting refinement</li>
+              <li>CPA-focused decision-making</li>
+            </ul>
+          </article>
+
+          <article class="card reveal">
+            <h3>Growth focus</h3>
+            <ul class="metric-list">
+              <li>Local and retail discoverability</li>
+              <li>Multi-location campaign support</li>
+              <li>Performance reporting and insight communication</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-wrap reveal">
+          <div>
+            <span class="badge">Contact</span>
+            <h2>Open to performance marketing and growth opportunities.</h2>
+            <div class="contact-details">
+              <div>Email: <a href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a></div>
+              <div>Phone: <a href="tel:+919742037878">+91 97420 37878</a></div>
+              <div>LinkedIn: <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noopener noreferrer">ajay-chakravarthy-h-j</a></div>
+            </div>
+          </div>
+
+          <div>
+            <a class="btn btn-primary" href="mailto:ajay.hulikallu@gmail.com">Let’s Connect</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-row">
+      <span>© 2026 Ajay Chakravarthy H J</span>
+      <span>Built for GitHub Pages | Performance Marketing Portfolio</span>
     </div>
-  </div>
+  </footer>
 
-  <!-- ACHIEVEMENTS -->
-  <div class="card">
-    <h2>Key Achievements</h2>
-    <ul>
-      <li>Generated <b>421,000+ conversions</b> at ₹32 CPA</li>
-      <li>Managed campaigns across <b>100+ retail locations</b></li>
-      <li>Improved CTR by <b>18%</b></li>
-      <li>Boosted conversion rate by <b>11%</b></li>
-      <li>Improved discoverability by <b>15%</b></li>
-    </ul>
-  </div>
+  <script>
+    const themeToggle = document.getElementById("themeToggle");
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+    const root = document.documentElement;
 
-  <!-- CASE STUDY -->
-  <div class="card">
-    <h2>Case Study: Lenovo (APAC)</h2>
-    <p><b>Problem:</b> Low store visits</p>
-    <p><b>Strategy:</b> PMax + Audience targeting + Smart bidding</p>
-    <p><b>Result:</b> +15% visibility, scalable conversions, ₹32 CPA maintained</p>
-  </div>
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    root.setAttribute("data-theme", prefersDark ? "dark" : "light");
+    themeToggle.textContent = prefersDark ? "☀" : "☾";
 
-  <!-- CONTACT -->
-  <div class="card">
-    <h2>Contact</h2>
-    <p>📧 <a href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a></p>
-    <p>📞 <a href="tel:+919742037878">+91 97420 37878</a></p>
-    <p>🔗 <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank">LinkedIn Profile</a></p>
-  </div>
+    themeToggle.addEventListener("click", () => {
+      const current = root.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      root.setAttribute("data-theme", next);
+      themeToggle.textContent = next === "dark" ? "☀" : "☾";
+      themeToggle.setAttribute("aria-label", next === "dark" ? "Switch to light theme" : "Switch to dark theme");
+    });
 
-</div>
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("show");
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    });
 
-<div class="footer">
-  <p>Open to Performance Marketing & Growth Opportunities</p>
-</div>
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+        }
+      });
+    }, { threshold: 0.14 });
+
+    document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>
