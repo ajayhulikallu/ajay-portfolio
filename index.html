@@ -7,719 +7,477 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/*
+  PALETTE RATIONALE:
+  ─────────────────
+  Background:  #0A0B0F  — near-black with a warm undertone (not cold blue)
+  Surface:     #13141A  — slightly lighter warm dark
+  Accent:      #D4A847  — muted gold (not neon yellow) — premium, not garish
+  Accent warm: #E8C070  — lighter gold for text highlights
+  Text:        #EDE8DC  — warm cream (not cold white) — much easier to read
+  Text muted:  #7A7870  — warm grey (not blue-grey)
+  Green:       #5DB87A  — warm emerald for positive metrics
+  
+  WHY THIS IS BETTER than the previous version:
+  • Previous gold #E8A020 was too saturated — looked like a warning sign
+  • New #D4A847 reads as "premium/luxury" not "alert"
+  • Warm cream text (#EDE8DC) vs cold white — feels editorial, not generic
+  • Consistent warm undertone across all neutrals — feels designed, not default
+*/
 :root {
-  --bg: #060810;
-  --bg2: #0b0e1a;
-  --bg3: #0f1220;
-  --card: rgba(255,255,255,0.03);
-  --card-hover: rgba(255,255,255,0.06);
-  --border: rgba(255,255,255,0.07);
-  --border-hover: rgba(99,179,237,0.35);
-  --blue: #63b3ed;
-  --cyan: #4ecdc4;
-  --orange: #f6a623;
-  --green: #48bb78;
-  --red: #fc8181;
-  --text: #eef2ff;
-  --text2: #8892b0;
-  --text3: #4a5568;
-  --display: 'Bebas Neue', sans-serif;
-  --body: 'Outfit', sans-serif;
-  --mono: 'Space Mono', monospace;
+  --bg:     #0A0B0F;
+  --bg2:    #0F1016;
+  --bg3:    #15161E;
+  --card:   rgba(255,255,255,0.028);
+  --card2:  rgba(255,255,255,0.055);
+  --border: rgba(255,255,255,0.065);
+  --border-gold: rgba(212,168,71,0.3);
+  --gold:   #D4A847;
+  --gold2:  #E8C070;
+  --gold3:  #A07828;
+  --text:   #EDE8DC;
+  --text2:  #8A8680;
+  --text3:  #484642;
+  --green:  #5DB87A;
+  --red:    #C87070;
+  --display:'Bebas Neue', sans-serif;
+  --body:   'Outfit', sans-serif;
+  --mono:   'Space Mono', monospace;
+  --r:      10px;
+  --r-sm:   6px;
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{
-  background:var(--bg);
-  color:var(--text);
-  font-family:var(--body);
-  overflow-x:hidden;
-  line-height:1.6;
-}
-::selection{background:rgba(99,179,237,0.25)}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--body);overflow-x:hidden;line-height:1.6}
+a{color:inherit;text-decoration:none}
+::selection{background:rgba(212,168,71,0.2)}
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--blue);border-radius:2px}
-a{color:inherit;text-decoration:none}
+::-webkit-scrollbar-thumb{background:var(--gold3);border-radius:2px}
 
-/* ── GRAIN TEXTURE ── */
+/* GRAIN */
 body::after{
-  content:'';
-  position:fixed;inset:0;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  pointer-events:none;z-index:9998;
+  content:'';position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.022'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:9999;
 }
 
-/* ── GLOWS ── */
-.glow-orb{
-  position:fixed;
-  border-radius:50%;
-  pointer-events:none;
-  z-index:0;
-  filter:blur(120px);
-  opacity:0.12;
-}
-.orb1{width:600px;height:600px;background:var(--blue);top:-200px;left:-200px}
-.orb2{width:500px;height:500px;background:var(--cyan);bottom:-100px;right:-100px}
-.orb3{width:300px;height:300px;background:var(--orange);top:50%;left:50%;transform:translate(-50%,-50%)}
+/* GLOWS — subtle, warm */
+.glow{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(140px)}
+.g1{width:600px;height:400px;background:rgba(212,168,71,0.07);top:-150px;left:-150px}
+.g2{width:350px;height:350px;background:rgba(160,100,30,0.06);bottom:-100px;right:-50px}
 
-/* ── NAV ── */
+/* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:1000;
   display:flex;align-items:center;justify-content:space-between;
   padding:16px 32px;
-  background:rgba(6,8,16,0.8);
+  background:rgba(10,11,15,0.88);
   backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
-  transition:padding 0.3s;
+  transition:padding 0.3s,background 0.3s;
 }
-.nav-logo{
-  font-family:var(--display);
-  font-size:1.4rem;
-  letter-spacing:0.08em;
-  color:var(--blue);
-}
-.nav-links{
-  display:flex;gap:4px;list-style:none;
-}
+.nav-logo{font-family:var(--display);font-size:1.3rem;letter-spacing:0.1em;color:var(--gold)}
+.nav-links{display:flex;gap:2px;list-style:none}
 .nav-links a{
-  color:var(--text2);
-  font-size:0.82rem;
-  font-weight:500;
-  padding:7px 14px;
-  border-radius:6px;
-  transition:all 0.2s;
-  white-space:nowrap;
+  color:var(--text2);font-size:0.82rem;font-weight:500;
+  padding:7px 14px;border-radius:var(--r-sm);transition:all 0.2s;white-space:nowrap;
 }
-.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--card-hover)}
-.nav-cta{
-  background:var(--blue) !important;
-  color:var(--bg) !important;
-  font-weight:700 !important;
-}
-.nav-cta:hover{opacity:0.85;transform:translateY(-1px)}
+.nav-links a:hover,.nav-links a.active{color:var(--text);background:var(--card2)}
+.nav-cta{background:var(--gold)!important;color:#0A0B0F!important;font-weight:700!important}
+.nav-cta:hover{background:var(--gold2)!important;transform:translateY(-1px)}
 .nav-ham{display:none;background:none;border:none;cursor:pointer;padding:8px;flex-direction:column;gap:5px}
 .nav-ham span{display:block;width:22px;height:2px;background:var(--text2);border-radius:2px;transition:all 0.3s}
-
 @media(max-width:768px){
-  nav{padding:14px 18px}
-  .nav-links{
-    display:none;flex-direction:column;position:absolute;
-    top:100%;left:0;right:0;
-    background:rgba(6,8,16,0.98);
-    border-bottom:1px solid var(--border);
-    padding:16px 18px;gap:2px;
-  }
+  nav{padding:13px 18px}
+  .nav-links{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+    background:rgba(10,11,15,0.98);border-bottom:1px solid var(--border);padding:14px 18px;gap:2px}
   .nav-links.open{display:flex}
   .nav-links a{padding:10px 14px;border-radius:8px;font-size:0.9rem}
   .nav-ham{display:flex}
 }
 
-/* ── HERO ── */
+/* HERO */
 .hero{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:100px 32px 80px;
-  max-width:1100px;
-  margin:0 auto;
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;
+  padding:110px 32px 80px;max-width:1100px;margin:0 auto;
   position:relative;z-index:1;
 }
 .hero-eyebrow{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--mono);font-size:0.72rem;
-  color:var(--cyan);letter-spacing:0.1em;
-  text-transform:uppercase;margin-bottom:24px;
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:0.7rem;color:var(--gold2);
+  letter-spacing:0.14em;text-transform:uppercase;margin-bottom:20px;
 }
-.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--cyan)}
+.hero-eyebrow::before{content:'';width:28px;height:1px;background:var(--gold2)}
 .hero-name{
   font-family:var(--display);
-  font-size:clamp(4.5rem, 13vw, 10rem);
-  line-height:0.9;
-  letter-spacing:0.02em;
-  color:var(--text);
-  margin-bottom:8px;
+  font-size:clamp(4.2rem,12vw,9.5rem);
+  line-height:0.88;letter-spacing:0.02em;color:var(--text);margin-bottom:6px;
 }
-.hero-name-line2{
+.hero-name-outline{
   font-family:var(--display);
-  font-size:clamp(2.2rem,6vw,5rem);
-  line-height:1;
-  letter-spacing:0.04em;
+  font-size:clamp(2rem,5.5vw,4.8rem);
+  line-height:1;letter-spacing:0.04em;
+  -webkit-text-stroke:1.5px var(--gold);
   color:transparent;
-  -webkit-text-stroke:1px var(--blue);
-  margin-bottom:32px;
+  margin-bottom:28px;
 }
 .hero-desc{
-  font-size:clamp(1rem,2.2vw,1.2rem);
-  color:var(--text2);
-  max-width:560px;
-  font-weight:300;
-  line-height:1.7;
-  margin-bottom:40px;
+  font-size:clamp(0.95rem,2vw,1.1rem);color:var(--text2);
+  max-width:520px;font-weight:300;line-height:1.8;margin-bottom:32px;
 }
-.hero-tags{
-  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:48px;
-}
+.hero-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:40px}
 .hero-tag{
-  padding:5px 14px;
-  border:1px solid var(--border);
-  border-radius:4px;
-  font-size:0.75rem;
-  font-family:var(--mono);
-  color:var(--text3);
-  background:var(--card);
-  transition:all 0.2s;
+  padding:5px 13px;border:1px solid var(--border);border-radius:4px;
+  font-size:0.7rem;font-family:var(--mono);color:var(--text3);
+  background:var(--card);transition:all 0.2s;letter-spacing:0.04em;
 }
-.hero-tag:hover{border-color:var(--blue);color:var(--blue)}
+.hero-tag:hover{border-color:var(--border-gold);color:var(--gold2)}
+
+/* STAT GRID — more visible */
 .hero-stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:1px;
-  background:var(--border);
-  border:1px solid var(--border);
-  border-radius:12px;
-  overflow:hidden;
-  max-width:700px;
-  margin-bottom:40px;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;max-width:680px;margin-bottom:36px;
 }
 .hero-stat{
-  background:var(--bg2);
-  padding:20px 16px;
-  text-align:center;
-  transition:background 0.2s;
+  background:var(--bg2);padding:20px 14px;text-align:center;
+  transition:background 0.25s;
 }
 .hero-stat:hover{background:var(--bg3)}
 .hero-stat-val{
   font-family:var(--display);
-  font-size:clamp(1.4rem,4vw,2.2rem);
-  color:var(--blue);
-  letter-spacing:0.03em;
-  line-height:1;
+  font-size:clamp(1.5rem,4vw,2.4rem);
+  color:var(--gold);letter-spacing:0.03em;line-height:1;
 }
 .hero-stat-label{
-  font-size:0.65rem;
-  font-family:var(--mono);
-  color:var(--text3);
-  text-transform:uppercase;
-  letter-spacing:0.08em;
-  margin-top:6px;
-  line-height:1.3;
+  font-size:0.63rem;font-family:var(--mono);color:var(--text3);
+  text-transform:uppercase;letter-spacing:0.08em;margin-top:6px;line-height:1.4;
 }
 @media(max-width:600px){
   .hero{padding:90px 18px 60px}
   .hero-stats{grid-template-columns:repeat(2,1fr)}
 }
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-gold{
   display:inline-flex;align-items:center;gap:8px;
-  padding:12px 28px;
-  border-radius:8px;
-  font-weight:600;
-  font-size:0.9rem;
+  padding:12px 26px;border-radius:var(--r-sm);
+  background:var(--gold);color:#0A0B0F;
+  font-weight:700;font-size:0.88rem;border:none;cursor:pointer;
   transition:all 0.25s;
-  cursor:pointer;
 }
-.btn-fill{
-  background:var(--blue);
-  color:var(--bg);
-  border:none;
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(212,168,71,0.25)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;border-radius:var(--r-sm);
+  background:transparent;color:var(--text);
+  border:1px solid var(--border);font-weight:500;font-size:0.88rem;
+  cursor:pointer;transition:all 0.25s;
 }
-.btn-fill:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 8px 24px rgba(99,179,237,0.3)}
-.btn-outline{
-  background:transparent;
-  color:var(--text);
-  border:1px solid var(--border);
-}
-.btn-outline:hover{border-color:var(--blue);background:rgba(99,179,237,0.07);transform:translateY(-2px)}
+.btn-ghost:hover{border-color:var(--border-gold);background:rgba(212,168,71,0.06);transform:translateY(-2px)}
 .scroll-hint{
-  position:absolute;bottom:32px;left:32px;
+  position:absolute;bottom:28px;left:32px;
   display:flex;align-items:center;gap:10px;
-  font-family:var(--mono);font-size:0.68rem;
-  color:var(--text3);letter-spacing:0.1em;
-  text-transform:uppercase;
+  font-family:var(--mono);font-size:0.65rem;color:var(--text3);
+  letter-spacing:0.1em;text-transform:uppercase;
 }
-.scroll-hint::after{
-  content:'';display:block;width:40px;height:1px;
-  background:linear-gradient(90deg,var(--text3),transparent);
-}
+.scroll-hint::after{content:'';display:block;width:36px;height:1px;background:linear-gradient(90deg,var(--text3),transparent)}
 
-/* ── SECTION SHELL ── */
-.section{
-  position:relative;z-index:1;
-  padding:100px 32px;
-  max-width:1100px;
-  margin:0 auto;
-}
-@media(max-width:600px){.section{padding:70px 18px}}
+/* DIVIDER */
+.divider{width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);position:relative;z-index:1}
+
+/* SECTION */
+.section{position:relative;z-index:1;padding:90px 32px;max-width:1100px;margin:0 auto}
+@media(max-width:600px){.section{padding:60px 18px}}
 .s-label{
-  font-family:var(--mono);
-  font-size:0.72rem;
-  color:var(--cyan);
-  letter-spacing:0.12em;
-  text-transform:uppercase;
-  margin-bottom:10px;
+  font-family:var(--mono);font-size:0.7rem;color:var(--gold2);
+  letter-spacing:0.14em;text-transform:uppercase;margin-bottom:10px;
   display:flex;align-items:center;gap:10px;
 }
-.s-label::before{content:'';width:20px;height:1px;background:var(--cyan)}
+.s-label::before{content:'';width:20px;height:1px;background:var(--gold2)}
 .s-title{
   font-family:var(--display);
-  font-size:clamp(2.8rem,6vw,5rem);
-  letter-spacing:0.03em;
-  line-height:0.95;
-  margin-bottom:16px;
+  font-size:clamp(2.8rem,5.5vw,4.8rem);
+  letter-spacing:0.03em;line-height:0.93;margin-bottom:14px;
 }
-.s-title em{color:var(--blue);font-style:normal}
-.s-desc{
-  color:var(--text2);
-  font-size:1rem;
-  font-weight:300;
-  max-width:480px;
-  margin-bottom:60px;
-  line-height:1.7;
-}
-.divider{
-  width:100%;height:1px;
-  background:linear-gradient(90deg,transparent,var(--border),transparent);
-  position:relative;z-index:1;
-}
+.s-title em{color:var(--gold);font-style:normal}
+.s-desc{color:var(--text2);font-size:1rem;font-weight:300;max-width:460px;margin-bottom:52px;line-height:1.75}
 
-/* ── CARDS ── */
+/* CARDS */
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:28px;
-  transition:all 0.3s;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:26px;transition:all 0.3s;
   position:relative;overflow:hidden;
 }
-.card:hover{
-  background:var(--card-hover);
-  border-color:var(--border-hover);
-  transform:translateY(-3px);
-}
 .card::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--blue),transparent);
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
   opacity:0;transition:opacity 0.3s;
 }
-.card:hover::before{opacity:1}
+.card:hover{background:var(--card2);border-color:var(--border-gold);transform:translateY(-3px)}
+.card:hover::before{opacity:0.6}
 
-/* ── METRICS GRID ── */
-.metrics-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:16px;
-  margin-bottom:40px;
-}
+/* METRICS */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
 @media(max-width:900px){.metrics-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.metrics-grid{grid-template-columns:repeat(2,1fr);gap:10px}}
 .metric-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:24px 18px;
-  transition:all 0.3s;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:22px 16px;transition:all 0.3s;
   position:relative;overflow:hidden;
 }
 .metric-card::after{
-  content:'';position:absolute;
-  bottom:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,var(--blue),var(--cyan));
-  transform:scaleX(0);transition:transform 0.4s;
-  transform-origin:left;
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold3),var(--gold));
+  transform:scaleX(0);transition:transform 0.4s;transform-origin:left;
 }
 .metric-card:hover::after{transform:scaleX(1)}
-.metric-card:hover{background:var(--card-hover);border-color:var(--border-hover)}
-.metric-icon{font-size:1.1rem;margin-bottom:10px;opacity:0.7}
-.metric-val{
+.metric-card:hover{background:var(--card2);border-color:var(--border-gold)}
+.m-icon{font-size:1rem;margin-bottom:10px;opacity:0.6}
+.m-val{
   font-family:var(--display);
-  font-size:clamp(1.5rem,4vw,2.4rem);
-  color:var(--text);
-  letter-spacing:0.02em;
-  line-height:1;
+  font-size:clamp(1.5rem,3.8vw,2.3rem);
+  color:var(--text);letter-spacing:0.02em;line-height:1;
 }
-.metric-label{
-  font-size:0.7rem;
-  font-family:var(--mono);
-  color:var(--text3);
-  text-transform:uppercase;
-  letter-spacing:0.06em;
-  margin-top:5px;
-  line-height:1.4;
-}
-.metric-note{font-size:0.75rem;color:var(--cyan);margin-top:6px;display:flex;align-items:center;gap:4px}
+.m-label{font-size:0.67rem;font-family:var(--mono);color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-top:5px;line-height:1.4}
+.m-note{font-size:0.74rem;color:var(--green);margin-top:7px}
 
-/* ── FUNNEL ── */
-.funnel{
-  display:flex;flex-direction:column;
-  gap:0;align-items:center;
-}
-.funnel-row{
-  display:flex;align-items:center;
-  justify-content:space-between;
-  padding:16px 28px;
-  border:1px solid var(--border);
-  border-radius:8px;
-  background:var(--card);
-  margin-bottom:2px;
-  transition:all 0.2s;
-  cursor:default;
-}
-.funnel-row:hover{background:var(--card-hover);border-color:var(--border-hover)}
-.f-row-1{width:100%}
-.f-row-2{width:88%}
-.f-row-3{width:74%}
-.f-row-4{width:58%}
-.f-row-5{width:42%}
-@media(max-width:600px){
-  .f-row-1,.f-row-2,.f-row-3,.f-row-4,.f-row-5{width:100%}
-}
-.funnel-label{font-size:0.9rem;font-weight:600;color:var(--text)}
-.funnel-right{text-align:right}
-.funnel-num{font-family:var(--mono);font-size:0.82rem;color:var(--cyan)}
-.funnel-pct{font-size:0.7rem;color:var(--text3)}
-
-/* ── CHART: BAR ── */
-.barchart{display:flex;flex-direction:column;gap:18px}
-.bar-row{display:flex;flex-direction:column;gap:6px}
-.bar-top{display:flex;justify-content:space-between;font-size:0.82rem}
-.bar-name{color:var(--text2);font-weight:500}
-.bar-num{font-family:var(--mono);font-size:0.78rem;color:var(--text3)}
-.bar-track{height:6px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
-.bar-fill{height:100%;border-radius:3px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
-
-/* ── TABS ── */
-.tabs-wrap{margin-bottom:40px}
-.tabs-nav{
-  display:flex;gap:0;
-  border-bottom:1px solid var(--border);
-  overflow-x:auto;scrollbar-width:none;
-}
-.tabs-nav::-webkit-scrollbar{display:none}
-.tab-btn{
-  padding:12px 22px;
-  background:none;border:none;
-  color:var(--text3);
-  font-family:var(--body);font-size:0.85rem;font-weight:500;
-  cursor:pointer;white-space:nowrap;
-  border-bottom:2px solid transparent;margin-bottom:-1px;
-  transition:all 0.2s;
-}
-.tab-btn:hover{color:var(--text2)}
-.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
-.tab-panel{display:none;animation:fadeUp 0.3s ease both}
-.tab-panel.active{display:block}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-
-/* ── CASE CARDS ── */
-.case-grid{
-  display:grid;grid-template-columns:1fr 1fr;gap:20px;
-}
-@media(max-width:768px){.case-grid{grid-template-columns:1fr}}
-.case-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:32px;
-  transition:all 0.3s;
-}
-.case-card:hover{background:var(--card-hover);border-color:var(--border-hover)}
-.case-tag{
-  display:inline-block;
-  padding:3px 10px;
-  border-radius:4px;
-  font-size:0.68rem;font-family:var(--mono);font-weight:700;
-  letter-spacing:0.08em;text-transform:uppercase;
-  margin-bottom:14px;
-}
-.tag-g{background:rgba(99,179,237,0.12);color:var(--blue)}
-.tag-m{background:rgba(78,205,196,0.1);color:var(--cyan)}
-.tag-s{background:rgba(72,187,120,0.1);color:var(--green)}
-.tag-a{background:rgba(246,166,35,0.1);color:var(--orange)}
-.case-title{
-  font-family:var(--display);
-  font-size:1.4rem;
-  line-height:1.15;
-  margin-bottom:10px;
-  letter-spacing:0.02em;
-}
-.case-desc{color:var(--text2);font-size:0.87rem;line-height:1.65;margin-bottom:20px}
-.case-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}
-.result-box{
-  background:var(--bg2);
-  border-radius:8px;
-  padding:12px 8px;
-  text-align:center;
-}
-.result-num{
-  font-family:var(--display);
-  font-size:1.2rem;
-  color:var(--cyan);
-}
-.result-lbl{font-size:0.67rem;color:var(--text3);font-family:var(--mono);margin-top:2px;line-height:1.3}
-
-/* ── ACCORDION ── */
-.acc-item{border:1px solid var(--border);border-radius:8px;overflow:hidden;margin-bottom:6px}
-.acc-head{
-  width:100%;display:flex;align-items:center;justify-content:space-between;
-  padding:12px 18px;
-  background:var(--card);border:none;cursor:pointer;
-  font-family:var(--body);font-size:0.85rem;font-weight:600;
-  color:var(--text2);text-align:left;transition:all 0.2s;
-}
-.acc-head:hover{background:var(--card-hover);color:var(--text)}
-.acc-head.open{color:var(--blue)}
-.acc-icon{
-  width:16px;height:16px;border-radius:50%;
-  border:1px solid currentColor;
-  display:flex;align-items:center;justify-content:center;
-  font-size:0.75rem;transition:transform 0.3s;flex-shrink:0;
-}
-.acc-head.open .acc-icon{transform:rotate(45deg)}
-.acc-body{
-  max-height:0;overflow:hidden;
-  transition:max-height 0.4s cubic-bezier(.4,0,.2,1),padding 0.3s;
-  padding:0 18px;
-  color:var(--text2);font-size:0.85rem;line-height:1.75;
-}
-.acc-body.open{max-height:600px;padding:14px 18px}
-
-/* ── BEFORE/AFTER ── */
-.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:start}
-@media(max-width:600px){.ba-grid{grid-template-columns:1fr;gap:12px}}
-.ba-col{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:28px;
-}
-.ba-col.after{border-color:rgba(99,179,237,0.25);background:rgba(99,179,237,0.04)}
-.ba-label{
-  font-family:var(--mono);font-size:0.68rem;
-  letter-spacing:0.1em;text-transform:uppercase;
-  font-weight:700;margin-bottom:18px;
-}
-.ba-col.before .ba-label{color:var(--text3)}
-.ba-col.after .ba-label{color:var(--blue)}
-.ba-rows{display:flex;flex-direction:column;gap:14px}
-.ba-r{display:flex;flex-direction:column;gap:3px}
-.ba-r-label{font-size:0.7rem;color:var(--text3);font-family:var(--mono);letter-spacing:0.06em;text-transform:uppercase}
-.ba-r-val{font-family:var(--display);font-size:1.3rem;letter-spacing:0.03em}
-.bv-before{color:var(--text3)}
-.bv-after{color:var(--cyan)}
-.ba-arrow{display:flex;align-items:center;justify-content:center;padding:0 20px;color:var(--blue);font-size:1.6rem}
-@media(max-width:600px){.ba-arrow{padding:8px;justify-content:center;transform:rotate(90deg)}}
-
-/* ── TIMELINE ── */
-.timeline{position:relative;padding-left:36px}
-.timeline::before{
-  content:'';position:absolute;left:6px;top:8px;bottom:0;
-  width:1px;background:linear-gradient(to bottom,var(--blue),var(--cyan),transparent);
-}
-.tl-item{position:relative;margin-bottom:52px}
-.tl-dot{
-  position:absolute;left:-32px;top:6px;
-  width:12px;height:12px;
-  border-radius:50%;
-  background:var(--blue);
-  border:2px solid var(--bg);
-  box-shadow:0 0 10px rgba(99,179,237,0.5);
-}
-.tl-date{
-  font-family:var(--mono);font-size:0.72rem;
-  color:var(--cyan);letter-spacing:0.08em;
-  margin-bottom:8px;
-}
-.tl-title{
-  font-family:var(--display);
-  font-size:1.5rem;
-  letter-spacing:0.03em;
-  margin-bottom:4px;
-}
-.tl-company{color:var(--text2);font-size:0.87rem;margin-bottom:14px}
-.tl-list{list-style:none;display:flex;flex-direction:column;gap:7px}
-.tl-list li{
-  color:var(--text2);font-size:0.87rem;
-  display:flex;gap:12px;line-height:1.6;
-}
-.tl-list li::before{content:'›';color:var(--blue);flex-shrink:0;font-size:1rem}
-
-/* ── SKILLS ── */
-.skill-filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
-.sf-btn{
-  padding:6px 16px;
-  background:var(--card);border:1px solid var(--border);
-  border-radius:20px;color:var(--text2);
-  font-size:0.8rem;font-weight:500;cursor:pointer;
-  transition:all 0.2s;
-}
-.sf-btn:hover{border-color:var(--blue);color:var(--text)}
-.sf-btn.active{background:rgba(99,179,237,0.1);border-color:var(--blue);color:var(--blue)}
-.skill-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
-  gap:10px;
-}
-.skill-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:16px;
-  display:flex;flex-direction:column;gap:10px;
-  transition:all 0.25s;
-}
-.skill-card:hover{background:var(--card-hover);border-color:var(--border-hover);transform:translateY(-2px)}
-.skill-card.hidden{display:none}
-.sk-icon{font-size:1.3rem}
-.sk-name{font-size:0.82rem;font-weight:600;color:var(--text)}
-.sk-track{height:2px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
-.sk-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--cyan));width:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
-
-/* ── BRANDS BAR ── */
-.brands-bar{
-  display:flex;flex-wrap:wrap;justify-content:center;gap:10px;
-  padding:36px;
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  margin-bottom:70px;
-}
-.brand-pill{
-  padding:7px 18px;
-  background:var(--bg2);
-  border:1px solid var(--border);
-  border-radius:6px;
-  font-family:var(--display);
-  font-size:0.85rem;
-  letter-spacing:0.08em;
-  color:var(--text2);
-  transition:all 0.25s;
-}
-.brand-pill:hover{color:var(--text);border-color:var(--blue);background:rgba(99,179,237,0.07)}
-
-/* ── TOOLS ── */
-.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
-.tool-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:18px 14px;text-align:center;
-  transition:all 0.25s;
-}
-.tool-card:hover{border-color:var(--border-hover);transform:translateY(-3px);background:var(--card-hover)}
-.tool-icon{font-size:1.5rem;margin-bottom:7px}
-.tool-name{font-size:0.78rem;font-weight:600;color:var(--text)}
-.tool-type{font-size:0.66rem;color:var(--text3);font-family:var(--mono);margin-top:3px}
-
-/* ── LEADERSHIP ── */
-.lead-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-@media(max-width:768px){.lead-grid{grid-template-columns:1fr}}
-.lead-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:28px;
-  transition:all 0.3s;
-  position:relative;overflow:hidden;
-}
-.lead-card::after{
-  content:'';position:absolute;
-  left:0;top:0;bottom:0;width:2px;
-  background:linear-gradient(to bottom,var(--blue),var(--cyan));
-  transform:scaleY(0);transition:transform 0.3s;transform-origin:top;
-}
-.lead-card:hover::after{transform:scaleY(1)}
-.lead-card:hover{background:var(--card-hover);border-color:var(--border-hover)}
-.lead-icon{font-size:1.8rem;margin-bottom:14px}
-.lead-title{font-family:var(--display);font-size:1.2rem;letter-spacing:0.03em;margin-bottom:8px}
-.lead-desc{color:var(--text2);font-size:0.86rem;line-height:1.7}
-
-/* ── CTA ── */
-.cta-section{
-  position:relative;z-index:1;
-  padding:120px 32px;
-  text-align:center;
-  overflow:hidden;
-}
-.cta-section::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(99,179,237,0.08) 0%,transparent 70%);
-  pointer-events:none;
-}
-.cta-title{
-  font-family:var(--display);
-  font-size:clamp(3rem,8vw,6rem);
-  letter-spacing:0.03em;
-  line-height:0.95;
-  margin-bottom:20px;
-}
-.cta-title em{
-  color:transparent;
-  -webkit-text-stroke:1px var(--cyan);
-  font-style:normal;
-}
-.cta-desc{color:var(--text2);font-size:1rem;max-width:480px;margin:0 auto 40px;font-weight:300;line-height:1.7}
-.cta-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.cta-meta{margin-top:28px;color:var(--text3);font-family:var(--mono);font-size:0.75rem}
-
-/* ── FOOTER ── */
-footer{
-  border-top:1px solid var(--border);
-  padding:32px;
-  text-align:center;
-  color:var(--text3);
-  font-size:0.8rem;
-  font-family:var(--mono);
-  position:relative;z-index:1;
-}
-footer strong{color:var(--text2)}
-
-/* ── CHARTS AREA ── */
-.chart-row{display:grid;grid-template-columns:1.5fr 1fr;gap:18px;margin-bottom:40px}
+/* CHART ROW */
+.chart-row{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-bottom:36px}
 @media(max-width:800px){.chart-row{grid-template-columns:1fr}}
 .chart-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:12px;
-  padding:28px;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:26px;
 }
 .chart-title{
-  font-family:var(--display);
-  font-size:1.1rem;
-  letter-spacing:0.03em;
-  margin-bottom:24px;
+  font-family:var(--display);font-size:1.05rem;letter-spacing:0.03em;margin-bottom:22px;color:var(--text);
 }
-.chart-title span{color:var(--text3);font-family:var(--body);font-size:0.8rem;font-weight:400;margin-left:8px}
+.chart-title span{color:var(--text3);font-family:var(--body);font-size:0.78rem;font-weight:400;margin-left:8px}
 
-/* Donut */
-.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:22px}
-.donut-svg{filter:drop-shadow(0 0 16px rgba(99,179,237,0.25))}
+/* BAR CHART */
+.barchart{display:flex;flex-direction:column;gap:16px}
+.bar-row{display:flex;flex-direction:column;gap:6px}
+.bar-top{display:flex;justify-content:space-between;font-size:0.8rem}
+.bar-name{color:var(--text2);font-weight:500}
+.bar-num{font-family:var(--mono);font-size:0.75rem;color:var(--text3)}
+.bar-track{height:5px;background:rgba(255,255,255,0.05);border-radius:3px;overflow:hidden}
+.bar-fill{height:100%;border-radius:3px;width:0;transition:width 1.4s cubic-bezier(.4,0,.2,1)}
+
+/* DONUT */
+.donut-wrap{display:flex;flex-direction:column;align-items:center;gap:20px}
 .donut-legend{width:100%;display:flex;flex-direction:column;gap:10px}
 .legend-item{display:flex;align-items:center;gap:10px;font-size:0.82rem}
 .legend-dot{width:8px;height:8px;border-radius:2px;flex-shrink:0}
 .legend-name{color:var(--text2);flex:1}
 .legend-val{color:var(--text);font-family:var(--mono);font-size:0.8rem;font-weight:700}
 
-/* ── REVEAL ── */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity 0.7s ease,transform 0.7s ease}
+/* FUNNEL */
+.funnel{display:flex;flex-direction:column;align-items:center;gap:2px}
+.funnel-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 24px;border:1px solid var(--border);
+  border-radius:var(--r-sm);background:var(--card);transition:all 0.2s;
+}
+.funnel-row:hover{background:var(--card2);border-color:var(--border-gold)}
+.fr1{width:100%}.fr2{width:88%}.fr3{width:74%}.fr4{width:58%}.fr5{width:42%}
+@media(max-width:600px){.fr1,.fr2,.fr3,.fr4,.fr5{width:100%}}
+.f-label{font-size:0.88rem;font-weight:600;color:var(--text)}
+.f-right{text-align:right}
+.f-num{font-family:var(--mono);font-size:0.8rem;color:var(--gold2)}
+.f-pct{font-size:0.68rem;color:var(--text3)}
+
+/* TABS */
+.tabs-nav{
+  display:flex;gap:0;border-bottom:1px solid var(--border);
+  margin-bottom:36px;overflow-x:auto;scrollbar-width:none;
+}
+.tabs-nav::-webkit-scrollbar{display:none}
+.tab-btn{
+  padding:11px 20px;background:none;border:none;color:var(--text3);
+  font-family:var(--body);font-size:0.83rem;font-weight:500;
+  cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.2s;
+}
+.tab-btn:hover{color:var(--text2)}
+.tab-btn.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-panel{display:none;animation:fadeUp 0.3s ease both}
+.tab-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+/* CASE CARDS */
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media(max-width:768px){.case-grid{grid-template-columns:1fr}}
+.case-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:28px;transition:all 0.3s;
+}
+.case-card:hover{background:var(--card2);border-color:var(--border-gold)}
+.case-tag{
+  display:inline-block;padding:3px 10px;border-radius:3px;
+  font-size:0.66rem;font-family:var(--mono);font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;margin-bottom:12px;
+}
+.tag-g{background:rgba(212,168,71,0.1);color:var(--gold)}
+.tag-m{background:rgba(93,184,122,0.1);color:var(--green)}
+.tag-s{background:rgba(100,160,220,0.1);color:#7ABADF}
+.tag-a{background:rgba(212,168,71,0.08);color:var(--gold2)}
+.case-title{font-family:var(--display);font-size:1.35rem;line-height:1.15;margin-bottom:9px;letter-spacing:0.02em}
+.case-desc{color:var(--text2);font-size:0.86rem;line-height:1.7;margin-bottom:18px}
+.case-results{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}
+.result-box{background:var(--bg2);border-radius:var(--r-sm);padding:12px 8px;text-align:center}
+.result-num{font-family:var(--display);font-size:1.2rem;color:var(--gold2)}
+.result-lbl{font-size:0.65rem;color:var(--text3);font-family:var(--mono);margin-top:3px;line-height:1.3}
+
+/* ACCORDION */
+.acc-item{border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden;margin-bottom:5px}
+.acc-head{
+  width:100%;display:flex;align-items:center;justify-content:space-between;
+  padding:11px 16px;background:var(--card);border:none;cursor:pointer;
+  font-family:var(--body);font-size:0.83rem;font-weight:600;
+  color:var(--text2);text-align:left;transition:all 0.2s;
+}
+.acc-head:hover{background:var(--card2);color:var(--text)}
+.acc-head.open{color:var(--gold)}
+.acc-icon{width:15px;height:15px;border-radius:50%;border:1px solid currentColor;
+  display:flex;align-items:center;justify-content:center;font-size:0.72rem;transition:transform 0.3s;flex-shrink:0}
+.acc-head.open .acc-icon{transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 0.4s cubic-bezier(.4,0,.2,1),padding 0.3s;
+  padding:0 16px;color:var(--text2);font-size:0.84rem;line-height:1.75}
+.acc-body.open{max-height:500px;padding:12px 16px}
+
+/* BEFORE/AFTER */
+.ba-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:start}
+@media(max-width:600px){.ba-grid{grid-template-columns:1fr;gap:10px}}
+.ba-col{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:26px}
+.ba-col.after{border-color:var(--border-gold);background:rgba(212,168,71,0.04)}
+.ba-label{font-family:var(--mono);font-size:0.66rem;letter-spacing:0.1em;text-transform:uppercase;font-weight:700;margin-bottom:16px}
+.ba-col.before .ba-label{color:var(--text3)}
+.ba-col.after .ba-label{color:var(--gold)}
+.ba-rows{display:flex;flex-direction:column;gap:13px}
+.ba-r{display:flex;flex-direction:column;gap:3px}
+.ba-r-label{font-size:0.68rem;color:var(--text3);font-family:var(--mono);text-transform:uppercase;letter-spacing:0.05em}
+.ba-r-val{font-family:var(--display);font-size:1.25rem;letter-spacing:0.03em}
+.bv-b{color:var(--text3)}
+.bv-a{color:var(--gold2)}
+.ba-arrow{display:flex;align-items:center;justify-content:center;padding:0 18px;color:var(--gold);font-size:1.5rem}
+@media(max-width:600px){.ba-arrow{padding:6px;justify-content:center;transform:rotate(90deg)}}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:'';position:absolute;left:6px;top:8px;bottom:0;width:1px;
+  background:linear-gradient(to bottom,var(--gold),var(--gold3),transparent)}
+.tl-item{position:relative;margin-bottom:48px}
+.tl-dot{position:absolute;left:-30px;top:6px;width:12px;height:12px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--bg);box-shadow:0 0 10px rgba(212,168,71,0.4)}
+.tl-date{font-family:var(--mono);font-size:0.7rem;color:var(--gold2);letter-spacing:0.08em;margin-bottom:7px}
+.tl-title{font-family:var(--display);font-size:1.45rem;letter-spacing:0.03em;margin-bottom:3px}
+.tl-company{color:var(--text2);font-size:0.85rem;margin-bottom:13px}
+.tl-list{list-style:none;display:flex;flex-direction:column;gap:7px}
+.tl-list li{color:var(--text2);font-size:0.86rem;display:flex;gap:11px;line-height:1.65}
+.tl-list li::before{content:'›';color:var(--gold);flex-shrink:0;font-size:1rem}
+
+/* SKILLS */
+.sf-wrap{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:26px}
+.sf-btn{
+  padding:6px 15px;background:var(--card);border:1px solid var(--border);
+  border-radius:20px;color:var(--text2);font-size:0.79rem;font-weight:500;cursor:pointer;transition:all 0.2s;
+}
+.sf-btn:hover{border-color:var(--border-gold);color:var(--text)}
+.sf-btn.active{background:rgba(212,168,71,0.1);border-color:var(--gold);color:var(--gold)}
+.skill-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(148px,1fr));gap:10px}
+.skill-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:15px;display:flex;flex-direction:column;gap:9px;transition:all 0.25s;
+}
+.skill-card:hover{background:var(--card2);border-color:var(--border-gold);transform:translateY(-2px)}
+.skill-card.hidden{display:none}
+.sk-icon{font-size:1.2rem}
+.sk-name{font-size:0.8rem;font-weight:600;color:var(--text)}
+.sk-track{height:2px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+.sk-bar{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--gold3),var(--gold));width:0;transition:width 1s cubic-bezier(.4,0,.2,1)}
+
+/* BRANDS */
+.brands-bar{
+  display:flex;flex-wrap:wrap;justify-content:center;gap:9px;
+  padding:30px;background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);margin-bottom:64px;
+}
+.brand-pill{
+  padding:6px 16px;background:var(--bg2);border:1px solid var(--border);
+  border-radius:5px;font-family:var(--display);font-size:0.82rem;
+  letter-spacing:0.08em;color:var(--text2);transition:all 0.25s;
+}
+.brand-pill:hover{color:var(--text);border-color:var(--border-gold);background:rgba(212,168,71,0.06)}
+
+/* LEAD GRID */
+.lead-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:768px){.lead-grid{grid-template-columns:1fr}}
+.lead-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--r);padding:26px;transition:all 0.3s;position:relative;overflow:hidden;
+}
+.lead-card::after{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(to bottom,var(--gold),var(--gold3));
+  transform:scaleY(0);transition:transform 0.3s;transform-origin:top;
+}
+.lead-card:hover::after{transform:scaleY(1)}
+.lead-card:hover{background:var(--card2);border-color:var(--border-gold)}
+.lead-icon{font-size:1.7rem;margin-bottom:12px}
+.lead-title{font-family:var(--display);font-size:1.15rem;letter-spacing:0.03em;margin-bottom:7px}
+.lead-desc{color:var(--text2);font-size:0.85rem;line-height:1.7}
+
+/* TOOLS */
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.tool-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--r-sm);
+  padding:18px 14px;text-align:center;transition:all 0.25s;
+}
+.tool-card:hover{border-color:var(--border-gold);transform:translateY(-3px);background:var(--card2)}
+.tool-icon{font-size:1.4rem;margin-bottom:6px}
+.tool-name{font-size:0.77rem;font-weight:600;color:var(--text)}
+.tool-type{font-size:0.65rem;color:var(--text3);font-family:var(--mono);margin-top:3px}
+
+/* CTA */
+.cta-section{
+  position:relative;z-index:1;padding:110px 32px;text-align:center;overflow:hidden;
+}
+.cta-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 55% 45% at 50% 50%,rgba(212,168,71,0.07) 0%,transparent 70%);
+  pointer-events:none;
+}
+.cta-title{
+  font-family:var(--display);
+  font-size:clamp(3rem,8vw,6rem);
+  letter-spacing:0.03em;line-height:0.93;margin-bottom:18px;
+}
+.cta-title em{-webkit-text-stroke:1px var(--gold);color:transparent;font-style:normal}
+.cta-desc{color:var(--text2);font-size:0.98rem;max-width:460px;margin:0 auto 36px;font-weight:300;line-height:1.8}
+.cta-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cta-meta{margin-top:24px;color:var(--text3);font-family:var(--mono);font-size:0.72rem}
+
+/* FOOTER */
+footer{
+  border-top:1px solid var(--border);padding:28px 32px;text-align:center;
+  color:var(--text3);font-size:0.78rem;font-family:var(--mono);position:relative;z-index:1;
+}
+footer strong{color:var(--text2)}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.65s ease,transform 0.65s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
-.reveal-d1{transition-delay:0.1s}
-.reveal-d2{transition-delay:0.2s}
-.reveal-d3{transition-delay:0.3s}
+.d1{transition-delay:0.08s}.d2{transition-delay:0.16s}.d3{transition-delay:0.24s}
 </style>
 </head>
 <body>
 
-<div class="glow-orb orb1"></div>
-<div class="glow-orb orb2"></div>
-<div class="glow-orb orb3"></div>
+<div class="glow g1"></div>
+<div class="glow g2"></div>
 
 <!-- NAV -->
 <nav id="mainNav">
-  <div class="nav-logo">AJAY C.</div>
+  <div class="nav-logo">AJC.</div>
   <ul class="nav-links" id="navLinks">
     <li><a href="#dashboard">Dashboard</a></li>
     <li><a href="#cases">Cases</a></li>
@@ -736,7 +494,7 @@ footer strong{color:var(--text2)}
 <section class="hero" id="hero">
   <div class="hero-eyebrow">Performance Marketing Specialist</div>
   <h1 class="hero-name">AJAY</h1>
-  <h2 class="hero-name-line2">CHAKRAVARTHY</h2>
+  <h2 class="hero-name-outline">CHAKRAVARTHY</h2>
   <p class="hero-desc">Driving enterprise-scale growth through Google Ads, Meta Ads, and AI-powered campaign strategy across Tier-1 tech retail brands.</p>
   <div class="hero-tags">
     <span class="hero-tag">Google Ads</span>
@@ -766,8 +524,8 @@ footer strong{color:var(--text2)}
     </div>
   </div>
   <div class="hero-actions">
-    <a href="#cases" class="btn btn-fill">View Case Studies</a>
-    <a href="mailto:ajay.hulikallu@gmail.com" class="btn btn-outline">✉ Get in Touch</a>
+    <a href="#cases" class="btn-gold">View Case Studies</a>
+    <a href="mailto:ajay.hulikallu@gmail.com" class="btn-ghost">✉ Get in Touch</a>
   </div>
   <div class="scroll-hint">scroll to explore</div>
 </section>
@@ -775,7 +533,7 @@ footer strong{color:var(--text2)}
 <div class="divider"></div>
 
 <!-- BRANDS -->
-<div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:60px 32px 0">
+<div style="position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:56px 32px 0">
   <div class="brands-bar reveal">
     <div class="brand-pill">LENOVO</div>
     <div class="brand-pill">DELL</div>
@@ -798,143 +556,72 @@ footer strong{color:var(--text2)}
   </div>
 
   <div class="metrics-grid reveal">
-    <div class="metric-card">
-      <div class="metric-icon">⚡</div>
-      <div class="metric-val" data-count="421043" data-fmt="comma" data-suffix="+">0</div>
-      <div class="metric-label">Total Conversions</div>
-      <div class="metric-note">↑ Google Ads tracked</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">💰</div>
-      <div class="metric-val">₹81.2L+</div>
-      <div class="metric-label">Total Ad Spend</div>
-      <div class="metric-note">↑ Multi-brand</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">🖱️</div>
-      <div class="metric-val">58L+</div>
-      <div class="metric-label">Total Clicks</div>
-      <div class="metric-note">↑ 4.40% avg CTR</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">👁️</div>
-      <div class="metric-val">17.4Cr+</div>
-      <div class="metric-label">Impressions</div>
-      <div class="metric-note">↑ All channels</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">🎯</div>
-      <div class="metric-val">₹32</div>
-      <div class="metric-label">Avg. CPA</div>
-      <div class="metric-note">↑ Target CPA optimized</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">💸</div>
-      <div class="metric-val">₹2.15</div>
-      <div class="metric-label">Avg. CPC</div>
-      <div class="metric-note">↑ Smart bidding</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">📍</div>
-      <div class="metric-val">250+</div>
-      <div class="metric-label">GBP Profiles</div>
-      <div class="metric-note">↑ Lenovo APAC SPOC</div>
-    </div>
-    <div class="metric-card">
-      <div class="metric-icon">📈</div>
-      <div class="metric-val">+15%</div>
-      <div class="metric-label">Local Discoverability</div>
-      <div class="metric-note">↑ Local search lift</div>
-    </div>
+    <div class="metric-card"><div class="m-icon">⚡</div><div class="m-val" data-count="421043" data-fmt="comma" data-suffix="+">0</div><div class="m-label">Total Conversions</div><div class="m-note">↑ Google Ads tracked</div></div>
+    <div class="metric-card"><div class="m-icon">💰</div><div class="m-val">₹81.2L+</div><div class="m-label">Total Ad Spend</div><div class="m-note">↑ Multi-brand</div></div>
+    <div class="metric-card"><div class="m-icon">🖱️</div><div class="m-val">58L+</div><div class="m-label">Total Clicks</div><div class="m-note">↑ 4.40% avg CTR</div></div>
+    <div class="metric-card"><div class="m-icon">👁️</div><div class="m-val">17.4Cr+</div><div class="m-label">Impressions</div><div class="m-note">↑ All channels</div></div>
+    <div class="metric-card"><div class="m-icon">🎯</div><div class="m-val">₹32</div><div class="m-label">Avg. CPA</div><div class="m-note">↑ Target CPA bid</div></div>
+    <div class="metric-card"><div class="m-icon">💸</div><div class="m-val">₹2.15</div><div class="m-label">Avg. CPC</div><div class="m-note">↑ Smart bidding</div></div>
+    <div class="metric-card"><div class="m-icon">📍</div><div class="m-val">250+</div><div class="m-label">GBP Profiles</div><div class="m-note">↑ Lenovo APAC SPOC</div></div>
+    <div class="metric-card"><div class="m-icon">📈</div><div class="m-val">+15%</div><div class="m-label">Local Discoverability</div><div class="m-note">↑ Local search lift</div></div>
   </div>
 
   <div class="chart-row reveal">
     <div class="chart-card">
       <div class="chart-title">Brand Campaign Volume <span>by conversion count</span></div>
       <div class="barchart">
-        <div class="bar-row">
-          <div class="bar-top"><span class="bar-name">Indian Craft Brewery</span><span class="bar-num">~150K</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--blue),var(--cyan))"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-top"><span class="bar-name">Acer Dotcom Network</span><span class="bar-num">~120K</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="80" style="background:linear-gradient(90deg,var(--cyan),var(--green))"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-top"><span class="bar-name">Lenovo (Dotcom/Ace)</span><span class="bar-num">~85K</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="57" style="background:linear-gradient(90deg,var(--orange),var(--cyan))"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-top"><span class="bar-name">Dell / Asus / Others</span><span class="bar-num">~36K</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="38" style="background:linear-gradient(90deg,#a78bfa,var(--blue))"></div></div>
-        </div>
-        <div class="bar-row">
-          <div class="bar-top"><span class="bar-name">MSI Brand Stores</span><span class="bar-num">~30K</span></div>
-          <div class="bar-track"><div class="bar-fill" data-w="30" style="background:linear-gradient(90deg,var(--orange),#f472b6)"></div></div>
-        </div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Indian Craft Brewery</span><span class="bar-num">~150K</span></div><div class="bar-track"><div class="bar-fill" data-w="100" style="background:linear-gradient(90deg,var(--gold3),var(--gold))"></div></div></div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Acer Dotcom Network</span><span class="bar-num">~120K</span></div><div class="bar-track"><div class="bar-fill" data-w="80" style="background:linear-gradient(90deg,var(--gold),var(--gold2))"></div></div></div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Lenovo (Dotcom/Ace)</span><span class="bar-num">~85K</span></div><div class="bar-track"><div class="bar-fill" data-w="57" style="background:linear-gradient(90deg,#8A7040,var(--gold))"></div></div></div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Dell / Asus / Others</span><span class="bar-num">~36K</span></div><div class="bar-track"><div class="bar-fill" data-w="38" style="background:linear-gradient(90deg,var(--text3),var(--text2))"></div></div></div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">MSI Brand Stores</span><span class="bar-num">~30K</span></div><div class="bar-track"><div class="bar-fill" data-w="30" style="background:linear-gradient(90deg,#484642,var(--text3))"></div></div></div>
       </div>
     </div>
     <div class="chart-card">
       <div class="chart-title">Campaign Type Mix <span>by volume</span></div>
       <div class="donut-wrap">
-        <svg class="donut-svg" width="150" height="150" viewBox="0 0 150 150">
-          <circle cx="75" cy="75" r="55" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="24"/>
-          <circle cx="75" cy="75" r="55" fill="none" stroke="url(#dg1)" stroke-width="24"
-            stroke-dasharray="259 86" stroke-dashoffset="86" class="darc"/>
-          <circle cx="75" cy="75" r="55" fill="none" stroke="var(--cyan)" stroke-width="24"
-            stroke-dasharray="69.1 275.9" stroke-dashoffset="-173" class="darc"/>
-          <circle cx="75" cy="75" r="55" fill="none" stroke="var(--orange)" stroke-width="24"
-            stroke-dasharray="17.3 327.7" stroke-dashoffset="-242.1" class="darc"/>
+        <svg width="148" height="148" viewBox="0 0 148 148" style="filter:drop-shadow(0 0 14px rgba(212,168,71,0.2))">
+          <circle cx="74" cy="74" r="54" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="22"/>
+          <circle cx="74" cy="74" r="54" fill="none" stroke="url(#dg)" stroke-width="22"
+            stroke-dasharray="254 85" stroke-dashoffset="85"/>
+          <circle cx="74" cy="74" r="54" fill="none" stroke="#7ABADF" stroke-width="22"
+            stroke-dasharray="68 271" stroke-dashoffset="-169"/>
+          <circle cx="74" cy="74" r="54" fill="none" stroke="#5DB87A" stroke-width="22"
+            stroke-dasharray="17 322" stroke-dashoffset="-237"/>
           <defs>
-            <linearGradient id="dg1" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" stop-color="var(--blue)"/>
-              <stop offset="100%" stop-color="#7c3aed"/>
+            <linearGradient id="dg" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#A07828"/>
+              <stop offset="100%" stop-color="#E8C070"/>
             </linearGradient>
           </defs>
-          <text x="75" y="70" text-anchor="middle" fill="white" font-size="17" font-weight="800" font-family="Bebas Neue,sans-serif">75%</text>
-          <text x="75" y="85" text-anchor="middle" fill="#8892b0" font-size="9" font-family="Outfit,sans-serif">PMax</text>
+          <text x="74" y="68" text-anchor="middle" fill="#EDE8DC" font-size="16" font-weight="800" font-family="Bebas Neue,sans-serif">75%</text>
+          <text x="74" y="83" text-anchor="middle" fill="#7A7870" font-size="9" font-family="Outfit,sans-serif">PMax</text>
         </svg>
         <div class="donut-legend">
-          <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div><span class="legend-name">Performance Max</span><span class="legend-val">~75%</span></div>
-          <div class="legend-item"><div class="legend-dot" style="background:var(--cyan)"></div><span class="legend-name">Search Campaigns</span><span class="legend-val">~20%</span></div>
-          <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div><span class="legend-name">Display / Shopping</span><span class="legend-val">~5%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--gold)"></div><span class="legend-name">Performance Max</span><span class="legend-val">~75%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:#7ABADF"></div><span class="legend-name">Search Campaigns</span><span class="legend-val">~20%</span></div>
+          <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div><span class="legend-name">Display / Shopping</span><span class="legend-val">~5%</span></div>
         </div>
       </div>
     </div>
   </div>
 
-  <!-- FUNNEL -->
-  <div class="reveal" style="margin-bottom:12px">
-    <h3 style="font-family:var(--display);font-size:1.8rem;letter-spacing:0.03em;margin-bottom:6px">Full-Funnel Architecture</h3>
-    <p style="color:var(--text2);font-size:0.88rem;margin-bottom:28px">From awareness to revenue — how campaigns are structured</p>
+  <div class="reveal" style="margin-bottom:10px">
+    <h3 style="font-family:var(--display);font-size:1.7rem;letter-spacing:0.03em;margin-bottom:5px">Full-Funnel Architecture</h3>
+    <p style="color:var(--text2);font-size:0.86rem;margin-bottom:26px">From awareness to revenue</p>
   </div>
   <div class="funnel reveal">
-    <div class="funnel-row f-row-1">
-      <span class="funnel-label">📢 Impressions</span>
-      <div class="funnel-right"><div class="funnel-num">17.43 Crore+</div><div class="funnel-pct">100% — Awareness</div></div>
-    </div>
-    <div class="funnel-row f-row-2">
-      <span class="funnel-label">🖱️ Clicks</span>
-      <div class="funnel-right"><div class="funnel-num">58,06,647</div><div class="funnel-pct">CTR: 4.40%</div></div>
-    </div>
-    <div class="funnel-row f-row-3">
-      <span class="funnel-label">🎯 Conversions</span>
-      <div class="funnel-right"><div class="funnel-num">4,21,043+</div><div class="funnel-pct">CPC: ₹2.15 avg</div></div>
-    </div>
-    <div class="funnel-row f-row-4">
-      <span class="funnel-label">📞 Qualified Leads / Store Visits</span>
-      <div class="funnel-right"><div class="funnel-num">High-intent</div><div class="funnel-pct">CPA: ₹32 avg</div></div>
-    </div>
-    <div class="funnel-row f-row-5">
-      <span class="funnel-label">✅ Revenue Outcomes</span>
-      <div class="funnel-right"><div class="funnel-num">Multi-brand ROI</div><div class="funnel-pct">₹81.2L+ spend</div></div>
-    </div>
+    <div class="funnel-row fr1"><span class="f-label">📢 Impressions</span><div class="f-right"><div class="f-num">17.43 Crore+</div><div class="f-pct">100% — Awareness</div></div></div>
+    <div class="funnel-row fr2"><span class="f-label">🖱️ Clicks</span><div class="f-right"><div class="f-num">58,06,647</div><div class="f-pct">CTR: 4.40%</div></div></div>
+    <div class="funnel-row fr3"><span class="f-label">🎯 Conversions</span><div class="f-right"><div class="f-num">4,21,043+</div><div class="f-pct">CPC: ₹2.15 avg</div></div></div>
+    <div class="funnel-row fr4"><span class="f-label">📞 Qualified Leads / Store Visits</span><div class="f-right"><div class="f-num">High-intent</div><div class="f-pct">CPA: ₹32 avg</div></div></div>
+    <div class="funnel-row fr5"><span class="f-label">✅ Revenue Outcomes</span><div class="f-right"><div class="f-num">Multi-brand ROI</div><div class="f-pct">₹81.2L+ spend</div></div></div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- CASE STUDIES -->
+<!-- CASES -->
 <section id="cases" class="section">
   <div class="reveal">
     <div class="s-label">Deep Dives</div>
@@ -942,7 +629,7 @@ footer strong{color:var(--text2)}
     <p class="s-desc">Strategy, execution, optimisation, and measurable results.</p>
   </div>
 
-  <div class="tabs-wrap reveal">
+  <div class="reveal">
     <div class="tabs-nav">
       <button class="tab-btn active" onclick="switchTab(this,'tg')">Google Ads · PMax</button>
       <button class="tab-btn" onclick="switchTab(this,'tm')">Meta Ads</button>
@@ -950,27 +637,15 @@ footer strong{color:var(--text2)}
       <button class="tab-btn" onclick="switchTab(this,'ta')">Lenovo APAC</button>
     </div>
 
-    <!-- Google -->
     <div id="tg" class="tab-panel active">
       <div class="case-grid">
         <div class="case-card">
           <span class="case-tag tag-g">Google Ads · PMax</span>
-          <h3 class="case-title">Acer Dotcom Multi-Location Performance Max Scale-Up</h3>
-          <p class="case-desc">Scaled PMax campaigns across 10+ Acer Dotcom store locations to deliver high-volume conversions at controlled CPA.</p>
-          <div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">🔍 Problem <span class="acc-icon">+</span></button>
-              <div class="acc-body">Multiple Acer Dotcom stores running isolated, low-performing campaigns with inconsistent bidding, budget cannibalization, and no shared audience intelligence. CPA was volatile across the network.</div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">🧠 Strategy <span class="acc-icon">+</span></button>
-              <div class="acc-body">Consolidated location-level learnings into a PMax framework with shared signals. Applied Target CPA and Target ROAS per store tier. Built audience lists from GA4 — past converters, high-intent visitors — as PMax signals.</div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">⚙️ Execution <span class="acc-icon">+</span></button>
-              <div class="acc-body">Separate PMax campaigns per location with hyper-local asset groups. Used GTM + GA4 for precise conversion tracking. A/B tested creatives every 4 weeks. Applied negative keyword exclusions at account level.</div>
-            </div>
-          </div>
+          <h3 class="case-title">Acer Dotcom Multi-Location PMax Scale-Up</h3>
+          <p class="case-desc">Scaled Performance Max campaigns across 10+ Acer Dotcom store locations to deliver high-volume conversions at controlled CPA.</p>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🔍 Problem <span class="acc-icon">+</span></button><div class="acc-body">Multiple Acer Dotcom stores running isolated, low-performing campaigns with inconsistent bidding, budget cannibalization, and no shared audience intelligence. CPA was volatile across the network.</div></div>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🧠 Strategy <span class="acc-icon">+</span></button><div class="acc-body">Consolidated location-level learnings into a PMax framework with shared signals. Applied Target CPA and Target ROAS per store tier. Built audience lists from GA4 — past converters, high-intent visitors — as PMax signals.</div></div>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">⚙️ Execution <span class="acc-icon">+</span></button><div class="acc-body">Separate PMax campaigns per location with hyper-local asset groups. GTM + GA4 for precise conversion tracking. A/B tested creatives every 4 weeks. Applied negative keyword exclusions at account level.</div></div>
           <div class="case-results">
             <div class="result-box"><div class="result-num">3,800+</div><div class="result-lbl">Conv. per store</div></div>
             <div class="result-box"><div class="result-num">₹0.38</div><div class="result-lbl">Min. CPC</div></div>
@@ -979,18 +654,10 @@ footer strong{color:var(--text2)}
         </div>
         <div class="case-card">
           <span class="case-tag tag-g">Search · Smart Bidding</span>
-          <h3 class="case-title">ICB Brewery: Search Campaign in Policy-Heavy Category</h3>
-          <p class="case-desc">Drove awareness and footfall for Indian Craft Brewery via Google Search in a heavily policy-restricted category.</p>
-          <div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">🔍 Problem <span class="acc-icon">+</span></button>
-              <div class="acc-body">Alcohol-adjacent brand facing Google Ads policy restrictions. Multiple ad disapprovals and limited targeting options. Needed to drive measurable restaurant/brewery footfall without violating platform policies.</div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">🧠 Strategy + Execution <span class="acc-icon">+</span></button>
-              <div class="acc-body">Structured 6 separate Search campaigns by intent: Brewery, Restaurant, Cocktails, Dinner, Lunch, Generic, Near Me. Compliant messaging focused on dining experience. Keyword clusters around food+drink and event terms. Call extensions + location assets for direct phone conversions.</div>
-            </div>
-          </div>
+          <h3 class="case-title">ICB Brewery: Search Campaigns in Policy-Heavy Category</h3>
+          <p class="case-desc">Drove awareness and footfall for Indian Craft Brewery via Google Search in a heavily policy-restricted alcohol/hospitality category.</p>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🔍 Problem <span class="acc-icon">+</span></button><div class="acc-body">Alcohol-adjacent brand facing Google Ads policy restrictions with multiple ad disapprovals. Needed to drive measurable restaurant/brewery footfall without violating platform policies.</div></div>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🧠 Strategy + Execution <span class="acc-icon">+</span></button><div class="acc-body">Structured 6 separate Search campaigns by intent: Brewery, Restaurant, Cocktails, Dinner, Lunch, Generic, Near Me. Compliant messaging focused on dining experience. Call extensions + location assets for direct phone conversions.</div></div>
           <div class="case-results">
             <div class="result-box"><div class="result-num">16,926</div><div class="result-lbl">Conversions</div></div>
             <div class="result-box"><div class="result-num">11.46%</div><div class="result-lbl">CTR (Search)</div></div>
@@ -1000,23 +667,14 @@ footer strong{color:var(--text2)}
       </div>
     </div>
 
-    <!-- Meta -->
     <div id="tm" class="tab-panel">
       <div class="case-grid">
         <div class="case-card">
           <span class="case-tag tag-m">Meta Ads · Hospitality</span>
           <h3 class="case-title">Meta Full-Funnel for Event & Hospitality Brands</h3>
-          <p class="case-desc">Built and optimized Meta campaigns for hospitality clients, improving CTR by 18% through structured creative testing and funnel segmentation.</p>
-          <div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">🔍 Problem + Strategy <span class="acc-icon">+</span></button>
-              <div class="acc-body">Campaigns running with broad targeting and no creative differentiation between cold and warm audiences. Rebuilt the funnel: TOF used broad + lookalike audiences, MOF used engagement retargeting, BOF used website visitor retargeting with urgency creatives. Separated ad sets by placement type to control creative formats independently.</div>
-            </div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">⚙️ Creative A/B Testing <span class="acc-icon">+</span></button>
-              <div class="acc-body">3-variant tests: (A) static image + benefit headline, (B) short video testimonial, (C) carousel USP breakdown. Video outperformed static by 2.3x on engagement. Scaled budget 60% toward top performers, reducing wasted impressions by 35%.</div>
-            </div>
-          </div>
+          <p class="case-desc">Built and refined Meta campaigns for hospitality clients, improving CTR by 18% through creative testing and funnel segmentation.</p>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🔍 Problem + Strategy <span class="acc-icon">+</span></button><div class="acc-body">Campaigns running with broad targeting and no creative differentiation between cold and warm audiences. Rebuilt the funnel: TOF used broad + lookalike audiences, MOF used engagement retargeting, BOF used website visitor retargeting with urgency creatives.</div></div>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">⚙️ Creative A/B Testing <span class="acc-icon">+</span></button><div class="acc-body">3-variant tests: (A) static image, (B) short video testimonial, (C) carousel USP breakdown. Video outperformed static by 2.3x on engagement. Scaled budget 60% toward top performers, reducing wasted impressions by 35%.</div></div>
           <div class="case-results">
             <div class="result-box"><div class="result-num">+18%</div><div class="result-lbl">CTR Lift</div></div>
             <div class="result-box"><div class="result-num">₹8.3L</div><div class="result-lbl">Spend Managed</div></div>
@@ -1027,12 +685,7 @@ footer strong{color:var(--text2)}
           <span class="case-tag tag-m">Meta · Automation</span>
           <h3 class="case-title">AiSensy + Marketo: Lead Nurture Automation</h3>
           <p class="case-desc">Designed end-to-end lead nurturing combining WhatsApp chatbot flows (AiSensy) with Marketo email sequences to accelerate MQL-to-SQL conversion.</p>
-          <div>
-            <div class="acc-item">
-              <button class="acc-head" onclick="toggleAcc(this)">🧠 Architecture <span class="acc-icon">+</span></button>
-              <div class="acc-body">Meta Lead Gen form submissions triggered immediate WhatsApp message via AiSensy API. Bot flow: Welcome → Product interest qualifier → Schedule demo → Human handoff for high-intent leads. Parallel Marketo 5-email nurture series (Day 0, D2, D5, D10, D14) with personalized product recommendations. High-score leads flagged for sales within 2 hours.</div>
-            </div>
-          </div>
+          <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🧠 Architecture <span class="acc-icon">+</span></button><div class="acc-body">Meta Lead Gen form submissions triggered immediate WhatsApp via AiSensy API. Bot flow: Welcome → Product qualifier → Schedule demo → Human handoff. Parallel Marketo 5-email nurture (Day 0, 2, 5, 10, 14) with personalised recommendations. High-score leads flagged for sales within 2 hours.</div></div>
           <div class="case-results">
             <div class="result-box"><div class="result-num">↓</div><div class="result-lbl">Lead Response Time</div></div>
             <div class="result-box"><div class="result-num">↑</div><div class="result-lbl">MQL → SQL Rate</div></div>
@@ -1042,60 +695,41 @@ footer strong{color:var(--text2)}
       </div>
     </div>
 
-    <!-- CRO -->
     <div id="tc" class="tab-panel">
       <div class="case-card" style="max-width:100%">
         <span class="case-tag tag-s">Shopify · CRO · GA4</span>
-        <h3 class="case-title">Britannia Shopify E-Commerce: +11% Conversion Rate in 90 Days</h3>
-        <p class="case-desc">Built Britannia's Shopify store from scratch and drove an 11% improvement in overall conversion rate through GA4-backed funnel analysis and systematic CRO execution.</p>
-        <div style="margin:24px 0">
+        <h3 class="case-title">Britannia Shopify: +11% Conversion Rate in 90 Days</h3>
+        <p class="case-desc">Built Britannia's Shopify store and drove an 11% improvement in conversion rate through GA4-backed funnel analysis and systematic CRO.</p>
+        <div style="margin:22px 0">
           <div class="ba-grid">
-            <div class="ba-col before">
-              <div class="ba-label">Before</div>
-              <div class="ba-rows">
-                <div class="ba-r"><div class="ba-r-label">Conv. Rate</div><div class="ba-r-val bv-before">Baseline</div></div>
-                <div class="ba-r"><div class="ba-r-label">Checkout Drop-off</div><div class="ba-r-val bv-before">High · untracked</div></div>
-                <div class="ba-r"><div class="ba-r-label">GA4 Tracking</div><div class="ba-r-val bv-before">None</div></div>
-                <div class="ba-r"><div class="ba-r-label">Landing Pages</div><div class="ba-r-val bv-before">Generic</div></div>
-              </div>
-            </div>
+            <div class="ba-col before"><div class="ba-label">Before</div><div class="ba-rows">
+              <div class="ba-r"><div class="ba-r-label">Conv. Rate</div><div class="ba-r-val bv-b">Baseline</div></div>
+              <div class="ba-r"><div class="ba-r-label">Checkout Drop-off</div><div class="ba-r-val bv-b">High · untracked</div></div>
+              <div class="ba-r"><div class="ba-r-label">GA4 Tracking</div><div class="ba-r-val bv-b">None</div></div>
+              <div class="ba-r"><div class="ba-r-label">Landing Pages</div><div class="ba-r-val bv-b">Generic</div></div>
+            </div></div>
             <div class="ba-arrow">→</div>
-            <div class="ba-col after">
-              <div class="ba-label">After</div>
-              <div class="ba-rows">
-                <div class="ba-r"><div class="ba-r-label">Conv. Rate</div><div class="ba-r-val bv-after">+11% in 90 days</div></div>
-                <div class="ba-r"><div class="ba-r-label">Checkout Drop-off</div><div class="ba-r-val bv-after">Reduced via funnel fix</div></div>
-                <div class="ba-r"><div class="ba-r-label">GA4 Tracking</div><div class="ba-r-val bv-after">Full-funnel via GTM</div></div>
-                <div class="ba-r"><div class="ba-r-label">Landing Pages</div><div class="ba-r-val bv-after">Product-specific · fast</div></div>
-              </div>
-            </div>
+            <div class="ba-col after"><div class="ba-label">After</div><div class="ba-rows">
+              <div class="ba-r"><div class="ba-r-label">Conv. Rate</div><div class="ba-r-val bv-a">+11% in 90 days</div></div>
+              <div class="ba-r"><div class="ba-r-label">Checkout Drop-off</div><div class="ba-r-val bv-a">Reduced via funnel fix</div></div>
+              <div class="ba-r"><div class="ba-r-label">GA4 Tracking</div><div class="ba-r-val bv-a">Full-funnel via GTM</div></div>
+              <div class="ba-r"><div class="ba-r-label">Landing Pages</div><div class="ba-r-val bv-a">Product-specific · fast</div></div>
+            </div></div>
           </div>
         </div>
-        <div class="acc-item">
-          <button class="acc-head" onclick="toggleAcc(this)">⚙️ CRO Methodology <span class="acc-icon">+</span></button>
-          <div class="acc-body">Used GA4 funnel exploration to identify drop-offs: 62% abandoned between product page and cart. GTM-tracked scroll depth, add-to-cart, and checkout steps. Identified 3 causes: slow page load, unclear CTA placement, insufficient social proof. Solutions: compressed product images (LCP improvement), repositioned CTA above fold, added review widgets near price. 2-week A/B test, variant won at statistical significance.</div>
-        </div>
+        <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">⚙️ CRO Methodology <span class="acc-icon">+</span></button><div class="acc-body">Used GA4 funnel exploration to identify drop-offs: 62% abandoned between product page and cart. GTM-tracked scroll depth, add-to-cart, and checkout steps. Identified 3 causes: slow load, unclear CTA, insufficient social proof. Compressed images, repositioned CTA above fold, added review widgets. 2-week A/B test confirmed the variant at statistical significance.</div></div>
       </div>
     </div>
 
-    <!-- APAC -->
     <div id="ta" class="tab-panel">
       <div class="case-card" style="max-width:100%">
         <span class="case-tag tag-a">Lenovo APAC · GBP Strategy</span>
         <h3 class="case-title">Lenovo APAC: GBP Optimisation for 250+ Partner Outlets</h3>
-        <p class="case-desc">As Lenovo's APAC Single Point of Contact, drove a 15% improvement in local search discoverability across 250+ partner retail outlets through systematic GBP strategy.</p>
-        <div>
-          <div class="acc-item">
-            <button class="acc-head" onclick="toggleAcc(this)">🔍 Scope of Role <span class="acc-icon">+</span></button>
-            <div class="acc-body">Strategic interface between Lenovo's APAC marketing team and HashConnect's execution team. Responsible for audit, optimisation, and performance reporting of 250+ Google Business Profiles across partner stores in India and APAC. Included store locator integration, review management strategy, Q&A optimisation, photo/media refresh, and post publishing cadence.</div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-head" onclick="toggleAcc(this)">🧠 Strategy + Execution <span class="acc-icon">+</span></button>
-            <div class="acc-body">Audited all 250+ GBP listings for completeness, photo quality, review response rate, and category accuracy. Prioritised lowest-scoring 20% for immediate remediation. Standardised a GBP optimisation playbook: consistent NAP data, keyword-rich business descriptions, structured service attributes, monthly photo updates. Implemented store locator widget on landing pages linked to individual GBP profiles.</div>
-          </div>
-        </div>
+        <p class="case-desc">As Lenovo's APAC SPOC, drove a 15% improvement in local search discoverability across 250+ partner retail outlets through systematic GBP strategy.</p>
+        <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🔍 Scope of Role <span class="acc-icon">+</span></button><div class="acc-body">Strategic interface between Lenovo's APAC marketing team and HashConnect's execution team. Managed audit, optimisation, and performance reporting for 250+ Google Business Profiles across partner stores in India and APAC — including review management, Q&A, photo refresh, and post publishing cadence.</div></div>
+        <div class="acc-item"><button class="acc-head" onclick="toggleAcc(this)">🧠 Strategy + Execution <span class="acc-icon">+</span></button><div class="acc-body">Audited all 250+ GBP listings for completeness, photo quality, review response rate, and category accuracy. Prioritised lowest-scoring 20% for immediate remediation. Standardised a GBP playbook: consistent NAP data, keyword-rich descriptions, structured service attributes, monthly photo updates. Implemented store locator widget on landing pages linked to individual GBP profiles.</div></div>
         <div class="case-results">
-          <div class="result-box"><div class="result-num">250+</div><div class="result-lbl">GBP Profiles Managed</div></div>
+          <div class="result-box"><div class="result-num">250+</div><div class="result-lbl">GBP Profiles</div></div>
           <div class="result-box"><div class="result-num">+15%</div><div class="result-lbl">Local Discoverability</div></div>
           <div class="result-box"><div class="result-num">APAC</div><div class="result-lbl">Multi-market SPOC</div></div>
         </div>
@@ -1120,29 +754,29 @@ footer strong{color:var(--text2)}
       <div class="tl-title">Assistant Manager — Performance Marketing</div>
       <div class="tl-company">HashConnect Integrated Services · Bengaluru</div>
       <ul class="tl-list">
-        <li>Lead 6-member team across Google Ads and Meta Ads for Lenovo, Dell, Acer, Asus, MSI</li>
-        <li>421,000+ conversions at ₹32 avg. CPA across ₹81.2L+ ad spend managed</li>
+        <li>Led 6-member team across Google Ads and Meta Ads for Lenovo, Dell, Acer, Asus, MSI</li>
+        <li>421,000+ conversions at ₹32 avg. CPA across ₹81.2L+ ad spend</li>
         <li>Lenovo APAC SPOC for 250+ GBP partner profiles — +15% local discoverability</li>
-        <li>Improved reporting workflows by 25% using Looker Studio dashboards</li>
-        <li>Built WhatsApp (AiSensy) + Marketo email automation for lead nurturing (Lenovo + Britannia)</li>
+        <li>Streamlined reporting workflows by 25% using Looker Studio dashboards</li>
+        <li>Architected WhatsApp (AiSensy) + Marketo email automation for Lenovo + Britannia</li>
         <li>4.40% avg. CTR across 17.4Cr+ impressions; ₹2.15 avg. CPC</li>
       </ul>
     </div>
     <div class="tl-item">
-      <div class="tl-dot" style="background:var(--cyan);box-shadow:0 0 10px rgba(78,205,196,0.5)"></div>
+      <div class="tl-dot" style="background:var(--gold2);box-shadow:0 0 10px rgba(232,192,112,0.4)"></div>
       <div class="tl-date">AUG 2022 → JUN 2024</div>
       <div class="tl-title">Digital Marketing Executive</div>
       <div class="tl-company">HashConnect Integrated Services · Bengaluru</div>
       <ul class="tl-list">
         <li>Google Ads: 421K+ conversions at ₹32 CPA via Performance Max + smart bidding</li>
-        <li>Meta Ads CTR improved 18% through A/B testing and full-funnel retargeting</li>
+        <li>Meta Ads CTR boosted 18% through A/B testing and full-funnel retargeting</li>
         <li>Britannia Shopify CRO: +11% conversion rate in 3 months via GA4 analysis</li>
-        <li>GTM + GA4 conversion tracking deployed across all client accounts</li>
-        <li>Looker Studio dashboards reduced reporting from 3 days to same-day</li>
+        <li>GTM + GA4 conversion monitoring deployed across all client accounts</li>
+        <li>Looker Studio dashboards cut reporting from 3 days to same-day</li>
       </ul>
     </div>
     <div class="tl-item">
-      <div class="tl-dot" style="background:var(--orange);box-shadow:0 0 10px rgba(246,166,35,0.5)"></div>
+      <div class="tl-dot" style="background:var(--text3);box-shadow:0 0 8px rgba(72,70,66,0.4)"></div>
       <div class="tl-date">2019 → 2021</div>
       <div class="tl-title">Marketing Executive</div>
       <div class="tl-company">Vyram Constructions Ltd. & CDG Certification Ltd. · Bengaluru</div>
@@ -1157,13 +791,13 @@ footer strong{color:var(--text2)}
 <div class="divider"></div>
 
 <!-- SKILLS -->
-<section id="skills" class="section" style="background:rgba(11,14,26,0.6)">
+<section id="skills" class="section" style="background:rgba(15,16,22,0.6)">
   <div class="reveal">
     <div class="s-label">Capabilities</div>
     <h2 class="s-title">Skills & <em>Expertise</em></h2>
-    <p class="s-desc">Filter by category to explore depth and execution capability.</p>
+    <p class="s-desc">Filter by category to explore platform depth and capability.</p>
   </div>
-  <div class="skill-filters reveal">
+  <div class="sf-wrap reveal">
     <button class="sf-btn active" onclick="filterSkills(this,'all')">All</button>
     <button class="sf-btn" onclick="filterSkills(this,'paid')">Paid Media</button>
     <button class="sf-btn" onclick="filterSkills(this,'analytics')">Analytics</button>
@@ -1190,24 +824,12 @@ footer strong{color:var(--text2)}
     <div class="skill-card" data-cat="leadership"><div class="sk-icon">🌏</div><div class="sk-name">APAC Client Management</div><div class="sk-track"><div class="sk-bar" data-w="80"></div></div></div>
   </div>
 
-  <div style="margin-top:64px">
-    <h3 style="font-family:var(--display);font-size:2rem;letter-spacing:0.03em;margin-bottom:28px" class="reveal">Leadership & <em style="color:var(--blue);font-style:normal">Execution Depth</em></h3>
+  <div style="margin-top:60px">
+    <h3 style="font-family:var(--display);font-size:1.9rem;letter-spacing:0.03em;margin-bottom:26px" class="reveal">Leadership & <em style="color:var(--gold);font-style:normal">Execution Depth</em></h3>
     <div class="lead-grid reveal">
-      <div class="lead-card">
-        <div class="lead-icon">👥</div>
-        <div class="lead-title">Team Scaling</div>
-        <div class="lead-desc">Led and mentored a 6-member performance marketing team. Set weekly KPIs, ran structured performance reviews, and developed individual growth plans across Google Ads and Meta specialisations.</div>
-      </div>
-      <div class="lead-card">
-        <div class="lead-icon">⚙️</div>
-        <div class="lead-title">Workflow Optimisation</div>
-        <div class="lead-desc">Redesigned reporting infrastructure using Looker Studio, reducing turnaround from 3 days to same-day. Standardised campaign naming conventions, budget pacing templates, and QA checklists.</div>
-      </div>
-      <div class="lead-card">
-        <div class="lead-icon">🌏</div>
-        <div class="lead-title">APAC Stakeholder Management</div>
-        <div class="lead-desc">Primary interface between Lenovo's APAC marketing leadership and HashConnect's delivery team. Cross-timezone communication, strategy alignment, and performance reporting for 250+ partner profiles.</div>
-      </div>
+      <div class="lead-card"><div class="lead-icon">👥</div><div class="lead-title">Team Scaling</div><div class="lead-desc">Led and mentored a 6-member performance marketing team. Set weekly KPIs, conducted structured performance reviews, and built individual growth plans across Google Ads and Meta specialisations.</div></div>
+      <div class="lead-card"><div class="lead-icon">⚙️</div><div class="lead-title">Workflow Optimisation</div><div class="lead-desc">Redesigned reporting with Looker Studio, reducing turnaround from 3 days to same-day. Standardised campaign naming, budget pacing templates, and QA checklists across all accounts.</div></div>
+      <div class="lead-card"><div class="lead-icon">🌏</div><div class="lead-title">APAC Stakeholder Management</div><div class="lead-desc">Primary interface between Lenovo's APAC marketing leadership and HashConnect's delivery team. Cross-timezone communication, strategy alignment, and reporting for 250+ partner profiles.</div></div>
     </div>
   </div>
 </section>
@@ -1241,12 +863,12 @@ footer strong{color:var(--text2)}
 <!-- CTA -->
 <section id="contact" class="cta-section">
   <div class="reveal">
-    <div class="s-label" style="justify-content:center;margin-bottom:20px">Let's Work Together</div>
+    <div class="s-label" style="justify-content:center;margin-bottom:18px">Let's Work Together</div>
     <h2 class="cta-title">Ready to drive<br><em>measurable growth?</em></h2>
-    <p class="cta-desc">Performance Marketing professional open to high-impact roles at growth-stage or enterprise brands. Google Ads, Meta Ads, and full-funnel performance strategy.</p>
+    <p class="cta-desc">Performance Marketing professional open to high-impact roles at growth-stage or enterprise brands. Google Ads, Meta Ads, and full-funnel strategy leadership.</p>
     <div class="cta-actions">
-      <a href="mailto:ajay.hulikallu@gmail.com" class="btn btn-fill">✉ ajay.hulikallu@gmail.com</a>
-      <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="btn btn-outline">↗ LinkedIn</a>
+      <a href="mailto:ajay.hulikallu@gmail.com" class="btn-gold">✉ ajay.hulikallu@gmail.com</a>
+      <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="btn-ghost">↗ LinkedIn</a>
     </div>
     <p class="cta-meta">+91 97420 37878 · Bengaluru, India</p>
   </div>
@@ -1254,96 +876,56 @@ footer strong{color:var(--text2)}
 
 <footer>
   <strong>Ajay Chakravarthy H J</strong> — Performance Marketing Specialist<br>
-  <span style="display:block;margin-top:6px">Google Ads Certified · Google Analytics Certified · 3+ Years · 421K+ Conversions</span>
+  <span style="display:block;margin-top:5px">Google Ads Certified · Google Analytics Certified · 3+ Years · 421K+ Conversions</span>
 </footer>
 
 <script>
-// COUNTER
-function animateCount(el) {
-  const target = parseInt(el.dataset.count);
-  const fmt = el.dataset.fmt;
-  const suffix = el.dataset.suffix || '';
-  const dur = 2000;
-  const start = performance.now();
-  function step(now) {
-    const p = Math.min((now - start) / dur, 1);
-    const ease = 1 - Math.pow(1 - p, 3);
-    const val = Math.floor(ease * target);
-    el.textContent = (fmt === 'comma' ? val.toLocaleString('en-IN') : val) + suffix;
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = (fmt === 'comma' ? target.toLocaleString('en-IN') : target) + suffix;
-  }
+function animateCount(el){
+  const t=parseInt(el.dataset.count),f=el.dataset.fmt,s=el.dataset.suffix||'',d=2000,st=performance.now();
+  function step(n){const p=Math.min((n-st)/d,1),e=1-Math.pow(1-p,3),v=Math.floor(e*t);
+    el.textContent=(f==='comma'?v.toLocaleString('en-IN'):v)+s;
+    if(p<1)requestAnimationFrame(step);else el.textContent=(f==='comma'?t.toLocaleString('en-IN'):t)+s;}
   requestAnimationFrame(step);
 }
-
-// REVEAL
-const revealEls = document.querySelectorAll('.reveal');
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
       e.target.classList.add('visible');
-      e.target.querySelectorAll('.bar-fill[data-w]').forEach(b => { setTimeout(()=>b.style.width=b.dataset.w+'%',100) });
-      e.target.querySelectorAll('.sk-bar[data-w]').forEach(b => { setTimeout(()=>b.style.width=b.dataset.w+'%',200) });
-      e.target.querySelectorAll('[data-count]').forEach(c => animateCount(c));
+      e.target.querySelectorAll('.bar-fill[data-w]').forEach(b=>{setTimeout(()=>b.style.width=b.dataset.w+'%',100)});
+      e.target.querySelectorAll('.sk-bar[data-w]').forEach(b=>{setTimeout(()=>b.style.width=b.dataset.w+'%',200)});
+      e.target.querySelectorAll('[data-count]').forEach(c=>animateCount(c));
     }
   });
-}, { threshold: 0.08 });
-revealEls.forEach(el => io.observe(el));
+},{threshold:0.08});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+document.querySelectorAll('.hero [data-count]').forEach(el=>setTimeout(()=>animateCount(el),500));
 
-// Hero stats visible on load
-document.querySelectorAll('.hero [data-count]').forEach(el => {
-  setTimeout(() => animateCount(el), 400);
-});
-
-// TABS
-function switchTab(btn, id) {
+function switchTab(btn,id){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');document.getElementById(id).classList.add('active');
 }
-
-// ACCORDION
-function toggleAcc(btn) {
-  const body = btn.nextElementSibling;
-  const isOpen = btn.classList.contains('open');
-  const parent = btn.closest('.case-card') || btn.closest('.tab-panel');
-  if (parent) {
-    parent.querySelectorAll('.acc-head.open').forEach(h => {
-      h.classList.remove('open');
-      h.nextElementSibling.classList.remove('open');
-    });
-  }
-  if (!isOpen) { btn.classList.add('open'); body.classList.add('open'); }
+function toggleAcc(btn){
+  const body=btn.nextElementSibling,isOpen=btn.classList.contains('open');
+  const parent=btn.closest('.case-card')||btn.closest('.tab-panel');
+  if(parent){parent.querySelectorAll('.acc-head.open').forEach(h=>{h.classList.remove('open');h.nextElementSibling.classList.remove('open')});}
+  if(!isOpen){btn.classList.add('open');body.classList.add('open');}
 }
-
-// SKILL FILTER
-function filterSkills(btn, cat) {
-  document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.skill-card').forEach(c => {
-    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
-  });
+function filterSkills(btn,cat){
+  document.querySelectorAll('.sf-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');
+  document.querySelectorAll('.skill-card').forEach(c=>c.classList.toggle('hidden',cat!=='all'&&c.dataset.cat!==cat));
 }
-
-// NAV HAMBURGER
-const ham = document.getElementById('navHam');
-const navLinks = document.getElementById('navLinks');
-ham.addEventListener('click', () => navLinks.classList.toggle('open'));
-navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-
-// NAV SCROLL
-window.addEventListener('scroll', () => {
-  document.getElementById('mainNav').style.padding = window.scrollY > 50 ? '10px 32px' : '16px 32px';
+const ham=document.getElementById('navHam'),nl=document.getElementById('navLinks');
+ham.addEventListener('click',()=>nl.classList.toggle('open'));
+nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').style.padding=window.scrollY>50?'10px 32px':'16px 32px';
 });
-
-// ACTIVE NAV LINK
-const sections = document.querySelectorAll('section[id]');
-const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
-  navAs.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + cur));
+const secs=document.querySelectorAll('section[id]'),navAs=document.querySelectorAll('.nav-links a[href^="#"]');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-90)cur=s.id;});
+  navAs.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
 });
 </script>
 </body>
