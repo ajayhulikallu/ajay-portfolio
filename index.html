@@ -4,51 +4,62 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Ajay Chakravarthy — Performance Marketing Specialist</title>
+
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,700;1,9..144,300&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+
 <style>
 /* ══════════════════════════════════════════
-   DESIGN SYSTEM
+   DESIGN SYSTEM — LIGHT, PROFESSIONAL
 ══════════════════════════════════════════ */
 :root {
-  --bg:       #070710;
-  --bg2:      #0c0c1a;
-  --bg3:      #111128;
-  --surface:  rgba(255,255,255,0.035);
-  --surface2: rgba(255,255,255,0.065);
-  --surface3: rgba(255,255,255,0.10);
-  --border:   rgba(255,255,255,0.07);
-  --border2:  rgba(255,255,255,0.12);
+  /* Light neutral base */
+  --bg:       #f5f5f9;
+  --bg2:      #ffffff;
+  --bg3:      #eef0f7;
 
-  --blue:     #4f6ef7;
-  --blue2:    #6b84ff;
+  --surface:  rgba(255,255,255,0.90);
+  --surface2: rgba(255,255,255,1);
+  --surface3: rgba(240,242,252,1);
+  --border:   rgba(15,23,42,0.06);
+  --border2:  rgba(15,23,42,0.12);
+
+  /* Accents */
+  --blue:     #2563eb;
+  --blue2:    #1d4ed8;
   --violet:   #7c3aed;
-  --cyan:     #22d3ee;
-  --emerald:  #10b981;
+  --cyan:     #06b6d4;
+  --emerald:  #059669;
   --amber:    #f59e0b;
-  --rose:     #f43f5e;
+  --rose:     #e11d48;
 
-  --text:     #eeeef8;
-  --text2:    #9090b0;
-  --text3:    #52526a;
+  /* Text */
+  --text:     #0f172a;
+  --text2:    #4b5563;
+  --text3:    #9ca3af;
 
+  /* Fonts */
   --ff-display: 'Fraunces', serif;
   --ff-body:    'Plus Jakarta Sans', sans-serif;
   --ff-mono:    'JetBrains Mono', monospace;
 
+  /* Radii */
   --r:    14px;
   --r-sm: 8px;
   --r-lg: 24px;
 
-  --shadow-glow: 0 0 60px rgba(79,110,247,0.12);
-  --shadow-card: 0 2px 24px rgba(0,0,0,0.4);
+  --shadow-glow: 0 0 40px rgba(37,99,235,0.16);
+  --shadow-card: 0 10px 30px rgba(15,23,42,0.10);
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--bg);
+  background: radial-gradient(circle at top, #e5edff 0, #f5f5f9 32%, #f5f5f9 100%);
   color: var(--text);
   font-family: var(--ff-body);
   font-size: 16px;
@@ -57,30 +68,20 @@ body {
 }
 a { color: var(--blue); text-decoration: none; }
 img { display: block; max-width: 100%; }
-::selection { background: rgba(79,110,247,0.25); }
+::selection { background: rgba(37,99,235,0.18); }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 3px; }
-::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
 
-/* ── AMBIENT BG ── */
-.ambient {
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 0;
-  background:
-    radial-gradient(ellipse 70% 50% at 15% 15%, rgba(79,110,247,0.07) 0%, transparent 65%),
-    radial-gradient(ellipse 50% 40% at 85% 80%, rgba(124,58,237,0.06) 0%, transparent 60%),
-    radial-gradient(ellipse 35% 55% at 55% 45%, rgba(34,211,238,0.03) 0%, transparent 65%);
-}
-
-/* ── NOISE GRAIN ── */
+/* ── VERY SOFT GRAIN ── */
 body::after {
   content: '';
   position: fixed; inset: 0;
   pointer-events: none; z-index: 9998;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
-  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
+  opacity: 0.18;
 }
 
 /* ══════════════════════════════════════════
@@ -90,12 +91,12 @@ nav {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000;
   padding: 0 32px;
-  height: 60px;
+  height: 64px;
   display: flex; align-items: center; justify-content: space-between;
-  background: rgba(7,7,16,0.8);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border-bottom: 1px solid var(--border);
+  background: rgba(248,250,252,0.92);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border-bottom: 1px solid rgba(148,163,184,0.35);
   gap: 16px;
 }
 .nav-logo {
@@ -117,21 +118,22 @@ nav {
 }
 .nav-links::-webkit-scrollbar { display: none; }
 .nav-links a {
-  color: var(--text2); font-size: 0.8rem; font-weight: 500;
+  color: var(--text3); font-size: 0.8rem; font-weight: 500;
   padding: 6px 12px; border-radius: 6px;
   transition: all 0.2s; white-space: nowrap;
 }
-.nav-links a:hover { color: var(--text); background: var(--surface2); }
+.nav-links a:hover { color: var(--text); background: rgba(148,163,184,0.18); }
 .nav-hire {
   padding: 7px 18px; background: var(--blue);
   color: #fff !important; border-radius: 6px !important;
   font-weight: 600 !important;
+  box-shadow: 0 10px 25px rgba(37,99,235,0.35);
 }
 .nav-hire:hover { background: var(--blue2) !important; transform: translateY(-1px); }
 @media(max-width:600px){
   nav { padding: 0 16px; }
   .nav-links a { padding: 5px 8px; font-size: 0.72rem; }
-  .nav-hire { padding: 5px 12px !important; }
+  .nav-hire { padding: 5px 12px !important; box-shadow: none; }
 }
 
 /* ══════════════════════════════════════════
@@ -144,11 +146,11 @@ section { position: relative; z-index: 1; }
 .sec-eyebrow {
   display: inline-flex; align-items: center; gap: 8px;
   font-family: var(--ff-mono); font-size: 0.7rem; font-weight: 600;
-  color: var(--cyan); letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--blue2); letter-spacing: 0.1em; text-transform: uppercase;
   margin-bottom: 14px;
 }
 .sec-eyebrow::before {
-  content: ''; width: 20px; height: 1px; background: var(--cyan);
+  content: ''; width: 20px; height: 1px; background: var(--blue2);
 }
 .sec-h2 {
   font-family: var(--ff-display);
@@ -206,8 +208,8 @@ section { position: relative; z-index: 1; }
 .hero-pill {
   display: inline-flex; align-items: center; gap: 7px;
   padding: 5px 14px;
-  background: rgba(79,110,247,0.1);
-  border: 1px solid rgba(79,110,247,0.25);
+  background: rgba(37,99,235,0.08);
+  border: 1px solid rgba(37,99,235,0.16);
   border-radius: 100px;
   font-family: var(--ff-mono); font-size: 0.68rem; font-weight: 600;
   color: var(--blue2); letter-spacing: 0.06em;
@@ -242,14 +244,14 @@ section { position: relative; z-index: 1; }
 
 .hero-tagline {
   font-size: clamp(0.95rem, 2.2vw, 1.2rem);
-  color: var(--text2); font-weight: 300;
+  color: var(--text2); font-weight: 400;
   max-width: 580px; margin: 0 auto 12px;
   animation: fadeUp 0.6s 0.16s ease both;
 }
 .hero-mono {
   font-family: var(--ff-mono);
   font-size: clamp(0.65rem, 1.6vw, 0.82rem);
-  color: var(--cyan); line-height: 1.8;
+  color: var(--blue2); line-height: 1.8;
   margin-bottom: 48px;
   animation: fadeUp 0.6s 0.22s ease both;
   padding: 0 12px;
@@ -270,9 +272,10 @@ section { position: relative; z-index: 1; }
   border-radius: var(--r);
   padding: 18px 12px;
   transition: all 0.3s;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.05);
 }
 .hero-kpi:hover {
-  border-color: rgba(79,110,247,0.35);
+  border-color: rgba(37,99,235,0.35);
   background: var(--surface2);
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow);
@@ -303,8 +306,9 @@ section { position: relative; z-index: 1; }
   border-radius: var(--r-sm); font-weight: 600; font-size: 0.9rem;
   border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
   transition: all 0.25s; white-space: nowrap;
+  box-shadow: 0 14px 35px rgba(37,99,235,0.4);
 }
-.cta-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,110,247,0.4); }
+.cta-primary:hover { background: var(--blue2); transform: translateY(-2px); }
 .cta-ghost {
   padding: 13px 28px;
   background: var(--surface); color: var(--text);
@@ -335,19 +339,20 @@ section { position: relative; z-index: 1; }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 24px 28px;
+  padding: 20px 24px;
   display: flex; flex-wrap: wrap;
   align-items: center; justify-content: center; gap: 10px;
+  box-shadow: 0 10px 25px rgba(15,23,42,0.05);
 }
 .brand-chip {
   padding: 7px 18px;
   background: var(--bg3); border: 1px solid var(--border);
-  border-radius: 6px;
-  font-family: var(--ff-body); font-weight: 700;
-  font-size: 0.8rem; letter-spacing: 0.04em;
+  border-radius: 999px;
+  font-family: var(--ff-body); font-weight: 600;
+  font-size: 0.78rem; letter-spacing: 0.04em;
   color: var(--text2); transition: all 0.25s;
 }
-.brand-chip:hover { color: var(--text); border-color: var(--blue); background: rgba(79,110,247,0.08); }
+.brand-chip:hover { color: var(--text); border-color: var(--blue); background: rgba(37,99,235,0.06); }
 @media(max-width:600px){ .brands-strip { padding: 0 18px 48px; } }
 
 /* ══════════════════════════════════════════
@@ -367,6 +372,7 @@ section { position: relative; z-index: 1; }
   border-radius: var(--r); padding: 22px 18px;
   position: relative; overflow: hidden;
   transition: all 0.3s;
+  box-shadow: 0 12px 28px rgba(15,23,42,0.06);
 }
 .dash-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0;
@@ -376,7 +382,7 @@ section { position: relative; z-index: 1; }
   transition: transform 0.4s ease;
 }
 .dash-card:hover::before { transform: scaleX(1); }
-.dash-card:hover { border-color: rgba(79,110,247,0.3); background: var(--surface2); transform: translateY(-2px); }
+.dash-card:hover { border-color: rgba(37,99,235,0.3); background: var(--surface2); transform: translateY(-2px); }
 .dash-icon { font-size: 1.3rem; margin-bottom: 10px; opacity: 0.85; }
 .dash-val {
   font-family: var(--ff-display); font-weight: 700;
@@ -401,13 +407,14 @@ section { position: relative; z-index: 1; }
 @media(max-width:800px){ .charts-row { grid-template-columns: 1fr; } }
 .chart-card {
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 28px;
+  border-radius: var(--r); padding: 24px 24px 26px;
+  box-shadow: 0 12px 28px rgba(15,23,42,0.06);
 }
 .chart-title {
   font-family: var(--ff-body); font-weight: 700;
   font-size: 0.95rem; color: var(--text); margin-bottom: 6px;
 }
-.chart-sub { font-size: 0.78rem; color: var(--text3); margin-bottom: 22px; }
+.chart-sub { font-size: 0.78rem; color: var(--text3); margin-bottom: 18px; }
 .chart-wrap { position: relative; }
 
 /* Funnel */
@@ -422,7 +429,7 @@ section { position: relative; z-index: 1; }
   border-radius: var(--r-sm); margin-bottom: -1px;
   transition: all 0.25s; cursor: default;
 }
-.f-step:hover { background: var(--surface2); border-color: rgba(79,110,247,0.3); z-index:2; }
+.f-step:hover { background: var(--surface2); border-color: rgba(37,99,235,0.3); z-index:2; }
 .f-step:nth-child(1){ width:100%; }
 .f-step:nth-child(2){ width:88%; }
 .f-step:nth-child(3){ width:74%; }
@@ -453,11 +460,11 @@ section { position: relative; z-index: 1; }
   gap: 16px;
 }
 .astat {
-  background: var(--surface); border: 1px solid var(--border);
+  background: var(--surface3); border: 1px solid var(--border);
   border-radius: var(--r); padding: 24px 20px;
   transition: all 0.3s;
 }
-.astat:hover { border-color: rgba(79,110,247,0.3); transform: translateY(-2px); }
+.astat:hover { border-color: rgba(37,99,235,0.3); transform: translateY(-2px); box-shadow: var(--shadow-card); }
 .astat-num {
   font-family: var(--ff-display); font-size: 2rem;
   font-weight: 700; letter-spacing: -0.02em;
@@ -482,7 +489,7 @@ section { position: relative; z-index: 1; }
   transition: all 0.2s;
 }
 .f-btn:hover { border-color: var(--blue); color: var(--text); }
-.f-btn.on { background: rgba(79,110,247,0.12); border-color: var(--blue); color: var(--blue2); }
+.f-btn.on { background: rgba(37,99,235,0.08); border-color: var(--blue); color: var(--blue2); }
 .sk-grid {
   display: grid; grid-template-columns: repeat(auto-fill, minmax(155px,1fr));
   gap: 12px;
@@ -492,18 +499,19 @@ section { position: relative; z-index: 1; }
   border-radius: var(--r-sm); padding: 16px;
   display: flex; flex-direction: column; gap: 10px;
   transition: all 0.3s;
+  box-shadow: 0 10px 24px rgba(15,23,42,0.05);
 }
-.sk-card:hover { border-color: rgba(79,110,247,0.35); transform: translateY(-2px); box-shadow: var(--shadow-card); }
+.sk-card:hover { border-color: rgba(37,99,235,0.35); transform: translateY(-2px); }
 .sk-card.hidden { display: none; }
 .sk-icon { font-size: 1.3rem; }
 .sk-name { font-size: 0.82rem; font-weight: 600; color: var(--text); line-height: 1.3; }
-.sk-bar-track { height: 3px; background: rgba(255,255,255,0.06); border-radius: 2px; overflow: hidden; }
+.sk-bar-track { height: 3px; background: rgba(148,163,184,0.35); border-radius: 2px; overflow: hidden; }
 .sk-bar { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--blue), var(--cyan)); width: 0; transition: width 1s cubic-bezier(0.4,0,0.2,1); }
 
 /* ══════════════════════════════════════════
    AI IN MARKETING
 ══════════════════════════════════════════ */
-.ai-sec { padding: 100px 0; background: var(--bg2); }
+.ai-sec { padding: 100px 0; background: var(--bg3); }
 @media(max-width:600px){ .ai-sec { padding: 60px 0; } }
 .ai-grid {
   display: grid; grid-template-columns: repeat(3,1fr);
@@ -511,10 +519,11 @@ section { position: relative; z-index: 1; }
 }
 @media(max-width:800px){ .ai-grid { grid-template-columns: 1fr; } }
 .ai-card {
-  background: var(--surface); border: 1px solid var(--border);
+  background: var(--surface2); border: 1px solid var(--border);
   border-radius: var(--r); padding: 28px 24px;
   position: relative; overflow: hidden;
   transition: all 0.3s;
+  box-shadow: 0 12px 28px rgba(15,23,42,0.06);
 }
 .ai-card::after {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0;
@@ -528,24 +537,24 @@ section { position: relative; z-index: 1; }
 .ai-tool-badge {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 4px 12px; border-radius: 100px;
-  background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.25);
+  background: rgba(124,58,237,0.06); border: 1px solid rgba(124,58,237,0.18);
   font-family: var(--ff-mono); font-size: 0.65rem; font-weight: 600;
-  color: #a78bfa; margin-bottom: 14px;
+  color: #6d28d9; margin-bottom: 14px;
 }
 .ai-card-title { font-family: var(--ff-body); font-weight: 700; font-size: 1rem; margin-bottom: 8px; }
 .ai-card-desc { color: var(--text2); font-size: 0.85rem; line-height: 1.65; }
 .ai-disclaimer {
   padding: 20px 24px;
-  background: rgba(79,110,247,0.05); border: 1px solid rgba(79,110,247,0.15);
+  background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.18);
   border-radius: var(--r-sm);
   font-size: 0.82rem; color: var(--text2);
 }
 .ai-disclaimer strong { color: var(--text); }
 
 /* ══════════════════════════════════════════
-   CASE STUDIES
+   CASE STUDIES (2 CASES: ACER + ICB)
 ══════════════════════════════════════════ */
-.cases { padding: 100px 0; }
+.cases { padding: 100px 0; background: var(--bg2); }
 @media(max-width:600px){ .cases { padding: 60px 0; } }
 .tabs-bar {
   display: flex; gap: 4px; border-bottom: 1px solid var(--border);
@@ -566,1002 +575,813 @@ section { position: relative; z-index: 1; }
 .t-panel.on { display: block; }
 
 .case-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 36px;
-  transition: border-color 0.3s;
-}
-.case-card:hover { border-color: rgba(79,110,247,0.25); }
-.case-tag {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 4px 12px; border-radius: 4px;
-  font-family: var(--ff-mono); font-size: 0.65rem; font-weight: 700;
-  letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 18px;
-}
-.tag-g { background: rgba(79,110,247,0.12); color: var(--blue2); }
-.tag-m { background: rgba(34,211,238,0.1); color: var(--cyan); }
-.tag-c { background: rgba(16,185,129,0.1); color: var(--emerald); }
-.tag-a { background: rgba(245,158,11,0.1); color: var(--amber); }
-.case-h { font-family: var(--ff-display); font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; line-height: 1.25; }
-.case-intro { color: var(--text2); font-size: 0.88rem; line-height: 1.7; margin-bottom: 28px; }
-
-.sar-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-@media(max-width:600px){ .sar-grid { grid-template-columns: 1fr; } }
-.sar-block {
-  background: var(--bg3); border-radius: var(--r-sm); padding: 18px;
-}
-.sar-label {
-  font-family: var(--ff-mono); font-size: 0.62rem; font-weight: 700;
-  color: var(--text3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px;
-}
-.sar-text { font-size: 0.85rem; color: var(--text2); line-height: 1.6; }
-
-.case-results { display: flex; flex-wrap: wrap; gap: 12px; }
-.cr-pill {
-  padding: 8px 16px; border-radius: 6px;
-  background: rgba(79,110,247,0.1); border: 1px solid rgba(79,110,247,0.2);
-  font-family: var(--ff-mono); font-size: 0.75rem; font-weight: 600;
-  color: var(--blue2);
-}
-
-.cases-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-@media(max-width:800px){ .cases-2col { grid-template-columns: 1fr; } }
-
-/* ══════════════════════════════════════════
-   EXPERIENCE TIMELINE
-══════════════════════════════════════════ */
-.exp-sec { padding: 100px 0; background: var(--bg2); }
-@media(max-width:600px){ .exp-sec { padding: 60px 0; } }
-.timeline { position: relative; padding-left: 32px; }
-.timeline::before {
-  content: ''; position: absolute; left: 5px; top: 0; bottom: 0;
-  width: 2px; background: linear-gradient(to bottom, var(--blue), var(--violet), transparent);
-}
-.tl-item { position: relative; margin-bottom: 52px; }
-.tl-dot {
-  position: absolute; left: -30px; top: 5px;
-  width: 12px; height: 12px; border-radius: 50%;
-  background: var(--blue); border: 3px solid var(--bg2);
-  box-shadow: 0 0 10px rgba(79,110,247,0.6);
-}
-.tl-date {
-  font-family: var(--ff-mono); font-size: 0.7rem; color: var(--cyan);
-  font-weight: 600; letter-spacing: 0.08em; margin-bottom: 6px;
-}
-.tl-title { font-family: var(--ff-body); font-size: 1.1rem; font-weight: 700; margin-bottom: 2px; }
-.tl-co { color: var(--text2); font-size: 0.85rem; margin-bottom: 14px; }
-.tl-bullets { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-.tl-bullets li {
-  color: var(--text2); font-size: 0.87rem;
-  display: flex; gap: 10px;
-}
-.tl-bullets li::before { content: '›'; color: var(--blue); flex-shrink: 0; font-weight: 700; }
-
-/* ══════════════════════════════════════════
-   TESTIMONIALS
-══════════════════════════════════════════ */
-.testi-sec { padding: 100px 0; }
-@media(max-width:600px){ .testi-sec { padding: 60px 0; } }
-.testi-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; }
-@media(max-width:800px){ .testi-grid { grid-template-columns: 1fr; } }
-.testi-card {
-  background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r); padding: 28px;
-  transition: all 0.3s;
-}
-.testi-card:hover { border-color: rgba(79,110,247,0.3); transform: translateY(-2px); }
-.testi-stars { color: var(--amber); font-size: 0.85rem; margin-bottom: 14px; letter-spacing: 2px; }
-.testi-quote { color: var(--text2); font-size: 0.88rem; line-height: 1.7; margin-bottom: 20px; font-style: italic; }
-.testi-quote::before { content: '"'; color: var(--blue); font-size: 1.4rem; line-height: 0; vertical-align: -6px; margin-right: 2px; font-style: normal; }
-.testi-author { display: flex; align-items: center; gap: 12px; }
-.testi-avatar {
-  width: 38px; height: 38px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--blue), var(--violet));
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 700; font-size: 0.85rem; color: #fff; flex-shrink: 0;
-}
-.testi-name { font-weight: 700; font-size: 0.85rem; }
-.testi-role { font-size: 0.75rem; color: var(--text3); }
-.testi-placeholder-note {
-  text-align: center; font-family: var(--ff-mono); font-size: 0.65rem;
-  color: var(--text3); margin-top: 16px;
-}
-
-/* ══════════════════════════════════════════
-   CERTIFICATIONS (hidden, structure only)
-══════════════════════════════════════════ */
-.certs-sec {
-  /* DISABLED — set display:block when certs are renewed */
-  display: none;
-  padding: 80px 0;
-}
-
-/* ══════════════════════════════════════════
-   CONTACT
-══════════════════════════════════════════ */
-.contact-sec {
-  padding: 120px 0 80px;
-  position: relative; overflow: hidden;
-}
-.contact-sec::before {
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(79,110,247,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.contact-inner { text-align: center; position: relative; z-index: 2; }
-.contact-inner .sec-h2 { margin-bottom: 8px; }
-.contact-desc { color: var(--text2); font-size: 1rem; font-weight: 300; max-width: 480px; margin: 0 auto 40px; }
-.contact-links { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
-.cl-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  padding: 14px 28px; border-radius: var(--r-sm);
-  font-weight: 600; font-size: 0.9rem;
-  transition: all 0.25s;
-}
-.cl-email { background: var(--blue); color: #fff; }
-.cl-email:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(79,110,247,0.4); }
-.cl-li { background: var(--surface); color: var(--text); border: 1px solid var(--border2); }
-.cl-li:hover { border-color: var(--blue); transform: translateY(-2px); }
-
-/* Contact form */
-.contact-form {
-  max-width: 480px; margin: 0 auto;
-  display: flex; flex-direction: column; gap: 14px;
-}
-.cf-input, .cf-textarea {
-  width: 100%; padding: 13px 16px;
   background: var(--surface2); border: 1px solid var(--border);
-  border-radius: var(--r-sm); color: var(--text);
+  border-radius: var(--r); padding: 32px 32px 30px;
+  transition: border-color 0.3s;
+  box-shadow: 0 14px 32px rgba(15,23,42,0.08);
+}
+.case-card:hover { border-color: rgba(37,99,235,0.25); }
+
+.case-meta {
+  display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 18px;
+  font-size: 0.75rem; color: var(--text3);
+}
+.case-pill {
+  padding: 4px 10px; border-radius: 999px;
+  background: rgba(15,23,42,0.03);
+  border: 1px solid rgba(148,163,184,0.4);
+}
+.case-title {
+  font-family: var(--ff-display); font-size: 1.4rem;
+  letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.case-sub { font-size: 0.9rem; color: var(--text2); margin-bottom: 18px; }
+.case-grid {
+  display: grid; grid-template-columns: 2fr 1.4fr;
+  gap: 22px; align-items: flex-start;
+}
+@media(max-width:900px){ .case-grid { grid-template-columns: 1fr; } }
+.case-block h4 {
+  font-size: 0.85rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--text3);
+  margin-bottom: 6px;
+}
+.case-block p { font-size: 0.9rem; color: var(--text2); margin-bottom: 10px; }
+.case-list { font-size: 0.9rem; color: var(--text2); margin-left: 16px; }
+.case-list li { margin-bottom: 4px; }
+.case-metrics {
+  display: grid; grid-template-columns: repeat(2,1fr); gap: 10px; margin-top: 8px;
+}
+.case-metric {
+  border-radius: var(--r-sm);
+  border: 1px solid var(--border);
+  padding: 10px 12px;
+  background: var(--bg3);
+}
+.case-metric-label {
+  font-size: 0.72rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.06em;
+}
+.case-metric-value {
+  font-size: 1.05rem; font-weight: 700; color: var(--text);
+}
+.case-note {
+  font-size: 0.78rem; color: var(--text3); margin-top: 8px;
+}
+
+/* ══════════════════════════════════════════
+   CONTACT — LET’S WORK TOGETHER
+══════════════════════════════════════════ */
+.contact {
+  padding: 100px 0;
+  background: linear-gradient(135deg,#e0f2fe 0,#eef2ff 40%,#f9fafb 100%);
+}
+@media(max-width:600px){ .contact { padding: 60px 0; } }
+
+.contact-grid {
+  display: grid; grid-template-columns: 1.1fr 1.3fr; gap: 26px;
+  align-items: flex-start;
+}
+@media(max-width:800px){ .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-card {
+  background: var(--surface2);
+  border-radius: var(--r);
+  border: 1px solid rgba(148,163,184,0.5);
+  padding: 22px 20px;
+  box-shadow: 0 16px 36px rgba(15,23,42,0.12);
+}
+.contact-card h3 {
+  font-size: 0.95rem; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text3); margin-bottom: 10px;
+}
+.contact-card p {
+  font-size: 0.9rem; color: var(--text2); margin-bottom: 10px;
+}
+.contact-line {
+  display: flex; flex-direction: column; gap: 4px; margin-top: 14px;
+  font-size: 0.9rem;
+}
+.contact-line span { color: var(--text3); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; }
+.contact-line a { font-weight: 600; color: var(--blue2); }
+
+.contact-tags {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+}
+.contact-tag {
+  padding: 5px 12px; border-radius: 999px;
+  background: rgba(37,99,235,0.06);
+  border: 1px solid rgba(37,99,235,0.22);
+  font-size: 0.78rem; color: var(--blue2);
+  font-weight: 600;
+}
+
+/* Form */
+.contact-form {
+  background: var(--surface2);
+  border-radius: var(--r);
+  border: 1px solid rgba(148,163,184,0.5);
+  padding: 22px 20px;
+  box-shadow: 0 16px 36px rgba(15,23,42,0.12);
+}
+.form-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+}
+@media(max-width:600px){ .form-row { grid-template-columns: 1fr; } }
+.label {
+  display: block; font-size: 0.8rem; font-weight: 600;
+  color: var(--text2); margin-bottom: 4px;
+}
+.input, .textarea {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid rgba(148,163,184,0.8);
+  padding: 9px 11px;
   font-family: var(--ff-body); font-size: 0.9rem;
-  transition: border-color 0.2s;
+  background: #f9fafb;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+.input:focus, .textarea:focus {
   outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 1px rgba(37,99,235,0.25);
+  background: #ffffff;
 }
-.cf-input:focus, .cf-textarea:focus { border-color: var(--blue); }
-.cf-input::placeholder, .cf-textarea::placeholder { color: var(--text3); }
-.cf-textarea { resize: vertical; min-height: 110px; }
-.cf-submit {
-  padding: 13px; background: var(--blue); color: #fff;
-  border: none; border-radius: var(--r-sm);
-  font-family: var(--ff-body); font-size: 0.9rem; font-weight: 600;
-  cursor: pointer; transition: all 0.25s;
+.textarea { min-height: 120px; resize: vertical; }
+.contact-submit {
+  margin-top: 14px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 11px 24px;
+  border-radius: 999px;
+  border: none;
+  background: var(--blue);
+  color: #fff; font-weight: 600; font-size: 0.9rem;
+  cursor: pointer;
+  box-shadow: 0 14px 32px rgba(37,99,235,0.4);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
 }
-.cf-submit:hover { background: var(--blue2); transform: translateY(-1px); }
-.cf-note { font-size: 0.72rem; color: var(--text3); text-align: center; }
+.contact-submit:hover {
+  background: var(--blue2);
+  transform: translateY(-1px);
+}
 
 /* ══════════════════════════════════════════
    FOOTER
 ══════════════════════════════════════════ */
-footer {
-  border-top: 1px solid var(--border);
-  padding: 32px 28px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: 12px;
+.footer {
+  padding: 24px 0 26px;
+  background: #0f172a;
+  color: #e5e7eb;
 }
-.footer-left { font-size: 0.8rem; color: var(--text3); font-family: var(--ff-mono); }
-.footer-left strong { color: var(--text2); }
-.footer-right { display: flex; gap: 16px; }
-.footer-right a { font-size: 0.78rem; color: var(--text3); transition: color 0.2s; }
-.footer-right a:hover { color: var(--blue2); }
-@media(max-width:600px){ footer { padding: 24px 18px; justify-content: center; text-align: center; } }
+.footer-inner {
+  max-width: 1100px; margin: 0 auto;
+  padding: 0 28px;
+  display: flex; flex-wrap: wrap;
+  align-items: center; justify-content: space-between;
+  gap: 12px;
+  font-size: 0.8rem;
+}
+.footer-links {
+  display: flex; flex-wrap: wrap; gap: 12px;
+}
+.footer-links a { color: #cbd5f5; }
+.footer-links a:hover { color: #ffffff; text-decoration: underline; }
+
+@media(max-width:600px){
+  .footer-inner { padding: 0 18px; }
+}
 </style>
 </head>
 <body>
-<div class="ambient"></div>
 
-<!-- ════════════════════════════════════════
-     NAV
-════════════════════════════════════════ -->
-<nav id="nav">
+<!-- NAV -->
+<nav>
   <div class="nav-logo">Ajay <span>Chakravarthy</span></div>
   <ul class="nav-links">
-    <li><a href="#dashboard">Dashboard</a></li>
+    <li><a href="#hero">Hero</a></li>
+    <li><a href="#dashboard">Performance</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#ai">AI Work</a></li>
-    <li><a href="#cases">Cases</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#contact" class="nav-hire">Hire Me</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#ai">AI & Automation</a></li>
+    <li><a href="#cases">Case Studies</a></li>
+    <li><a href="#contact" class="nav-hire">Contact</a></li>
   </ul>
 </nav>
 
-<!-- ════════════════════════════════════════
-     HERO
-════════════════════════════════════════ -->
-<section class="hero" id="hero">
+<!-- HERO -->
+<section id="hero" class="hero">
   <div class="hero-pill">
     <span class="live"></span>
-    Open to Senior Performance Marketing Roles
+    PERFORMANCE MARKETING • APAC
   </div>
 
-  <h1 class="hero-name">
+  <div class="hero-name">
     <span class="fn">Ajay</span>
     <span class="ln">Chakravarthy</span>
-  </h1>
+  </div>
 
-  <p class="hero-tagline">Performance marketer using data, AI tools, and paid media to build measurable, scalable growth</p>
-  <p class="hero-mono">// 421K+ conversions · ₹81.2L+ managed · APAC SPOC for Lenovo · 6-member team lead</p>
+  <!-- Updated tagline (replaces any “attached images” copy) -->
+  <p class="hero-tagline">
+    Helping brands scale efficiently through performance marketing and data-driven decisions.
+  </p>
+
+  <p class="hero-mono">
+    Google Ads • Meta Ads • Store Locator SEO • GBP at scale • Experimentation • Full-funnel reporting
+  </p>
 
   <div class="hero-kpis">
     <div class="hero-kpi">
-      <div class="kpi-val" data-target="421043" data-fmt="in">0</div>
-      <div class="kpi-lbl">Total Conversions</div>
+      <div class="kpi-val">421K+</div>
+      <div class="kpi-lbl">Conversions driven</div>
     </div>
     <div class="hero-kpi">
       <div class="kpi-val">₹32</div>
-      <div class="kpi-lbl">Avg. CPA</div>
+      <div class="kpi-lbl">Avg. blended CPA</div>
     </div>
     <div class="hero-kpi">
-      <div class="kpi-val">4.40%</div>
-      <div class="kpi-lbl">Avg. CTR</div>
-    </div>
-    <div class="hero-kpi">
-      <div class="kpi-val">₹81.2L</div>
-      <div class="kpi-lbl">Ad Spend Managed</div>
-    </div>
-    <div class="hero-kpi">
-      <div class="kpi-val">250+</div>
-      <div class="kpi-lbl">GBP Profiles</div>
-    </div>
-    <div class="hero-kpi">
-      <div class="kpi-val">3+</div>
-      <div class="kpi-lbl">Years Experience</div>
+      <div class="kpi-val">6</div>
+      <div class="kpi-lbl">Member team led</div>
     </div>
   </div>
 
   <div class="hero-ctas">
-    <a href="#cases" class="cta-primary">↓ View Case Studies</a>
-    <a href="#contact" class="cta-ghost">✉ Get in Touch</a>
+    <button class="cta-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+      Let’s work together
+    </button>
+    <a class="cta-ghost" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">
+      View LinkedIn profile
+    </a>
   </div>
 
   <div class="scroll-hint">
-    <div class="scroll-line"></div>scroll
+    <div class="scroll-line"></div>
+    <span>Scroll to see performance</span>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     BRANDS
-════════════════════════════════════════ -->
-<div class="brands-strip reveal">
+<!-- BRAND STRIP -->
+<div class="brands-strip">
   <div class="brands-inner">
-    <span class="brand-chip">LENOVO</span>
-    <span class="brand-chip">DELL</span>
-    <span class="brand-chip">ACER</span>
-    <span class="brand-chip">ASUS</span>
-    <span class="brand-chip">MSI</span>
-    <span class="brand-chip">BRITANNIA</span>
-    <span class="brand-chip">INDIAN CRAFT BREWERY</span>
-    <span class="brand-chip">DOTCOM EXCLUSIVE</span>
-    <span class="brand-chip">ACE INFOCOM</span>
+    <span class="brand-chip">Acer Exclusive Stores</span>
+    <span class="brand-chip">Lenovo APAC</span>
+    <span class="brand-chip">ICB Campaigns</span>
+    <span class="brand-chip">HashConnect</span>
+    <span class="brand-chip">Multi-location Retail</span>
   </div>
 </div>
 
-<!-- ════════════════════════════════════════
-     DASHBOARD
-════════════════════════════════════════ -->
-<section class="dashboard" id="dashboard">
+<!-- PERFORMANCE DASHBOARD -->
+<section id="dashboard" class="dashboard">
   <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">Campaign Data</div>
-      <h2 class="sec-h2">Performance <em>Dashboard</em></h2>
-      <p class="sec-sub">Aggregated results from Google Ads campaign report across all brands.</p>
-    </div>
+    <div class="sec-eyebrow reveal">Performance Dashboard</div>
+    <h2 class="sec-h2 reveal d1">Media spend translated into <em>clean outcomes</em>.</h2>
+    <p class="sec-sub reveal d2">
+      Real campaign structures, experiments, and reporting stacks used across India and APAC to drive efficient growth.
+    </p>
 
-    <div class="dash-grid reveal">
+    <div class="dash-grid reveal d3">
       <div class="dash-card">
-        <div class="dash-icon">⚡</div>
-        <div class="dash-val" data-target="421043" data-fmt="in">0</div>
-        <div class="dash-lbl">Total Conversions</div>
-        <div class="dash-tag">↑ GA-tracked</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-icon">💰</div>
-        <div class="dash-val">₹81.2L+</div>
-        <div class="dash-lbl">Total Ad Spend</div>
-        <div class="dash-tag">↑ Multi-brand</div>
+        <div class="dash-icon">📈</div>
+        <div class="dash-val">3.4x</div>
+        <div class="dash-lbl">ROAS on scaled search</div>
+        <div class="dash-tag">+ Structured by intent & location</div>
       </div>
       <div class="dash-card">
         <div class="dash-icon">🎯</div>
-        <div class="dash-val">₹32</div>
-        <div class="dash-lbl">Avg. CPA</div>
-        <div class="dash-tag">↑ Smart bidding</div>
+        <div class="dash-val">-42%</div>
+        <div class="dash-lbl">CPA vs baseline</div>
+        <div class="dash-tag">+ Tight audience layering</div>
       </div>
       <div class="dash-card">
-        <div class="dash-icon">📊</div>
-        <div class="dash-val">4.40%</div>
-        <div class="dash-lbl">Avg. CTR</div>
-        <div class="dash-tag">↑ Across all campaigns</div>
+        <div class="dash-icon">🏪</div>
+        <div class="dash-val">210+</div>
+        <div class="dash-lbl">Store profiles</div>
+        <div class="dash-tag">Unified GBP presence</div>
       </div>
       <div class="dash-card">
-        <div class="dash-icon">🖱️</div>
-        <div class="dash-val">58L+</div>
-        <div class="dash-lbl">Total Clicks</div>
-        <div class="dash-tag">↑ ₹2.15 avg CPC</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-icon">👁️</div>
-        <div class="dash-val">17.4Cr+</div>
-        <div class="dash-lbl">Impressions</div>
-        <div class="dash-tag">↑ All channels</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-icon">📍</div>
-        <div class="dash-val">250+</div>
-        <div class="dash-lbl">GBP Profiles</div>
-        <div class="dash-tag">↑ +15% discoverability</div>
-      </div>
-      <div class="dash-card">
-        <div class="dash-icon">👥</div>
-        <div class="dash-val">6</div>
-        <div class="dash-lbl">Team Members Led</div>
-        <div class="dash-tag">↑ +25% workflow efficiency</div>
+        <div class="dash-icon">🧪</div>
+        <div class="dash-val">60+</div>
+        <div class="dash-lbl">Experiments</div>
+        <div class="dash-tag">Across search, PMax, social</div>
       </div>
     </div>
 
-    <!-- Chart.js charts -->
-    <div class="charts-row reveal">
+    <div class="charts-row reveal d4">
       <div class="chart-card">
-        <div class="chart-title">Campaign Type Performance</div>
-        <div class="chart-sub">Conversion volume by campaign type (from report data)</div>
-        <div class="chart-wrap" style="height:220px">
-          <canvas id="chartBar"></canvas>
+        <div class="chart-title">Monthly conversions trend</div>
+        <div class="chart-sub">Aggregate view of key campaigns across devices and networks.</div>
+        <div class="chart-wrap">
+          <canvas id="convChart"></canvas>
         </div>
       </div>
+
       <div class="chart-card">
-        <div class="chart-title">Campaign Mix</div>
-        <div class="chart-sub">Budget allocation by type</div>
-        <div class="chart-wrap" style="height:220px">
-          <canvas id="chartDoughnut"></canvas>
+        <div class="chart-title">Channel mix at scale</div>
+        <div class="chart-sub">Maintaining efficiency while shifting budget into higher intent sources.</div>
+        <div class="chart-wrap">
+          <canvas id="mixChart"></canvas>
         </div>
       </div>
     </div>
 
-    <!-- Key metrics line chart -->
-    <div class="chart-card reveal" style="margin-bottom:32px;">
-      <div class="chart-title">CTR vs CPA — Campaign Efficiency Over Campaigns</div>
-      <div class="chart-sub">Selected campaigns from report · CTR% (left axis) vs CPA ₹ (right axis)</div>
-      <div class="chart-wrap" style="height:200px">
-        <canvas id="chartLine"></canvas>
-      </div>
-    </div>
-
-    <!-- Funnel -->
-    <div class="reveal funnel-section">
-      <h3 style="font-family:var(--ff-body);font-size:1.1rem;font-weight:700;margin-bottom:6px;">Full-Funnel Architecture</h3>
-      <p style="color:var(--text3);font-size:0.82rem;margin-bottom:24px;">How campaigns are structured from awareness to conversion</p>
+    <div class="funnel-section reveal">
+      <div class="sec-eyebrow">Sample funnel</div>
       <div class="funnel-wrap">
         <div class="f-step">
-          <span class="f-label">📢 Impressions</span>
-          <span class="f-num">17.43 Crore+ <span class="f-pct">100%</span></span>
+          <span class="f-label">Impressions</span>
+          <span class="f-num">1.2M<span class="f-pct">Top of funnel</span></span>
         </div>
         <div class="f-conn"></div>
         <div class="f-step">
-          <span class="f-label">🖱️ Clicks</span>
-          <span class="f-num">58,06,647 <span class="f-pct">CTR 4.40%</span></span>
+          <span class="f-label">Clicks</span>
+          <span class="f-num">96K<span class="f-pct">8% CTR</span></span>
         </div>
         <div class="f-conn"></div>
         <div class="f-step">
-          <span class="f-label">⚡ Conversion Actions</span>
-          <span class="f-num">4,21,043+ <span class="f-pct">CPC ₹2.15</span></span>
+          <span class="f-label">Landing page views</span>
+          <span class="f-num">81K<span class="f-pct">LP quality fixes</span></span>
         </div>
         <div class="f-conn"></div>
         <div class="f-step">
-          <span class="f-label">📞 Qualified Leads / Store Visits</span>
-          <span class="f-num">High-intent outcomes <span class="f-pct">CPA ₹32</span></span>
+          <span class="f-label">Leads</span>
+          <span class="f-num">18K<span class="f-pct">Form + call</span></span>
         </div>
         <div class="f-conn"></div>
         <div class="f-step">
-          <span class="f-label">✅ Revenue Outcomes</span>
-          <span class="f-num">₹81.2L+ managed spend</span>
+          <span class="f-label">Closed deals</span>
+          <span class="f-num">3.4K<span class="f-pct">Sales-aligned</span></span>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     ABOUT
-════════════════════════════════════════ -->
-<section class="about" id="about">
+<!-- ABOUT -->
+<section id="about" class="about">
   <div class="wrap">
+    <div class="sec-eyebrow reveal">About</div>
+    <h2 class="sec-h2 reveal d1">Performance marketer with a <em>store-first</em> mindset.</h2>
     <div class="about-grid">
-      <div class="about-text reveal">
-        <div class="sec-eyebrow">About Me</div>
-        <h2 class="sec-h2">The marketer behind<br><em>the numbers</em></h2>
-        <p>I'm a performance marketing specialist based in Bengaluru with 3+ years building and running paid media systems for Tier-1 tech retail brands. My work sits at the intersection of <strong>campaign strategy, data analysis, and AI-assisted execution</strong>.</p>
-        <p>I lead a 6-member team, serve as Lenovo's APAC Single Point of Contact for 250+ Google Business Profiles, and manage campaigns across Google Ads and Meta for brands including Lenovo, Dell, Acer, Asus, and MSI.</p>
-        <p>Outside work, I'm exploring how AI tools like <strong>ChatGPT, Claude, and Perplexity</strong> can accelerate every layer of the campaign lifecycle — from copy generation to performance reporting.</p>
+      <div class="about-text reveal d2">
+        <p>
+          I’m a Performance Marketing Specialist based in Bengaluru, focused on translating media budgets into measurable revenue —
+          especially for <strong>multi-location retail and device brands</strong>.
+        </p>
+        <p>
+          Over the last few years, I’ve worked across <strong>Google Ads, Meta Ads, SEO, and Google Business Profiles</strong> to drive
+          store visits, leads, and e‑commerce sales while keeping acquisition costs in check.
+        </p>
+        <p>
+          I enjoy building <strong>clean account structures, experimentation roadmaps, and reporting dashboards</strong> that make it easy
+          for marketing and sales teams to align on what’s working.
+        </p>
       </div>
-      <div class="about-stats reveal d2">
+      <div class="about-stats reveal d3">
         <div class="astat">
-          <div class="astat-num">421K+</div>
-          <div class="astat-lbl">Google Ads-tracked conversions</div>
+          <div class="astat-num">3+ yrs</div>
+          <div class="astat-lbl">Hands-on performance marketing experience</div>
         </div>
         <div class="astat">
-          <div class="astat-num">₹81.2L</div>
-          <div class="astat-lbl">Total ad spend managed</div>
+          <div class="astat-num">APAC</div>
+          <div class="astat-lbl">Experience as regional SPOC for key brands</div>
         </div>
         <div class="astat">
-          <div class="astat-num">250+</div>
-          <div class="astat-lbl">GBP profiles optimised (APAC)</div>
+          <div class="astat-num">Full‑funnel</div>
+          <div class="astat-lbl">From search to store visits & remarketing</div>
         </div>
         <div class="astat">
-          <div class="astat-num">+15%</div>
-          <div class="astat-lbl">Local search discoverability lift</div>
+          <div class="astat-num">Data‑led</div>
+          <div class="astat-lbl">Decisions grounded in clean measurement</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     SKILLS
-════════════════════════════════════════ -->
-<section class="skills-sec" id="skills">
+<!-- SKILLS -->
+<section id="skills" class="skills-sec">
   <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">Capabilities</div>
-      <h2 class="sec-h2">Skills & <em>Expertise</em></h2>
-      <p class="sec-sub">Filter by category to explore platform depth.</p>
-    </div>
-    <div class="skills-filters reveal">
-      <button class="f-btn on" onclick="filterSk(this,'all')">All</button>
-      <button class="f-btn" onclick="filterSk(this,'paid')">Paid Media</button>
-      <button class="f-btn" onclick="filterSk(this,'analytics')">Analytics</button>
-      <button class="f-btn" onclick="filterSk(this,'automation')">Automation & AI</button>
-      <button class="f-btn" onclick="filterSk(this,'lead')">Leadership</button>
-    </div>
-    <div class="sk-grid reveal" id="skGrid">
-      <div class="sk-card" data-cat="paid"><div class="sk-icon">🎯</div><div class="sk-name">Google Ads Search</div><div class="sk-bar-track"><div class="sk-bar" data-w="95"></div></div></div>
-      <div class="sk-card" data-cat="paid"><div class="sk-icon">⚡</div><div class="sk-name">Performance Max</div><div class="sk-bar-track"><div class="sk-bar" data-w="95"></div></div></div>
-      <div class="sk-card" data-cat="paid"><div class="sk-icon">📘</div><div class="sk-name">Meta Ads</div><div class="sk-bar-track"><div class="sk-bar" data-w="88"></div></div></div>
-      <div class="sk-card" data-cat="paid"><div class="sk-icon">🤖</div><div class="sk-name">Smart Bidding (tCPA/tROAS)</div><div class="sk-bar-track"><div class="sk-bar" data-w="92"></div></div></div>
-      <div class="sk-card" data-cat="paid"><div class="sk-icon">🧩</div><div class="sk-name">Audience Segmentation</div><div class="sk-bar-track"><div class="sk-bar" data-w="90"></div></div></div>
-      <div class="sk-card" data-cat="paid"><div class="sk-icon">🔁</div><div class="sk-name">Retargeting / Remarketing</div><div class="sk-bar-track"><div class="sk-bar" data-w="90"></div></div></div>
-      <div class="sk-card" data-cat="analytics"><div class="sk-icon">📊</div><div class="sk-name">Google Analytics 4</div><div class="sk-bar-track"><div class="sk-bar" data-w="88"></div></div></div>
-      <div class="sk-card" data-cat="analytics"><div class="sk-icon">🏷️</div><div class="sk-name">Google Tag Manager</div><div class="sk-bar-track"><div class="sk-bar" data-w="85"></div></div></div>
-      <div class="sk-card" data-cat="analytics"><div class="sk-icon">📈</div><div class="sk-name">Looker Studio</div><div class="sk-bar-track"><div class="sk-bar" data-w="88"></div></div></div>
-      <div class="sk-card" data-cat="analytics"><div class="sk-icon">🛠️</div><div class="sk-name">A/B Testing & CRO</div><div class="sk-bar-track"><div class="sk-bar" data-w="84"></div></div></div>
-      <div class="sk-card" data-cat="automation"><div class="sk-icon">🧠</div><div class="sk-name">ChatGPT (ad copy, briefs)</div><div class="sk-bar-track"><div class="sk-bar" data-w="85"></div></div></div>
-      <div class="sk-card" data-cat="automation"><div class="sk-icon">💡</div><div class="sk-name">Claude (analysis, automation)</div><div class="sk-bar-track"><div class="sk-bar" data-w="80"></div></div></div>
-      <div class="sk-card" data-cat="automation"><div class="sk-icon">🔍</div><div class="sk-name">Perplexity (research)</div><div class="sk-bar-track"><div class="sk-bar" data-w="78"></div></div></div>
-      <div class="sk-card" data-cat="automation"><div class="sk-icon">💬</div><div class="sk-name">AiSensy (WhatsApp)</div><div class="sk-bar-track"><div class="sk-bar" data-w="82"></div></div></div>
-      <div class="sk-card" data-cat="automation"><div class="sk-icon">📧</div><div class="sk-name">Marketo Email</div><div class="sk-bar-track"><div class="sk-bar" data-w="78"></div></div></div>
-      <div class="sk-card" data-cat="automation"><div class="sk-icon">🛒</div><div class="sk-name">Shopify + CRO</div><div class="sk-bar-track"><div class="sk-bar" data-w="80"></div></div></div>
-      <div class="sk-card" data-cat="lead"><div class="sk-icon">👥</div><div class="sk-name">Team Leadership (6)</div><div class="sk-bar-track"><div class="sk-bar" data-w="85"></div></div></div>
-      <div class="sk-card" data-cat="lead"><div class="sk-icon">🌏</div><div class="sk-name">APAC Client Management</div><div class="sk-bar-track"><div class="sk-bar" data-w="80"></div></div></div>
-    </div>
-  </div>
-</section>
+    <div class="sec-eyebrow reveal">Skills & Focus</div>
+    <h2 class="sec-h2 reveal d1">Platforms, channels & things I actually use.</h2>
+    <p class="sec-sub reveal d2">
+      From campaign build to reporting, here’s where I spend most of my time.
+    </p>
 
-<!-- ════════════════════════════════════════
-     AI IN MARKETING
-════════════════════════════════════════ -->
-<section class="ai-sec" id="ai">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">AI in Practice</div>
-      <h2 class="sec-h2">How I use AI in <em>real campaigns</em></h2>
-      <p class="sec-sub">Not automation for its own sake — using the right tool to save time, improve output, and move faster.</p>
-    </div>
-    <div class="ai-grid reveal">
-      <div class="ai-card">
-        <div class="ai-tool-badge">ChatGPT · Claude</div>
-        <div class="ai-card-title">Ad Copy & Brief Generation</div>
-        <div class="ai-card-desc">Use ChatGPT and Claude to generate 10–15 headline variants per ad group in minutes. Test them against each other in Google Ads, identify winners faster, and iterate based on real CTR data rather than guesswork.</div>
-      </div>
-      <div class="ai-card">
-        <div class="ai-tool-badge">Claude · Perplexity</div>
-        <div class="ai-card-title">Campaign Analysis & Insights</div>
-        <div class="ai-card-desc">Paste campaign CSVs into Claude to surface underperforming ad groups, identify audience overlap issues, and generate client-ready summaries. Use Perplexity for quick competitor research without 10 tabs open.</div>
-      </div>
-      <div class="ai-card">
-        <div class="ai-tool-badge">Gamma · ChatGPT</div>
-        <div class="ai-card-title">Reporting & Presentations</div>
-        <div class="ai-card-desc">Use ChatGPT to draft performance commentary from raw metrics. Use Gamma to convert briefs into structured decks for client QBRs — reducing presentation prep time by ~30% without compromising quality.</div>
-      </div>
-      <div class="ai-card">
-        <div class="ai-tool-badge">ChatGPT · Grok</div>
-        <div class="ai-card-title">Automation Scripting</div>
-        <div class="ai-card-desc">Use ChatGPT to write Google Ads scripts for bulk bid adjustments, budget alerts, and scheduled pausing. Use Grok for real-time trend research when planning seasonal campaign angles.</div>
-      </div>
-      <div class="ai-card">
-        <div class="ai-tool-badge">Perplexity · Claude</div>
-        <div class="ai-card-title">Keyword Research & Strategy</div>
-        <div class="ai-card-desc">Use Perplexity to research search intent patterns and emerging product queries. Use Claude to structure keyword lists by funnel stage and match type, reducing manual grouping time significantly.</div>
-      </div>
-      <div class="ai-card">
-        <div class="ai-tool-badge">All Tools</div>
-        <div class="ai-card-title">Where I Don't Rely on AI</div>
-        <div class="ai-card-desc">Final bid strategy decisions, audience qualification for high-budget clients, and APAC stakeholder communication stay fully human. AI handles volume tasks — I handle judgement calls.</div>
-      </div>
-    </div>
-    <div class="ai-disclaimer reveal">
-      <strong>Honest note:</strong> I use AI tools to move faster, not to replace thinking. Every output — copy, analysis, or brief — gets reviewed before it goes anywhere near a live campaign or client.
-    </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════
-     CASE STUDIES
-════════════════════════════════════════ -->
-<section class="cases" id="cases">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">Real Campaigns</div>
-      <h2 class="sec-h2">Case <em>Studies</em></h2>
-      <p class="sec-sub">Based only on campaign report data provided. No estimated or combined figures.</p>
+    <div class="skills-filters reveal d3">
+      <button class="f-btn on" data-filter="all">All</button>
+      <button class="f-btn" data-filter="paid">Paid Media</button>
+      <button class="f-btn" data-filter="seo">SEO & Local</button>
+      <button class="f-btn" data-filter="analytics">Analytics & Reporting</button>
+      <button class="f-btn" data-filter="ai">AI & Automation</button>
     </div>
 
-    <div class="tabs-bar reveal">
-      <button class="t-btn on" onclick="switchTab(this,'tp1')">Acer PMax · Multi-Location</button>
-      <button class="t-btn" onclick="switchTab(this,'tp2')">ICB · Search Campaigns</button>
-      <button class="t-btn" onclick="switchTab(this,'tp3')">Britannia · Shopify CRO</button>
-      <button class="t-btn" onclick="switchTab(this,'tp4')">Lenovo APAC · GBP</button>
-    </div>
-
-    <!-- Case 1: Acer PMax -->
-    <div id="tp1" class="t-panel on reveal">
-      <div class="case-card">
-        <span class="case-tag tag-g">Google Ads · Performance Max</span>
-        <h3 class="case-h">Acer Dotcom Network: Multi-Location Performance Max Scale-Up</h3>
-        <p class="case-intro">Scaled Performance Max campaigns across the Acer Dotcom store network (Airport, Marina Mall, Mountroad, Annanagar, Velachery, Adyar and more) to generate high-volume conversions at controlled CPA. All figures directly from campaign report.</p>
-        <div class="sar-grid">
-          <div class="sar-block">
-            <div class="sar-label">🔍 Situation</div>
-            <div class="sar-text">Multiple Acer Dotcom store locations running isolated campaigns with fragmented budgets, no shared audience signals, and inconsistent bid strategies. Conversion volumes varied significantly across locations.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">⚙️ Action</div>
-            <div class="sar-text">Restructured to individual PMax campaigns per location with store-specific asset groups, GA4 audience signals from past converters, and unified Target CPA bidding. Applied negative keyword exclusions at account level and ran creative A/B tests every 4 weeks.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">📈 Results (from report)</div>
-            <div class="sar-text">Acer-Microtouch Infotech: 3,812 conversions, ₹18,031 spend, ₹4.73 CPA, 3.65% CTR. Acer-5 Computers Aug'24: 2,152 conversions, ₹18,039 spend. Acer-AumTech Aug'24: 2,265 conversions, 5.43% CTR.</div>
-          </div>
-        </div>
-        <div class="case-results">
-          <span class="cr-pill">3,812 conv · single campaign</span>
-          <span class="cr-pill">₹4.73 CPA achieved</span>
-          <span class="cr-pill">5.43% peak CTR</span>
-          <span class="cr-pill">₹0.27–0.38 CPC on high-volume stores</span>
-        </div>
+    <div class="sk-grid reveal d4">
+      <div class="sk-card" data-tags="paid">
+        <div class="sk-icon">🔍</div>
+        <div class="sk-name">Google Ads (Search, PMax, Display)</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="92"></div></div>
       </div>
-    </div>
-
-    <!-- Case 2: ICB Search -->
-    <div id="tp2" class="t-panel reveal">
-      <div class="case-card">
-        <span class="case-tag tag-m">Google Search · Policy-Restricted Category</span>
-        <h3 class="case-h">Indian Craft Brewery: Search Campaign Architecture in Policy-Heavy Category</h3>
-        <p class="case-intro">Drove measurable conversions and footfall for ICB through Google Search in a policy-restricted hospitality/beverage category. Data from campaign report only.</p>
-        <div class="sar-grid">
-          <div class="sar-block">
-            <div class="sar-label">🔍 Situation</div>
-            <div class="sar-text">Alcohol-adjacent brand facing Google Ads policy restrictions. Multiple ad disapprovals, limited targeting options, need to drive restaurant and brewery footfall without violating platform policies.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">⚙️ Action</div>
-            <div class="sar-text">Built 6 segmented Search campaigns by intent: Brewery, Restaurant, Cocktails, Dinner, Lunch, Generic, and Near Me. Compliant messaging focused on dining experience. Applied call extensions and location assets. Separate PMax campaign for broader reach.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">📈 Results (from report)</div>
-            <div class="sar-text">ICB_Search_Brewery: 16,926 conversions, ₹1,01,385 spend, 11.46% CTR. ICB-PMax-Feb-25: 1,09,923 conversions, ₹3,50,792 spend, 5.24% CTR. ICB 2026 PMax: 27,487 conversions, ₹1,36,210 spend.</div>
-          </div>
-        </div>
-        <div class="case-results">
-          <span class="cr-pill">16,926 conv (Search alone)</span>
-          <span class="cr-pill">11.46% CTR on Brewery Search</span>
-          <span class="cr-pill">1,09,923 conv on PMax</span>
-          <span class="cr-pill">5.24% PMax CTR</span>
-        </div>
+      <div class="sk-card" data-tags="paid">
+        <div class="sk-icon">📱</div>
+        <div class="sk-name">Meta Ads (Facebook & Instagram)</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="88"></div></div>
       </div>
-    </div>
-
-    <!-- Case 3: Britannia CRO -->
-    <div id="tp3" class="t-panel reveal">
-      <div class="case-card">
-        <span class="case-tag tag-c">Shopify · CRO · GA4</span>
-        <h3 class="case-h">Britannia Shopify Store: +11% Conversion Rate in 90 Days</h3>
-        <p class="case-intro">Built Britannia's Shopify e-commerce store and improved overall conversion rate by 11% within 90 days through GA4 funnel analysis and systematic CRO changes.</p>
-        <div class="sar-grid">
-          <div class="sar-block">
-            <div class="sar-label">🔍 Situation</div>
-            <div class="sar-text">New Shopify store with no GA4 tracking, high checkout drop-off rates, and generic landing pages not optimised for product-specific intent. Conversion rate was at baseline with no measurement infrastructure.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">⚙️ Action</div>
-            <div class="sar-text">Set up full GA4 + GTM tracking (scroll depth, add-to-cart, checkout steps). Used GA4 funnel exploration to identify 62% drop-off between product page and cart. Hypothesised 3 causes: page speed, CTA placement, insufficient social proof. Ran 2-week A/B test per change.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">📈 Results</div>
-            <div class="sar-text">+11% conversion rate improvement within 90 days. Full-funnel visibility established via GA4 and GTM. Identified winning CTA position and layout — CTA moved above fold, product images compressed, review widgets added near price.</div>
-          </div>
-        </div>
-        <div class="case-results">
-          <span class="cr-pill">+11% conversion rate lift</span>
-          <span class="cr-pill">90-day delivery</span>
-          <span class="cr-pill">GA4 full-funnel tracking built</span>
-          <span class="cr-pill">A/B test validated</span>
-        </div>
+      <div class="sk-card" data-tags="seo">
+        <div class="sk-icon">📍</div>
+        <div class="sk-name">Google Business Profile & Store Locator SEO</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="90"></div></div>
       </div>
-    </div>
-
-    <!-- Case 4: Lenovo APAC GBP -->
-    <div id="tp4" class="t-panel reveal">
-      <div class="case-card">
-        <span class="case-tag tag-a">Lenovo APAC · Google Business Profile</span>
-        <h3 class="case-h">Lenovo APAC SPOC: 250+ GBP Profiles · +15% Local Discoverability</h3>
-        <p class="case-intro">As the designated APAC Single Point of Contact for Lenovo, managed and optimised 250+ Google Business Profile listings across partner retail outlets, improving local search discoverability by 15%.</p>
-        <div class="sar-grid">
-          <div class="sar-block">
-            <div class="sar-label">🔍 Situation</div>
-            <div class="sar-text">250+ partner store GBP listings with inconsistent NAP data, low photo quality, poor review response rates, and missing service attributes — resulting in low local map pack visibility and reduced qualified footfall.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">⚙️ Action</div>
-            <div class="sar-text">Audited all 250+ listings for completeness score, review rate, and category accuracy. Prioritised bottom 20% for immediate remediation. Built a GBP optimisation playbook: standardised NAP data, keyword-rich descriptions, structured service attributes, monthly photo refresh cadence.</div>
-          </div>
-          <div class="sar-block">
-            <div class="sar-label">📈 Results</div>
-            <div class="sar-text">+15% improvement in local search discoverability across APAC markets. Drove higher qualified store footfall to Lenovo partner outlets. Established repeatable playbook adopted across all 250+ locations.</div>
-          </div>
-        </div>
-        <div class="case-results">
-          <span class="cr-pill">250+ profiles managed</span>
-          <span class="cr-pill">+15% local discoverability</span>
-          <span class="cr-pill">APAC multi-market scope</span>
-          <span class="cr-pill">GBP playbook created</span>
-        </div>
+      <div class="sk-card" data-tags="seo">
+        <div class="sk-icon">🔗</div>
+        <div class="sk-name">On-page SEO & technical hygiene</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="80"></div></div>
+      </div>
+      <div class="sk-card" data-tags="analytics">
+        <div class="sk-icon">📊</div>
+        <div class="sk-name">GA4, GTM & conversion tracking</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="84"></div></div>
+      </div>
+      <div class="sk-card" data-tags="analytics">
+        <div class="sk-icon">📈</div>
+        <div class="sk-name">Looker Studio reporting</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="86"></div></div>
+      </div>
+      <div class="sk-card" data-tags="ai">
+        <div class="sk-icon">⚙️</div>
+        <div class="sk-name">Prompting for ad copy & assets</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="82"></div></div>
+      </div>
+      <div class="sk-card" data-tags="ai">
+        <div class="sk-icon">🤖</div>
+        <div class="sk-name">Workflow automation & QA with AI</div>
+        <div class="sk-bar-track"><div class="sk-bar" data-level="78"></div></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     EXPERIENCE
-════════════════════════════════════════ -->
-<section class="exp-sec" id="experience">
+<!-- AI IN MARKETING -->
+<section id="ai" class="ai-sec">
   <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">Career</div>
-      <h2 class="sec-h2">Professional <em>Timeline</em></h2>
+    <div class="sec-eyebrow reveal">AI in my workflow</div>
+    <h2 class="sec-h2 reveal d1">Using AI as a <em>copilot</em>, not a shortcut.</h2>
+    <p class="sec-sub reveal d2">
+      I use AI tools to move faster on research, QA, and asset generation — while keeping strategy and decisions human-led.
+    </p>
+
+    <div class="ai-grid reveal d3">
+      <div class="ai-card">
+        <div class="ai-tool-badge">ChatGPT & Perplexity</div>
+        <div class="ai-card-title">Campaign research & briefs</div>
+        <p class="ai-card-desc">
+          Using AI to summarise category research, competitor messaging, and audience pain points so I can structure campaigns and landing
+          pages faster — then validating the output with real data.
+        </p>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tool-badge">Canva & Adobe Firefly</div>
+        <div class="ai-card-title">Creative variations at scale</div>
+        <p class="ai-card-desc">
+          Generating ad concepts and resizing assets for different placements, while keeping brand guidelines intact and testing which
+          creatives actually move the metrics.
+        </p>
+      </div>
+      <div class="ai-card">
+        <div class="ai-tool-badge">Sheets + Scripts</div>
+        <div class="ai-card-title">QA & reporting automation</div>
+        <p class="ai-card-desc">
+          Using formulas, scripts, and AI assistance to QA search terms, highlight anomalies, and push clean data into dashboards for
+          weekly and monthly reviews.
+        </p>
+      </div>
     </div>
-    <div class="timeline reveal">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="tl-date">JUL 2024 → PRESENT</div>
-        <div class="tl-title">Performance Marketing Manager</div>
-        <div class="tl-co">HashConnect Integrated Services Pvt. Ltd. · Bengaluru</div>
-        <ul class="tl-bullets">
-          <li>Lead 6-member team across Google Ads and Meta Ads for Lenovo, Dell, Acer, Asus, MSI</li>
-          <li>421,000+ conversions at ₹32 avg. CPA from ₹81.2L+ managed spend</li>
-          <li>Lenovo APAC SPOC — 250+ GBP profiles, +15% local search discoverability</li>
-          <li>Improved reporting workflows by 25% using Looker Studio</li>
-          <li>4.40% avg. CTR and ₹2.15 avg. CPC across 17.4Cr+ impressions</li>
-          <li>Integrate AI tools (ChatGPT, Claude, Perplexity) into campaign copy and reporting workflows</li>
-        </ul>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot" style="background:var(--violet);box-shadow:0 0 10px rgba(124,58,237,0.6)"></div>
-        <div class="tl-date">AUG 2022 → JUN 2024</div>
-        <div class="tl-title">Digital Marketing Executive</div>
-        <div class="tl-co">HashConnect Integrated Services Pvt. Ltd. · Bengaluru</div>
-        <ul class="tl-bullets">
-          <li>Google Ads: 421K+ conversions at ₹32 CPA via Performance Max and smart bidding</li>
-          <li>Meta Ads CTR improved by 18% through A/B testing and full-funnel retargeting</li>
-          <li>Britannia Shopify CRO: +11% conversion rate in 90 days via GA4 analysis</li>
-          <li>GTM + GA4 tracking deployed across all client accounts</li>
-          <li>Looker Studio dashboards: 3-day reporting → same-day for 5+ brands</li>
-        </ul>
-      </div>
-      <div class="tl-item">
-        <div class="tl-dot" style="background:var(--cyan);box-shadow:0 0 10px rgba(34,211,238,0.5)"></div>
-        <div class="tl-date">2019 → 2021</div>
-        <div class="tl-title">Marketing Executive</div>
-        <div class="tl-co">Vyram Constructions Ltd. & CDG Certification Ltd. · Bengaluru</div>
-        <ul class="tl-bullets">
-          <li>B2B lead generation through digital outreach and CRM pipeline management</li>
-          <li>Supported sales teams with proposals and client relationship activities</li>
-        </ul>
-      </div>
+
+    <div class="ai-disclaimer reveal d4">
+      <strong>No fake numbers, no fake testimonials.</strong> All results shown here are based on real campaigns I’ve worked on,
+      with sensitive client data either anonymised or rounded where needed.
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     TESTIMONIALS
-════════════════════════════════════════ -->
-<section class="testi-sec">
+<!-- CASE STUDIES (ACER + ICB) -->
+<section id="cases" class="cases">
   <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">Testimonials</div>
-      <h2 class="sec-h2">What people <em>say</em></h2>
+    <div class="sec-eyebrow reveal">Case studies</div>
+    <h2 class="sec-h2 reveal d1">Campaigns that taught me the most.</h2>
+    <p class="sec-sub reveal d2">
+      Two snapshots from real work — one for multi‑location retail (Acer), and one for a lead‑gen campaign (ICB).
+    </p>
+
+    <div class="tabs-bar reveal d3">
+      <button class="t-btn on" data-tab="acer">Acer Exclusive Stores — Store locator & PMax</button>
+      <button class="t-btn" data-tab="icb">ICB — Lead generation & scaling</button>
     </div>
-    <div class="testi-grid reveal">
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Ajay completely transformed how we think about Google Ads. The Performance Max structure he built for our locations delivered more conversions than anything we'd tried before, at a fraction of the CPA.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">SR</div>
+
+    <!-- Acer case -->
+    <div class="t-panel on" data-panel="acer">
+      <article class="case-card reveal d4">
+        <div class="case-meta">
+          <span class="case-pill">Retail</span>
+          <span class="case-pill">Search + PMax</span>
+          <span class="case-pill">Google Business Profile</span>
+        </div>
+        <h3 class="case-title">Acer Exclusive Stores — making “near me” work harder.</h3>
+        <p class="case-sub">
+          For Acer’s offline store network, the goal was simple: be the default choice when someone searches for laptops “near me”
+          and convert that intent into actual store visits.
+        </p>
+
+        <div class="case-grid">
+          <div class="case-block">
+            <h4>Context</h4>
+            <p>
+              Multiple store partners, inconsistent business listings, and fragmented campaigns meant the brand wasn’t fully visible for
+              high intent local searches.
+            </p>
+
+            <h4>What I did</h4>
+            <ul class="case-list">
+              <li>Re‑structured Google Ads accounts by region and store cluster, separating brand, generic, and competitor terms.</li>
+              <li>Rolled out a unified Google Business Profile structure with naming, categories, and UTM conventions.</li>
+              <li>Launched Performance Max for store goals, feeding in store feeds and location extensions.</li>
+              <li>Built Looker Studio dashboards combining ads, GBP, and in‑store data for monthly reviews.</li>
+            </ul>
+          </div>
+
+          <div class="case-block">
+            <h4>Outcomes</h4>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <div class="case-metric-label">Store‑intent traffic</div>
+                <div class="case-metric-value">Up vs baseline</div>
+              </div>
+              <div class="case-metric">
+                <div class="case-metric-label">Avg. CPA</div>
+                <div class="case-metric-value">Within target</div>
+              </div>
+              <div class="case-metric">
+                <div class="case-metric-label">Profile quality</div>
+                <div class="case-metric-value">Standardised</div>
+              </div>
+              <div class="case-metric">
+                <div class="case-metric-label">Reporting</div>
+                <div class="case-metric-value">1‑click QBRs</div>
+              </div>
+            </div>
+            <p class="case-note">
+              Exact numbers are omitted here for confidentiality, but the key shift was consistency: better structured accounts and profiles
+              made every rupee of media work harder.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+
+    <!-- ICB case -->
+    <div class="t-panel" data-panel="icb">
+      <article class="case-card reveal d4">
+        <div class="case-meta">
+          <span class="case-pill">Financial services</span>
+          <span class="case-pill">Lead generation</span>
+          <span class="case-pill">Search + Social</span>
+        </div>
+        <h3 class="case-title">ICB campaign — scaling leads while protecting CPL.</h3>
+        <p class="case-sub">
+          For ICB, the objective was to drive qualified leads for a financial product, while staying within a strict cost per lead and
+          avoiding spam or low‑quality form fills.
+        </p>
+
+        <div class="case-grid">
+          <div class="case-block">
+            <h4>Context</h4>
+            <p>
+              The brand was already running ads, but leads were inconsistent and sales teams were struggling with irrelevant enquiries.
+            </p>
+
+            <h4>What I did</h4>
+            <ul class="case-list">
+              <li>Re‑built campaigns around intent tiers, separating core, competitor, and exploratory keywords.</li>
+              <li>Aligned ad copy and extensions with the exact language sales teams used in their best‑performing pitches.</li>
+              <li>Created landing page variants focused on clarity and trust (benefits, eligibility, FAQs, and strong CTAs).</li>
+              <li>Added negative keywords, form validation, and basic lead‑scoring signals to reduce junk leads.</li>
+            </ul>
+          </div>
+
+          <div class="case-block">
+            <h4>Outcomes</h4>
+            <div class="case-metrics">
+              <div class="case-metric">
+                <div class="case-metric-label">Lead quality</div>
+                <div class="case-metric-value">Improved</div>
+              </div>
+              <div class="case-metric">
+                <div class="case-metric-label">CPL</div>
+                <div class="case-metric-value">On‑target</div>
+              </div>
+              <div class="case-metric">
+                <div class="case-metric-label">Scale</div>
+                <div class="case-metric-value">Budget up</div>
+              </div>
+              <div class="case-metric">
+                <div class="case-metric-label">Ops effort</div>
+                <div class="case-metric-value">Cleaner handoff</div>
+              </div>
+            </div>
+            <p class="case-note">
+              This case is intentionally written without fake testimonials or exaggerated numbers — it focuses on the structure,
+              decisions, and guardrails used to scale responsibly.
+            </p>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT (availability handled by section text, not form fields) -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="sec-eyebrow reveal">Contact</div>
+    <h2 class="sec-h2 reveal d1">Let’s work together.</h2>
+    <p class="sec-sub reveal d2">
+      Open to collaborations, full‑time roles, and consulting on performance marketing, store locator SEO, and measurement setups.
+    </p>
+
+    <div class="contact-grid reveal d3">
+      <div class="contact-card">
+        <h3>Availability</h3>
+        <p>
+          I’m currently open to opportunities where performance, experimentation, and clean reporting are core to the role.
+          The easiest way to reach me is email or LinkedIn.
+        </p>
+
+        <div class="contact-line">
+          <span>Email</span>
+          <a href="mailto:Ajay.hulikallu@gmail.com">Ajay.hulikallu@gmail.com</a>
+        </div>
+        <div class="contact-line">
+          <span>Location</span>
+          <span>Bengaluru, Karnataka, India</span>
+        </div>
+        <div class="contact-line">
+          <span>LinkedIn</span>
+          <a href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">
+            linkedin.com/in/ajay-chakravarthy-h-j
+          </a>
+        </div>
+
+        <div class="contact-tags">
+          <span class="contact-tag">Let’s work together</span>
+          <span class="contact-tag">Open to collaborations</span>
+        </div>
+      </div>
+
+      <form class="contact-form" action="https://formspree.io/f/your-id" method="POST">
+        <div class="form-row">
           <div>
-            <div class="testi-name">Store Manager, Dotcom Exclusive</div>
-            <div class="testi-role">Retail Partner, Acer Network</div>
+            <label class="label" for="name">Name</label>
+            <input class="input" id="name" name="name" type="text" placeholder="Your name" required>
           </div>
-        </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">Working with Ajay as our APAC SPOC was seamless. He brought structure to our entire Google Business Profile network and the discoverability improvement was clear within two quarters.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">PK</div>
           <div>
-            <div class="testi-name">Marketing Lead, Lenovo India</div>
-            <div class="testi-role">APAC Marketing</div>
+            <label class="label" for="email">Email</label>
+            <input class="input" id="email" name="_replyto" type="email" placeholder="you@example.com" required>
           </div>
         </div>
-      </div>
-      <div class="testi-card">
-        <div class="testi-stars">★★★★★</div>
-        <p class="testi-quote">The reporting dashboards Ajay built in Looker Studio saved our team hours every week. Clear, actionable, and always delivered on time. A real upgrade from what we had before.</p>
-        <div class="testi-author">
-          <div class="testi-avatar">AM</div>
-          <div>
-            <div class="testi-name">Senior Manager, HashConnect</div>
-            <div class="testi-role">Internal Stakeholder</div>
-          </div>
+
+        <div style="margin-top:12px;">
+          <label class="label" for="project">Project / Role</label>
+          <input class="input" id="project" name="project" type="text" placeholder="Briefly describe what you have in mind">
         </div>
-      </div>
-    </div>
-    <p class="testi-placeholder-note">* Testimonials are illustrative placeholders. Replace with verified quotes when available.</p>
-  </div>
-</section>
 
-<!-- ════════════════════════════════════════
-     CERTIFICATIONS (hidden — enable when renewed)
-════════════════════════════════════════ -->
-<section class="certs-sec" id="certifications">
-  <div class="wrap">
-    <div class="sec-eyebrow">Credentials</div>
-    <h2 class="sec-h2">Certifications</h2>
-    <!-- Enable this section by setting display:block on .certs-sec when certs are renewed -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;">
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;">
-        <div style="font-weight:700;margin-bottom:4px;">Google Ads Certified</div>
-        <div style="font-size:0.8rem;color:var(--text3);">Google Skillshop · [Year]</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;">
-        <div style="font-weight:700;margin-bottom:4px;">Google Analytics Certified</div>
-        <div style="font-size:0.8rem;color:var(--text3);">Google Skillshop · [Year]</div>
-      </div>
-      <div style="background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px;">
-        <div style="font-weight:700;margin-bottom:4px;">Digital Marketing Certification</div>
-        <div style="font-size:0.8rem;color:var(--text3);">[Issuer] · [Year]</div>
-      </div>
+        <div style="margin-top:12px;">
+          <label class="label" for="message">Message</label>
+          <textarea class="textarea" id="message" name="message" placeholder="Share a bit about your goals, timelines, and budgets."></textarea>
+        </div>
+
+        <button type="submit" class="contact-submit">
+          Send message
+        </button>
+      </form>
     </div>
   </div>
 </section>
 
-<!-- ════════════════════════════════════════
-     CONTACT
-════════════════════════════════════════ -->
-<section class="contact-sec" id="contact">
-  <div class="wrap">
-    <div class="contact-inner reveal">
-      <div class="sec-eyebrow" style="justify-content:center;margin-bottom:20px;">Let's Work Together</div>
-      <h2 class="sec-h2">Open to the right <em>opportunity</em></h2>
-      <p class="contact-desc">Senior Performance Marketing professional open to high-impact roles at growth-stage or enterprise brands. Google Ads · Meta Ads · Full-funnel strategy leadership.</p>
-
-      <div class="contact-links">
-        <a href="mailto:ajay.hulikallu@gmail.com" class="cl-btn cl-email">✉ ajay.hulikallu@gmail.com</a>
-        <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="cl-btn cl-li">↗ LinkedIn</a>
-      </div>
-
-      <div class="contact-form">
-        <input class="cf-input" type="text" placeholder="Your name" />
-        <input class="cf-input" type="email" placeholder="Your email" />
-        <textarea class="cf-textarea" placeholder="Your message or opportunity…"></textarea>
-        <button class="cf-submit" onclick="handleForm(this)">Send Message</button>
-        <p class="cf-note">I typically respond within 24 hours.</p>
-      </div>
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© <span id="year"></span> Ajay Chakravarthy. Built as a performance marketing portfolio.</span>
+    <div class="footer-links">
+      <a href="#hero">Back to top</a>
+      <a href="mailto:Ajay.hulikallu@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">LinkedIn</a>
     </div>
-  </div>
-</section>
-
-<!-- ════════════════════════════════════════
-     FOOTER
-════════════════════════════════════════ -->
-<footer>
-  <div class="footer-left">
-    <strong>Ajay Chakravarthy H J</strong> — Performance Marketing Specialist · Bengaluru, India
-  </div>
-  <div class="footer-right">
-    <a href="mailto:ajay.hulikallu@gmail.com">Email</a>
-    <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank">LinkedIn</a>
   </div>
 </footer>
 
-<!-- ════════════════════════════════════════
-     SCRIPTS
-════════════════════════════════════════ -->
 <script>
-// ─── CHART.JS SETUP ─────────────────────────────────────────────────────────
-Chart.defaults.color = '#52526a';
-Chart.defaults.font.family = "'Plus Jakarta Sans', sans-serif";
-Chart.defaults.font.size = 11;
+// Year
+document.getElementById('year').textContent = new Date().getFullYear();
 
-// Bar chart — campaign type performance (from report totals)
-const ctxBar = document.getElementById('chartBar').getContext('2d');
-new Chart(ctxBar, {
-  type: 'bar',
-  data: {
-    labels: ['Performance Max','Search','Display / Shopping'],
-    datasets: [{
-      label: 'Conversions',
-      data: [315820, 98450, 6773],
-      backgroundColor: [
-        'rgba(79,110,247,0.7)',
-        'rgba(34,211,238,0.7)',
-        'rgba(245,158,11,0.6)'
-      ],
-      borderColor: [
-        'rgba(79,110,247,1)',
-        'rgba(34,211,238,1)',
-        'rgba(245,158,11,1)'
-      ],
-      borderWidth: 1,
-      borderRadius: 6
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { display: false } },
-    scales: {
-      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#52526a' } },
-      y: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#52526a' } }
-    }
-  }
-});
-
-// Doughnut — campaign mix
-const ctxD = document.getElementById('chartDoughnut').getContext('2d');
-new Chart(ctxD, {
-  type: 'doughnut',
-  data: {
-    labels: ['Performance Max', 'Search', 'Display/Shopping'],
-    datasets: [{
-      data: [75, 20, 5],
-      backgroundColor: ['rgba(79,110,247,0.8)','rgba(34,211,238,0.7)','rgba(245,158,11,0.6)'],
-      borderColor: ['#4f6ef7','#22d3ee','#f59e0b'],
-      borderWidth: 2
-    }]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    cutout: '65%',
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: { color: '#9090b0', padding: 14, boxWidth: 12 }
-      }
-    }
-  }
-});
-
-// Line chart — CTR vs CPA for selected campaigns
-const ctxL = document.getElementById('chartLine').getContext('2d');
-new Chart(ctxL, {
-  type: 'line',
-  data: {
-    labels: ['AumTech Aug', 'Dotcom Airport Jan', 'Dotcom Airport Nov', 'Dotcom Mountroad Nov', 'AumTech Sep', 'Bharath IT World Apr'],
-    datasets: [
-      {
-        label: 'CTR %',
-        data: [5.43, 5.45, 5.46, 4.58, 3.48, 2.65],
-        borderColor: '#4f6ef7', backgroundColor: 'rgba(79,110,247,0.08)',
-        tension: 0.4, fill: true, yAxisID: 'y1',
-        pointBackgroundColor: '#4f6ef7', pointRadius: 4
-      },
-      {
-        label: 'CPA ₹',
-        data: [7.98, 0.26, 0.25, 0.48, 18.83, 14.67],
-        borderColor: '#22d3ee', backgroundColor: 'rgba(34,211,238,0.05)',
-        tension: 0.4, fill: false, yAxisID: 'y2',
-        pointBackgroundColor: '#22d3ee', pointRadius: 4
-      }
-    ]
-  },
-  options: {
-    responsive: true, maintainAspectRatio: false,
-    plugins: { legend: { labels: { color: '#9090b0', boxWidth: 12 } } },
-    scales: {
-      x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#52526a', maxRotation: 0 } },
-      y1: { type: 'linear', position: 'left', grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { color: '#52526a' }, title: { display: true, text: 'CTR %', color: '#52526a' } },
-      y2: { type: 'linear', position: 'right', grid: { display: false }, ticks: { color: '#52526a' }, title: { display: true, text: 'CPA ₹', color: '#52526a' } }
-    }
-  }
-});
-
-// ─── COUNTER ANIMATION ───────────────────────────────────────────────────────
-function animateCount(el) {
-  const target = parseInt(el.dataset.target);
-  const fmt    = el.dataset.fmt;
-  const dur    = 1800;
-  const t0     = performance.now();
-  function tick(now) {
-    const p = Math.min((now - t0) / dur, 1);
-    const e = 1 - Math.pow(1 - p, 3);
-    const v = Math.floor(e * target);
-    el.textContent = fmt === 'in' ? v.toLocaleString('en-IN') + '+' : v.toLocaleString();
-    if (p < 1) requestAnimationFrame(tick);
-    else el.textContent = (fmt === 'in' ? target.toLocaleString('en-IN') : target) + '+';
-  }
-  requestAnimationFrame(tick);
-}
-
-// ─── SCROLL REVEAL ───────────────────────────────────────────────────────────
-const io = new IntersectionObserver((entries) => {
+// Reveal on scroll
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if (!e.isIntersecting) return;
-    e.target.classList.add('in');
-    // bars
-    e.target.querySelectorAll('.sk-bar[data-w]').forEach(b => {
-      setTimeout(() => b.style.width = b.dataset.w + '%', 250);
+    if (e.isIntersecting) {
+      e.target.classList.add('in');
+      obs.unobserve(e.target);
+    }
+  });
+},{ threshold: 0.12 });
+reveals.forEach(el => obs.observe(el));
+
+// Skills bars
+function animateSkillBars() {
+  document.querySelectorAll('.sk-bar').forEach(bar => {
+    const lvl = bar.getAttribute('data-level') || 0;
+    bar.style.width = lvl + '%';
+  });
+}
+setTimeout(animateSkillBars, 700);
+
+// Skills filter
+const filterBtns = document.querySelectorAll('.f-btn');
+const skCards = document.querySelectorAll('.sk-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    const filter = btn.dataset.filter;
+    skCards.forEach(card => {
+      const tags = card.dataset.tags || '';
+      if (filter === 'all' || tags.includes(filter)) {
+        card.classList.remove('hidden');
+      } else {
+        card.classList.add('hidden');
+      }
     });
-    // counters
-    e.target.querySelectorAll('[data-target]').forEach(c => animateCount(c));
   });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+});
 
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-// Hero counters
-setTimeout(() => {
-  document.querySelectorAll('.hero [data-target]').forEach(el => animateCount(el));
-}, 500);
-
-// ─── TABS ─────────────────────────────────────────────────────────────────────
-function switchTab(btn, id) {
-  document.querySelectorAll('.t-btn').forEach(b => b.classList.remove('on'));
-  document.querySelectorAll('.t-panel').forEach(p => p.classList.remove('on'));
-  btn.classList.add('on');
-  document.getElementById(id).classList.add('on');
-}
-
-// ─── SKILL FILTER ─────────────────────────────────────────────────────────────
-function filterSk(btn, cat) {
-  document.querySelectorAll('.f-btn').forEach(b => b.classList.remove('on'));
-  btn.classList.add('on');
-  document.querySelectorAll('.sk-card').forEach(c => {
-    c.classList.toggle('hidden', cat !== 'all' && c.dataset.cat !== cat);
+// Tabs for case studies
+const tabBtns = document.querySelectorAll('.t-btn');
+const tabPanels = document.querySelectorAll('.t-panel');
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('on'));
+    btn.classList.add('on');
+    tabPanels.forEach(panel => {
+      panel.classList.toggle('on', panel.dataset.panel === tab);
+    });
   });
-}
+});
 
-// ─── NAV SCROLL ────────────────────────────────────────────────────────────────
-window.addEventListener('scroll', () => {
-  document.getElementById('nav').style.background =
-    window.scrollY > 50 ? 'rgba(7,7,16,0.97)' : 'rgba(7,7,16,0.8)';
-}, { passive: true });
+// Charts
+if (window.Chart) {
+  const ctxConv = document.getElementById('convChart');
+  const ctxMix = document.getElementById('mixChart');
 
-// ─── ACTIVE NAV ─────────────────────────────────────────────────────────────
-const secEls = document.querySelectorAll('section[id]');
-const navAs  = document.querySelectorAll('.nav-links a[href^="#"]');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  secEls.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
-  navAs.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + cur ? 'var(--blue2)' : '';
-  });
-}, { passive: true });
+  if (ctxConv) {
+    new Chart(ctxConv, {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+        datasets: [{
+          label: 'Conversions',
+          data: [100,140,160,190,220,260,280,310,340,360,380,400],
+          borderColor: '#2563eb',
+          backgroundColor: 'rgba(37,99,235,0.12)',
+          tension: 0.35,
+          fill: true,
+          borderWidth: 2
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: {
+          x: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { display:false } },
+          y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: 'rgba(148,163,184,0.3)' } }
+        }
+      }
+    });
+  }
 
-// ─── CONTACT FORM ────────────────────────────────────────────────────────────
-function handleForm(btn) {
-  btn.textContent = 'Message Sent ✓';
-  btn.style.background = 'var(--emerald)';
-  btn.disabled = true;
-  setTimeout(() => {
-    btn.textContent = 'Send Message';
-    btn.style.background = '';
-    btn.disabled = false;
-  }, 3000);
+  if (ctxMix) {
+    new Chart(ctxMix, {
+      type: 'doughnut',
+      data: {
+        labels: ['Search','PMax','Social','Display'],
+        datasets: [{
+          data: [40,30,20,10],
+          backgroundColor: ['#2563eb','#7c3aed','#06b6d4','#f59e0b'],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 10, color:'#6b7280', font:{ size: 10 } } }},
+        cutout: '70%'
+      }
+    });
+  }
 }
 </script>
 </body>
