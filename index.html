@@ -5,741 +5,881 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ajay Chakravarthy — Performance Marketing</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Outfit:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{
-  --cream:#f5f0e8;--ink:#0f0e0c;--mid:#3a3730;--muted:#8a8070;
-  --rule:#d8d0c0;--red:#c8341a;--surface:#faf7f2;--card:#ffffff;
-  --apac:#1a6fc8;--india:#2e8b57;
+:root {
+  --cream: #f5f0e8;
+  --ink: #0f0e0c;
+  --mid: #3a3730;
+  --muted: #8a8070;
+  --rule: #d8d0c0;
+  --red: #c8341a;
+  --surface: #faf7f2;
+  --card: #ffffff;
+  --apac: #1a5fa8;
+  --india: #2e7d52;
+  --dark-bg: #111010;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--cream);color:var(--ink);font-family:'Outfit',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden}
 
-/* NUMBER FONT */
-.num,.mbig,.csn,.cms-v,.cr-v,.hl,.crv{font-family:'DM Mono',monospace;font-variant-numeric:tabular-nums}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--cream); color: var(--ink); font-family: 'Outfit', sans-serif; font-weight: 400; line-height: 1.6; overflow-x: hidden; }
 
-/* MASTHEAD */
-.masthead{border-bottom:3px solid var(--ink);padding:0 60px;position:sticky;top:0;z-index:100;background:var(--cream)}
-.masthead-top{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--ink)}
-.mt-tag{font-size:.7rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
-.mt-date{font-size:.7rem;color:var(--muted)}
-.mnav{display:flex;list-style:none;overflow-x:auto;-webkit-overflow-scrolling:touch}
-.mnav li a{display:block;padding:10px 16px;font-size:.72rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-right:1px solid var(--ink);transition:background .15s,color .15s;white-space:nowrap}
-.mnav li:first-child a{border-left:1px solid var(--ink)}
-.mnav li a:hover{background:var(--ink);color:var(--cream)}
+/* ── NAV ───────────────────────────────────────────────────── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  background: var(--ink); padding: 0 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.nav-name { font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.5); padding: 14px 0; }
+.nav-links { display: flex; list-style: none; overflow-x: auto; }
+.nav-links li a { display: block; padding: 14px 18px; font-size: .68rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); text-decoration: none; transition: color .15s; white-space: nowrap; }
+.nav-links li a:hover { color: #fff; }
 
-/* COVER */
-.cover{display:grid;grid-template-columns:1fr 360px;min-height:88vh;border-bottom:3px solid var(--ink)}
-.cover-left{padding:60px;border-right:1px solid var(--ink);display:flex;flex-direction:column;justify-content:space-between}
-.kicker{font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--red);margin-bottom:18px;display:flex;align-items:center;gap:10px}
-.kicker::before{content:'';display:block;width:24px;height:2px;background:var(--red)}
-.cover-h1{font-family:'Playfair Display',serif;font-size:clamp(3rem,5.5vw,5.6rem);font-weight:900;line-height:1.0;letter-spacing:-.02em;margin-bottom:28px}
-.cover-h1 em{font-style:italic;color:var(--red)}
-.cover-deck{font-size:1rem;font-weight:300;color:var(--mid);line-height:1.78;max-width:520px;margin-bottom:44px;border-left:3px solid var(--red);padding-left:18px}
-.cover-deck strong{font-weight:600;color:var(--ink)}
-.byline{display:flex;align-items:center;gap:20px;padding-top:28px;border-top:1px solid var(--rule)}
-.bn{font-size:.95rem;font-weight:600}
-.bt{font-size:.78rem;color:var(--muted);margin-top:2px}
-.blinks{margin-left:auto;display:flex;gap:10px}
-.blink{font-size:.74rem;font-weight:600;color:var(--red);text-decoration:none;letter-spacing:.06em;text-transform:uppercase;border-bottom:1px solid var(--red);padding-bottom:1px;transition:opacity .15s}
-.blink:hover{opacity:.7}
+/* ── HERO ──────────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh; background: var(--dark-bg);
+  display: grid; grid-template-columns: 1fr 1fr;
+  padding-top: 50px;
+}
+.hero-l {
+  padding: 80px 64px; display: flex; flex-direction: column; justify-content: center;
+  border-right: 1px solid rgba(255,255,255,.07);
+}
+.hero-eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-size: .68rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 32px;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 28px; height: 1px; background: var(--red); }
+.hero-h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 5vw, 5.2rem); font-weight: 900; line-height: .95;
+  letter-spacing: -.03em; color: #fff; margin-bottom: 40px;
+}
+.hero-h1 em { font-style: italic; color: var(--red); }
+.hero-h1 span { display: block; }
+.hero-desc {
+  font-size: 1rem; font-weight: 300; color: rgba(255,255,255,.5); line-height: 1.8;
+  max-width: 460px; margin-bottom: 52px;
+  padding-left: 20px; border-left: 2px solid rgba(200,52,26,.4);
+}
+.hero-desc strong { color: rgba(255,255,255,.85); font-weight: 500; }
+.hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  padding: 12px 28px; background: var(--red); color: #fff;
+  font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid var(--red); transition: background .2s;
+}
+.btn-primary:hover { background: #a82a14; }
+.btn-ghost {
+  padding: 12px 28px; background: transparent; color: rgba(255,255,255,.7);
+  font-size: .74rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  text-decoration: none; border: 1px solid rgba(255,255,255,.2); transition: border-color .2s, color .2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,.6); color: #fff; }
 
-.cover-right{background:var(--ink);padding:52px 40px;display:flex;flex-direction:column;justify-content:center;gap:0}
-.csr{padding:22px 0;border-bottom:1px solid rgba(255,255,255,.1)}
-.csr:last-child{border-bottom:none}
-.csn{font-size:2.7rem;font-weight:700;color:#fff;line-height:1;letter-spacing:-.01em}
-.csn sup{font-size:1rem;vertical-align:top;margin-top:6px;display:inline-block;color:var(--red);font-family:'Outfit',sans-serif}
-.csl{font-size:.7rem;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.12em;margin-top:5px}
-.css{font-size:.62rem;color:rgba(255,255,255,.22);margin-top:3px;font-style:italic}
+/* Hero stats panel */
+.hero-r {
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 80px 56px; gap: 0;
+}
+.hstat { padding: 28px 0; border-bottom: 1px solid rgba(255,255,255,.07); }
+.hstat:last-child { border-bottom: none; }
+.hstat-n {
+  font-family: 'DM Mono', monospace; font-size: 3.4rem; font-weight: 500;
+  color: #fff; line-height: 1; letter-spacing: -.02em;
+}
+.hstat-n sup { font-size: 1.2rem; vertical-align: top; margin-top: 8px; display: inline-block; color: var(--red); }
+.hstat-l { font-size: .65rem; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .14em; margin-top: 6px; }
+.hstat-s { font-size: .6rem; color: rgba(255,255,255,.18); margin-top: 3px; font-style: italic; }
 
-/* TICKER */
-.ticker-wrap{background:var(--ink);border-top:2px solid var(--red);overflow:hidden;white-space:nowrap;padding:12px 0}
-.ticker-inner{display:inline-block;animation:ticker 22s linear infinite}
-.ticker-inner span{display:inline-block;font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);padding:0 28px}
-.ticker-inner span.sep{color:var(--red);padding:0 4px;letter-spacing:0}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* counting animation */
+.count-up { display: inline-block; }
 
-/* SECTIONS */
-.section{padding:72px 60px;border-bottom:1px solid var(--rule)}
-.section-inner{max-width:1200px;margin:0 auto}
-.sec-hdr{display:flex;align-items:baseline;gap:18px;margin-bottom:48px;border-bottom:2px solid var(--ink);padding-bottom:14px}
-.sec-num{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:var(--red)}
-.sec-title{font-family:'Playfair Display',serif;font-size:1.9rem;font-weight:900;letter-spacing:-.02em}
-.sec-title em{font-style:italic}
-.sec-rule{flex:1;height:1px;background:var(--rule);margin-bottom:3px}
+/* ── TICKER ────────────────────────────────────────────────── */
+.ticker { background: var(--red); overflow: hidden; white-space: nowrap; padding: 10px 0; }
+.ticker-inner { display: inline-block; animation: tick 18s linear infinite; }
+.ticker-inner span { display: inline-block; font-size: .66rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.8); padding: 0 32px; }
+.ticker-inner span.dot { color: rgba(255,255,255,.4); padding: 0 8px; }
+@keyframes tick { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* METRICS GRID */
-.mgrid{display:grid;grid-template-columns:repeat(5,1fr);border:2px solid var(--ink);overflow:hidden}
-.mcell{padding:32px 24px;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);transition:background .2s;min-width:0}
-.mcell:hover{background:var(--surface)}
-.mtag{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px}
-.mbig{font-size:2rem;font-weight:700;line-height:1;letter-spacing:-.01em;word-break:break-all}
-.mdesc{font-size:.76rem;color:var(--muted);margin-top:8px;line-height:1.5}
-.mfoot{font-size:.6rem;color:var(--rule);margin-top:6px;font-style:italic}
+/* ── SECTION SHELL ─────────────────────────────────────────── */
+.section { padding: 100px 64px; }
+.section-inner { max-width: 1240px; margin: 0 auto; }
+.section-label {
+  display: flex; align-items: center; gap: 14px;
+  font-size: .64rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--red); margin-bottom: 60px;
+}
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
 
-/* BRAND PILL NAV */
-.brand-nav{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:36px}
-.brand-pill{display:inline-block;padding:7px 16px;border:1.5px solid var(--ink);font-size:.72rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-radius:2px;transition:background .15s,color .15s;cursor:pointer}
-.brand-pill:hover{background:var(--ink);color:var(--cream)}
+/* ── NUMBERS — big animated stats ─────────────────────────── */
+.numbers-section { background: var(--ink); }
+.numbers-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; border: 1px solid rgba(255,255,255,.08); }
+.ncard {
+  padding: 44px 32px; border-right: 1px solid rgba(255,255,255,.07);
+  position: relative; overflow: hidden; cursor: default;
+  transition: background .25s;
+}
+.ncard:last-child { border-right: none; }
+.ncard:hover { background: rgba(255,255,255,.04); }
+.ncard-tag { font-size: .58rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: rgba(200,52,26,.7); margin-bottom: 14px; }
+.ncard-n {
+  font-family: 'DM Mono', monospace; font-size: 2.6rem; font-weight: 500;
+  color: #fff; line-height: 1; letter-spacing: -.02em;
+}
+.ncard-desc { font-size: .76rem; color: rgba(255,255,255,.35); margin-top: 12px; line-height: 1.55; }
+.ncard-source { font-size: .6rem; color: rgba(255,255,255,.15); margin-top: 8px; font-style: italic; }
+.ncard-bar {
+  position: absolute; bottom: 0; left: 0; height: 2px;
+  background: var(--red); transform: scaleX(0); transform-origin: left;
+  transition: transform .6s ease .2s;
+}
+.ncard.visible .ncard-bar { transform: scaleX(1); }
 
-/* REGION TAG */
-.rtag{display:inline-flex;align-items:center;gap:5px;font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:8px}
-.rtag-apac{background:rgba(26,111,200,.12);color:var(--apac);border:1px solid rgba(26,111,200,.3)}
-.rtag-india{background:rgba(46,139,87,.12);color:var(--india);border:1px solid rgba(46,139,87,.3)}
+/* ── CAREER — visual arc ───────────────────────────────────── */
+.career-section { background: var(--surface); }
+.career-arc { display: grid; grid-template-columns: 1fr 3px 1fr 3px 1fr; gap: 0 0; align-items: start; }
+.arc-line { background: linear-gradient(to bottom, transparent, var(--rule) 20%, var(--rule) 80%, transparent); width: 3px; margin: 0 auto; height: 100%; min-height: 300px; }
+.arc-role { padding: 0 36px 60px; }
+.arc-role-num { font-family: 'DM Mono', monospace; font-size: 4rem; font-weight: 400; color: var(--rule); line-height: 1; margin-bottom: 16px; }
+.arc-period { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+.arc-company { font-size: .8rem; color: var(--muted); margin-bottom: 16px; }
+.arc-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700; color: var(--ink); line-height: 1.2; margin-bottom: 20px; }
+.arc-points { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.arc-points li { font-size: .84rem; color: var(--mid); line-height: 1.65; padding-left: 16px; position: relative; }
+.arc-points li::before { content: '▸'; position: absolute; left: 0; color: var(--red); font-size: .7rem; top: 4px; }
+.arc-points li strong { color: var(--ink); font-weight: 600; }
+.arc-tag {
+  display: inline-block; font-size: .6rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: 4px 10px; border-radius: 2px; margin-bottom: 20px;
+}
+.arc-tag-lead { background: rgba(200,52,26,.1); color: var(--red); border: 1px solid rgba(200,52,26,.25); }
+.arc-tag-build { background: rgba(58,55,48,.08); color: var(--mid); border: 1px solid var(--rule); }
 
-/* CASE STUDIES */
-.case{display:grid;grid-template-columns:260px 1fr;border:1px solid var(--ink);margin-bottom:28px;background:var(--card);transition:box-shadow .2s}
-.case:hover{box-shadow:5px 5px 0 var(--ink)}
-.case-l{background:var(--ink);padding:32px 26px;display:flex;flex-direction:column;justify-content:space-between}
-.c-brand{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--red);margin-bottom:6px}
-.c-title{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:#fff;line-height:1.25;margin-bottom:14px}
-.c-badge{display:inline-block;background:rgba(200,52,26,.18);border:1px solid var(--red);color:var(--red);font-size:.58rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:2px}
-.c-ms{margin-top:24px;display:flex;flex-direction:column;gap:10px}
-.cms{border-top:1px solid rgba(255,255,255,.1);padding-top:10px}
-.cms-v{font-size:1.3rem;font-weight:700;color:#fff;line-height:1}
-.cms-k{font-size:.58rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.1em;margin-top:2px}
-.case-r{padding:32px 36px;display:flex;flex-direction:column;gap:22px}
-.c-sec{font-size:.6rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:7px}
-.c-body p{font-size:.87rem;color:var(--mid);line-height:1.72}
-.c3col{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--rule);margin-top:4px}
-.c3{padding:16px;border-right:1px solid var(--rule)}
-.c3:last-child{border-right:none}
-.c3-lbl{font-size:.58rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
-.c3-txt{font-size:.83rem;color:var(--mid);line-height:1.62}
-.c3-txt strong{color:var(--ink);font-weight:600}
-.cres{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:var(--surface);border:1px solid var(--rule)}
-.cr{padding:14px 12px;border-right:1px solid var(--rule);text-align:center}
-.cr:last-child{border-right:none}
-.cr-v{font-size:1.25rem;font-weight:700;color:var(--red);display:block}
-.cr-k{font-size:.58rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:2px}
+/* ── CASE STUDIES — editorial cards ───────────────────────── */
+.cases-section { background: var(--cream); }
 
-/* BRAND TABLE */
-.btbl-wrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;border:2px solid var(--ink)}
-.btbl{width:100%;min-width:820px;border-collapse:collapse}
-.btbl th{background:var(--ink);color:#fff;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:12px 16px;text-align:left;border-right:1px solid rgba(255,255,255,.1);white-space:nowrap}
-.btbl th:last-child{border-right:none}
-.btbl td{font-size:.84rem;padding:12px 16px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);color:var(--mid)}
-.btbl td:last-child{border-right:none}
-.btbl tr:last-child td{border-bottom:none}
-.btbl tr:hover td{background:var(--surface)}
-.bn2{font-weight:600;color:var(--ink)}
-.hl{color:var(--red);font-weight:600;font-size:.95rem}
+/* editorial case card */
+.ecase { margin-bottom: 80px; }
+.ecase:last-child { margin-bottom: 0; }
 
-/* EXPERIENCE */
-.exp-item{display:grid;grid-template-columns:190px 1fr;border-top:1px solid var(--rule);padding:36px 0;gap:40px}
-.exp-badge{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:3px 8px;border-radius:2px;margin-bottom:8px}
-.exp-badge-am{background:rgba(200,52,26,.1);color:var(--red);border:1px solid rgba(200,52,26,.3)}
-.exp-badge-sr{background:rgba(58,55,48,.1);color:var(--mid);border:1px solid rgba(58,55,48,.25)}
-.exp-badge-ex{background:rgba(138,128,112,.08);color:var(--muted);border:1px solid var(--rule)}
-.ep{font-size:.68rem;font-weight:600;color:var(--red);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px}
-.ec{font-size:.82rem;font-weight:600;color:var(--ink);margin-bottom:2px}
-.el{font-size:.72rem;color:var(--muted)}
-.er{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;margin-bottom:14px}
-.epoints{list-style:none;display:flex;flex-direction:column;gap:8px}
-.epoints li{font-size:.86rem;color:var(--mid);padding-left:18px;position:relative;line-height:1.65}
-.epoints li::before{content:'—';position:absolute;left:0;color:var(--red);font-weight:600}
-.epoints li strong{font-weight:600;color:var(--ink)}
+/* CASE HERO — full bleed headline */
+.ecase-hero {
+  background: var(--ink); padding: 56px 64px 48px;
+  display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;
+}
+.ecase-brand-tag { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+.ecase-h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -.02em; max-width: 640px; }
+.ecase-h2 em { font-style: italic; color: var(--red); }
+.ecase-hero-right { text-align: right; flex-shrink: 0; }
+.ecase-hero-num { font-family: 'DM Mono', monospace; font-size: 3.2rem; font-weight: 500; color: #fff; line-height: 1; }
+.ecase-hero-label { font-size: .62rem; color: rgba(255,255,255,.35); text-transform: uppercase; letter-spacing: .12em; margin-top: 6px; }
+.ecase-badge {
+  display: inline-block; background: rgba(200,52,26,.15); border: 1px solid rgba(200,52,26,.3);
+  color: var(--red); font-size: .6rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: 4px 10px; margin-top: 16px;
+}
+.ecase-region-tag {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: .58rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 2px; margin-bottom: 14px;
+}
+.rt-apac { background: rgba(26,95,168,.15); color: #4a9fe0; border: 1px solid rgba(26,95,168,.3); }
+.rt-india { background: rgba(46,125,82,.15); color: #5aad78; border: 1px solid rgba(46,125,82,.3); }
 
-/* TOOLS */
-.tgrid{display:grid;grid-template-columns:repeat(3,1fr);border:2px solid var(--ink)}
-.tcat{padding:28px 24px;border-right:1px solid var(--ink)}
-.tcat:last-child{border-right:none}
-.tcat-name{font-size:.64rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:14px;padding-bottom:10px;border-bottom:1px solid var(--rule)}
-.tlist{display:flex;flex-direction:column;gap:6px}
-.titem{font-size:.84rem;color:var(--mid);display:flex;align-items:center;gap:7px}
-.titem::before{content:'·';color:var(--red);font-weight:700;font-size:1.1rem}
+/* CASE BODY */
+.ecase-body { display: grid; grid-template-columns: 1fr 1fr 1fr; border: 1px solid var(--rule); border-top: none; background: #fff; }
+.ecase-col { padding: 36px 32px; border-right: 1px solid var(--rule); }
+.ecase-col:last-child { border-right: none; }
+.ecase-col-label { font-size: .58rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--red); margin-bottom: 14px; }
+.ecase-col-text { font-size: .88rem; color: var(--mid); line-height: 1.75; }
+.ecase-col-text strong { color: var(--ink); font-weight: 600; }
 
-/* CONTACT */
-.cgrid{display:grid;grid-template-columns:1fr 1fr;border:2px solid var(--ink)}
-.c-lp{padding:52px;border-right:1px solid var(--ink)}
-.c-hl{font-family:'Playfair Display',serif;font-size:2.1rem;font-weight:900;line-height:1.15;margin-bottom:18px;letter-spacing:-.02em}
-.c-hl em{font-style:italic;color:var(--red)}
-.c-dc{font-size:.9rem;color:var(--mid);line-height:1.75;margin-bottom:32px}
-.cdet{display:flex;flex-direction:column;gap:14px}
-.cdi{display:flex;align-items:flex-start;gap:14px;padding-bottom:14px;border-bottom:1px solid var(--rule)}
-.cdi:last-child{border-bottom:none}
-.cdilbl{font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);width:72px;flex-shrink:0;padding-top:2px}
-.cdiv{font-size:.88rem;color:var(--ink);font-weight:500;text-decoration:none;transition:color .15s}
-a.cdiv:hover{color:var(--red)}
-.c-rp{background:var(--surface);padding:52px;display:flex;flex-direction:column;justify-content:center;gap:0}
-.crstat{display:flex;align-items:center;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--rule)}
-.crstat:last-child{border-bottom:none}
-.crk{font-size:.76rem;color:var(--muted)}
-.crv{font-size:.88rem;font-weight:600;color:var(--ink)}
+/* CASE RESULT STRIP */
+.ecase-results {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--rule); border-top: none; background: var(--surface);
+}
+.ecase-result { padding: 22px 20px; border-right: 1px solid var(--rule); text-align: center; }
+.ecase-result:last-child { border-right: none; }
+.er-n { font-family: 'DM Mono', monospace; font-size: 1.5rem; font-weight: 500; color: var(--red); display: block; }
+.er-l { font-size: .58rem; color: var(--muted); text-transform: uppercase; letter-spacing: .1em; margin-top: 4px; }
 
-/* FOOTER */
-footer{background:var(--ink);padding:24px 60px;display:flex;align-items:center;justify-content:space-between}
-.fn{font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#fff}
-.fc{font-size:.7rem;color:rgba(255,255,255,.32)}
+/* ── BRAND COMPARISON ──────────────────────────────────────── */
+.brands-section { background: var(--ink); }
+.brands-section .section-label { color: rgba(200,52,26,.8); }
+.brands-section .section-label::after { background: rgba(255,255,255,.1); }
 
-/* REVEAL */
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .55s ease,transform .55s ease}
-.reveal.visible{opacity:1;transform:translateY(0)}
+.brand-bars { display: flex; flex-direction: column; gap: 0; }
+.bbar-row {
+  display: grid; grid-template-columns: 140px 1fr 100px 80px;
+  gap: 0 24px; align-items: center; padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.bbar-row:last-child { border-bottom: none; }
+.bbar-name { font-size: .8rem; font-weight: 600; color: rgba(255,255,255,.7); }
+.bbar-track { background: rgba(255,255,255,.06); height: 6px; border-radius: 0; overflow: hidden; }
+.bbar-fill { height: 100%; background: var(--red); border-radius: 0; transition: width 1.2s cubic-bezier(.16,1,.3,1); width: 0; }
+.bbar-fill.alt { background: rgba(200,52,26,.45); }
+.bbar-conv { font-family: 'DM Mono', monospace; font-size: .8rem; color: #fff; text-align: right; }
+.bbar-cpa { font-family: 'DM Mono', monospace; font-size: .76rem; color: rgba(255,255,255,.4); text-align: right; }
+.bbar-hdr { display: grid; grid-template-columns: 140px 1fr 100px 80px; gap: 0 24px; padding: 0 0 16px; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 4px; }
+.bbar-hdr span { font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.3); }
+.bbar-hdr span:not(:first-child) { text-align: right; }
 
-/* DATA NOTE */
-.data-note{font-size:.66rem;color:var(--muted);margin-top:10px;font-style:italic}
+/* ── GROWTH TIMELINE ───────────────────────────────────────── */
+.growth-section { background: var(--cream); }
+.growth-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.growth-card {
+  background: #fff; padding: 48px 44px;
+  border: 1px solid var(--rule); position: relative; overflow: hidden;
+}
+.growth-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--red);
+}
+.growth-card.dark { background: var(--ink); border-color: var(--ink); }
+.growth-card.dark::before { background: var(--red); }
+.gc-period { font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--red); margin-bottom: 6px; }
+.gc-role { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--ink); line-height: 1.15; margin-bottom: 6px; }
+.growth-card.dark .gc-role { color: #fff; }
+.gc-company { font-size: .78rem; color: var(--muted); margin-bottom: 28px; }
+.growth-card.dark .gc-company { color: rgba(255,255,255,.35); }
+.gc-points { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+.gc-points li { font-size: .86rem; color: var(--mid); line-height: 1.65; padding-left: 20px; position: relative; }
+.growth-card.dark .gc-points li { color: rgba(255,255,255,.55); }
+.gc-points li::before { content: '—'; position: absolute; left: 0; color: var(--red); font-weight: 700; }
+.gc-points li strong { color: var(--ink); font-weight: 600; }
+.growth-card.dark .gc-points li strong { color: #fff; }
+.gc-focus {
+  display: inline-block; font-size: .6rem; font-weight: 700; letter-spacing: .1em;
+  text-transform: uppercase; padding: 5px 12px; margin-bottom: 20px;
+}
+.gc-focus-lead { background: rgba(200,52,26,.1); color: var(--red); border: 1px solid rgba(200,52,26,.25); }
+.gc-focus-build { background: var(--surface); color: var(--muted); border: 1px solid var(--rule); }
+.growth-card.dark .gc-focus-lead { background: rgba(200,52,26,.2); }
 
-/* SCROLL HINT */
-.scroll-hint{font-size:.62rem;color:var(--muted);margin-bottom:6px;font-style:italic;display:none}
+/* Vyram mini card */
+.growth-card.mini { padding: 36px 44px; }
+.growth-card.mini .gc-role { font-size: 1.1rem; }
 
-@media(max-width:960px){
-  .masthead{padding:0 16px}
-  .cover{grid-template-columns:1fr;min-height:auto}
-  .cover-left{padding:32px 20px}
-  .cover-right{padding:32px 20px}
-  .section{padding:48px 20px}
-  .mgrid{grid-template-columns:1fr 1fr}
-  .mcell{border-right:1px solid var(--ink)}
-  .case{grid-template-columns:1fr}
-  .c3col{grid-template-columns:1fr}
-  .c3{border-right:none;border-bottom:1px solid var(--rule)}
-  .cres{grid-template-columns:1fr 1fr}
-  .tgrid{grid-template-columns:1fr}
-  .tcat{border-right:none;border-bottom:1px solid var(--ink)}
-  .cgrid{grid-template-columns:1fr}
-  .c-lp{border-right:none;border-bottom:1px solid var(--ink);padding:32px 20px}
-  .c-rp{padding:32px 20px}
-  .exp-item{grid-template-columns:1fr;gap:6px}
-  footer{flex-direction:column;gap:6px;padding:20px;text-align:center}
-  .scroll-hint{display:block}
-  .gbp-split{grid-template-columns:1fr !important}
-  .gbp-split > div{border-right:none !important;border-bottom:1px solid var(--rule)}
+/* ── SKILLS ────────────────────────────────────────────────── */
+.skills-section { background: var(--surface); }
+.skills-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; }
+.skill-card { background: #fff; padding: 36px 28px; border: 1px solid var(--rule); }
+.skill-card-name { font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--red); margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid var(--rule); }
+.skill-list { display: flex; flex-direction: column; gap: 8px; }
+.skill-item { font-size: .84rem; color: var(--mid); display: flex; align-items: center; gap: 8px; }
+.skill-item::before { content: ''; display: block; width: 4px; height: 4px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+.certs-bar { margin-top: 2px; background: var(--ink); padding: 28px 36px; display: flex; gap: 40px; align-items: center; flex-wrap: wrap; }
+.cert-item { font-size: .82rem; color: rgba(255,255,255,.5); display: flex; align-items: center; gap: 8px; }
+.cert-item::before { content: '✓'; color: var(--red); font-weight: 700; font-size: .8rem; }
+
+/* ── CONTACT ───────────────────────────────────────────────── */
+.contact-section { background: var(--dark-bg); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+.contact-h { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4vw, 3.6rem); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -.02em; margin-bottom: 24px; }
+.contact-h em { font-style: italic; color: var(--red); }
+.contact-sub { font-size: .92rem; color: rgba(255,255,255,.4); line-height: 1.8; margin-bottom: 44px; max-width: 440px; }
+.contact-links { display: flex; flex-direction: column; gap: 16px; }
+.contact-link { display: flex; align-items: center; gap: 16px; text-decoration: none; group: true; }
+.cl-label { font-size: .6rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.25); width: 64px; flex-shrink: 0; }
+.cl-value { font-size: .92rem; color: rgba(255,255,255,.7); font-weight: 500; transition: color .15s; }
+.contact-link:hover .cl-value { color: #fff; }
+.contact-stats { display: flex; flex-direction: column; gap: 0; border: 1px solid rgba(255,255,255,.08); }
+.cstat { display: flex; align-items: center; justify-content: space-between; padding: 18px 28px; border-bottom: 1px solid rgba(255,255,255,.06); }
+.cstat:last-child { border-bottom: none; }
+.cstat-k { font-size: .72rem; color: rgba(255,255,255,.3); }
+.cstat-v { font-family: 'DM Mono', monospace; font-size: .84rem; font-weight: 500; color: rgba(255,255,255,.7); }
+
+/* ── FOOTER ────────────────────────────────────────────────── */
+footer { background: #000; padding: 20px 64px; display: flex; justify-content: space-between; align-items: center; }
+.fn { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.25); }
+.fc { font-size: .66rem; color: rgba(255,255,255,.15); }
+
+/* ── REVEAL ANIMATION ──────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-delay-1 { transition-delay: .1s; }
+.reveal-delay-2 { transition-delay: .2s; }
+.reveal-delay-3 { transition-delay: .3s; }
+.reveal-delay-4 { transition-delay: .4s; }
+
+/* ── MOBILE ────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .nav { padding: 0 20px; }
+  .nav-name { display: none; }
+  .hero { grid-template-columns: 1fr; padding-top: 48px; }
+  .hero-l { padding: 48px 28px; }
+  .hero-r { padding: 36px 28px; border-top: 1px solid rgba(255,255,255,.08); }
+  .hstat-n { font-size: 2.4rem; }
+  .section { padding: 64px 28px; }
+  .numbers-grid { grid-template-columns: 1fr 1fr; }
+  .ncard { border-bottom: 1px solid rgba(255,255,255,.07); }
+  .ncard:nth-child(2n) { border-right: none; }
+  .career-arc { grid-template-columns: 1fr; }
+  .arc-line { display: none; }
+  .arc-role { padding: 0 0 48px; }
+  .ecase-hero { grid-template-columns: 1fr; padding: 36px 24px; }
+  .ecase-hero-right { text-align: left; }
+  .ecase-body { grid-template-columns: 1fr; }
+  .ecase-col { border-right: none; border-bottom: 1px solid var(--rule); }
+  .ecase-results { grid-template-columns: 1fr 1fr; }
+  .bbar-row { grid-template-columns: 100px 1fr 80px; }
+  .bbar-hdr { grid-template-columns: 100px 1fr 80px; }
+  .bbar-cpa { display: none; }
+  .growth-grid { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr 1fr; }
+  .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+  footer { flex-direction: column; gap: 6px; padding: 20px; text-align: center; }
 }
 </style>
 </head>
 <body>
 
-<header class="masthead">
-  <div class="masthead-top">
-    <span class="mt-tag">Performance Marketing · Case Studies</span>
-    <span class="mt-date">Bengaluru, India · 2022–2026</span>
-  </div>
-  <nav><ul class="mnav">
+<!-- NAV -->
+<nav class="nav">
+  <span class="nav-name">Ajay Chakravarthy H J</span>
+  <ul class="nav-links">
     <li><a href="#numbers">Numbers</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#cases">Case Studies</a></li>
-    <li><a href="#brands">All Brands</a></li>
-    <li><a href="#tools">Skills</a></li>
+    <li><a href="#cases">Work</a></li>
+    <li><a href="#brands">Brands</a></li>
+    <li><a href="#career">Career</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
-  </ul></nav>
-</header>
+  </ul>
+</nav>
 
-<!-- COVER -->
-<section class="cover">
-  <div class="cover-left">
-    <div>
-      <div class="kicker">Performance Marketing Specialist · 3+ Years</div>
-      <h1 class="cover-h1">Campaigns<br>that <em>convert</em><br>at scale.</h1>
-      <p class="cover-deck">
-        <strong>4,09,471 conversions. ₹79.53L managed. ₹19.42 avg. CPA.</strong><br>
-        3+ years building paid media campaigns for Lenovo, Dell, Acer, Asus &amp; MSI across India — plus Lenovo's APAC SPOC managing 250+ GBP profiles (Lenovo APAC + MSI India) and running paid campaigns on <em>locate.lenovo.com</em> for the Philippines market.
-      </p>
-    </div>
-    <div class="byline">
-      <div>
-        <div class="bn">Ajay Chakravarthy H J</div>
-        <div class="bt">Google Ads · Meta Ads · Performance Max · GBP · Lead Gen</div>
-      </div>
-      <div class="blinks">
-        <a href="mailto:ajay.chakravarthy.hj@gmail.com" class="blink">Email</a>
-        <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="blink">LinkedIn</a>
-      </div>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="hero-eyebrow">Performance Marketing Specialist</div>
+    <h1 class="hero-h1">
+      <span>I build campaigns</span>
+      <span>that <em>convert</em></span>
+      <span>at scale.</span>
+    </h1>
+    <p class="hero-desc">
+      <strong>4,08,708 conversions. ₹79.38L managed. ₹19.42 avg. CPA.</strong><br>
+      3+ years running paid media for Lenovo, Dell, Acer, Asus &amp; MSI across India —
+      plus Lenovo's APAC SPOC managing 250+ Google Business Profiles and
+      paid campaigns on locate.lenovo.com for the Philippines market.
+    </p>
+    <div class="hero-cta">
+      <a href="#cases" class="btn-primary">See the work</a>
+      <a href="#contact" class="btn-ghost">Get in touch</a>
     </div>
   </div>
-  <div class="cover-right">
-    <div class="csr reveal">
-      <div class="csn num">4,09,471</div>
-      <div class="csl">Total Conversions</div>
-      <div class="css">Direct from Google Ads Campaign Report</div>
+  <div class="hero-r">
+    <div class="hstat">
+      <div class="hstat-n" data-target="408708" data-prefix="" data-suffix="">0</div>
+      <div class="hstat-l">Total Conversions</div>
+      <div class="hstat-s">Direct from Google Ads campaign report · 194 campaigns</div>
     </div>
-    <div class="csr reveal">
-      <div class="csn num">₹79.53L</div>
-      <div class="csl">Ad Spend Managed</div>
-      <div class="css">Across all brands · INR</div>
+    <div class="hstat">
+      <div class="hstat-n">₹79.38L</div>
+      <div class="hstat-l">Ad Spend Managed</div>
+      <div class="hstat-s">Across all brands · INR</div>
     </div>
-    <div class="csr reveal">
-      <div class="csn num">₹19.42</div>
-      <div class="csl">Avg. CPA — All Campaigns</div>
-      <div class="css">Total cost ÷ total conversions</div>
+    <div class="hstat">
+      <div class="hstat-n">₹19.42</div>
+      <div class="hstat-l">Avg. CPA — All Campaigns</div>
+      <div class="hstat-s">Total cost ÷ total conversions</div>
     </div>
-    <div class="csr reveal">
-      <div class="csn num">3.35%</div>
-      <div class="csl">Avg. CTR</div>
-      <div class="css">57.73L clicks · 17.25Cr impressions</div>
+    <div class="hstat">
+      <div class="hstat-n">3.34%</div>
+      <div class="hstat-l">Avg. CTR</div>
+      <div class="hstat-s">57.57L clicks · 17.22Cr impressions</div>
     </div>
-    <div class="csr reveal">
-      <div class="csn num">250<sup>+</sup></div>
-      <div class="csl">GBP Profiles — Lenovo APAC</div>
-      <div class="css">+15% local search discoverability · Philippines paid campaign</div>
+    <div class="hstat">
+      <div class="hstat-n">250<sup>+</sup></div>
+      <div class="hstat-l">GBP Profiles — Lenovo APAC</div>
+      <div class="hstat-s">+15% local search discoverability</div>
     </div>
   </div>
 </section>
 
 <!-- TICKER -->
-<div class="ticker-wrap"><div class="ticker-inner">
-  <span>Lenovo</span><span class="sep">✦</span><span>Dell</span><span class="sep">✦</span><span>Acer</span><span class="sep">✦</span><span>Asus</span><span class="sep">✦</span><span>MSI</span><span class="sep">✦</span><span>Indian Craft Brewery</span><span class="sep">✦</span><span>Britannia</span><span class="sep">✦</span><span>Best Sports Goods</span><span class="sep">✦</span><span>Dotcom Exclusive</span><span class="sep">✦</span><span>Ace Infocom</span><span class="sep">✦</span>
-  <span>Lenovo</span><span class="sep">✦</span><span>Dell</span><span class="sep">✦</span><span>Acer</span><span class="sep">✦</span><span>Asus</span><span class="sep">✦</span><span>MSI</span><span class="sep">✦</span><span>Indian Craft Brewery</span><span class="sep">✦</span><span>Britannia</span><span class="sep">✦</span><span>Best Sports Goods</span><span class="sep">✦</span><span>Dotcom Exclusive</span><span class="sep">✦</span><span>Ace Infocom</span><span class="sep">✦</span>
-</div></div>
-
-<!-- NUMBERS -->
-<section class="section" id="numbers" style="background:var(--surface)">
-<div class="section-inner">
-  <div class="sec-hdr reveal"><span class="sec-num">01</span><h2 class="sec-title">The <em>Numbers</em></h2><div class="sec-rule"></div></div>
-  <div class="mgrid reveal">
-    <div class="mcell">
-      <div class="mtag">Total Conversions</div>
-      <div class="mbig num">4,09,471</div>
-      <div class="mdesc">Google Ads–tracked across 194 campaigns, all brands &amp; periods.</div>
-      <div class="mfoot">Source: Campaign report, 194 rows</div>
-    </div>
-    <div class="mcell">
-      <div class="mtag">Ad Spend Managed</div>
-      <div class="mbig num">₹79.53L</div>
-      <div class="mdesc">Total budget managed — PMax, Search, Display, Smart &amp; Demand Gen.</div>
-      <div class="mfoot">₹79,52,887 exact</div>
-    </div>
-    <div class="mcell">
-      <div class="mtag">Avg. CPA</div>
-      <div class="mbig num">₹19.42</div>
-      <div class="mdesc">Cost per conversion via Target CPA, ROAS &amp; Max Conversions bidding.</div>
-      <div class="mfoot">Total spend ÷ total conversions</div>
-    </div>
-    <div class="mcell">
-      <div class="mtag">Avg. CTR</div>
-      <div class="mbig num">3.35%</div>
-      <div class="mdesc">Across 17.25Cr impressions &amp; 57.73L clicks. Maintained via A/B testing.</div>
-      <div class="mfoot">All campaign types</div>
-    </div>
-    <div class="mcell">
-      <div class="mtag">Avg. CPC</div>
-      <div class="mbig num">₹1.38</div>
-      <div class="mdesc">Average cost per click across all 194 campaigns &amp; 8+ brands.</div>
-      <div class="mfoot">Total spend ÷ total clicks</div>
-    </div>
+<div class="ticker">
+  <div class="ticker-inner">
+    <span>Lenovo</span><span class="dot">✦</span><span>Dell</span><span class="dot">✦</span>
+    <span>Acer</span><span class="dot">✦</span><span>Asus</span><span class="dot">✦</span>
+    <span>MSI</span><span class="dot">✦</span><span>Indian Craft Brewery</span><span class="dot">✦</span>
+    <span>Britannia</span><span class="dot">✦</span><span>Best Sports Goods</span><span class="dot">✦</span>
+    <span>Dotcom Exclusive</span><span class="dot">✦</span><span>Ace Infocom</span><span class="dot">✦</span>
+    <span>Lenovo</span><span class="dot">✦</span><span>Dell</span><span class="dot">✦</span>
+    <span>Acer</span><span class="dot">✦</span><span>Asus</span><span class="dot">✦</span>
+    <span>MSI</span><span class="dot">✦</span><span>Indian Craft Brewery</span><span class="dot">✦</span>
+    <span>Britannia</span><span class="dot">✦</span><span>Best Sports Goods</span><span class="dot">✦</span>
+    <span>Dotcom Exclusive</span><span class="dot">✦</span><span>Ace Infocom</span><span class="dot">✦</span>
   </div>
 </div>
-</section>
 
-<!-- EXPERIENCE -->
-<section class="section" id="experience">
+<!-- NUMBERS -->
+<section class="section numbers-section" id="numbers">
 <div class="section-inner">
-  <div class="sec-hdr reveal"><span class="sec-num">02</span><h2 class="sec-title">Career <em>Timeline</em></h2><div class="sec-rule"></div></div>
-  <div>
-
-    <!-- ROLE 1: ASSISTANT MANAGER -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="ep">Jul 2025 – Present</div>
-        <div class="ec">HashConnect Integrated Services</div>
-        <div class="el">Bengaluru, India</div>
-      </div>
-      <div>
-        <div class="er">Assistant Manager – Performance Marketing</div>
-        <ul class="epoints">
-          <li>Lead and mentor a <strong>6-member performance marketing team</strong> — weekly KPI reviews, structured feedback cycles, cross-brand workload allocation.</li>
-          <li>Own end-to-end paid media strategy across Google Ads &amp; Meta for <strong>Lenovo, Dell, Acer, Asus &amp; MSI</strong> — 4,09,471 conversions at ₹19.42 avg. CPA from ₹79.53L spend.</li>
-          <li>Drive <strong>cross-brand campaign governance</strong> — standardised bidding frameworks, shared audience libraries, unified reporting via Looker Studio.</li>
-          <li>Spearhead <strong>GBP management across 250+ profiles</strong> — Lenovo APAC (Southeast Asia &amp; APAC partner outlets) and MSI India. Unified optimisation playbook across both brands. Ran paid PMax campaigns on locate.lenovo.com for Philippines market.</li>
-        </ul>
-      </div>
+  <div class="section-label">By the numbers</div>
+  <div class="numbers-grid">
+    <div class="ncard reveal">
+      <div class="ncard-tag">Total Conversions</div>
+      <div class="ncard-n">4,08,708</div>
+      <div class="ncard-desc">Google Ads–tracked across 194 campaigns, all brands &amp; periods. Every number sourced directly from campaign report.</div>
+      <div class="ncard-source">194 campaign rows · verified</div>
+      <div class="ncard-bar"></div>
     </div>
-
-    <!-- ROLE 2: SENIOR DIGITAL MARKETING -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="ep">Aug 2023 – Jul 2025</div>
-        <div class="ec">HashConnect Integrated Services</div>
-        <div class="el">Bengaluru, India</div>
-      </div>
-      <div>
-        <div class="er">Senior Digital Marketing Executive</div>
-        <ul class="epoints">
-          <li>Independently managed <strong>multi-brand PMax campaigns</strong> for Acer, Dell, Asus &amp; MSI across Chennai and Bengaluru outlet networks — 194 campaigns, ₹79.53L total spend.</li>
-          <li>Took ownership of <strong>GBP management across 250+ profiles</strong> — Lenovo APAC (Southeast Asia &amp; APAC outlets) and MSI India. Built unified standardisation playbook achieving +15% local discoverability across APAC.</li>
-          <li>Ran <strong>paid Google Ads (PMax) for Philippines</strong> on locate.lenovo.com — awareness and store locator traffic objective. MSI scope was GBP only — no paid campaigns.</li>
-          <li>Built GTM + GA4 conversion tracking architecture across brands. Introduced <strong>Target CPA &amp; ROAS bidding</strong> replacing manual CPC.</li>
-          <li>Mentored junior team members; began transitioning into team lead responsibilities.</li>
-        </ul>
-      </div>
+    <div class="ncard reveal reveal-delay-1">
+      <div class="ncard-tag">Ad Spend Managed</div>
+      <div class="ncard-n">₹79.38L</div>
+      <div class="ncard-desc">Total budget managed across PMax, Search, Display, Smart &amp; Demand Gen campaigns.</div>
+      <div class="ncard-source">₹79,37,792 exact</div>
+      <div class="ncard-bar"></div>
     </div>
-
-    <!-- ROLE 3: DIGITAL MARKETING EXECUTIVE -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="ep">Aug 2022 – Jul 2023</div>
-        <div class="ec">HashConnect Integrated Services</div>
-        <div class="el">Bengaluru, India</div>
-      </div>
-      <div>
-        <div class="er">Digital Marketing Executive</div>
-        <ul class="epoints">
-          <li>Executed Google Ads across PMax, Search &amp; Display — conversions via smart bidding, negative keyword management &amp; audience layering.</li>
-          <li>Ran Meta Ads for hospitality &amp; event clients — creative A/B testing, lookalike audiences, retargeting flows.</li>
-          <li>Built <strong>Britannia's Shopify e-commerce store</strong> end-to-end — setup, product pages, checkout &amp; ongoing management.</li>
-          <li>Set up GTM + GA4 + Search Console tracking. Built <strong>Looker Studio dashboards</strong> for client reporting.</li>
-        </ul>
-      </div>
+    <div class="ncard reveal reveal-delay-2">
+      <div class="ncard-tag">Avg. CPA</div>
+      <div class="ncard-n">₹19.42</div>
+      <div class="ncard-desc">Cost per conversion across all campaigns using Target CPA, ROAS &amp; Max Conversions bidding strategies.</div>
+      <div class="ncard-source">Total spend ÷ total conversions</div>
+      <div class="ncard-bar"></div>
     </div>
-
-    <!-- ROLE 4: PREVIOUS -->
-    <div class="exp-item reveal">
-      <div>
-        <div class="ep">2019 – 2021</div>
-        <div class="ec">Vyram Constructions &amp; CDG Certification</div>
-        <div class="el">Bengaluru, India</div>
-      </div>
-      <div>
-        <div class="er">Marketing Executive</div>
-        <ul class="epoints">
-          <li>B2B lead generation via digital outreach &amp; CRM pipeline management.</li>
-          <li>Sales support — proposals, presentations &amp; client relationship activities.</li>
-        </ul>
-      </div>
+    <div class="ncard reveal reveal-delay-3">
+      <div class="ncard-tag">Avg. CTR</div>
+      <div class="ncard-n">3.34%</div>
+      <div class="ncard-desc">Across 17.22Cr impressions &amp; 57.57L clicks. Maintained through A/B testing and audience signal layering.</div>
+      <div class="ncard-source">All campaign types</div>
+      <div class="ncard-bar"></div>
     </div>
-
+    <div class="ncard reveal reveal-delay-4">
+      <div class="ncard-tag">Avg. CPC</div>
+      <div class="ncard-n">₹1.38</div>
+      <div class="ncard-desc">Average cost per click across all 194 campaigns and 8+ brands — kept low through smart bidding and audience refinement.</div>
+      <div class="ncard-source">Total spend ÷ total clicks</div>
+      <div class="ncard-bar"></div>
+    </div>
   </div>
 </div>
 </section>
 
 <!-- CASE STUDIES -->
-<section class="section" id="cases">
+<section class="section cases-section" id="cases">
 <div class="section-inner">
-  <div class="sec-hdr reveal"><span class="sec-num">03</span><h2 class="sec-title"><em>Case Studies</em></h2><div class="sec-rule"></div></div>
-
-  <!-- BRAND PILL NAV -->
-  <div class="brand-nav reveal">
-    <a href="#case-icb" class="brand-pill">ICB</a>
-    <a href="#case-acer" class="brand-pill">Acer</a>
-    <a href="#case-dell" class="brand-pill">Dell</a>
-    <a href="#case-lenovo-apac" class="brand-pill">Lenovo APAC 🌏</a>
-  </div>
+  <div class="section-label">Selected work</div>
 
   <!-- CASE 1: ICB -->
-  <div class="case reveal" id="case-icb">
-    <div class="case-l">
+  <div class="ecase reveal" id="case-icb">
+    <div class="ecase-hero">
       <div>
-        <div class="rtag rtag-india">🇮🇳 India Campaign</div>
-        <div class="c-brand">Indian Craft Brewery</div>
-        <div class="c-title">Full-Funnel Campaigns in a Policy-Restricted Category</div>
-        <div class="c-badge">Search + Performance Max</div>
+        <div class="ecase-region-tag rt-india">🇮🇳 India · Search + PMax</div>
+        <div class="ecase-brand-tag">Indian Craft Brewery</div>
+        <h2 class="ecase-h2">1,64,367 conversions at <em>₹4.58 CPA</em> — the lowest across all brands — inside a policy-restricted category.</h2>
+        <div class="ecase-badge">Lowest CPA across all managed brands</div>
       </div>
-      <div class="c-ms">
-        <div class="cms"><div class="cms-v num">1,54,957</div><div class="cms-k">Total Conversions</div></div>
-        <div class="cms"><div class="cms-v num">11.46%</div><div class="cms-k">Peak Search CTR</div></div>
-        <div class="cms"><div class="cms-v num">₹4.58</div><div class="cms-k">Brand Avg. CPA</div></div>
+      <div class="ecase-hero-right">
+        <div class="ecase-hero-num">₹4.58</div>
+        <div class="ecase-hero-label">Avg. CPA</div>
       </div>
     </div>
-    <div class="case-r">
-      <div>
-        <div class="c-sec">The Challenge</div>
-        <div class="c-body"><p>ICB is an alcohol-adjacent hospitality brand — multiple ad disapprovals, strict Google Ads policy restrictions, and zero prior campaign structure. Needed to drive restaurant and brewery footfall across dining, cocktails, brewery and near-me intents simultaneously without violating policies.</p></div>
+    <div class="ecase-body">
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Problem</div>
+        <div class="ecase-col-text">ICB is an alcohol-adjacent hospitality brand — Google Ads policy restrictions meant multiple disapprovals and zero prior compliant campaign structure. Every intent (brewery, cocktails, dinner, near me) was mixed into one broken campaign. Quality scores were low, spend was wasted.</div>
       </div>
-      <div class="c3col">
-        <div class="c3">
-          <div class="c3-lbl">Situation</div>
-          <div class="c3-txt">No compliant campaign structure. Multiple disapprovals. All intents (brewery, dinner, cocktails, near me) mixed together. Quality scores low, spend wasted.</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Action</div>
-          <div class="c3-txt">Built <strong>6 intent-segmented Search campaigns</strong> — Brewery, Restaurant, Cocktails, Dinner, Lunch, Near Me. Ad copy focused on dining experience. PMax layer for broader reach.</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Result</div>
-          <div class="c3-txt">ICB_Search_Brewery_Beer: <strong>16,926 conv, 11.46% CTR, ₹5.99 CPA</strong>. ICB PMax Feb-25: <strong>1,09,923 conv, ₹3.19 CPA</strong>. ICB 2026 PMax: 27,487 conv.</div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Approach</div>
+        <div class="ecase-col-text">Built <strong>6 intent-segmented Search campaigns</strong> — Brewery, Restaurant, Cocktails, Dinner, Lunch, Near Me — each with policy-compliant ad copy focused on the dining experience rather than alcohol. Added a PMax layer for broader reach, keeping creatives within policy guardrails throughout.</div>
       </div>
-      <div>
-        <div class="c-sec">Campaign-Level Results</div>
-        <div class="cres">
-          <div class="cr"><span class="cr-v num">16,926</span><div class="cr-k">Search Brewery Conv.</div></div>
-          <div class="cr"><span class="cr-v num">11.46%</span><div class="cr-k">Search CTR</div></div>
-          <div class="cr"><span class="cr-v num">1,09,923</span><div class="cr-k">PMax Feb-25 Conv.</div></div>
-          <div class="cr"><span class="cr-v num">₹3.19</span><div class="cr-k">PMax CPA</div></div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">What Happened</div>
+        <div class="ecase-col-text">ICB Search Brewery: <strong>16,926 conv at 11.46% CTR, ₹5.99 CPA</strong>. ICB PMax Feb-25: <strong>1,09,923 conv at ₹3.19 CPA</strong>. ICB 2026 PMax: 27,487 conv. Total brand CPA of ₹4.58 — lowest across all 8 brands managed.</div>
       </div>
+    </div>
+    <div class="ecase-results">
+      <div class="ecase-result"><span class="er-n">1,64,367</span><div class="er-l">Total Conversions</div></div>
+      <div class="ecase-result"><span class="er-n">₹4.58</span><div class="er-l">Avg. CPA</div></div>
+      <div class="ecase-result"><span class="er-n">11.46%</span><div class="er-l">Peak Search CTR</div></div>
+      <div class="ecase-result"><span class="er-n">₹3.19</span><div class="er-l">PMax CPA Feb-25</div></div>
     </div>
   </div>
 
   <!-- CASE 2: ACER -->
-  <div class="case reveal" id="case-acer">
-    <div class="case-l">
+  <div class="ecase reveal" id="case-acer">
+    <div class="ecase-hero">
       <div>
-        <div class="rtag rtag-india">🇮🇳 India Campaign</div>
-        <div class="c-brand">Acer · Multi-Outlet Network</div>
-        <div class="c-title">1,28,000+ Conversions at ₹11.30 CPA</div>
-        <div class="c-badge">Performance Max</div>
+        <div class="ecase-region-tag rt-india">🇮🇳 India · Performance Max</div>
+        <div class="ecase-brand-tag">Acer · Multi-Outlet Network</div>
+        <h2 class="ecase-h2">10+ fragmented locations unified under one PMax system — <em>1,28,000+ conversions</em> at ₹11.30 CPA.</h2>
+        <div class="ecase-badge">Multi-outlet PMax architecture</div>
       </div>
-      <div class="c-ms">
-        <div class="cms"><div class="cms-v num">1,28,000+</div><div class="cms-k">Total Conversions</div></div>
-        <div class="cms"><div class="cms-v num">₹11.30</div><div class="cms-k">Brand Avg. CPA</div></div>
-        <div class="cms"><div class="cms-v num">4.25%</div><div class="cms-k">Avg. CTR</div></div>
+      <div class="ecase-hero-right">
+        <div class="ecase-hero-num">1,28,000+</div>
+        <div class="ecase-hero-label">Conversions</div>
       </div>
     </div>
-    <div class="case-r">
-      <div>
-        <div class="c-sec">The Challenge</div>
-        <div class="c-body"><p>10+ Acer Dotcom and partner store locations across Chennai &amp; Bengaluru — Airport, T Nagar, Mountroad, Marina Mall, Velachery, VR Mall Annanagar, Adyar, Microtouch, AumTech — each with separate budgets, no shared audience signals, and inconsistent CPCs across campaigns.</p></div>
+    <div class="ecase-body">
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Problem</div>
+        <div class="ecase-col-text">10+ Acer Dotcom and partner stores across Chennai &amp; Bengaluru — Airport, T Nagar, Mountroad, Marina Mall, Velachery, VR Mall Annanagar, Adyar, Microtouch, AumTech — all running isolated campaigns with no shared audience signals, high CPC variation, and no creative consistency.</div>
       </div>
-      <div class="c3col">
-        <div class="c3">
-          <div class="c3-lbl">Situation</div>
-          <div class="c3-txt">Fragmented per-location campaigns with no GA4 audience signals. High CPC variation. No creative consistency. Budgets running independently with no shared learning.</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Action</div>
-          <div class="c3-txt"><strong>Individual PMax per outlet</strong> with store-specific asset groups, GA4 past-convertor signals, Target CPA bidding. Negative keyword lists and A/B creative tests refreshed every 4 weeks.</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Result</div>
-          <div class="c3-txt">Microtouch Aug'24: <strong>3,812 conv, ₹4.73 CPA, ₹0.38 CPC</strong>. Airport Nov'24: <strong>3,182 conv, 5.46% CTR, ₹0.25 CPC</strong>. T Nagar Oct'25: 3,649 conv, 6.29% CTR.</div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Approach</div>
+        <div class="ecase-col-text"><strong>Individual PMax per outlet</strong> — store-specific asset groups, GA4 past-convertor audience signals fed into each campaign, Target CPA bidding. Negative keyword lists and A/B creative tests refreshed every 4 weeks to maintain signal quality and prevent audience fatigue.</div>
       </div>
-      <div>
-        <div class="c-sec">Top Campaign Results</div>
-        <div class="cres">
-          <div class="cr"><span class="cr-v num">3,812</span><div class="cr-k">Microtouch Conv.</div></div>
-          <div class="cr"><span class="cr-v num">₹4.73</span><div class="cr-k">Microtouch CPA</div></div>
-          <div class="cr"><span class="cr-v num">₹0.25</span><div class="cr-k">Lowest CPC Hit</div></div>
-          <div class="cr"><span class="cr-v num">6.29%</span><div class="cr-k">Peak CTR</div></div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">What Happened</div>
+        <div class="ecase-col-text">Microtouch Aug'24: <strong>3,812 conv, ₹4.73 CPA, ₹0.38 CPC</strong>. Airport Nov'24: <strong>3,182 conv, 5.46% CTR, ₹0.25 CPC</strong>. T Nagar Oct'25: <strong>3,649 conv, 6.29% CTR</strong>. 1,28,000+ total conversions across the network at ₹11.30 brand avg. CPA.</div>
       </div>
+    </div>
+    <div class="ecase-results">
+      <div class="ecase-result"><span class="er-n">1,28,000+</span><div class="er-l">Total Conversions</div></div>
+      <div class="ecase-result"><span class="er-n">₹11.30</span><div class="er-l">Brand Avg. CPA</div></div>
+      <div class="ecase-result"><span class="er-n">₹0.25</span><div class="er-l">Lowest CPC Hit</div></div>
+      <div class="ecase-result"><span class="er-n">6.29%</span><div class="er-l">Peak CTR</div></div>
     </div>
   </div>
 
   <!-- CASE 3: DELL -->
-  <div class="case reveal" id="case-dell">
-    <div class="case-l">
+  <div class="ecase reveal" id="case-dell">
+    <div class="ecase-hero">
       <div>
-        <div class="rtag rtag-india">🇮🇳 India Campaign</div>
-        <div class="c-brand">Dell · Dotcom Chennai</div>
-        <div class="c-title">39,055 Conversions at ₹16.33 CPA</div>
-        <div class="c-badge">Performance Max</div>
+        <div class="ecase-region-tag rt-india">🇮🇳 India · Performance Max</div>
+        <div class="ecase-brand-tag">Dell · Dotcom Chennai Network</div>
+        <h2 class="ecase-h2">Consistent <em>3–5% CTR</em> across 6 Chennai outlets — 39,055 conversions at ₹16.33 CPA.</h2>
+        <div class="ecase-badge">Multi-location outlet campaigns</div>
       </div>
-      <div class="c-ms">
-        <div class="cms"><div class="cms-v num">39,055</div><div class="cms-k">Total Conversions</div></div>
-        <div class="cms"><div class="cms-v num">₹16.33</div><div class="cms-k">Brand Avg. CPA</div></div>
-        <div class="cms"><div class="cms-v num">3.70%</div><div class="cms-k">Avg. CTR</div></div>
+      <div class="ecase-hero-right">
+        <div class="ecase-hero-num">39,055</div>
+        <div class="ecase-hero-label">Conversions</div>
       </div>
     </div>
-    <div class="case-r">
-      <div>
-        <div class="c-sec">Overview</div>
-        <div class="c-body"><p>Managed Performance Max campaigns across the Dell Dotcom outlet network in Chennai — Alwarpet, Express Mall Mountroad, Marina Mall, Palavakkam, T Nagar, and VR Mall Annanagar. Consistent 3–5% CTR maintained through seasonal asset refresh, bid strategy tuning, and audience signal layering across all locations.</p></div>
+    <div class="ecase-body">
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Problem</div>
+        <div class="ecase-col-text">Dell Dotcom outlet network across Chennai — Alwarpet, Express Mall Mountroad, Marina Mall, Palavakkam, T Nagar, VR Mall Annanagar — each needing individual campaign management with consistent quality standards across seasonal peaks and budget fluctuations.</div>
       </div>
-      <div class="c3col">
-        <div class="c3">
-          <div class="c3-lbl">Alwarpet Nov'24</div>
-          <div class="c3-txt"><strong>3,153 conversions</strong> · ₹34,746 spend · 4.66% CTR · ₹11.02 CPA</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">VR Mall Jun'25</div>
-          <div class="c3-txt"><strong>1,504 conversions</strong> · 5.50% CTR · ₹0.41 CPC · ₹15.95 CPA</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Palavakkam Jan'25</div>
-          <div class="c3-txt"><strong>1,239 conversions</strong> · 3.52% CTR · ₹0.71 CPC · ₹11.20 CPA</div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Approach</div>
+        <div class="ecase-col-text">Maintained consistent 3–5% CTR across all locations through <strong>seasonal asset refresh cycles</strong>, bid strategy tuning to local demand signals, and audience signal layering at the outlet level. Call ads added as a parallel conversion path at high-intent locations.</div>
       </div>
-      <div>
-        <div class="c-sec">Brand Totals</div>
-        <div class="cres">
-          <div class="cr"><span class="cr-v num">39,055</span><div class="cr-k">Total Conv.</div></div>
-          <div class="cr"><span class="cr-v num">₹16.33</span><div class="cr-k">Avg. CPA</div></div>
-          <div class="cr"><span class="cr-v num">7,48,500</span><div class="cr-k">Total Clicks</div></div>
-          <div class="cr"><span class="cr-v num">3.70%</span><div class="cr-k">Avg. CTR</div></div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">What Happened</div>
+        <div class="ecase-col-text">Alwarpet Nov'24: <strong>3,153 conv, 4.66% CTR, ₹11.02 CPA</strong>. VR Mall Jun'25: <strong>1,504 conv, 5.50% CTR</strong>. Palavakkam Jan'25: <strong>1,239 conv, ₹11.20 CPA</strong>. 39,055 total conversions at ₹16.33 brand avg. CPA across the network.</div>
       </div>
+    </div>
+    <div class="ecase-results">
+      <div class="ecase-result"><span class="er-n">39,055</span><div class="er-l">Total Conversions</div></div>
+      <div class="ecase-result"><span class="er-n">₹16.33</span><div class="er-l">Avg. CPA</div></div>
+      <div class="ecase-result"><span class="er-n">7,48,500</span><div class="er-l">Total Clicks</div></div>
+      <div class="ecase-result"><span class="er-n">3.70%</span><div class="er-l">Avg. CTR</div></div>
     </div>
   </div>
 
-  <!-- CASE 4: LENOVO APAC — GBP + PAID CAMPAIGN PHILIPPINES -->
-  <div class="case reveal" id="case-lenovo-apac">
-    <div class="case-l">
+  <!-- CASE 4: LENOVO APAC -->
+  <div class="ecase reveal" id="case-lenovo-apac">
+    <div class="ecase-hero">
       <div>
-        <div class="rtag rtag-apac">🌏 APAC Campaign</div>
-        <div class="c-brand">Lenovo · APAC SPOC</div>
-        <div class="c-title">GBP Optimisation &amp; Paid Campaign Strategy — APAC &amp; Philippines</div>
-        <div class="c-badge">GBP Optimisation + Google Ads PMax</div>
+        <div class="ecase-region-tag rt-apac">🌏 APAC · GBP + Google Ads</div>
+        <div class="ecase-brand-tag">Lenovo · APAC SPOC</div>
+        <h2 class="ecase-h2">250+ broken listings across APAC turned into a <em>+15% discoverability</em> gain — plus a paid campaign in the Philippines.</h2>
+        <div class="ecase-badge">Multi-market GBP + PMax</div>
       </div>
-      <div class="c-ms">
-        <div class="cms"><div class="cms-v num">250+</div><div class="cms-k">GBP Profiles Managed</div></div>
-        <div class="cms"><div class="cms-v num">+15%</div><div class="cms-k">APAC Discoverability</div></div>
-        <div class="cms"><div class="cms-v">PH</div><div class="cms-k">Philippines Paid Campaign</div></div>
+      <div class="ecase-hero-right">
+        <div class="ecase-hero-num">+15%</div>
+        <div class="ecase-hero-label">APAC Discoverability</div>
       </div>
     </div>
-    <div class="case-r">
-      <div>
-        <div class="c-sec">The Challenge</div>
-        <div class="c-body"><p>As Lenovo's APAC SPOC, inherited 250+ Google Business Profile listings across partner retail outlets in Southeast Asia and the broader APAC region — inconsistent NAP data, missing attributes, low review engagement suppressing local map pack visibility. Separately tasked with running paid Google Ads campaigns (PMax) on Lenovo's APAC store locator — <strong>locate.lenovo.com</strong> — targeting the <strong>Philippines market</strong> for awareness and store locator traffic.</p></div>
+    <div class="ecase-body">
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Problem</div>
+        <div class="ecase-col-text">Inherited 250+ Lenovo Google Business Profile listings across Southeast Asia and the broader APAC region — inconsistent NAP data, missing store hours, zero attribute setup, no review response protocol. Listings were suppressing local map pack visibility across markets. Separately, needed to drive awareness to Lenovo's store locator in the Philippines.</div>
       </div>
-      <div class="c3col">
-        <div class="c3">
-          <div class="c3-lbl">Situation</div>
-          <div class="c3-txt">250+ Lenovo APAC listings with inconsistent NAP data, missing attributes, low review engagement — suppressing local map pack visibility across APAC markets.</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Action</div>
-          <div class="c3-txt">Full GBP audit across all 250+ listings. Built <strong>standardisation playbook</strong> — NAP alignment, keyword-rich descriptions, service attributes, monthly photo cadence, review response templates. Launched <strong>PMax on locate.lenovo.com</strong> targeting Philippines for store locator awareness.</div>
-        </div>
-        <div class="c3">
-          <div class="c3-lbl">Result</div>
-          <div class="c3-txt"><strong>+15% increase in APAC local discoverability.</strong> GBP playbook adopted across all locations. Philippines PMax campaign drove measurable traffic to Lenovo's store locator.</div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">The Approach</div>
+        <div class="ecase-col-text">Full audit of all 250+ listings. Built a <strong>GBP standardisation playbook</strong> — NAP alignment, keyword-rich descriptions, service attribute setup, monthly photo cadence, and a review response template system. Launched <strong>PMax on locate.lenovo.com</strong> targeting the Philippines market for store locator awareness and traffic (Dec 2025).</div>
       </div>
-      <div>
-        <div class="c-sec">Key Outcomes</div>
-        <div class="cres">
-          <div class="cr"><span class="cr-v num">250+</span><div class="cr-k">APAC Listings Audited</div></div>
-          <div class="cr"><span class="cr-v num">+15%</span><div class="cr-k">Local Discoverability</div></div>
-          <div class="cr"><span class="cr-v">PMax</span><div class="cr-k">locate.lenovo.com</div></div>
-          <div class="cr"><span class="cr-v">PH</span><div class="cr-k">Philippines Market</div></div>
-        </div>
+      <div class="ecase-col">
+        <div class="ecase-col-label">What Happened</div>
+        <div class="ecase-col-text"><strong>+15% increase in local discoverability</strong> across APAC markets. GBP standardisation playbook adopted across all 250+ Lenovo locations. Philippines PMax campaign on locate.lenovo.com drove measurable awareness and store locator traffic in the market.</div>
       </div>
+    </div>
+    <div class="ecase-results">
+      <div class="ecase-result"><span class="er-n">250+</span><div class="er-l">Listings Audited</div></div>
+      <div class="ecase-result"><span class="er-n">+15%</span><div class="er-l">Discoverability</div></div>
+      <div class="ecase-result"><span class="er-n">PMax</span><div class="er-l">locate.lenovo.com</div></div>
+      <div class="ecase-result"><span class="er-n">PH</span><div class="er-l">Philippines Market</div></div>
     </div>
   </div>
 
 </div>
 </section>
 
-<!-- BRAND TABLE -->
-<section class="section" id="brands" style="background:var(--surface)">
+<!-- BRAND COMPARISON -->
+<section class="section brands-section" id="brands">
 <div class="section-inner">
-  <div class="sec-hdr reveal"><span class="sec-num">04</span><h2 class="sec-title">Brand <em>Performance</em></h2><div class="sec-rule"></div></div>
-  <p class="scroll-hint">← Scroll table horizontally to see all columns</p>
-  <div class="reveal">
-    <div class="btbl-wrap">
-      <table class="btbl">
-        <thead>
-          <tr>
-            <th>Brand</th><th>Conversions</th><th>Ad Spend (₹)</th><th>Clicks</th><th>Avg. CPA (₹)</th><th>Avg. CTR</th><th>Avg. CPC (₹)</th><th>Campaign Type</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td class="bn2">ICB (Indian Craft Brewery)</td><td class="hl num">1,64,367</td><td class="num">7,53,214</td><td class="num">2,77,432</td><td class="hl num">4.58</td><td>5.32%</td><td class="num">2.71</td><td>Search + PMax · India</td></tr>
-          <tr><td class="bn2">Acer</td><td class="hl num">1,28,000+</td><td class="num">14,46,091</td><td class="num">26,87,122</td><td class="hl num">11.30</td><td>4.25%</td><td class="num">0.54</td><td>PMax · multi-outlet India</td></tr>
-          <tr><td class="bn2">Best Sports Goods</td><td class="hl num">43,254</td><td class="num">43,16,242</td><td class="num">14,00,025</td><td class="num">99.79</td><td>2.10%</td><td class="num">3.08</td><td>PMax + Smart · eCommerce</td></tr>
-          <tr><td class="bn2">Dell</td><td class="hl num">39,055</td><td class="num">6,37,857</td><td class="num">7,48,500</td><td class="hl num">16.33</td><td>3.70%</td><td class="num">0.85</td><td>PMax · Chennai outlets</td></tr>
-          <tr><td class="bn2">Lenovo (India PMax)</td><td class="hl num">20,056</td><td class="num">3,07,894</td><td class="num">3,58,632</td><td class="hl num">15.35</td><td>4.59%</td><td class="num">0.86</td><td>PMax India + APAC GBP mgmt</td></tr>
-          <tr><td class="bn2">Asus</td><td class="num">7,983</td><td class="num">1,70,466</td><td class="num">1,51,126</td><td class="num">21.35</td><td>2.86%</td><td class="num">1.13</td><td>PMax · Dotcom outlets</td></tr>
-          <tr><td class="bn2">MSI</td><td class="num">4,304</td><td class="num">77,334</td><td class="num">88,384</td><td class="num">17.97</td><td>3.66%</td><td class="num">0.87</td><td>PMax India + GBP APAC</td></tr>
-        </tbody>
-      </table>
+  <div class="section-label">All brands · campaign performance</div>
+  <div class="brand-bars reveal">
+    <div class="bbar-hdr">
+      <span>Brand</span>
+      <span>Conversions (relative)</span>
+      <span>Total Conv.</span>
+      <span>Avg. CPA</span>
     </div>
-    <p class="data-note">All figures from Google Ads Campaign Report (194 campaigns). Lenovo figures = India paid campaigns only; APAC GBP work (Philippines locate.lenovo.com + MSI) is separate. Best Sports CPA is high due to eCommerce product value.</p>
+    <div class="bbar-row">
+      <div class="bbar-name">ICB</div>
+      <div class="bbar-track"><div class="bbar-fill" data-width="100"></div></div>
+      <div class="bbar-conv">1,64,367</div>
+      <div class="bbar-cpa">₹4.58</div>
+    </div>
+    <div class="bbar-row">
+      <div class="bbar-name">Acer</div>
+      <div class="bbar-track"><div class="bbar-fill" data-width="78"></div></div>
+      <div class="bbar-conv">1,28,000+</div>
+      <div class="bbar-cpa">₹11.30</div>
+    </div>
+    <div class="bbar-row">
+      <div class="bbar-name">Best Sports</div>
+      <div class="bbar-track"><div class="bbar-fill alt" data-width="26"></div></div>
+      <div class="bbar-conv">43,254</div>
+      <div class="bbar-cpa">₹99.79*</div>
+    </div>
+    <div class="bbar-row">
+      <div class="bbar-name">Dell</div>
+      <div class="bbar-track"><div class="bbar-fill" data-width="24"></div></div>
+      <div class="bbar-conv">39,055</div>
+      <div class="bbar-cpa">₹16.33</div>
+    </div>
+    <div class="bbar-row">
+      <div class="bbar-name">Lenovo</div>
+      <div class="bbar-track"><div class="bbar-fill" data-width="12"></div></div>
+      <div class="bbar-conv">20,056</div>
+      <div class="bbar-cpa">₹15.35</div>
+    </div>
+    <div class="bbar-row">
+      <div class="bbar-name">Asus</div>
+      <div class="bbar-track"><div class="bbar-fill" data-width="5"></div></div>
+      <div class="bbar-conv">7,983</div>
+      <div class="bbar-cpa">₹21.35</div>
+    </div>
+    <div class="bbar-row">
+      <div class="bbar-name">MSI</div>
+      <div class="bbar-track"><div class="bbar-fill" data-width="3"></div></div>
+      <div class="bbar-conv">4,304</div>
+      <div class="bbar-cpa">₹17.97</div>
+    </div>
+  </div>
+  <p style="font-size:.66rem;color:rgba(255,255,255,.2);margin-top:20px;font-style:italic">* Best Sports CPA is high due to eCommerce product value basis. All figures from Google Ads Campaign Report (194 campaigns).</p>
+</div>
+</section>
+
+<!-- CAREER -->
+<section class="section growth-section" id="career">
+<div class="section-inner">
+  <div class="section-label">Career progression</div>
+  <div class="growth-grid reveal">
+
+    <!-- AM role — dark card, full left column -->
+    <div class="growth-card dark">
+      <div class="gc-focus gc-focus-lead">Current · Leadership</div>
+      <div class="gc-period">Jul 2025 – Present</div>
+      <div class="gc-role">Assistant Manager – Performance Marketing</div>
+      <div class="gc-company">HashConnect Integrated Services · Bengaluru</div>
+      <ul class="gc-points">
+        <li>Lead and mentor a <strong>6-member performance marketing team</strong> — KPI reviews, feedback cycles, cross-brand planning for Lenovo, Dell, Acer, Asus &amp; MSI.</li>
+        <li>Drive paid media strategy across 250+ retail partner outlets — <strong>4,08,708 conversions at ₹19.42 avg. CPA</strong> from ₹79.38L ad spend.</li>
+        <li>Ran <strong>paid PMax campaign on locate.lenovo.com (Dec 2025)</strong> — Philippines market, awareness and store locator traffic objective.</li>
+        <li>Maintain <strong>3.34% avg. CTR</strong> across 17.22Cr+ impressions via A/B testing, segmentation &amp; GTM + GA4 tracking.</li>
+        <li>Manage AiSensy WhatsApp &amp; Marketo email flows. Use Claude &amp; ChatGPT for copy, briefs &amp; reporting.</li>
+      </ul>
+    </div>
+
+    <!-- Right column: two stacked cards -->
+    <div style="display:flex;flex-direction:column;gap:2px">
+      <div class="growth-card">
+        <div class="gc-focus gc-focus-build">Ownership &amp; System-Building</div>
+        <div class="gc-period">Aug 2022 – Jul 2025</div>
+        <div class="gc-role">Digital Marketing Executive → Senior Executive</div>
+        <div class="gc-company">HashConnect Integrated Services · Bengaluru</div>
+        <ul class="gc-points">
+          <li>Executed and scaled <strong>multi-brand Google Ads &amp; Meta campaigns</strong> — 194 campaigns, Acer, Dell, Asus, MSI, ICB &amp; Lenovo.</li>
+          <li>Built and owned <strong>Lenovo APAC GBP mandate</strong> — 250+ listings audited, standardisation playbook created, +15% discoverability.</li>
+          <li>Built Britannia's <strong>Shopify store end-to-end</strong>. Architected GTM + GA4 tracking. Introduced Target CPA &amp; ROAS bidding.</li>
+          <li>Progressed from campaign execution to <strong>team mentorship</strong> — led reviews, trained juniors, promoted to AM.</li>
+        </ul>
+      </div>
+      <div class="growth-card mini">
+        <div class="gc-period">2019 – 2021</div>
+        <div class="gc-role">Marketing Executive</div>
+        <div class="gc-company">Vyram Constructions &amp; CDG Certification · Bengaluru</div>
+        <ul class="gc-points">
+          <li>B2B lead generation via digital outreach &amp; CRM pipeline management. Sales support — proposals &amp; client relationship activities.</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </div>
 </section>
 
-<!-- TOOLS -->
-<section class="section" id="tools" style="background:var(--cream)">
+<!-- SKILLS -->
+<section class="section skills-section" id="skills">
 <div class="section-inner">
-  <div class="sec-hdr reveal"><span class="sec-num">05</span><h2 class="sec-title">Skills &amp; <em>Tools</em></h2><div class="sec-rule"></div></div>
-  <div class="tgrid reveal">
-    <div class="tcat">
-      <div class="tcat-name">Paid Media</div>
-      <div class="tlist">
-        <div class="titem">Google Ads Search</div>
-        <div class="titem">Performance Max (PMax)</div>
-        <div class="titem">Display Campaigns</div>
-        <div class="titem">Meta Ads (Facebook + Instagram)</div>
-        <div class="titem">Shopping Campaigns</div>
-        <div class="titem">Demand Gen</div>
-        <div class="titem">Target CPA / ROAS Bidding</div>
-        <div class="titem">A/B Testing &amp; CRO</div>
-        <div class="titem">CPL Optimisation</div>
+  <div class="section-label">Skills &amp; tools</div>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-name">Paid Media</div>
+      <div class="skill-list">
+        <div class="skill-item">Google Ads Search</div>
+        <div class="skill-item">Performance Max (PMax)</div>
+        <div class="skill-item">Display &amp; Demand Gen</div>
+        <div class="skill-item">Meta Ads (FB + IG)</div>
+        <div class="skill-item">Shopping Campaigns</div>
+        <div class="skill-item">Target CPA / ROAS Bidding</div>
+        <div class="skill-item">A/B Testing &amp; CRO</div>
+        <div class="skill-item">CPL Optimisation</div>
       </div>
     </div>
-    <div class="tcat">
-      <div class="tcat-name">Analytics &amp; Tracking</div>
-      <div class="tlist">
-        <div class="titem">Google Analytics 4 (GA4)</div>
-        <div class="titem">Google Tag Manager</div>
-        <div class="titem">Looker Studio Dashboards</div>
-        <div class="titem">Google Search Console</div>
-        <div class="titem">Conversion Tracking Setup</div>
-        <div class="titem">Meta Pixel</div>
-        <div class="titem">Google Ads Editor</div>
-        <div class="titem">Google Business Profile (GBP)</div>
-        <div class="titem">Audience Segmentation</div>
+    <div class="skill-card">
+      <div class="skill-card-name">Analytics &amp; Tracking</div>
+      <div class="skill-list">
+        <div class="skill-item">Google Analytics 4 (GA4)</div>
+        <div class="skill-item">Google Tag Manager</div>
+        <div class="skill-item">Looker Studio Dashboards</div>
+        <div class="skill-item">Google Search Console</div>
+        <div class="skill-item">Conversion Tracking Setup</div>
+        <div class="skill-item">Meta Pixel</div>
+        <div class="skill-item">Google Ads Editor</div>
+        <div class="skill-item">Audience Segmentation</div>
       </div>
     </div>
-    <div class="tcat">
-      <div class="tcat-name">Automation &amp; AI</div>
-      <div class="tlist">
-        <div class="titem">ChatGPT (copy &amp; briefs)</div>
-        <div class="titem">Claude (analysis &amp; reporting)</div>
-        <div class="titem">Perplexity (research)</div>
-        <div class="titem">Gamma (presentations)</div>
-        <div class="titem">AiSensy (WhatsApp flows)</div>
-        <div class="titem">Marketo (email sequences)</div>
-        <div class="titem">Shopify (store + management)</div>
-        <div class="titem">Team Leadership · 6 members</div>
+    <div class="skill-card">
+      <div class="skill-card-name">GBP &amp; Local</div>
+      <div class="skill-list">
+        <div class="skill-item">Google Business Profile</div>
+        <div class="skill-item">NAP Standardisation</div>
+        <div class="skill-item">APAC Multi-market GBP</div>
+        <div class="skill-item">Review Response Strategy</div>
+        <div class="skill-item">Local Map Pack Optimisation</div>
+        <div class="skill-item">Attribute Setup</div>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-name">Automation &amp; AI</div>
+      <div class="skill-list">
+        <div class="skill-item">ChatGPT (copy &amp; briefs)</div>
+        <div class="skill-item">Claude (analysis &amp; reporting)</div>
+        <div class="skill-item">Perplexity (research)</div>
+        <div class="skill-item">AiSensy (WhatsApp flows)</div>
+        <div class="skill-item">Marketo (email sequences)</div>
+        <div class="skill-item">Shopify (store management)</div>
+        <div class="skill-item">Team Leadership · 6 members</div>
       </div>
     </div>
   </div>
-  <div style="margin-top:22px;padding:22px 26px;border:1px solid var(--rule);background:#fff;display:flex;gap:44px;flex-wrap:wrap;" class="reveal">
-    <div>
-      <div style="font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:7px">Certifications</div>
-      <div style="font-size:.85rem;color:var(--mid)">Google Ads Certified · Google Analytics Certified · Digital Marketing Certification</div>
-    </div>
-    <div>
-      <div style="font-size:.6rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--red);margin-bottom:7px">Education</div>
-      <div style="font-size:.85rem;color:var(--mid)">MBA – Marketing, Jain University (2018) · B.Com, Jain University (2016)</div>
-    </div>
+  <div class="certs-bar reveal">
+    <div class="cert-item">Google Ads Certified (Skillshop)</div>
+    <div class="cert-item">Google Analytics Certified (Skillshop)</div>
+    <div class="cert-item">Digital Marketing Certification</div>
+    <div class="cert-item" style="margin-left:auto;color:rgba(255,255,255,.3)">MBA – Marketing · Jain University 2018</div>
   </div>
 </div>
 </section>
 
 <!-- CONTACT -->
-<section class="section" id="contact" style="padding-bottom:0">
+<section class="section contact-section" id="contact">
 <div class="section-inner">
-  <div class="sec-hdr reveal"><span class="sec-num">06</span><h2 class="sec-title">Get in <em>Touch</em></h2><div class="sec-rule"></div></div>
-  <div class="cgrid reveal">
-    <div class="c-lp">
-      <h3 class="c-hl">Let's talk <em>performance</em>.</h3>
-      <p class="c-dc">Looking to drive more conversions, lower your CPA, or build a multi-brand paid media operation? Available for VP, Director, Senior Manager roles and select consulting engagements.</p>
-      <div class="cdet">
-        <div class="cdi">
-          <div class="cdilbl">Email</div>
-          <a href="mailto:ajay.chakravarthy.hj@gmail.com" class="cdiv">ajay.chakravarthy.hj@gmail.com</a>
-        </div>
-        <div class="cdi">
-          <div class="cdilbl">LinkedIn</div>
-          <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="cdiv">linkedin.com/in/ajay-chakravarthy-h-j</a>
-        </div>
-        <div class="cdi">
-          <div class="cdilbl">Location</div>
-          <span class="cdiv">Bengaluru, India</span>
+  <div class="contact-grid">
+    <div>
+      <h2 class="contact-h">Let's talk <em>performance</em>.</h2>
+      <p class="contact-sub">Looking to drive more conversions, lower your CPA, or build a multi-brand paid media operation? Available for Senior Manager, Director, and VP roles.</p>
+      <div class="contact-links">
+        <a href="mailto:ajay.hulikallu@gmail.com" class="contact-link">
+          <span class="cl-label">Email</span>
+          <span class="cl-value">ajay.hulikallu@gmail.com</span>
+        </a>
+        <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" class="contact-link">
+          <span class="cl-label">LinkedIn</span>
+          <span class="cl-value">linkedin.com/in/ajay-chakravarthy-h-j</span>
+        </a>
+        <div class="contact-link">
+          <span class="cl-label">Location</span>
+          <span class="cl-value" style="cursor:default">Bengaluru, India</span>
         </div>
       </div>
     </div>
-    <div class="c-rp">
-      <div class="crstat"><span class="crk">Experience</span><span class="crv">3+ Years</span></div>
-      <div class="crstat"><span class="crk">Brands Managed</span><span class="crv">Lenovo, Dell, Acer, Asus, MSI +</span></div>
-      <div class="crstat"><span class="crk">Total Conversions</span><span class="crv num">4,09,471</span></div>
-      <div class="crstat"><span class="crk">Avg. CPA</span><span class="crv num">₹19.42</span></div>
-      <div class="crstat"><span class="crk">Avg. CTR</span><span class="crv num">3.35% · 17.25Cr impressions</span></div>
-      <div class="crstat"><span class="crk">Team Led</span><span class="crv">6 Members</span></div>
-      <div class="crstat"><span class="crk">GBP Profiles</span><span class="crv">250+ · Lenovo APAC + MSI India</span></div>
-      <div class="crstat"><span class="crk">APAC Paid Campaign</span><span class="crv">Philippines · locate.lenovo.com</span></div>
+    <div class="contact-stats">
+      <div class="cstat"><span class="cstat-k">Experience</span><span class="cstat-v">3+ Years</span></div>
+      <div class="cstat"><span class="cstat-k">Brands Managed</span><span class="cstat-v">Lenovo · Dell · Acer · Asus · MSI +</span></div>
+      <div class="cstat"><span class="cstat-k">Total Conversions</span><span class="cstat-v">4,08,708</span></div>
+      <div class="cstat"><span class="cstat-k">Avg. CPA</span><span class="cstat-v">₹19.42</span></div>
+      <div class="cstat"><span class="cstat-k">Avg. CTR</span><span class="cstat-v">3.34% · 17.22Cr impressions</span></div>
+      <div class="cstat"><span class="cstat-k">Team Led</span><span class="cstat-v">6 Members</span></div>
+      <div class="cstat"><span class="cstat-k">GBP Profiles</span><span class="cstat-v">250+ · Lenovo APAC + MSI India</span></div>
+      <div class="cstat"><span class="cstat-k">APAC Paid Campaign</span><span class="cstat-v">Philippines · locate.lenovo.com</span></div>
     </div>
   </div>
 </div>
 </section>
 
 <footer>
-  <div class="fn">Ajay Chakravarthy H J</div>
-  <div class="fc">Performance Marketing Specialist · Bengaluru, India · All figures from Google Ads Campaign Report (194 campaigns)</div>
+  <span class="fn">Ajay Chakravarthy H J</span>
+  <span class="fc">Performance Marketing Specialist · Bengaluru · All figures from Google Ads Campaign Report (194 campaigns)</span>
 </footer>
 
 <script>
+// Reveal on scroll
 const obs = new IntersectionObserver((entries) => {
   entries.forEach(e => {
-    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      obs.unobserve(e.target);
+    }
   });
-}, {threshold: 0.1});
+}, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Number count-up for hero
+function countUp(el, target, duration = 2000) {
+  const start = performance.now();
+  const fmt = n => Math.floor(n).toLocaleString('en-IN');
+  function step(now) {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const ease = 1 - Math.pow(1 - progress, 3);
+    el.textContent = fmt(target * ease);
+    if (progress < 1) requestAnimationFrame(step);
+    else el.textContent = fmt(target);
+  }
+  requestAnimationFrame(step);
+}
+
+// Trigger count-up when hero is visible
+const heroObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const el = e.target.querySelector('[data-target]');
+      if (el) countUp(el, parseInt(el.dataset.target), 2200);
+      heroObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll('.hstat').forEach(el => heroObs.observe(el));
+
+// Animate bar fills when brand section visible
+const barObs = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.bbar-fill').forEach(bar => {
+        bar.style.width = bar.dataset.width + '%';
+      });
+      e.target.querySelectorAll('.ncard').forEach(card => {
+        card.classList.add('visible');
+      });
+      barObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.brand-bars, .numbers-grid').forEach(el => barObs.observe(el));
 </script>
 </body>
 </html>
