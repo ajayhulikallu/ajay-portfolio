@@ -79,6 +79,8 @@ body { background: var(--cream); color: var(--ink); font-family: 'Outfit', sans-
   text-decoration: none; border: 1px solid rgba(255,255,255,.2); transition: border-color .2s, color .2s;
 }
 .btn-ghost:hover { border-color: rgba(255,255,255,.6); color: #fff; }
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 28px; }
+.hero-tag { font-size: .64rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,.4); border: 1px solid rgba(255,255,255,.12); padding: 5px 12px; }
 
 /* Hero stats panel */
 .hero-r {
@@ -172,7 +174,7 @@ body { background: var(--cream); color: var(--ink); font-family: 'Outfit', sans-
   display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: end;
 }
 .ecase-brand-tag { font-size: .62rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--red); margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
-.ecase-h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3.5vw, 3rem); font-weight: 900; color: #fff; line-height: 1.05; letter-spacing: -.02em; max-width: 640px; }
+.ecase-h2 { font-family: 'Outfit', sans-serif; font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 700; color: #fff; line-height: 1.15; letter-spacing: -.01em; max-width: 640px; }
 .ecase-h2 em { font-style: italic; color: var(--red); }
 .ecase-hero-right { text-align: right; flex-shrink: 0; }
 .ecase-hero-num { font-family: 'DM Mono', monospace; font-size: 3.2rem; font-weight: 500; color: #fff; line-height: 1; }
@@ -365,12 +367,18 @@ footer { background: #000; padding: 20px 64px; display: flex; justify-content: s
     <p class="hero-desc">
       <strong>4,08,708 conversions. ₹79.38L managed. ₹19.42 avg. CPA.</strong><br>
       3+ years running paid media for Lenovo, Dell, Acer, Asus &amp; MSI across India —
-      plus Lenovo's APAC SPOC managing 250+ Google Business Profiles and
-      paid campaigns on locate.lenovo.com for the Philippines market.
+      plus Lenovo's APAC SPOC: 250+ GBP profiles managed, SEO across ~12,000 store pages on locate.lenovo.com,
+      and paid awareness campaigns in the Philippines.
     </p>
     <div class="hero-cta">
       <a href="#cases" class="btn-primary">See the work</a>
       <a href="#contact" class="btn-ghost">Get in touch</a>
+    </div>
+    <div class="hero-tags">
+      <span class="hero-tag">Performance Marketing</span>
+      <span class="hero-tag">Google Business Profile</span>
+      <span class="hero-tag">SEO · locate.lenovo.com</span>
+      <span class="hero-tag">Team Leadership · 6</span>
     </div>
   </div>
   <div class="hero-r">
@@ -579,34 +587,87 @@ footer { background: #000; padding: 20px 64px; display: flex; justify-content: s
   <div class="ecase reveal" id="case-lenovo-apac">
     <div class="ecase-hero">
       <div>
-        <div class="ecase-region-tag rt-apac">🌏 APAC · GBP + Google Ads</div>
+        <div class="ecase-region-tag rt-apac">🌏 APAC · Direct Brand Mandate</div>
         <div class="ecase-brand-tag">Lenovo · APAC SPOC</div>
-        <h2 class="ecase-h2">250+ <em>inconsistent</em> listings across APAC standardised — achieving a +15% discoverability gain plus a paid awareness campaign in the Philippines.</h2>
-        <div class="ecase-badge">Multi-market GBP + PMax</div>
+        <h2 class="ecase-h2">Three streams of work — GBP management, SEO, and paid campaigns — across Lenovo's APAC market presence.</h2>
+        <div class="ecase-badge">GBP · SEO · Google Ads PMax</div>
       </div>
       <div class="ecase-hero-right">
         <div class="ecase-hero-num">+15%</div>
         <div class="ecase-hero-label">APAC Discoverability</div>
       </div>
     </div>
-    <div class="ecase-body">
-      <div class="ecase-col">
-        <div class="ecase-col-label">The Problem</div>
-        <div class="ecase-col-text">Inherited 250+ Lenovo Google Business Profile listings across Southeast Asia and the broader APAC region — inconsistent NAP data, missing store hours, incomplete attribute setup, no review response protocol. Listings were suppressing local map pack visibility across markets. Separately, needed to drive awareness to Lenovo's store locator in the Philippines.</div>
+
+    <!-- STREAM 1: GBP -->
+    <div style="background:#fff;border:1px solid var(--rule);border-top:none;border-bottom:none;padding:0">
+      <div style="padding:18px 32px;background:var(--surface);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px">
+        <span style="font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red)">① Google Business Profile (GBP / GMB)</span>
+        <span style="font-size:.58rem;color:var(--muted);margin-left:auto">Lenovo APAC (~200 profiles) + MSI India (~50 profiles) · Exclusive brand stores only</span>
       </div>
-      <div class="ecase-col">
-        <div class="ecase-col-label">The Approach</div>
-        <div class="ecase-col-text">Full audit of all 250+ listings. Built a <strong>GBP standardisation playbook</strong> — NAP alignment, keyword-rich descriptions, service attribute setup, monthly photo cadence, and a review response template system. Launched <strong>PMax on locate.lenovo.com</strong> targeting the Philippines market for store locator awareness and traffic (Dec 2025).</div>
-      </div>
-      <div class="ecase-col">
-        <div class="ecase-col-label">What Happened</div>
-        <div class="ecase-col-text">Philippines PMax campaign on locate.lenovo.com ran as a <strong>store locator awareness campaign</strong> — objective was traffic and visibility, not conversions. 8,488 clicks and 1,35,931 impressions delivered in the Philippines market.</div>
+      <div class="ecase-body" style="border:none;border-bottom:1px solid var(--rule)">
+        <div class="ecase-col">
+          <div class="ecase-col-label">Situation</div>
+          <div class="ecase-col-text">Inherited 250+ Google Business Profile listings — ~200 Lenovo APAC exclusive stores across Southeast Asia and ~50 MSI India stores. Listings had inconsistent NAP data, missing store hours, incomplete attributes, and no review response protocol, suppressing local map pack visibility.</div>
+        </div>
+        <div class="ecase-col">
+          <div class="ecase-col-label">Work Done</div>
+          <div class="ecase-col-text">Full audit of all 250+ listings. Built a <strong>GBP standardisation playbook</strong> — NAP alignment, keyword-rich descriptions, service attribute setup, monthly photo cadence, and review response templates. Applied across all Lenovo APAC and MSI India locations.</div>
+        </div>
+        <div class="ecase-col">
+          <div class="ecase-col-label">Outcome</div>
+          <div class="ecase-col-text"><strong>+15% improvement in local search discoverability</strong> across APAC markets. Standardisation playbook adopted across all 250+ locations. Exclusive brand store listings now consistent, complete, and actively managed.</div>
+        </div>
       </div>
     </div>
+
+    <!-- STREAM 2: SEO -->
+    <div style="background:#fff;border:1px solid var(--rule);border-top:none;border-bottom:none;padding:0">
+      <div style="padding:18px 32px;background:var(--surface);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px">
+        <span style="font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red)">② SEO — locate.lenovo.com</span>
+        <span style="font-size:.58rem;color:var(--muted);margin-left:auto">~12,000 stores · 16 countries · 2024–2025</span>
+      </div>
+      <div class="ecase-body" style="border:none;border-bottom:1px solid var(--rule)">
+        <div class="ecase-col">
+          <div class="ecase-col-label">On-Page SEO</div>
+          <div class="ecase-col-text">Optimised meta titles and meta descriptions for individual store pages across locate.lenovo.com — covering ~12,000 stores spanning 16 countries. Added <strong>5 nearby landmarks per store page</strong> to improve local relevance and help pages rank for location-based searches.</div>
+        </div>
+        <div class="ecase-col">
+          <div class="ecase-col-label">Technical SEO</div>
+          <div class="ecase-col-text">Identified and resolved crawlability issues affecting store page indexation. Improved page load performance for key store listing pages. Ensured structured data was correctly implemented for local business schema across store pages.</div>
+        </div>
+        <div class="ecase-col">
+          <div class="ecase-col-label">Off-Page SEO</div>
+          <div class="ecase-col-text">Built local citations for store pages to strengthen NAP consistency across the web. Supported link-building efforts targeting regional market pages within the store locator to improve domain authority for country-specific store pages.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STREAM 3: PAID CAMPAIGN -->
+    <div style="background:#fff;border:1px solid var(--rule);border-top:none;padding:0">
+      <div style="padding:18px 32px;background:var(--surface);border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:10px">
+        <span style="font-size:.58rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--red)">③ Paid Campaign — Philippines Store Locator</span>
+        <span style="font-size:.58rem;color:var(--muted);margin-left:auto">Google Ads PMax · Dec 2025 · Awareness objective</span>
+      </div>
+      <div class="ecase-body" style="border:none">
+        <div class="ecase-col">
+          <div class="ecase-col-label">Objective</div>
+          <div class="ecase-col-text">Drive awareness and traffic to Lenovo's APAC store locator (locate.lenovo.com) in the Philippines market. Campaign objective was store locator visibility and traffic — not conversions.</div>
+        </div>
+        <div class="ecase-col">
+          <div class="ecase-col-label">Execution</div>
+          <div class="ecase-col-text">Launched a <strong>Performance Max campaign targeting the Philippines</strong> on locate.lenovo.com. Designed creatives and audience signals to reach users looking to find the nearest Lenovo store in-country.</div>
+        </div>
+        <div class="ecase-col">
+          <div class="ecase-col-label">Outcome</div>
+          <div class="ecase-col-text"><strong>8,488 clicks and 1,35,931 impressions</strong> delivered in the Philippines market. Campaign ran as an awareness initiative — store locator traffic was the primary success metric, not conversion volume.</div>
+        </div>
+      </div>
+    </div>
+
     <div class="ecase-results">
-      <div class="ecase-result"><span class="er-n">250+</span><div class="er-l">Listings Audited</div></div>
-      <div class="ecase-result"><span class="er-n">+15%</span><div class="er-l">Discoverability</div></div>
-      <div class="ecase-result"><span class="er-n">PMax</span><div class="er-l">locate.lenovo.com</div></div>
+      <div class="ecase-result"><span class="er-n">250+</span><div class="er-l">GBP Profiles Managed</div></div>
+      <div class="ecase-result"><span class="er-n">+15%</span><div class="er-l">APAC Discoverability</div></div>
+      <div class="ecase-result"><span class="er-n">12,000</span><div class="er-l">SEO Store Pages</div></div>
       <div class="ecase-result"><span class="er-n">8,488</span><div class="er-l">PH Clicks · Awareness</div></div>
     </div>
   </div>
@@ -702,7 +763,8 @@ footer { background: #000; padding: 20px 64px; display: flex; justify-content: s
         <div class="gc-company">HashConnect Integrated Services · Bengaluru</div>
         <ul class="gc-points">
           <li>Executed and scaled <strong>multi-brand Google Ads &amp; Meta campaigns</strong> — 194 campaigns, Acer, Dell, Asus, MSI, ICB &amp; Lenovo.</li>
-          <li>Built and owned <strong>Lenovo APAC GBP mandate</strong> — 250+ listings audited, standardisation playbook created, +15% discoverability.</li>
+          <li>Built and owned <strong>Lenovo APAC GBP mandate</strong> — ~200 Lenovo APAC + ~50 MSI India exclusive store profiles audited and standardised, achieving +15% local discoverability.</li>
+          <li>Performed <strong>SEO for locate.lenovo.com</strong> (2024–2025) — on-page SEO (meta titles, descriptions, 5 landmarks per store page), technical SEO, and off-page citation building across ~12,000 store pages in 16 countries.</li>
           <li>Built Britannia's <strong>Shopify store end-to-end</strong>. Architected GTM + GA4 tracking. Introduced Target CPA &amp; ROAS bidding.</li>
           <li>Progressed from campaign execution to <strong>team mentorship</strong> — led reviews, trained juniors, promoted to AM.</li>
         </ul>
@@ -753,14 +815,15 @@ footer { background: #000; padding: 20px 64px; display: flex; justify-content: s
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-name">GBP &amp; Local</div>
+      <div class="skill-card-name">GBP &amp; SEO</div>
       <div class="skill-list">
-        <div class="skill-item">Google Business Profile</div>
+        <div class="skill-item">Google Business Profile (GBP/GMB)</div>
         <div class="skill-item">NAP Standardisation</div>
         <div class="skill-item">APAC Multi-market GBP</div>
-        <div class="skill-item">Review Response Strategy</div>
+        <div class="skill-item">On-Page SEO (Meta, Landmarks)</div>
+        <div class="skill-item">Technical SEO</div>
+        <div class="skill-item">Off-Page SEO &amp; Citations</div>
         <div class="skill-item">Local Map Pack Optimisation</div>
-        <div class="skill-item">Attribute Setup</div>
       </div>
     </div>
     <div class="skill-card">
@@ -803,7 +866,7 @@ footer { background: #000; padding: 20px 64px; display: flex; justify-content: s
         </a>
         <div class="contact-link">
           <span class="cl-label">Location</span>
-          <span class="cl-value" style="cursor:default">Bengaluru, India</span>
+          <span class="cl-value" style="cursor:default">Bengaluru, Karnataka, India</span>
         </div>
       </div>
     </div>
@@ -823,7 +886,7 @@ footer { background: #000; padding: 20px 64px; display: flex; justify-content: s
 
 <footer>
   <span class="fn">Ajay Chakravarthy H J</span>
-  <span class="fc">Performance Marketing Specialist · Bengaluru · All figures from Google Ads Campaign Report (194 campaigns)</span>
+  <span class="fc">Performance Marketing Specialist · Bengaluru, Karnataka · All figures from Google Ads Campaign Report (194 campaigns)</span>
 </footer>
 
 <script>
