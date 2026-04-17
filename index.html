@@ -1,816 +1,1481 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Ajay Chakravarthy · Performance Architecture</title>
-  <!-- Modern, premium type system -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Space+Grotesk:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <title>Ajay Chakravarthy · Performance Marketing Architect</title>
+
+  <!-- Type system: modern sans + refined display -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Fraunces:wght@500;600&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
-    * {
+    /* RESET */
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
-    :root {
-      --bg-dark: #0B1120;
-      --bg-surface: #111827;
-      --bg-elevated: #1E293B;
-      --bg-light: #F8FAFE;
-      --text-primary: #F1F5F9;
-      --text-secondary: #94A3B8;
-      --text-dark: #0F172A;
-      --accent-gold: #EAB308;
-      --accent-gold-muted: #CA8A04;
-      --accent-glow: rgba(234, 179, 8, 0.12);
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --card-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.35);
-      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+    html, body {
+      height: 100%;
     }
 
     body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-primary);
-      line-height: 1.5;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
-
-    /* custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
-    }
-    ::-webkit-scrollbar-track {
-      background: var(--bg-surface);
-    }
-    ::-webkit-scrollbar-thumb {
-      background: var(--accent-gold);
-      border-radius: 4px;
-    }
-
-    /* navigation — refined & minimal */
-    .nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 1000;
-      backdrop-filter: blur(16px);
-      background: rgba(11, 17, 32, 0.7);
-      border-bottom: 1px solid rgba(234, 179, 8, 0.2);
-      padding: 0 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-weight: 500;
-      transition: var(--transition-smooth);
-    }
-    .nav-logo {
-      font-family: 'Space Grotesk', monospace;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      font-size: 0.9rem;
-      color: var(--accent-gold);
-      background: rgba(234,179,8,0.08);
-      padding: 0.5rem 1rem;
-      border-radius: 40px;
-      backdrop-filter: blur(4px);
-    }
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-    .nav-links a {
-      text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      transition: 0.2s;
-    }
-    .nav-links a:hover {
-      color: var(--accent-gold);
-    }
-
-    /* container */
-    .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 5%;
-    }
-
-    /* hero — asymmetrical + bold typography */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      position: relative;
-      isolation: isolate;
-      padding-top: 5rem;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 4rem;
-      align-items: center;
-    }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.6rem;
-      background: rgba(234, 179, 8, 0.08);
-      border: 1px solid rgba(234, 179, 8, 0.25);
-      border-radius: 100px;
-      padding: 0.3rem 1rem;
-      font-size: 0.7rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: var(--accent-gold);
-      margin-bottom: 1.8rem;
-    }
-    .hero h1 {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(3rem, 6vw, 5.2rem);
-      line-height: 1.05;
-      font-weight: 400;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-    .hero h1 span {
-      color: var(--accent-gold);
-      border-bottom: 2px solid var(--accent-gold);
-      display: inline-block;
-    }
-    .hero-desc {
-      font-size: 1rem;
-      color: var(--text-secondary);
-      max-width: 90%;
-      margin-bottom: 2rem;
+      font-family: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f8;
+      color: #0f172a;
       line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      scroll-behavior: smooth;
     }
-    .hero-stats {
+
+    ::selection {
+      background: rgba(124, 58, 237, 0.16);
+      color: #0f172a;
+    }
+
+    /* COLOR TOKENS */
+    :root {
+      --page-bg: #f5f5f8;
+      --ink: #0f172a;
+      --ink-soft: #6b7280;
+      --ink-mute: #9ca3af;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --stroke-soft: rgba(15, 23, 42, 0.07);
+      --accent-violet: #7c3aed;
+      --accent-violet-soft: rgba(124, 58, 237, 0.08);
+      --accent-teal: #0f766e;
+      --accent-teal-soft: rgba(15, 118, 110, 0.06);
+      --accent-rose: #e11d48;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-pill: 999px;
+      --transition-slow: all 0.45s cubic-bezier(0.22, 0.8, 0.35, 1);
+    }
+
+    /* LAYOUT: LEFT RAIL + RIGHT STORY COLUMN */
+    .page {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.8rem;
-      margin: 2rem 0 2rem;
-    }
-    .stat-block {
-      border-left: 2px solid var(--accent-gold);
-      padding-left: 1.2rem;
-    }
-    .stat-number {
-      font-family: 'Space Grotesk', monospace;
-      font-size: 2.2rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: white;
-      line-height: 1;
-    }
-    .stat-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-secondary);
-      margin-top: 0.4rem;
-    }
-    .hero-cta {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-    .btn-primary {
-      background: var(--accent-gold);
-      color: #0B1120;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      font-weight: 700;
-      font-size: 0.8rem;
-      letter-spacing: 0.03em;
-      text-decoration: none;
-      transition: 0.2s;
-      border: none;
-      font-weight: 600;
-    }
-    .btn-primary:hover {
-      background: #facc15;
-      transform: scale(0.98);
-    }
-    .btn-outline {
-      border: 1px solid rgba(234,179,8,0.5);
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
-      font-weight: 600;
-      font-size: 0.8rem;
-      color: var(--text-primary);
-      text-decoration: none;
-      transition: 0.2s;
-    }
-    .btn-outline:hover {
-      border-color: var(--accent-gold);
-      background: rgba(234,179,8,0.05);
+      grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      min-height: 100vh;
     }
 
-    /* right side — floating metric grid */
-    .hero-metrics {
-      background: var(--bg-elevated);
-      backdrop-filter: blur(8px);
-      border-radius: 2rem;
-      padding: 2rem;
-      border: 1px solid rgba(234,179,8,0.2);
-      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
-    }
-    .metric-item {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
-      padding: 1rem 0;
-    }
-    .metric-item:last-child {
-      border: none;
-    }
-    .metric-key {
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: var(--text-secondary);
-    }
-    .metric-value {
-      font-family: 'Space Grotesk', monospace;
-      font-weight: 600;
-      font-size: 1.1rem;
-      color: var(--accent-gold);
-    }
-
-    /* brand strip */
-    .brand-strip {
-      background: rgba(0,0,0,0.3);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 1.2rem 0;
-      margin: 2rem 0;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .brand-track {
-      display: inline-block;
-      animation: scrollBrands 28s linear infinite;
-    }
-    .brand-track span {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-secondary);
-      margin: 0 1.5rem;
-    }
-    @keyframes scrollBrands {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* section styling */
-    section {
-      padding: 6rem 0;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .section-label {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--accent-gold);
-      margin-bottom: 1.5rem;
-      display: inline-block;
-      background: rgba(234,179,8,0.08);
-      padding: 0.2rem 1rem;
-      border-radius: 30px;
-    }
-    .section-title {
-      font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 400;
-      margin-bottom: 2.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    /* case study cards — editorial, elevated */
-    .cases-grid {
+    .rail {
+      position: sticky;
+      top: 0;
+      align-self: flex-start;
+      height: 100vh;
+      padding: 1.75rem 2rem;
+      border-right: 1px solid var(--stroke-soft);
+      background: radial-gradient(circle at top left, #e0f2fe 0, #f5f5f8 40%, #f5f5f8 100%);
       display: flex;
       flex-direction: column;
-      gap: 4rem;
-    }
-    .case-card {
-      background: var(--bg-surface);
-      border-radius: 2rem;
-      overflow: hidden;
-      border: 1px solid rgba(234,179,8,0.1);
-      transition: var(--transition-smooth);
-    }
-    .case-card:hover {
-      border-color: rgba(234,179,8,0.3);
-      transform: translateY(-4px);
-    }
-    .case-header {
-      padding: 2rem 2rem 1rem;
-      display: flex;
       justify-content: space-between;
-      flex-wrap: wrap;
-      align-items: flex-start;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .case-tag {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      background: rgba(234,179,8,0.12);
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
-      color: var(--accent-gold);
-    }
-    .case-metric {
-      text-align: right;
-    }
-    .case-metric .big {
-      font-family: 'Space Grotesk', monospace;
-      font-size: 2rem;
-      font-weight: 600;
-      color: white;
-      line-height: 1;
-    }
-    .case-metric .small {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-    }
-    .case-title {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin: 0.5rem 0 1rem;
-      padding: 0 2rem;
-    }
-    .case-grid-3 {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0;
-      border-top: 1px solid var(--border-subtle);
-      background: var(--bg-elevated);
-    }
-    .case-col {
-      padding: 1.8rem;
-      border-right: 1px solid var(--border-subtle);
-    }
-    .case-col:last-child {
-      border-right: none;
-    }
-    .case-col h4 {
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      color: var(--accent-gold);
-      margin-bottom: 0.8rem;
-      text-transform: uppercase;
-    }
-    .case-col p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-    }
-    .case-results {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background: #0F172A;
-      padding: 1.2rem 0;
-      text-align: center;
-      border-top: 1px solid var(--border-subtle);
-    }
-    .result-stat {
-      border-right: 1px solid var(--border-subtle);
-    }
-    .result-stat:last-child {
-      border: none;
-    }
-    .result-stat .num {
-      font-family: 'Space Grotesk', monospace;
-      font-size: 1.3rem;
-      font-weight: 600;
-      color: var(--accent-gold);
-    }
-    .result-stat .label {
-      font-size: 0.6rem;
-      color: var(--text-secondary);
-      text-transform: uppercase;
     }
 
-    /* brand performance table — modern */
-    .perf-table {
-      background: var(--bg-surface);
-      border-radius: 1.5rem;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
+    .rail-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
     }
+
+    .rail-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.9);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-soft);
+    }
+
+    .rail-tag span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #a5b4fc, #7c3aed);
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.18);
+    }
+
+    .rail-name {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.85rem;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+    }
+
+    .rail-role {
+      font-size: 0.86rem;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      color: var(--ink-soft);
+      margin-top: 0.45rem;
+    }
+
+    .rail-summary {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+      max-width: 20rem;
+    }
+
+    .rail-metrics {
+      margin-top: 1.75rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.1rem;
+    }
+
+    .rail-metric {
+      padding: 0.7rem 0.9rem;
+      border-radius: 18px;
+      border: 1px solid rgba(15, 23, 42, 0.06);
+      background: rgba(255, 255, 255, 0.9);
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+
+    .rail-metric span:first-child {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-mute);
+    }
+
+    .rail-metric span:last-child {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rail-nav {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .rail-nav a {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      text-decoration: none;
+      color: var(--ink-mute);
+      padding: 0.35rem 0;
+      border-left: 2px solid transparent;
+      transition: color 0.2s ease, border-color 0.2s ease, padding-left 0.2s ease;
+    }
+
+    .rail-nav a:hover,
+    .rail-nav a:focus-visible {
+      color: var(--accent-violet);
+      border-color: var(--accent-violet);
+      padding-left: 0.4rem;
+    }
+
+    .rail-footer {
+      font-size: 0.78rem;
+      color: var(--ink-mute);
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .rail-footer a {
+      color: var(--accent-teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .rail-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* RIGHT COLUMN */
+    .story {
+      padding: 2rem 3.5rem 3rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3.5rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    /* HERO / INTRO */
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 2.5rem;
+      align-items: flex-end;
+    }
+
+    .hero-heading-kicker {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      color: var(--accent-teal);
+      letter-spacing: 0.18em;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero-heading {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: clamp(2.4rem, 3vw, 2.9rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.1rem;
+      color: var(--ink);
+    }
+
+    .hero-heading span {
+      background: linear-gradient(120deg, var(--accent-violet), var(--accent-teal));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-body {
+      font-size: 0.95rem;
+      color: var(--ink-soft);
+      max-width: 32rem;
+    }
+
+    .hero-body strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hero-metrics-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .metric-card {
+      border-radius: var(--radius-lg);
+      padding: 1.1rem 1.1rem 1rem;
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      opacity: 0.32;
+      background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.25), transparent 55%);
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-mute);
+      margin-bottom: 0.4rem;
+      position: relative;
+    }
+
+    .metric-value {
+      font-feature-settings: "tnum" 1, "lnum" 1;
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: var(--ink);
+      position: relative;
+    }
+
+    .metric-footnote {
+      font-size: 0.72rem;
+      color: var(--ink-soft);
+      margin-top: 0.35rem;
+      position: relative;
+    }
+
+    .metric-card.accent {
+      border-color: rgba(15, 118, 110, 0.4);
+      background: linear-gradient(135deg, #ecfeff, #f9fafb);
+    }
+
+    /* CTA STRIP */
+    .hero-cta-row {
+      margin-top: 1.8rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border-radius: var(--radius-pill);
+      background: linear-gradient(120deg, var(--accent-violet), var(--accent-teal));
+      color: #f9fafb;
+      font-size: 0.8rem;
+      letter-spacing: 0.18em;
+      padding: 0.85rem 1.9rem;
+      text-transform: uppercase;
+      border: none;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      box-shadow: 0 14px 35px rgba(79, 70, 229, 0.32);
+      transition: transform 0.12s ease-out, box-shadow 0.12s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(1px);
+      box-shadow: 0 10px 22px rgba(79, 70, 229, 0.22);
+    }
+
+    .btn-ghost {
+      border-radius: var(--radius-pill);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: transparent;
+      color: var(--ink-soft);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      padding: 0.78rem 1.5rem;
+      text-transform: uppercase;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 500;
+      transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn-ghost:hover {
+      background: rgba(15, 23, 42, 0.03);
+      color: var(--ink);
+      border-color: var(--ink-soft);
+    }
+
+    .hero-note {
+      font-size: 0.78rem;
+      color: var(--ink-mute);
+      margin-left: auto;
+    }
+
+    /* SECTION SHELL */
+    section {
+      padding-top: 1rem;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--ink-mute);
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.6rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.9rem;
+      color: var(--ink);
+    }
+
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      max-width: 32rem;
+      margin-bottom: 1.7rem;
+    }
+
+    /* CASE STUDY STACK */
+    .case-column {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+    }
+
+    .case {
+      border-radius: var(--radius-xl);
+      background: var(--surface);
+      border: 1px solid var(--stroke-soft);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      gap: 1.4rem;
+      padding: 1.4rem 1.6rem;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition-slow);
+    }
+
+    .case::before {
+      content: "";
+      position: absolute;
+      inset: -30%;
+      opacity: 0.18;
+      background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.25), transparent 60%);
+      pointer-events: none;
+    }
+
+    .case:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.18);
+      border-color: rgba(124, 58, 237, 0.35);
+    }
+
+    .case-header {
+      position: relative;
+    }
+
+    .case-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.85rem;
+      border-radius: var(--radius-pill);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      background: var(--accent-violet-soft);
+      color: var(--accent-violet);
+      margin-bottom: 0.7rem;
+    }
+
+    .case-pill span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent-violet);
+    }
+
+    .case-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-thesis {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      margin-bottom: 1.1rem;
+    }
+
+    .case-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .case-meta-item {
+      font-size: 0.75rem;
+      color: var(--ink-mute);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .case-meta-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--ink-mute);
+    }
+
+    .case-structure {
+      position: relative;
+      z-index: 1;
+      border-radius: 22px;
+      background: linear-gradient(135deg, #0f172a, #111827);
+      padding: 1.1rem 1.2rem 0.9rem;
+      color: #e5e7eb;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .case-block-title {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: rgba(148, 163, 184, 0.85);
+      margin-bottom: 0.5rem;
+    }
+
+    .case-block-body {
+      font-size: 0.8rem;
+      color: #e5e7eb;
+    }
+
+    .case-results {
+      position: relative;
+      z-index: 1;
+      margin-top: 0.9rem;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+
+    .result-chip {
+      border-radius: 999px;
+      padding: 0.55rem 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      background: rgba(15, 23, 42, 0.03);
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+    }
+
+    .result-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-mute);
+    }
+
+    .result-value {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .case.case-acer::before {
+      background: radial-gradient(circle at top right, rgba(14, 116, 144, 0.3), transparent 60%);
+    }
+
+    .case.case-lenovo::before {
+      background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.32), transparent 60%);
+    }
+
+    /* PERFORMANCE SNAPSHOT STRIP */
+    .perf-panel {
+      border-radius: var(--radius-xl);
+      background: var(--surface-alt);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 1.4rem 1.5rem;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .perf-grid-head {
+      display: grid;
+      grid-template-columns: 1.3fr 1.4fr 0.8fr 0.9fr;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: var(--ink-mute);
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.5);
+      margin-bottom: 0.5rem;
+    }
+
     .perf-row {
       display: grid;
-      grid-template-columns: 120px 1fr 100px 100px;
-      gap: 1rem;
+      grid-template-columns: 1.3fr 1.4fr 0.8fr 0.9fr;
+      font-size: 0.8rem;
       align-items: center;
-      padding: 1rem 1.5rem;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-    .perf-header {
-      background: rgba(0,0,0,0.4);
-      color: var(--accent-gold);
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-    }
-    .bar-container {
-      background: rgba(255,255,255,0.1);
-      height: 8px;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .bar-fill {
-      width: 0%;
-      height: 100%;
-      background: var(--accent-gold);
-      border-radius: 10px;
-      transition: width 1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      padding: 0.4rem 0;
+      gap: 0.75rem;
+      border-bottom: 1px dashed rgba(148, 163, 184, 0.35);
     }
 
-    /* timeline */
+    .perf-row:last-child {
+      border-bottom: none;
+    }
+
+    .perf-brand {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .perf-bar {
+      position: relative;
+      width: 100%;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(148, 163, 184, 0.35);
+      overflow: hidden;
+    }
+
+    .perf-bar-fill {
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--accent-violet), var(--accent-teal));
+      width: 0;
+      transition: width 1.2s cubic-bezier(0.22, 0.8, 0.35, 1);
+    }
+
+    .perf-note {
+      font-size: 0.72rem;
+      color: var(--ink-mute);
+      margin-top: 0.5rem;
+    }
+
+    /* CAREER TIMELINE */
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 2rem;
+      gap: 1.4rem;
+      border-left: 2px solid rgba(148, 163, 184, 0.5);
+      padding-left: 1.3rem;
+      margin-top: 0.4rem;
     }
+
     .timeline-item {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 2rem;
-      border-left: 2px solid var(--accent-gold);
-      padding-left: 2rem;
-    }
-    .timeline-year {
-      font-family: 'Space Grotesk', monospace;
-      font-size: 1rem;
-      font-weight: 600;
-      color: var(--accent-gold);
-    }
-    .timeline-content h3 {
-      font-size: 1.2rem;
-      font-weight: 700;
-      margin-bottom: 0.3rem;
-    }
-    .timeline-content p {
-      font-size: 0.85rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.8rem;
-    }
-    .timeline-content ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .timeline-content li {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.4rem;
-      padding-left: 1rem;
       position: relative;
+      padding-left: 0.6rem;
     }
-    .timeline-content li::before {
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -1.55rem;
+      top: 0.1rem;
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      border: 2px solid #f5f5f8;
+      background: var(--accent-violet);
+      box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.22);
+    }
+
+    .timeline-year {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--ink-mute);
+      margin-bottom: 0.25rem;
+    }
+
+    .timeline-role {
+      font-size: 0.98rem;
+      font-weight: 600;
+      color: var(--ink);
+      margin-bottom: 0.15rem;
+    }
+
+    .timeline-company {
+      font-size: 0.82rem;
+      color: var(--ink-soft);
+      margin-bottom: 0.4rem;
+    }
+
+    .timeline-bullets {
+      list-style: none;
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .timeline-bullets li {
+      margin-bottom: 0.25rem;
+      position: relative;
+      padding-left: 0.9rem;
+    }
+
+    .timeline-bullets li::before {
       content: "▹";
       position: absolute;
       left: 0;
-      color: var(--accent-gold);
-    }
-
-    /* skills */
-    .skills-pill {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 2rem 0;
-    }
-    .skill-pill {
-      background: var(--bg-elevated);
-      border: 1px solid rgba(234,179,8,0.2);
-      border-radius: 40px;
-      padding: 0.5rem 1.2rem;
+      color: var(--accent-teal);
       font-size: 0.75rem;
-      font-weight: 500;
-      transition: 0.2s;
     }
 
-    /* contact */
-    .contact-flex {
+    /* SKILLS / CRED */
+    .skills-wrap {
       display: flex;
-      justify-content: space-between;
       flex-wrap: wrap;
-      gap: 2rem;
-      background: var(--bg-surface);
-      border-radius: 2rem;
-      padding: 3rem;
-      border: 1px solid var(--border-subtle);
+      gap: 0.6rem;
+      margin-top: 1rem;
+      margin-bottom: 1.2rem;
     }
-    .contact-info h3 {
-      font-size: 1.6rem;
+
+    .skill-pill {
+      border-radius: var(--radius-pill);
+      background: var(--surface);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 0.45rem 0.85rem;
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      white-space: nowrap;
+    }
+
+    .cred-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .cred-item {
+      font-size: 0.8rem;
+      color: var(--ink-soft);
+    }
+
+    .cred-item strong {
+      color: var(--ink);
+    }
+
+    /* CONTACT */
+    .contact-card {
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #0f172a, #020617);
+      color: #e5e7eb;
+      padding: 1.6rem 1.8rem 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-card::before {
+      content: "";
+      position: absolute;
+      width: 340px;
+      height: 340px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.55), transparent 65%);
+      right: -20%;
+      top: -40%;
+      opacity: 0.6;
+    }
+
+    .contact-heading {
+      font-family: "Fraunces", "Times New Roman", serif;
+      font-size: 1.5rem;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.35rem;
+    }
+
+    .contact-sub {
+      font-size: 0.85rem;
+      color: #cbd5f5;
       margin-bottom: 0.8rem;
     }
+
     .contact-email {
-      font-family: 'Space Grotesk', monospace;
-      font-size: 1.1rem;
-      color: var(--accent-gold);
+      font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #e0f2fe;
       text-decoration: none;
     }
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.7rem;
-      color: var(--text-secondary);
+    .contact-email:hover {
+      text-decoration: underline;
     }
 
-    /* animations */
+    .contact-meta {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      margin-top: 0.4rem;
+    }
+
+    .contact-right {
+      position: relative;
+      z-index: 1;
+      text-align: right;
+      font-size: 0.8rem;
+    }
+
+    .contact-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: var(--radius-pill);
+      background: rgba(15, 23, 42, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #cbd5f5;
+      margin-bottom: 0.7rem;
+    }
+
+    .contact-tag span {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #bbf7d0;
+    }
+
+    .contact-num {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .contact-note {
+      margin-top: 0.25rem;
+      color: #9ca3af;
+    }
+
+    footer {
+      padding-top: 0.8rem;
+      font-size: 0.72rem;
+      color: var(--ink-mute);
+    }
+
+    /* REVEAL ANIMATIONS */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(18px);
+      transition: opacity 0.5s ease, transform 0.6s ease;
     }
+
     .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    @media (max-width: 900px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      .page {
+        display: block;
       }
-      .case-grid-3 {
-        grid-template-columns: 1fr;
-      }
-      .case-col {
+
+      .rail {
+        position: static;
+        height: auto;
         border-right: none;
-        border-bottom: 1px solid var(--border-subtle);
+        border-bottom: 1px solid var(--stroke-soft);
+        padding: 1.25rem 1.5rem 1.2rem;
       }
+
+      .story {
+        padding: 1.8rem 1.5rem 2.2rem;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .case {
+        grid-template-columns: 1fr;
+        padding: 1.25rem 1.2rem;
+      }
+
+      .case-structure {
+        grid-template-columns: 1fr;
+      }
+
+      .case-results {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .perf-grid-head,
       .perf-row {
-        grid-template-columns: 100px 1fr 80px;
-        gap: 0.5rem;
+        grid-template-columns: 1.4fr 1.6fr 1fr;
       }
-      .perf-row .cpa-col {
+
+      .perf-row span:nth-child(4),
+      .perf-grid-head span:nth-child(4) {
         display: none;
       }
-      .timeline-item {
+    }
+
+    @media (max-width: 640px) {
+      .hero-metrics-grid {
         grid-template-columns: 1fr;
-        gap: 0.5rem;
-        padding-left: 1rem;
       }
-      .nav-links {
-        gap: 0.8rem;
+
+      .contact-card {
+        padding: 1.3rem 1.2rem 1.2rem;
       }
     }
   </style>
 </head>
 <body>
-<nav class="nav">
-  <div class="nav-logo">AJAY CHAKRAVARTHY</div>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#performance">Data</a></li>
-    <li><a href="#career">Path</a></li>
-    <li><a href="#contact">Connect</a></li>
-  </ul>
-</nav>
+  <div class="page">
+    <!-- LEFT RAIL -->
+    <aside class="rail">
+      <div class="rail-header">
+        <div class="rail-tag">
+          <span></span>
+          <span>Performance marketing architect</span>
+        </div>
+        <div>
+          <h1 class="rail-name">Ajay<br />Chakravarthy</h1>
+          <div class="rail-role">Paid media · APAC retail & tech</div>
+        </div>
+        <p class="rail-summary">
+          Turning complex retail networks into predictable conversion systems. 4,08,708 tracked conversions at
+          ₹19.42 blended CPA across 7+ brands.
+        </p>
+        <div class="rail-metrics">
+          <div class="rail-metric">
+            <span>Managed ad spend</span>
+            <span>₹79.38L across 194 campaigns</span>
+          </div>
+          <div class="rail-metric">
+            <span>Scope</span>
+            <span>India + APAC · Lenovo, Acer, Dell, Asus, MSI, ICB</span>
+          </div>
+          <div class="rail-metric">
+            <span>Current role</span>
+            <span>Assistant Manager – Performance Marketing</span>
+          </div>
+        </div>
+        <nav class="rail-nav">
+          <a href="#overview">Overview</a>
+          <a href="#cases">Case systems</a>
+          <a href="#performance">Brand mix</a>
+          <a href="#career">Trajectory</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
 
-<main>
-  <!-- Hero section -->
-  <div class="container hero">
-    <div class="hero-grid">
-      <div>
-        <div class="hero-badge">✦ Performance Marketing Architect ✦</div>
-        <h1>Turning ad spend into <span>profit engines</span> at scale.</h1>
-        <p class="hero-desc">4,08,708 tracked conversions · ₹79.38L managed · ₹19.42 avg. CPA.<br> Leading paid media for global tech giants & direct-to-consumer brands across India & APAC.</p>
-        <div class="hero-stats">
-          <div class="stat-block"><div class="stat-number" id="convCount">0</div><div class="stat-label">Total conversions</div></div>
-          <div class="stat-block"><div class="stat-number">₹19.42</div><div class="stat-label">Avg. CPA (all brands)</div></div>
-          <div class="stat-block"><div class="stat-number">3.34%</div><div class="stat-label">Avg. CTR · 17.2Cr+ imps</div></div>
-          <div class="stat-block"><div class="stat-number">₹1.38</div><div class="stat-label">Avg. CPC</div></div>
+      <div class="rail-footer">
+        <div>
+          Bengaluru, India · Open to Senior Manager / Performance Lead roles.
         </div>
-        <div class="hero-cta">
-          <a href="#work" class="btn-primary">View case studies →</a>
-          <a href="#contact" class="btn-outline">Let's collaborate</a>
+        <div>
+          LinkedIn:
+          <a href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">
+            /in/ajay-chakravarthy-h-j
+          </a>
         </div>
       </div>
-      <div class="hero-metrics">
-        <div class="metric-item"><span class="metric-key">Lenovo APAC SPOC</span><span class="metric-value">~200 GBP profiles</span></div>
-        <div class="metric-item"><span class="metric-key">MSI India (separate)</span><span class="metric-value">~50 GBP profiles</span></div>
-        <div class="metric-item"><span class="metric-key">SEO impact</span><span class="metric-value">12,000 store pages</span></div>
-        <div class="metric-item"><span class="metric-key">Philippines awareness</span><span class="metric-value">8,488 clicks · PMax</span></div>
-        <div class="metric-item"><span class="metric-key">Team leadership</span><span class="metric-value">6 performance marketers</span></div>
-        <div class="metric-item"><span class="metric-key">Lowest CPA achieved</span><span class="metric-value">₹4.58 (ICB)</span></div>
-      </div>
-    </div>
+    </aside>
+
+    <!-- RIGHT STORY COLUMN -->
+    <main class="story">
+      <!-- HERO -->
+      <section id="overview" class="reveal">
+        <div class="hero">
+          <div>
+            <div class="hero-heading-kicker">Paid growth at the intersection of retail, search & local</div>
+            <h2 class="hero-heading">
+              Designing ad systems that turn <span>store networks into compounding demand engines.</span>
+            </h2>
+            <p class="hero-body">
+              Architecting Google Ads, PMax and local discovery for global tech and direct‑to‑consumer brands across
+              India and APAC.<br />
+              <strong>4,08,708 tracked conversions, 3.34% blended CTR and ₹1.38 avg. CPC on
+              ₹79.38L managed spend.</strong>
+            </p>
+            <div class="hero-cta-row">
+              <a href="#cases" class="btn-primary">
+                View flagship systems
+                <span>↗</span>
+              </a>
+              <a href="#performance" class="btn-ghost">
+                Brand portfolio mix
+              </a>
+              <span class="hero-note">Best viewed on desktop · data from Google Ads reports.</span>
+            </div>
+          </div>
+
+          <div class="hero-metrics-grid">
+            <article class="metric-card">
+              <div class="metric-label">Total conversions delivered</div>
+              <div class="metric-value" id="metricConversions">0</div>
+              <div class="metric-footnote">
+                Across 7+ brands · lead + store visit + purchase actions.
+              </div>
+            </article>
+            <article class="metric-card accent">
+              <div class="metric-label">Blended efficiency</div>
+              <div class="metric-value">₹19.42 CPA</div>
+              <div class="metric-footnote">
+                3.34% CTR on 17.2Cr+ impressions · ₹1.38 avg. CPC.
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CASE SYSTEMS -->
+      <section id="cases" class="reveal">
+        <div class="section-label">Case systems</div>
+        <h2 class="section-title">Plays that consistently beat channel benchmarks</h2>
+        <p class="section-subtitle">
+          Each system is built to survive policy, scale across outlets and stay measurable at granular store level.
+          Overview → approach → hard numbers, just like a performance review deck.
+        </p>
+
+        <div class="case-column">
+          <!-- ICB -->
+          <article class="case">
+            <div class="case-header">
+              <div class="case-pill">
+                <span></span>
+                <span>Indian Craft Brewery · India</span>
+              </div>
+              <h3 class="case-title">Policy‑sensitive category turned into the portfolio’s lowest CPA engine.</h3>
+              <p class="case-thesis">
+                From broken campaigns and disapprovals to a compliant full‑funnel search + PMax system delivering
+                <strong>1.64L conversions at ₹4.58 CPA.</strong>
+              </p>
+              <div class="case-meta">
+                <div class="case-meta-item">
+                  <span class="case-meta-tag">Mandate</span>
+                  Policy‑aligned lead generation for brewery + restaurant network
+                </div>
+                <div class="case-meta-item">
+                  <span class="case-meta-tag">Role</span>
+                  Strategy, account rebuild, bidding & creative coordination
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="case-structure">
+                <div>
+                  <div class="case-block-title">Problem</div>
+                  <p class="case-block-body">
+                    Alcohol‑adjacent brand with legacy search campaigns failing policy, scattered keywords and high
+                    wastage on irrelevant queries.
+                  </p>
+                </div>
+                <div>
+                  <div class="case-block-title">System</div>
+                  <p class="case-block-body">
+                    6 intent‑segmented Search campaigns (brewery, restaurant, “near me”, experience) with negative
+                    lists + compliant PMax feeding store visit conversions.
+                  </p>
+                </div>
+                <div>
+                  <div class="case-block-title">Impact</div>
+                  <p class="case-block-body">
+                    PMax in Feb’25 alone: <strong>1,09,923 conversions at ₹3.19 CPA.</strong> Overall portfolio: 1,64,367
+                    conversions at ₹4.58 CPA – lowest CPA across seven brands.
+                  </p>
+                </div>
+              </div>
+              <div class="case-results">
+                <div class="result-chip">
+                  <div class="result-label">Total conversions</div>
+                  <div class="result-value">1,64,367</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">Blended CPA</div>
+                  <div class="result-value">₹4.58</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">Peak CTR</div>
+                  <div class="result-value">11.46%</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">PMax feb’25 CPA</div>
+                  <div class="result-value">₹3.19</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Acer -->
+          <article class="case case-acer">
+            <div class="case-header">
+              <div class="case-pill">
+                <span></span>
+                <span>Acer · Multi‑outlet PMax network</span>
+              </div>
+              <h3 class="case-title">From fragmented campaigns to a unified multi‑store performance fabric.</h3>
+              <p class="case-thesis">
+                Built a playbook that connects 10+ outlets under individual PMax systems while sharing audience signals,
+                keeping <strong>CPA at ₹11.30 for 1.28L+ conversions.</strong>
+              </p>
+              <div class="case-meta">
+                <div class="case-meta-item">
+                  <span class="case-meta-tag">Mandate</span>
+                  Dotcom + partner outlets · in‑store traffic & lead capture
+                </div>
+                <div class="case-meta-item">
+                  <span class="case-meta-tag">Role</span>
+                  Account architecture, asset grouping, measurement + bidding
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="case-structure">
+                <div>
+                  <div class="case-block-title">Problem</div>
+                  <p class="case-block-body">
+                    Each outlet running its own patchwork campaigns with no shared signals, inconsistent CPCs and weak
+                    control on store‑level efficiency.
+                  </p>
+                </div>
+                <div>
+                  <div class="case-block-title">System</div>
+                  <p class="case-block-body">
+                    One PMax per outlet, store‑specific asset groups, GA4 past‑converter lists, granular location
+                    exclusions and Target CPA strategies tuned per outlet.
+                  </p>
+                </div>
+                <div>
+                  <div class="case-block-title">Impact</div>
+                  <p class="case-block-body">
+                    Microtouch (Aug’24) at ₹4.73 CPA; Airport outlet hitting ₹0.25 CPC; network average at
+                    <strong>₹11.30 CPA for 1,28,000+ conversions.</strong>
+                  </p>
+                </div>
+              </div>
+              <div class="case-results">
+                <div class="result-chip">
+                  <div class="result-label">Total conversions</div>
+                  <div class="result-value">1,28,000+</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">Brand avg. CPA</div>
+                  <div class="result-value">₹11.30</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">Lowest CPC</div>
+                  <div class="result-value">₹0.25</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">Peak CTR</div>
+                  <div class="result-value">6.29%</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Lenovo APAC -->
+          <article class="case case-lenovo">
+            <div class="case-header">
+              <div class="case-pill">
+                <span></span>
+                <span>Lenovo APAC · Local discovery</span>
+              </div>
+              <h3 class="case-title">Making 12k+ stores discoverable across 16 countries.</h3>
+              <p class="case-thesis">
+                Unified GBP, technical SEO and paid awareness into a single play that lifted local discoverability by
+                <strong>~15% across APAC.</strong>
+              </p>
+              <div class="case-meta">
+                <div class="case-meta-item">
+                  <span class="case-meta-tag">Mandate</span>
+                  APAC SPOC for locator SEO + GBP + Philippines PMax
+                </div>
+                <div class="case-meta-item">
+                  <span class="case-meta-tag">Role</span>
+                  Audit, SEO, profile standardisation, media strategy
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="case-structure">
+                <div>
+                  <div class="case-block-title">GBP standardisation</div>
+                  <p class="case-block-body">
+                    Audited ~200 Lenovo APAC and 50 MSI India GBP profiles for NAP alignment, categories, photos and
+                    review prompts – defined templates and monthly hygiene rhythm.
+                  </p>
+                </div>
+                <div>
+                  <div class="case-block-title">SEO · locate.lenovo.com</div>
+                  <p class="case-block-body">
+                    Optimised meta titles, localised content and 5 landmark snippets per store page across 12k+ URLs;
+                    fixed technical issues and established citations for 16 countries.
+                  </p>
+                </div>
+                <div>
+                  <div class="case-block-title">Paid awareness (PH)</div>
+                  <p class="case-block-body">
+                    PMax for store locator traffic in the Philippines delivering 8,488 clicks from 1,35,931 impressions
+                    to put physical stores in front of in‑market audiences.
+                  </p>
+                </div>
+              </div>
+              <div class="case-results">
+                <div class="result-chip">
+                  <div class="result-label">GBP profiles</div>
+                  <div class="result-value">250+ audited</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">SEO pages</div>
+                  <div class="result-value">12,000 store pages</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">PH clicks</div>
+                  <div class="result-value">8,488</div>
+                </div>
+                <div class="result-chip">
+                  <div class="result-label">Map discoverability</div>
+                  <div class="result-value">~+15%</div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- BRAND PERFORMANCE MIX -->
+      <section id="performance" class="reveal">
+        <div class="section-label">Portfolio mix</div>
+        <h2 class="section-title">How each brand contributes to the conversion graph</h2>
+        <p class="section-subtitle">
+          Quick read for hiring managers: where the 4,08,708 conversions sit by brand, and how efficient each engine
+          runs at scale.
+        </p>
+
+        <div class="perf-panel">
+          <div class="perf-grid-head">
+            <span>Brand</span>
+            <span>Conversions (scaled)</span>
+            <span>Total conv.</span>
+            <span>Avg. CPA</span>
+          </div>
+
+          <div class="perf-row" data-width="100">
+            <span class="perf-brand">Indian Craft Brewery</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>1,64,367</span>
+            <span>₹4.58</span>
+          </div>
+
+          <div class="perf-row" data-width="78">
+            <span class="perf-brand">Acer</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>1,28,000+</span>
+            <span>₹11.30</span>
+          </div>
+
+          <div class="perf-row" data-width="26">
+            <span class="perf-brand">Achivr*</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>43,254</span>
+            <span>₹99.79</span>
+          </div>
+
+          <div class="perf-row" data-width="24">
+            <span class="perf-brand">Dell</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>39,055</span>
+            <span>₹16.33</span>
+          </div>
+
+          <div class="perf-row" data-width="12">
+            <span class="perf-brand">Lenovo India</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>20,056</span>
+            <span>₹15.35</span>
+          </div>
+
+          <div class="perf-row" data-width="5">
+            <span class="perf-brand">Asus</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>7,983</span>
+            <span>₹21.35</span>
+          </div>
+
+          <div class="perf-row" data-width="3">
+            <span class="perf-brand">MSI</span>
+            <div class="perf-bar">
+              <div class="perf-bar-fill"></div>
+            </div>
+            <span>4,304</span>
+            <span>₹17.97</span>
+          </div>
+
+          <p class="perf-note">
+            *Achivr: high‑ticket B2B lead gen with very different unit economics compared to retail store‑visit CPAs.
+          </p>
+        </div>
+      </section>
+
+      <!-- CAREER -->
+      <section id="career" class="reveal">
+        <div class="section-label">Trajectory</div>
+        <h2 class="section-title">From executing campaigns to owning the system</h2>
+        <p class="section-subtitle">
+          Progression from single‑channel execution to owning multi‑brand strategy, experimentation and a 6‑member
+          performance pod.
+        </p>
+
+        <div class="timeline">
+          <article class="timeline-item">
+            <div class="timeline-year">2025 – Present</div>
+            <h3 class="timeline-role">Assistant Manager – Performance Marketing</h3>
+            <div class="timeline-company">HashConnect Integrated Services · Bengaluru</div>
+            <ul class="timeline-bullets">
+              <li>
+                Lead a 6‑member team across Lenovo, Dell, Acer, Asus, MSI — from quarterly planning and budgets to
+                execution and post‑campaign reviews.
+              </li>
+              <li>
+                Steer <strong>₹79.38L in Google Ads spend</strong> to deliver <strong>4,08,708 conversions at ₹19.42 blended CPA</strong>, with
+                3.34% CTR on 17.2Cr+ impressions.
+              </li>
+              <li>
+                Act as Lenovo APAC SPOC for GBP standardisation, locator SEO and Philippines PMax awareness.
+              </li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-year">2022 – 2025</div>
+            <h3 class="timeline-role">Digital Marketing Executive → Senior Executive</h3>
+            <div class="timeline-company">HashConnect Integrated Services</div>
+            <ul class="timeline-bullets">
+              <li>
+                Scaled and maintained 194 multi‑brand Google Ads campaigns, including full funnel for Indian Craft
+                Brewery and national retail programs.
+              </li>
+              <li>
+                Built Britannia Shopify store end‑to‑end with GTM + GA4, attribution and reporting via Looker Studio.
+              </li>
+              <li>
+                Rolled out Target CPA/ROAS bidding across retail network campaigns; promoted to Assistant Manager for
+                performance charter.
+              </li>
+            </ul>
+          </article>
+
+          <article class="timeline-item">
+            <div class="timeline-year">2019 – 2021</div>
+            <h3 class="timeline-role">Marketing Executive</h3>
+            <div class="timeline-company">Vyram Constructions & CDG Certification</div>
+            <ul class="timeline-bullets">
+              <li>
+                Owned B2B lead funnels, CRM pipeline hygiene and outbound campaigns for certification and construction
+                verticals.
+              </li>
+            </ul>
+          </article>
+        </div>
+
+        <div class="skills-wrap">
+          <span class="skill-pill">Google Ads (Search · PMax · Display)</span>
+          <span class="skill-pill">Meta Ads</span>
+          <span class="skill-pill">GA4 + GTM</span>
+          <span class="skill-pill">Looker Studio</span>
+          <span class="skill-pill">GBP / GMB (multi‑market)</span>
+          <span class="skill-pill">Technical SEO</span>
+          <span class="skill-pill">Retail & D2C funnels</span>
+          <span class="skill-pill">CRO & A/B testing</span>
+          <span class="skill-pill">AI workflows (ChatGPT, Claude)</span>
+          <span class="skill-pill">AiSensy / Marketo</span>
+          <span class="skill-pill">Team leadership</span>
+        </div>
+
+        <div class="cred-row">
+          <span class="cred-item"><strong>Google Ads Certified</strong> · Skillshop</span>
+          <span class="cred-item"><strong>Google Analytics Certified</strong> · Skillshop</span>
+          <span class="cred-item"><strong>MBA – Marketing</strong> · Jain University, 2018</span>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="reveal">
+        <div class="contact-card">
+          <div>
+            <h2 class="contact-heading">Looking for someone who can own performance, not just “run ads”?</h2>
+            <p class="contact-sub">
+              Open to Senior Manager / Performance Lead roles and select advisory work for funded brands.
+            </p>
+            <a href="mailto:ajay.hulikallu@gmail.com" class="contact-email">
+              ajay.hulikallu@gmail.com
+            </a>
+            <div class="contact-meta">
+              Preferred: briefs with objectives, historic data access and a clear experimentation budget.
+            </div>
+          </div>
+
+          <div class="contact-right">
+            <div class="contact-tag">
+              <span></span>
+              <span>Signal</span>
+            </div>
+            <div class="contact-num">4,08,708 conversions shipped · APAC & India scale.</div>
+            <div class="contact-note">
+              Comfortable owning end‑to‑end: planning, execution, reporting and stakeholder education.
+            </div>
+          </div>
+        </div>
+        <footer>
+          All metrics from Google Ads campaign reports (194 campaigns) unless noted. Built for quick recruiter scanning
+          and deep‑dive follow‑ups.
+        </footer>
+      </section>
+    </main>
   </div>
 
-  <!-- brand ticker -->
-  <div class="brand-strip">
-    <div class="brand-track">
-      <span>Lenovo</span> <span>✦</span> <span>Dell</span> <span>✦</span> <span>Acer</span> <span>✦</span> <span>Asus</span> <span>✦</span> <span>MSI</span> <span>✦</span>
-      <span>Indian Craft Brewery</span> <span>✦</span> <span>Britannia</span> <span>✦</span> <span>Achivr</span> <span>✦</span> <span>Dotcom Exclusive</span>
-      <span>✦</span> <span>Lenovo APAC</span> <span>✦</span> <span>Dell</span> <span>✦</span> <span>Acer</span>
-    </div>
-  </div>
-
-  <!-- Featured Work -->
-  <section id="work">
-    <div class="container">
-      <span class="section-label">Impact case files</span>
-      <h2 class="section-title">Conversions that rewrite benchmarks</h2>
-      <div class="cases-grid">
-        <!-- case 1: ICB -->
-        <div class="case-card reveal">
-          <div class="case-header">
-            <span class="case-tag">🇮🇳 India · Lowest CPA across portfolio</span>
-            <div class="case-metric"><span class="big">₹4.58</span><div class="small">avg. CPA</div></div>
-          </div>
-          <div class="case-title">Indian Craft Brewery — policy-restricted category, 1.64L conversions</div>
-          <div class="case-grid-3">
-            <div class="case-col"><h4>Problem</h4><p>Alcohol-adjacent brand: broken campaigns, policy disapprovals, high waste.</p></div>
-            <div class="case-col"><h4>Approach</h4><p>6 intent-segmented Search campaigns (Brewery, Restaurant, Near Me, etc.) + policy-compliant PMax.</p></div>
-            <div class="case-col"><h4>Outcome</h4><p>ICB PMax Feb'25: 1,09,923 conv @ ₹3.19 CPA. Total 1,64,367 conv at ₹4.58 CPA — lowest across 7 brands.</p></div>
-          </div>
-          <div class="case-results">
-            <div class="result-stat"><span class="num">1,64,367</span><div class="label">Conversions</div></div>
-            <div class="result-stat"><span class="num">₹4.58</span><div class="label">CPA</div></div>
-            <div class="result-stat"><span class="num">11.46%</span><div class="label">Peak CTR</div></div>
-            <div class="result-stat"><span class="num">₹3.19</span><div class="label">PMax Feb'25 CPA</div></div>
-          </div>
-        </div>
-        <!-- case 2: Acer multi-outlet -->
-        <div class="case-card reveal">
-          <div class="case-header">
-            <span class="case-tag">🇮🇳 Acer · Multi-outlet PMax network</span>
-            <div class="case-metric"><span class="big">1,28,000+</span><div class="small">total conv.</div></div>
-          </div>
-          <div class="case-title">Acer Dotcom & partners — 10+ outlets unified under PMax system</div>
-          <div class="case-grid-3">
-            <div class="case-col"><h4>Problem</h4><p>Fragmented campaigns, no shared audience signals, high CPC variance.</p></div>
-            <div class="case-col"><h4>Approach</h4><p>Individual PMax per outlet, store-specific asset groups, GA4 past-convertor signals, Target CPA.</p></div>
-            <div class="case-col"><h4>Outcome</h4><p>Microtouch Aug'24: ₹4.73 CPA. Airport Nov'24: ₹0.25 CPC. Brand avg. CPA ₹11.30 → 1,28,000+ conversions.</p></div>
-          </div>
-          <div class="case-results">
-            <div class="result-stat"><span class="num">1,28,000+</span><div class="label">Conversions</div></div>
-            <div class="result-stat"><span class="num">₹11.30</span><div class="label">Brand CPA</div></div>
-            <div class="result-stat"><span class="num">₹0.25</span><div class="label">Lowest CPC</div></div>
-            <div class="result-stat"><span class="num">6.29%</span><div class="label">Peak CTR</div></div>
-          </div>
-        </div>
-        <!-- case 3: Lenovo APAC - three streams integrated -->
-        <div class="case-card reveal">
-          <div class="case-header">
-            <span class="case-tag">🌏 Lenovo APAC · GBP + SEO + Paid awareness</span>
-            <div class="case-metric"><span class="big">+15%</span><div class="small">local discoverability</div></div>
-          </div>
-          <div class="case-title">APAC SPOC mandate: 200+ GBP profiles, 12k store pages SEO, Philippines PMax</div>
-          <div class="case-grid-3">
-            <div class="case-col"><h4>GBP Standardisation</h4><p>Audited ~200 Lenovo APAC exclusive stores + 50 MSI India profiles. NAP alignment, review templates, monthly photos → +15% map pack visibility.</p></div>
-            <div class="case-col"><h4>SEO · locate.lenovo.com</h4><p>Optimised meta titles + 5 landmarks/store page across 12k pages, technical SEO fixes, local citations for 16 countries.</p></div>
-            <div class="case-col"><h4>Paid awareness (PH)</h4><p>PMax campaign for store locator traffic in Philippines: 8,488 clicks, 1,35,931 impressions (awareness objective).</p></div>
-          </div>
-          <div class="case-results">
-            <div class="result-stat"><span class="num">250+</span><div class="label">GBP profiles</div></div>
-            <div class="result-stat"><span class="num">12,000</span><div class="label">SEO pages</div></div>
-            <div class="result-stat"><span class="num">8,488</span><div class="label">PH clicks</div></div>
-            <div class="result-stat"><span class="num">+15%</span><div class="label">Discoverability</div></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Brand performance snapshot -->
-  <section id="performance">
-    <div class="container">
-      <span class="section-label">Data room</span>
-      <h2 class="section-title">All brands · relative performance</h2>
-      <div class="perf-table reveal">
-        <div class="perf-row perf-header">
-          <span>Brand</span><span>Conversions (scale)</span><span>Total conv.</span><span class="cpa-col">Avg. CPA</span>
-        </div>
-        <div class="perf-row"><span>ICB</span><div class="bar-container"><div class="bar-fill" data-width="100"></div></div><span>1,64,367</span><span class="cpa-col">₹4.58</span></div>
-        <div class="perf-row"><span>Acer</span><div class="bar-container"><div class="bar-fill" data-width="78"></div></div><span>1,28,000+</span><span class="cpa-col">₹11.30</span></div>
-        <div class="perf-row"><span>Achivr</span><div class="bar-container"><div class="bar-fill" data-width="26"></div></div><span>43,254</span><span class="cpa-col">₹99.79*</span></div>
-        <div class="perf-row"><span>Dell</span><div class="bar-container"><div class="bar-fill" data-width="24"></div></div><span>39,055</span><span class="cpa-col">₹16.33</span></div>
-        <div class="perf-row"><span>Lenovo India</span><div class="bar-container"><div class="bar-fill" data-width="12"></div></div><span>20,056</span><span class="cpa-col">₹15.35</span></div>
-        <div class="perf-row"><span>Asus</span><div class="bar-container"><div class="bar-fill" data-width="5"></div></div><span>7,983</span><span class="cpa-col">₹21.35</span></div>
-        <div class="perf-row"><span>MSI</span><div class="bar-container"><div class="bar-fill" data-width="3"></div></div><span>4,304</span><span class="cpa-col">₹17.97</span></div>
-      </div>
-      <p style="font-size:0.7rem; color: var(--text-secondary); margin-top:1rem;">*Achivr: high-ticket B2B lead gen, different unit economics. Figures from Google Ads campaign report (194 campaigns).</p>
-    </div>
-  </section>
-
-  <!-- Career timeline -->
-  <section id="career">
-    <div class="container">
-      <span class="section-label">Professional arc</span>
-      <h2 class="section-title">From execution to leadership</h2>
-      <div class="timeline reveal">
-        <div class="timeline-item">
-          <div class="timeline-year">2025 – Present</div>
-          <div class="timeline-content"><h3>Assistant Manager – Performance Marketing</h3><p>HashConnect Integrated Services · Bengaluru</p><ul><li>Lead 6-member team across Lenovo, Dell, Acer, Asus, MSI — KPI ownership, cross-brand planning.</li><li>₹79.38L ad spend managed, 4,08,708 conversions at ₹19.42 avg CPA, 3.34% CTR.</li><li>Lenovo APAC SPOC: GBP standardisation (~200 profiles) + Philippines PMax campaign.</li></ul></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">2022 – 2025</div>
-          <div class="timeline-content"><h3>Digital Marketing Executive → Senior Executive</h3><p>HashConnect Integrated Services</p><ul><li>Scaled 194 multi-brand Google Ads campaigns. Built Britannia Shopify store end-to-end (GTM+GA4).</li><li>Lenovo APAC SPOC: SEO for locate.lenovo.com (12k store pages, 16 countries).</li><li>Introduced Target CPA/ROAS bidding across retail network. Promoted to AM.</li></ul></div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-year">2019 – 2021</div>
-          <div class="timeline-content"><h3>Marketing Executive</h3><p>Vyram Constructions & CDG Certification</p><ul><li>B2B lead generation, CRM pipeline management, sales collateral & outreach.</li></ul></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills & expertise -->
-  <section>
-    <div class="container">
-      <span class="section-label">Core toolkit</span>
-      <h2 class="section-title">Specializations that drive ROI</h2>
-      <div class="skills-pill reveal">
-        <span class="skill-pill">Google Ads (Search/PMax/Display)</span><span class="skill-pill">Meta Ads</span><span class="skill-pill">GA4 + GTM</span>
-        <span class="skill-pill">Looker Studio</span><span class="skill-pill">GBP / GMB (multi-market)</span><span class="skill-pill">Technical SEO</span>
-        <span class="skill-pill">Shopping campaigns</span><span class="skill-pill">CRO & A/B testing</span><span class="skill-pill">AI workflows (ChatGPT, Claude)</span>
-        <span class="skill-pill">AiSensy / Marketo</span><span class="skill-pill">Team leadership</span>
-      </div>
-      <div class="hero-metrics" style="margin-top: 2rem; background: var(--bg-elevated);">
-        <div style="display: flex; gap: 2rem; flex-wrap: wrap; justify-content: space-between;">
-          <div><span class="metric-key">Google Ads Certified</span><span class="metric-value" style="color:white">✓ Skillshop</span></div>
-          <div><span class="metric-key">Google Analytics Certified</span><span class="metric-value" style="color:white">✓ Skillshop</span></div>
-          <div><span class="metric-key">MBA Marketing</span><span class="metric-value" style="color:white">Jain University 2018</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-flex reveal">
-        <div class="contact-info"><h3>Let's drive <span style="color: var(--accent-gold);">profitable growth</span></h3><p>Senior Manager / Director roles · Open to advisory & full-time</p><a href="mailto:ajay.hulikallu@gmail.com" class="contact-email">ajay.hulikallu@gmail.com</a><div style="margin-top: 1rem;"><span class="skill-pill" style="background: none;">LinkedIn: /in/ajay-chakravarthy-h-j</span></div></div>
-        <div style="text-align: right;"><div class="stat-number" style="font-size: 1.2rem;">📍 Bengaluru, India</div><div class="stat-label">3+ years · 7+ brands · APAC scale</div><div style="margin-top: 1rem;"><span class="skill-pill">4,08,708 conversions delivered</span></div></div>
-      </div>
-    </div>
-  </section>
-</main>
-<footer>
-  <p>Ajay Chakravarthy H J — Performance Marketing Architect. All figures from Google Ads campaign reports (194 campaigns). Results-driven & precision-focused.</p>
-</footer>
-
-<script>
-  // reveal observer
-  const revealObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
-
-  // animate bar fills when visible
-  const barObs = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.querySelectorAll('.bar-fill').forEach(bar => {
-          let width = bar.getAttribute('data-width');
-          if (width) bar.style.width = width + '%';
+  <script>
+    // Reveal on scroll
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
         });
-        barObs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.perf-table').forEach(el => barObs.observe(el));
+      },
+      { threshold: 0.12 }
+    );
+    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
 
-  // count-up for hero conversions
-  function animateNumber(element, target, duration = 1800) {
-    let start = null;
-    const step = (timestamp) => {
-      if (!start) start = timestamp;
-      const progress = Math.min((timestamp - start) / duration, 1);
-      const current = Math.floor(progress * target);
-      element.innerText = current.toLocaleString('en-IN');
-      if (progress < 1) requestAnimationFrame(step);
-      else element.innerText = target.toLocaleString('en-IN');
-    };
-    requestAnimationFrame(step);
-  }
-  const convSpan = document.getElementById('convCount');
-  if (convSpan) animateNumber(convSpan, 408708, 2000);
-</script>
+    // Animate conversion count
+    function animateNumber(el, target, duration) {
+      const start = 0;
+      const startTime = performance.now();
+
+      function frame(now) {
+        const progress = Math.min((now - startTime) / duration, 1);
+        const value = Math.floor(start + (target - start) * progress);
+        el.textContent = value.toLocaleString("en-IN");
+        if (progress < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    }
+
+    const convEl = document.getElementById("metricConversions");
+    if (convEl) {
+      animateNumber(convEl, 408708, 2000);
+    }
+
+    // Animate performance bars
+    const barObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const row = entry.target;
+            const width = row.getAttribute("data-width");
+            const fill = row.querySelector(".perf-bar-fill");
+            if (fill && width) fill.style.width = width + "%";
+            barObserver.unobserve(row);
+          }
+        });
+      },
+      { threshold: 0.4 }
+    );
+    document.querySelectorAll(".perf-row").forEach((row) => barObserver.observe(row));
+  </script>
 </body>
 </html>
