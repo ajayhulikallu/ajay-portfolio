@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Ajay Chakravarthy · Performance Architecture</title>
-  <!-- Premium typography -->
+  <!-- Premium typography & assets -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=Space+Grotesk:wght@400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
@@ -16,16 +16,17 @@
     }
 
     :root {
-      --bg-dark: #0B1120;
-      --bg-surface: #111827;
-      --bg-elevated: #1E293B;
-      --text-primary: #F1F5F9;
-      --text-secondary: #94A3B8;
-      --accent-gold: #EAB308;
-      --accent-gold-muted: #CA8A04;
-      --border-subtle: rgba(255, 255, 255, 0.06);
-      --card-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.35);
-      --transition-smooth: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      --bg-dark: #0A0F1A;
+      --bg-surface: #131A2A;
+      --bg-elevated: #1B2436;
+      --text-primary: #F2F4F8;
+      --text-secondary: #9AA4B8;
+      --accent-gold: #D4AF37;
+      --accent-gold-light: #E8C84A;
+      --accent-glow: rgba(212, 175, 55, 0.15);
+      --border-subtle: rgba(255, 255, 255, 0.05);
+      --shadow-lg: 0 30px 50px -20px rgba(0,0,0,0.5);
+      --transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     }
 
     body {
@@ -37,9 +38,10 @@
       overflow-x: hidden;
     }
 
+    /* custom scrollbar */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg-surface); }
-    ::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 6px; }
 
     /* navigation */
     .nav {
@@ -48,14 +50,13 @@
       left: 0;
       width: 100%;
       z-index: 1000;
-      backdrop-filter: blur(16px);
-      background: rgba(11, 17, 32, 0.75);
-      border-bottom: 1px solid rgba(234, 179, 8, 0.2);
-      padding: 0 5%;
+      backdrop-filter: blur(20px);
+      background: rgba(10, 15, 26, 0.75);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+      padding: 0.8rem 5%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-weight: 500;
     }
     .nav-logo {
       font-family: 'Space Grotesk', monospace;
@@ -63,138 +64,160 @@
       letter-spacing: -0.02em;
       font-size: 0.9rem;
       color: var(--accent-gold);
-      background: rgba(234,179,8,0.08);
-      padding: 0.5rem 1rem;
+      background: rgba(212,175,55,0.08);
+      padding: 0.4rem 1.2rem;
       border-radius: 40px;
+      border: 1px solid rgba(212,175,55,0.2);
     }
     .nav-links {
       display: flex;
-      gap: 2rem;
+      gap: 2.5rem;
       list-style: none;
     }
     .nav-links a {
       text-decoration: none;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.08em;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--text-secondary);
       transition: 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent-gold);
+      transition: width 0.3s;
     }
     .nav-links a:hover { color: var(--accent-gold); }
+    .nav-links a:hover::after { width: 100%; }
 
-    .container { max-width: 1400px; margin: 0 auto; padding: 0 5%; }
+    .container { max-width: 1440px; margin: 0 auto; padding: 0 5%; }
 
-    /* hero */
+    /* hero — editorial masterpiece */
     .hero {
       min-height: 100vh;
       display: flex;
       align-items: center;
-      padding-top: 5rem;
+      padding-top: 4rem;
+      position: relative;
     }
     .hero-grid {
       display: grid;
-      grid-template-columns: 1fr 0.9fr;
-      gap: 4rem;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
       align-items: center;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.6rem;
-      background: rgba(234, 179, 8, 0.08);
-      border: 1px solid rgba(234, 179, 8, 0.25);
+      gap: 0.8rem;
+      background: rgba(212, 175, 55, 0.06);
+      border: 1px solid rgba(212, 175, 55, 0.3);
       border-radius: 100px;
-      padding: 0.3rem 1rem;
+      padding: 0.35rem 1.2rem;
       font-size: 0.7rem;
       font-weight: 500;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       color: var(--accent-gold);
-      margin-bottom: 1.8rem;
+      margin-bottom: 2rem;
+      backdrop-filter: blur(5px);
     }
     .hero h1 {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(3rem, 6vw, 5.2rem);
-      line-height: 1.05;
+      font-size: clamp(3.8rem, 7vw, 6rem);
+      line-height: 1.0;
       font-weight: 400;
       letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
     }
-    .hero h1 span {
+    .hero h1 .accent-line {
       color: var(--accent-gold);
-      border-bottom: 2px solid var(--accent-gold);
+      border-bottom: 3px solid var(--accent-gold);
       display: inline-block;
+      padding-bottom: 0.2rem;
     }
     .hero-desc {
       font-size: 1rem;
       color: var(--text-secondary);
       max-width: 90%;
-      margin-bottom: 2rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
     }
     .hero-stats {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.8rem;
-      margin: 2rem 0;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin: 2.5rem 0;
     }
     .stat-block {
-      border-left: 2px solid var(--accent-gold);
-      padding-left: 1.2rem;
+      border-left: 3px solid var(--accent-gold);
+      padding-left: 1.5rem;
+      transition: transform 0.2s;
     }
+    .stat-block:hover { transform: translateY(-3px); }
     .stat-number {
       font-family: 'Space Grotesk', monospace;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
       font-weight: 600;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       color: white;
-      line-height: 1;
+      line-height: 1.1;
     }
     .stat-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       color: var(--text-secondary);
-      margin-top: 0.4rem;
+      margin-top: 0.6rem;
     }
     .hero-cta {
       display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
+      gap: 1.2rem;
     }
     .btn-primary {
       background: var(--accent-gold);
-      color: #0B1120;
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
+      color: #0A0F1A;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
       font-weight: 700;
       font-size: 0.8rem;
+      letter-spacing: 0.05em;
       text-decoration: none;
-      transition: 0.2s;
+      transition: 0.25s;
+      border: 1px solid var(--accent-gold);
+      box-shadow: 0 8px 20px rgba(212,175,55,0.2);
     }
-    .btn-primary:hover { background: #facc15; transform: scale(0.98); }
+    .btn-primary:hover { background: #E8C84A; transform: translateY(-2px); box-shadow: 0 12px 28px rgba(212,175,55,0.3); }
     .btn-outline {
-      border: 1px solid rgba(234,179,8,0.5);
-      padding: 0.8rem 2rem;
-      border-radius: 40px;
+      border: 1.5px solid var(--accent-gold);
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
       font-weight: 600;
       font-size: 0.8rem;
-      color: var(--text-primary);
+      color: var(--accent-gold);
       text-decoration: none;
+      transition: 0.25s;
     }
-    .btn-outline:hover { border-color: var(--accent-gold); background: rgba(234,179,8,0.05); }
+    .btn-outline:hover { background: rgba(212,175,55,0.08); transform: translateY(-2px); }
 
     .hero-metrics {
-      background: var(--bg-elevated);
-      backdrop-filter: blur(8px);
-      border-radius: 2rem;
-      padding: 2rem;
-      border: 1px solid rgba(234,179,8,0.2);
-      box-shadow: 0 20px 35px -15px rgba(0,0,0,0.5);
+      background: rgba(27, 36, 54, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 2.5rem;
+      padding: 2.2rem;
+      border: 1px solid rgba(212,175,55,0.25);
+      box-shadow: 0 30px 40px -15px rgba(0,0,0,0.4);
     }
     .metric-item {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(255,255,255,0.05);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
       padding: 1rem 0;
     }
     .metric-item:last-child { border: none; }
@@ -202,92 +225,102 @@
     .metric-value {
       font-family: 'Space Grotesk', monospace;
       font-weight: 600;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       color: var(--accent-gold);
     }
 
-    /* brand strip */
+    /* brand ticker — premium */
     .brand-strip {
-      background: rgba(0,0,0,0.3);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 1.2rem 0;
+      background: rgba(0,0,0,0.25);
+      border-top: 1px solid rgba(212,175,55,0.2);
+      border-bottom: 1px solid rgba(212,175,55,0.2);
+      padding: 1rem 0;
       margin: 2rem 0;
       overflow: hidden;
       white-space: nowrap;
+      backdrop-filter: blur(4px);
     }
     .brand-track {
       display: inline-block;
-      animation: scrollBrands 28s linear infinite;
+      animation: scrollBrands 25s linear infinite;
     }
     .brand-track span {
       display: inline-block;
       font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.1em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--text-secondary);
-      margin: 0 1.5rem;
+      margin: 0 1.8rem;
     }
+    .brand-track .gold { color: var(--accent-gold); }
     @keyframes scrollBrands { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-    section { padding: 6rem 0; border-bottom: 1px solid var(--border-subtle); }
+    /* sections */
+    section { padding: 7rem 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
     .section-label {
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.25em;
       color: var(--accent-gold);
       margin-bottom: 1.5rem;
       display: inline-block;
-      background: rgba(234,179,8,0.08);
-      padding: 0.2rem 1rem;
+      background: rgba(212,175,55,0.08);
+      padding: 0.25rem 1.2rem;
       border-radius: 30px;
+      border: 1px solid rgba(212,175,55,0.2);
     }
     .section-title {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-size: clamp(2.5rem, 5vw, 3.8rem);
       font-weight: 400;
       margin-bottom: 2.5rem;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
     }
 
-    /* cases */
-    .cases-grid { display: flex; flex-direction: column; gap: 4rem; }
+    /* case cards — luxury layout */
+    .cases-grid { display: flex; flex-direction: column; gap: 5rem; }
     .case-card {
       background: var(--bg-surface);
-      border-radius: 2rem;
+      border-radius: 2.5rem;
       overflow: hidden;
-      border: 1px solid rgba(234,179,8,0.1);
-      transition: var(--transition-smooth);
+      border: 1px solid rgba(212,175,55,0.15);
+      transition: var(--transition);
+      box-shadow: 0 20px 35px -10px rgba(0,0,0,0.3);
     }
-    .case-card:hover { border-color: rgba(234,179,8,0.3); transform: translateY(-4px); }
+    .case-card:hover { border-color: rgba(212,175,55,0.5); transform: translateY(-6px); box-shadow: 0 30px 50px -15px rgba(212,175,55,0.1); }
     .case-header {
-      padding: 2rem 2rem 1rem;
+      padding: 2.5rem 2.5rem 1.2rem;
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
       border-bottom: 1px solid var(--border-subtle);
     }
     .case-tag {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       font-weight: 600;
-      letter-spacing: 0.1em;
-      background: rgba(234,179,8,0.12);
-      padding: 0.2rem 0.8rem;
-      border-radius: 20px;
+      letter-spacing: 0.12em;
+      background: rgba(212,175,55,0.1);
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
       color: var(--accent-gold);
+      border: 1px solid rgba(212,175,55,0.3);
     }
     .case-metric { text-align: right; }
     .case-metric .big {
       font-family: 'Space Grotesk', monospace;
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 600;
       color: white;
+      line-height: 1;
     }
-    .case-metric .small { font-size: 0.7rem; color: var(--text-secondary); }
+    .case-metric .small { font-size: 0.7rem; color: var(--text-secondary); margin-top: 0.2rem; }
     .case-title {
-      font-size: 1.6rem;
+      font-size: 2rem;
       font-weight: 600;
-      margin: 0.5rem 2rem 1rem;
+      margin: 0.8rem 2.5rem 1.5rem;
+      letter-spacing: -0.01em;
     }
     .case-grid-3 {
       display: grid;
@@ -296,22 +329,22 @@
       border-top: 1px solid var(--border-subtle);
     }
     .case-col {
-      padding: 1.8rem;
+      padding: 2rem 2rem;
       border-right: 1px solid var(--border-subtle);
     }
     .case-col:last-child { border-right: none; }
     .case-col h4 {
       font-size: 0.7rem;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.15em;
       color: var(--accent-gold);
-      margin-bottom: 0.8rem;
+      margin-bottom: 1rem;
       text-transform: uppercase;
     }
-    .case-col p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; }
+    .case-col p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.7; }
     .case-results {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      background: #0F172A;
+      background: #0F1622;
       padding: 1.2rem 0;
       text-align: center;
       border-top: 1px solid var(--border-subtle);
@@ -320,122 +353,164 @@
     .result-stat:last-child { border: none; }
     .result-stat .num {
       font-family: 'Space Grotesk', monospace;
-      font-size: 1.3rem;
+      font-size: 1.5rem;
       font-weight: 600;
       color: var(--accent-gold);
     }
-    .result-stat .label { font-size: 0.6rem; color: var(--text-secondary); text-transform: uppercase; }
+    .result-stat .label { font-size: 0.6rem; color: var(--text-secondary); text-transform: uppercase; margin-top: 0.3rem; }
 
-    /* brand performance chart */
+    /* brand chart */
     .perf-table {
       background: var(--bg-surface);
-      border-radius: 1.5rem;
+      border-radius: 2rem;
       overflow: hidden;
       border: 1px solid var(--border-subtle);
     }
     .perf-row {
       display: grid;
-      grid-template-columns: 120px 1fr 100px 100px;
+      grid-template-columns: 140px 1fr 110px 100px;
       gap: 1rem;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1.2rem 2rem;
       border-bottom: 1px solid var(--border-subtle);
     }
     .perf-header {
-      background: rgba(0,0,0,0.4);
+      background: #0F1622;
       color: var(--accent-gold);
       font-size: 0.7rem;
-      font-weight: 600;
+      font-weight: 700;
       text-transform: uppercase;
+      letter-spacing: 0.1em;
     }
     .bar-container {
-      background: rgba(255,255,255,0.1);
-      height: 8px;
-      border-radius: 10px;
+      background: rgba(255,255,255,0.05);
+      height: 10px;
+      border-radius: 20px;
       overflow: hidden;
     }
     .bar-fill {
       width: 0%;
       height: 100%;
-      background: var(--accent-gold);
-      border-radius: 10px;
-      transition: width 1s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      background: linear-gradient(90deg, var(--accent-gold), #F5D76E);
+      border-radius: 20px;
+      transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 0 12px rgba(212,175,55,0.5);
     }
 
-    /* timeline */
-    .timeline { display: flex; flex-direction: column; gap: 2rem; }
+    /* timeline — dossier style */
+    .timeline { display: flex; flex-direction: column; gap: 2.5rem; }
     .timeline-item {
       display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 2rem;
-      border-left: 2px solid var(--accent-gold);
-      padding-left: 2rem;
-    }
-    .timeline-year { font-family: 'Space Grotesk', monospace; font-size: 1rem; font-weight: 600; color: var(--accent-gold); }
-    .timeline-content h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
-    .timeline-content p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.8rem; }
-    .timeline-content ul { list-style: none; }
-    .timeline-content li {
-      font-size: 0.8rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.4rem;
-      padding-left: 1rem;
+      grid-template-columns: 150px 1fr;
+      gap: 2.5rem;
+      border-left: 3px solid var(--accent-gold);
+      padding-left: 2.5rem;
       position: relative;
     }
-    .timeline-content li::before { content: "▹"; position: absolute; left: 0; color: var(--accent-gold); }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -9px;
+      top: 0;
+      width: 15px;
+      height: 15px;
+      background: var(--accent-gold);
+      border-radius: 50%;
+      box-shadow: 0 0 0 4px rgba(212,175,55,0.2);
+    }
+    .timeline-year {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+    }
+    .timeline-content h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .timeline-content p { font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 1rem; }
+    .timeline-content ul { list-style: none; }
+    .timeline-content li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.7rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+    .timeline-content li::before { content: "▹"; position: absolute; left: 0; color: var(--accent-gold); font-size: 1.2rem; }
 
-    /* skills */
-    .skills-pill {
+    /* skills — interactive cloud */
+    .skills-cloud {
       display: flex;
       flex-wrap: wrap;
-      gap: 0.8rem;
-      margin: 2rem 0;
+      gap: 0.8rem 1rem;
+      margin: 2.5rem 0;
     }
     .skill-pill {
-      background: var(--bg-elevated);
-      border: 1px solid rgba(234,179,8,0.2);
-      border-radius: 40px;
-      padding: 0.5rem 1.2rem;
-      font-size: 0.75rem;
+      background: transparent;
+      border: 1.5px solid rgba(212,175,55,0.4);
+      border-radius: 60px;
+      padding: 0.7rem 1.8rem;
+      font-size: 0.8rem;
       font-weight: 500;
+      color: var(--text-primary);
+      transition: 0.2s;
+      cursor: default;
+      backdrop-filter: blur(5px);
+    }
+    .skill-pill:hover {
+      background: var(--accent-gold);
+      color: #0A0F1A;
+      border-color: var(--accent-gold);
+      transform: scale(1.02);
+      box-shadow: 0 8px 18px rgba(212,175,55,0.25);
     }
 
+    /* contact — premium card */
     .contact-flex {
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      gap: 2rem;
+      gap: 3rem;
       background: var(--bg-surface);
-      border-radius: 2rem;
-      padding: 3rem;
-      border: 1px solid var(--border-subtle);
+      border-radius: 3rem;
+      padding: 3.5rem 4rem;
+      border: 1px solid rgba(212,175,55,0.2);
+      box-shadow: var(--shadow-lg);
     }
     .contact-email {
       font-family: 'Space Grotesk', monospace;
-      font-size: 1.1rem;
+      font-size: 1.4rem;
       color: var(--accent-gold);
       text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: 0.2s;
     }
+    .contact-email:hover { border-bottom-color: var(--accent-gold); }
 
-    footer { text-align: center; padding: 2rem; font-size: 0.7rem; color: var(--text-secondary); }
+    footer { text-align: center; padding: 2.5rem; font-size: 0.7rem; color: var(--text-secondary); border-top: 1px solid var(--border-subtle); }
 
+    /* reveal animations */
     .reveal {
       opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(35px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
+    /* footnote */
+    .footnote { font-size: 0.7rem; color: var(--text-secondary); margin-top: 1.5rem; border-top: 1px dashed rgba(255,255,255,0.08); padding-top: 1.5rem; }
+
+    /* responsive */
+    @media (max-width: 1000px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
       .case-grid-3 { grid-template-columns: 1fr; }
       .case-col { border-right: none; border-bottom: 1px solid var(--border-subtle); }
-      .perf-row { grid-template-columns: 100px 1fr 80px; }
-      .timeline-item { grid-template-columns: 1fr; padding-left: 1rem; }
+      .perf-row { grid-template-columns: 110px 1fr 90px; }
+      .timeline-item { grid-template-columns: 1fr; padding-left: 1.5rem; }
+      .nav-links { gap: 1.2rem; }
     }
-
-    .footnote { font-size: 0.7rem; color: var(--text-secondary); margin-top: 1rem; border-top: 1px dashed var(--border-subtle); padding-top: 1rem; }
-    .gold { color: var(--accent-gold); }
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: 1fr; }
+      .perf-row { grid-template-columns: 100px 1fr 70px; padding: 1rem 1rem; }
+    }
   </style>
 </head>
 <body>
@@ -443,66 +518,67 @@
   <div class="nav-logo">AJAY CHAKRAVARTHY</div>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
-    <li><a href="#performance">Brands</a></li>
-    <li><a href="#career">Career</a></li>
+    <li><a href="#performance">Data</a></li>
+    <li><a href="#career">Path</a></li>
     <li><a href="#contact">Connect</a></li>
   </ul>
 </nav>
 
 <main>
+  <!-- HERO -->
   <div class="container hero">
     <div class="hero-grid">
       <div>
-        <div class="hero-badge">✦ Assistant Manager – Performance Marketing ✦</div>
-        <h1>Precision paid media, <span>₹79.38L</span> managed.</h1>
-        <p class="hero-desc">4,08,708 conversions · avg. CPA ₹19.42 · 194 campaigns · 3+ years scaling tech & D2C brands.</p>
+        <div class="hero-badge">✦ ASSISTANT MANAGER – PERFORMANCE MARKETING ✦</div>
+        <h1>Engineering <span class="accent-line">profitable growth</span> at scale.</h1>
+        <p class="hero-desc">4,08,708 conversions · ₹79.38L managed spend · avg. CPA ₹19.42 · 194 campaigns · 3+ years driving performance for Lenovo, Dell, Acer, MSI & more.</p>
         <div class="hero-stats">
           <div class="stat-block"><div class="stat-number" id="heroConv">0</div><div class="stat-label">Total Conversions</div></div>
           <div class="stat-block"><div class="stat-number">₹19.42</div><div class="stat-label">Avg. CPA</div></div>
           <div class="stat-block"><div class="stat-number">3.34%</div><div class="stat-label">Avg. CTR</div></div>
-          <div class="stat-block"><div class="stat-number">₹1.38</div><div class="stat-label">Avg. CPC</div></div>
         </div>
         <div class="hero-cta">
-          <a href="#work" class="btn-primary">Explore case studies →</a>
-          <a href="#contact" class="btn-outline">Contact</a>
+          <a href="#work" class="btn-primary">View case studies →</a>
+          <a href="#contact" class="btn-outline">Let's connect</a>
         </div>
       </div>
       <div class="hero-metrics">
         <div class="metric-item"><span class="metric-key">Lenovo APAC SPOC</span><span class="metric-value">~200 GBP profiles</span></div>
-        <div class="metric-item"><span class="metric-key">MSI India (separate)</span><span class="metric-value">~50 GBP profiles</span></div>
+        <div class="metric-item"><span class="metric-key">MSI India (separate)</span><span class="metric-value">~50 profiles</span></div>
         <div class="metric-item"><span class="metric-key">SEO locate.lenovo.com</span><span class="metric-value">~12,000 pages</span></div>
         <div class="metric-item"><span class="metric-key">Philippines awareness</span><span class="metric-value">8,488 clicks</span></div>
-        <div class="metric-item"><span class="metric-key">Team leadership</span><span class="metric-value">6 members</span></div>
+        <div class="metric-item"><span class="metric-key">Team leadership</span><span class="metric-value">6 marketers</span></div>
         <div class="metric-item"><span class="metric-key">Lowest CPA (ICB)</span><span class="metric-value">₹4.58</span></div>
       </div>
     </div>
   </div>
 
+  <!-- TICKER -->
   <div class="brand-strip">
     <div class="brand-track">
-      <span>Lenovo APAC</span> <span>✦</span> <span>Dell</span> <span>✦</span> <span>Acer</span> <span>✦</span> <span>Asus</span> <span>✦</span> <span>MSI</span> <span>✦</span>
-      <span>Indian Craft Brewery</span> <span>✦</span> <span>Achivr</span> <span>✦</span> <span>Britannia</span> 
-      <span>✦</span> <span>Lenovo APAC</span> <span>✦</span> <span>Dell</span> <span>✦</span> <span>Acer</span>
+      <span>Lenovo APAC</span> <span class="gold">✦</span> <span>Dell</span> <span class="gold">✦</span> <span>Acer</span> <span class="gold">✦</span> <span>Asus</span> <span class="gold">✦</span> <span>MSI</span> <span class="gold">✦</span>
+      <span>Indian Craft Brewery</span> <span class="gold">✦</span> <span>Achivr</span> <span class="gold">✦</span> <span>Britannia</span> 
+      <span class="gold">✦</span> <span>Lenovo APAC</span> <span class="gold">✦</span> <span>Dell</span> <span class="gold">✦</span> <span>Acer</span>
     </div>
   </div>
 
-  <!-- CASE STUDIES -->
+  <!-- WORK / CASE STUDIES -->
   <section id="work">
     <div class="container">
       <span class="section-label">Impact case files</span>
-      <h2 class="section-title">Conversions that rewrite benchmarks</h2>
+      <h2 class="section-title">Conversions that redefine benchmarks</h2>
       <div class="cases-grid">
         <!-- ICB -->
         <div class="case-card reveal">
           <div class="case-header">
-            <span class="case-tag">🇮🇳 India · Search + PMax · Lowest CPA across all brands</span>
+            <span class="case-tag">🇮🇳 India · Search + PMax · Lowest CPA across 7 brands</span>
             <div class="case-metric"><span class="big">₹4.58</span><div class="small">avg. CPA</div></div>
           </div>
           <div class="case-title">Indian Craft Brewery — policy-restricted, 1.64L conversions</div>
           <div class="case-grid-3">
-            <div class="case-col"><h4>Problem</h4><p>Alcohol-adjacent: multiple ad disapprovals, zero compliant structure, wasted spend.</p></div>
-            <div class="case-col"><h4>Approach</h4><p>6 intent-segmented Search campaigns (Brewery, Restaurant, Cocktails, etc.) + policy-compliant PMax.</p></div>
-            <div class="case-col"><h4>Outcome</h4><p>ICB PMax Feb'25: 1,09,923 conv @ ₹3.19 CPA. Total brand: 1,64,367 conv, ₹4.58 CPA — lowest across 7 brands.</p></div>
+            <div class="case-col"><h4>Problem</h4><p>Alcohol-adjacent hospitality brand. Google Ads policy issues, zero compliant structure, wasted spend.</p></div>
+            <div class="case-col"><h4>Approach</h4><p>Built 6 intent-segmented Search campaigns (Brewery, Restaurant, Cocktails, etc.) + PMax with policy-compliant creatives.</p></div>
+            <div class="case-col"><h4>Outcome</h4><p>ICB PMax Feb'25: 1,09,923 conv @ ₹3.19 CPA. Total brand: 1,64,367 conv, ₹4.58 CPA — lowest across portfolio.</p></div>
           </div>
           <div class="case-results">
             <div class="result-stat"><span class="num">1,64,367</span><div class="label">Conversions</div></div>
@@ -520,9 +596,9 @@
           </div>
           <div class="case-title">Acer Dotcom & partners — 10+ outlets unified under one PMax architecture</div>
           <div class="case-grid-3">
-            <div class="case-col"><h4>Problem</h4><p>10+ fragmented outlets, no shared signals, high CPC variance.</p></div>
-            <div class="case-col"><h4>Approach</h4><p>Individual PMax per outlet, store-specific assets, GA4 past-convertor signals, Target CPA.</p></div>
-            <div class="case-col"><h4>Outcome</h4><p>Microtouch ₹4.73 CPA, Airport ₹0.25 CPC. Network total 1,28,000+ conv @ ₹11.30 CPA.</p></div>
+            <div class="case-col"><h4>Problem</h4><p>10+ fragmented outlets, inconsistent CPCs, no shared audience signals.</p></div>
+            <div class="case-col"><h4>Approach</h4><p>Individual PMax per outlet, store-specific assets, GA4 past-convertor signals, Target CPA, A/B creative tests.</p></div>
+            <div class="case-col"><h4>Outcome</h4><p>Microtouch Aug'24: ₹4.73 CPA. Airport Nov'24: ₹0.25 CPC. Network total 1,28,000+ conv @ ₹11.30 CPA.</p></div>
           </div>
           <div class="case-results">
             <div class="result-stat"><span class="num">1,28,000+</span><div class="label">Conversions</div></div>
@@ -552,7 +628,7 @@
           </div>
         </div>
 
-        <!-- Lenovo APAC complex case -->
+        <!-- Lenovo APAC complex -->
         <div class="case-card reveal">
           <div class="case-header">
             <span class="case-tag">🌏 Lenovo APAC · Direct brand mandate</span>
@@ -570,13 +646,13 @@
             <div class="result-stat"><span class="num">~12k</span><div class="label">SEO pages</div></div>
             <div class="result-stat"><span class="num">8,488</span><div class="label">PH clicks</div></div>
           </div>
-          <div class="footnote" style="margin: 0 1.5rem 1.5rem;">⚠️ Lenovo APAC SPOC and MSI India are separate mandates. Philippines campaign was awareness only (0 conversions).</div>
+          <div class="footnote" style="margin:0 2rem 2rem;">⚠️ Lenovo APAC SPOC and MSI India are separate mandates. Philippines campaign was awareness only (0 conversions).</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BRAND PERFORMANCE CHART -->
+  <!-- BRAND PERFORMANCE -->
   <section id="performance">
     <div class="container">
       <span class="section-label">Brand-level metrics</span>
@@ -595,7 +671,7 @@
     </div>
   </section>
 
-  <!-- CAREER TIMELINE -->
+  <!-- CAREER -->
   <section id="career">
     <div class="container">
       <span class="section-label">Career trajectory</span>
@@ -646,7 +722,7 @@
     <div class="container">
       <span class="section-label">Capabilities</span>
       <h2 class="section-title">Tools & expertise</h2>
-      <div class="skills-pill">
+      <div class="skills-cloud">
         <span class="skill-pill">Google Ads Search</span><span class="skill-pill">Performance Max</span><span class="skill-pill">Meta Ads</span><span class="skill-pill">Target CPA/ROAS</span>
         <span class="skill-pill">GA4</span><span class="skill-pill">GTM</span><span class="skill-pill">Looker Studio</span><span class="skill-pill">Search Console</span>
         <span class="skill-pill">GBP/GMB</span><span class="skill-pill">NAP Standardisation</span><span class="skill-pill">On-page SEO</span><span class="skill-pill">Technical SEO</span>
@@ -661,15 +737,16 @@
   <section id="contact">
     <div class="container">
       <div class="contact-flex">
-        <div><span class="section-label" style="margin-bottom:0.5rem;">Connect</span>
-          <h3 style="font-size:2rem; font-weight:400;">Ajay Chakravarthy H J</h3>
-          <p style="color:var(--text-secondary);">Assistant Manager – Performance Marketing</p>
+        <div>
+          <span class="section-label" style="margin-bottom:1rem;">Connect</span>
+          <h3 style="font-size:2.5rem; font-weight:400; margin-bottom:0.5rem;">Ajay Chakravarthy H J</h3>
+          <p style="color:var(--text-secondary); font-size:1rem;">Assistant Manager – Performance Marketing</p>
         </div>
         <div style="text-align:right;">
           <a href="mailto:ajay.hulikallu@gmail.com" class="contact-email">ajay.hulikallu@gmail.com</a><br>
-          <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" style="color:var(--text-secondary); text-decoration:none;">linkedin.com/in/ajay-chakravarthy-h-j</a>
-          <p style="margin-top:1rem; color:var(--text-secondary);">📍 Bengaluru, India</p>
-          <p class="footnote" style="border:none;">📱 Phone available on resume only.</p>
+          <a href="https://linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" style="color:var(--text-secondary); text-decoration:none; border-bottom:1px solid transparent; transition:0.2s;" onmouseover="this.style.borderBottom='1px solid var(--accent-gold)'" onmouseout="this.style.borderBottom='1px solid transparent'">linkedin.com/in/ajay-chakravarthy-h-j</a>
+          <p style="margin-top:1.5rem; color:var(--text-secondary);">📍 Bengaluru, India</p>
+          <p class="footnote" style="border:none; margin-top:1rem;">📱 Phone available on resume only.</p>
         </div>
       </div>
     </div>
@@ -686,7 +763,7 @@
     const heroConv = document.getElementById('heroConv');
     const target = 408708;
     let current = 0;
-    const step = Math.ceil(target / 100);
+    const step = Math.ceil(target / 110);
     const timer = setInterval(() => {
       current += step;
       if (current >= target) {
@@ -703,7 +780,7 @@
       entries.forEach(entry => {
         if (entry.isIntersecting) entry.target.classList.add('visible');
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.2, rootMargin: '0px 0px -50px 0px' });
     reveals.forEach(el => observer.observe(el));
 
     // Animate brand bars
@@ -721,6 +798,7 @@
 
     // Force hero visible
     document.querySelector('.hero').classList.add('visible');
+    document.querySelectorAll('.hero .reveal').forEach(el => el.classList.add('visible'));
   })();
 </script>
 </body>
