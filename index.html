@@ -3,792 +3,851 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Ajay Chakravarthy H J — Assistant Manager (Performance Marketing). Google Ads, PMax, Meta Ads, GA4/GTM, GBP." />
+	<meta name="description" content="Ajay Chakravarthy H J — Assistant Manager (Performance Marketing). Premium interactive portfolio: story mode + game layer + data room dashboard." />
 	<title>Ajay Chakravarthy · Performance Architecture</title>
 
 	<style>
 		:root{
-			--bg: #070A12;
-			--bg2:#0B1024;
-			--card:#0E1633;
-			--card2:#0C1229;
+			--bg:#060810;
+			--bg2:#0A0F22;
+			--glass: rgba(255,255,255,.05);
+			--glass2: rgba(255,255,255,.035);
+			--line: rgba(255,255,255,.10);
+			--line2: rgba(255,255,255,.14);
 			--text:#EAF0FF;
 			--muted:#A9B4D6;
 			--faint:#7F8BB3;
-			--line: rgba(255,255,255,.10);
-			--line2: rgba(255,255,255,.14);
+
 			--accent:#7C5CFF;
 			--accent2:#29D3FF;
 			--good:#4DFFB5;
 			--warn:#FFD36E;
-			--shadow: 0 18px 50px rgba(0,0,0,.45);
-			--radius: 18px;
-			--radius2: 26px;
+			--bad:#FF6B8B;
+
+			--shadow: 0 22px 70px rgba(0,0,0,.55);
+			--shadow2: 0 18px 48px rgba(0,0,0,.42);
+
+			--r: 18px;
+			--r2: 26px;
+
 			--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-			--sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+			--sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 		}
 
-		*{ box-sizing:border-box; }
-		html,body{ height:100%; }
+		*{box-sizing:border-box}
+		html,body{height:100%}
 		body{
 			margin:0;
 			font-family: var(--sans);
-			background:
-				radial-gradient(900px 500px at 10% 10%, rgba(124,92,255,.22), transparent 55%),
-				radial-gradient(800px 460px at 85% 15%, rgba(41,211,255,.18), transparent 55%),
-				radial-gradient(700px 420px at 70% 85%, rgba(77,255,181,.10), transparent 60%),
-				linear-gradient(180deg, var(--bg), #050711 70%);
 			color: var(--text);
+			background:
+				radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,.20), transparent 55%),
+				radial-gradient(900px 520px at 86% 14%, rgba(41,211,255,.16), transparent 55%),
+				radial-gradient(900px 520px at 68% 84%, rgba(77,255,181,.08), transparent 60%),
+				linear-gradient(180deg, var(--bg), #04050B 75%);
 			overflow-x:hidden;
 		}
+		a{color:inherit; text-decoration:none}
+		.container{width:min(1120px, 92vw); margin:0 auto}
 
-		a{ color: inherit; text-decoration: none; }
-		.container{ width:min(1120px, 92vw); margin:0 auto; }
-
-		/* Top progress bar */
-		#progress{
-			position: fixed;
-			inset: 0 0 auto 0;
-			height: 3px;
+		/* Top progress */
+		#topProgress{
+			position:fixed; inset:0 0 auto 0;
+			height:3px;
 			background: linear-gradient(90deg, var(--accent), var(--accent2));
 			transform-origin: 0 50%;
 			transform: scaleX(0);
 			z-index: 9999;
 		}
 
-		/* Navbar */
-		.nav{
+		/* Premium noise overlay */
+		.noise{
+			position: fixed; inset:0;
+			pointer-events:none;
+			opacity: .08;
+			mix-blend-mode: overlay;
+			background-image:
+				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
+			z-index: 2;
+		}
+
+		/* App shell */
+		.shell{
+			position: relative;
+			z-index: 5;
+			min-height: 100vh;
+			display:flex;
+			flex-direction:column;
+		}
+
+		/* Header bar */
+		.topbar{
 			position: sticky;
-			top: 0;
+			top:0;
 			z-index: 50;
-			backdrop-filter: blur(10px);
-			background: rgba(7,10,18,.55);
+			backdrop-filter: blur(14px);
+			background: rgba(6,8,16,.62);
 			border-bottom: 1px solid var(--line);
 		}
-		.nav-inner{
-			display:flex;
-			align-items:center;
-			justify-content:space-between;
-			padding: 14px 0;
+		.topbar .inner{
+			display:flex; align-items:center; justify-content:space-between;
 			gap: 14px;
+			padding: 12px 0;
 		}
 		.brand{
-			display:flex;
-			align-items:center;
-			gap:12px;
-			min-width: 230px;
+			display:flex; align-items:center; gap: 12px;
+			min-width: 240px;
 		}
 		.avatar{
-			width: 34px; height:34px;
-			border-radius: 10px;
-			background: linear-gradient(135deg, rgba(124,92,255,.9), rgba(41,211,255,.9));
-			box-shadow: 0 12px 30px rgba(124,92,255,.18);
+			width: 36px; height:36px;
+			border-radius: 12px;
+			background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.85));
+			box-shadow: 0 18px 42px rgba(124,92,255,.16);
+			position: relative;
+			overflow:hidden;
 		}
-		.brand b{ font-weight:700; letter-spacing:.2px; }
-		.brand small{ display:block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+		.avatar:after{
+			content:"";
+			position:absolute; inset:-80px;
+			background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 45%);
+			transform: rotate(12deg);
+		}
+		.brand b{display:block; font-weight: 760; letter-spacing:-.2px}
+		.brand small{display:block; color: var(--muted); font-size: 12px; margin-top:2px}
 
-		.navlinks{
-			display:flex; gap: 10px; flex-wrap:wrap;
-			justify-content:center;
+		.kbd{
+			font-family: var(--mono);
+			font-size: 12px;
+			border: 1px solid rgba(255,255,255,.16);
+			background: rgba(0,0,0,.28);
+			color: rgba(255,255,255,.85);
+			padding: 2px 7px;
+			border-radius: 9px;
 		}
-		.pill{
+
+		/* Game HUD (premium) */
+		.hud{
+			display:flex; align-items:center; justify-content:center;
+			gap: 10px;
+			flex-wrap:wrap;
+		}
+		.hudCard{
+			display:flex; align-items:center; gap: 10px;
+			padding: 8px 10px;
+			border-radius: 14px;
 			border: 1px solid var(--line);
 			background: rgba(255,255,255,.03);
-			color: var(--muted);
-			padding: 8px 10px;
-			border-radius: 999px;
-			font-size: 13px;
-			transition: .18s ease;
+			box-shadow: var(--shadow2);
 		}
-		.pill:hover{ transform: translateY(-1px); border-color: var(--line2); color: var(--text); }
-		.pill.active{ color: var(--text); border-color: rgba(124,92,255,.55); background: rgba(124,92,255,.10); }
+		.hudCard span{ color: var(--muted); font-size: 12px; }
+		.hudCard b{ font-size: 12px; letter-spacing:.2px }
+		.xpbar{
+			width: 160px; height: 8px;
+			border-radius: 99px;
+			background: rgba(255,255,255,.08);
+			overflow:hidden;
+			border: 1px solid rgba(255,255,255,.10);
+		}
+		.xpbar > i{
+			display:block; height:100%;
+			width: 0%;
+			background: linear-gradient(90deg, rgba(77,255,181,.9), rgba(41,211,255,.9));
+			box-shadow: 0 0 0 1px rgba(255,255,255,.12) inset;
+			transition: width .55s ease;
+		}
 
-		.nav-cta{
-			display:flex; align-items:center; gap:10px;
-			min-width: 230px;
-			justify-content:flex-end;
+		/* Right controls */
+		.controls{
+			min-width: 240px;
+			display:flex; justify-content:flex-end; gap: 10px; flex-wrap:wrap;
 		}
 		.btn{
 			border: 1px solid var(--line);
 			background: rgba(255,255,255,.03);
-			padding: 10px 12px;
-			border-radius: 12px;
-			font-size: 13px;
 			color: var(--text);
+			padding: 10px 12px;
+			border-radius: 14px;
+			font-size: 13px;
 			cursor:pointer;
+			display:inline-flex; gap: 10px; align-items:center;
 			transition: .18s ease;
-			display:inline-flex; align-items:center; gap:10px;
 		}
-		.btn:hover{ transform: translateY(-1px); border-color: rgba(124,92,255,.55); box-shadow: 0 12px 26px rgba(124,92,255,.10); }
+		.btn:hover{
+			transform: translateY(-1px);
+			border-color: rgba(124,92,255,.55);
+			box-shadow: 0 18px 44px rgba(124,92,255,.10);
+		}
 		.btn.primary{
 			background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.55));
 			border-color: rgba(255,255,255,.12);
 		}
-		.kbd{
-			font-family: var(--mono);
-			font-size: 12px;
-			color: rgba(255,255,255,.85);
-			border: 1px solid rgba(255,255,255,.14);
-			background: rgba(0,0,0,.25);
-			padding: 2px 6px;
-			border-radius: 8px;
+		.btn.ghost{
+			background: rgba(255,255,255,.02);
 		}
 
-		/* Hero */
-		header{
-			padding: 34px 0 18px;
+		@media (max-width: 900px){
+			.brand, .controls{ min-width: unset; }
+			.hud{ display:none; }
 		}
-		.hero{
-			display:grid;
-			grid-template-columns: 1.35fr .65fr;
-			gap: 18px;
-			align-items:stretch;
+
+		/* Story deck */
+		.deckWrap{
+			padding: 20px 0 24px;
+			flex: 1;
 		}
-		@media (max-width: 920px){
-			.hero{ grid-template-columns: 1fr; }
-			.brand, .nav-cta{ min-width: unset; }
-		}
-		.card{
-			background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+		.deck{
+			position: relative;
+			border-radius: var(--r2);
 			border: 1px solid var(--line);
-			border-radius: var(--radius2);
+			background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
 			box-shadow: var(--shadow);
 			overflow:hidden;
-			position: relative;
 		}
-		.card::before{
+		.deck:before{
 			content:"";
 			position:absolute; inset:-2px;
-			background: radial-gradient(800px 220px at 20% 0%, rgba(124,92,255,.22), transparent 60%),
-						radial-gradient(700px 220px at 80% 10%, rgba(41,211,255,.18), transparent 60%);
+			background:
+				radial-gradient(900px 260px at 20% 0%, rgba(124,92,255,.22), transparent 60%),
+				radial-gradient(760px 240px at 85% 12%, rgba(41,211,255,.18), transparent 60%);
 			pointer-events:none;
 			opacity:.9;
 		}
-		.card > .inner{
+
+		/* Slide rail */
+		.slides{
+			position: relative;
+			display:flex;
+			transition: transform .55s cubic-bezier(.2,.9,.2,1);
+			will-change: transform;
+		}
+		.slide{
+			min-width: 100%;
 			position: relative;
 			padding: 22px;
 		}
+		.slideInner{
+			position: relative;
+			display:grid;
+			grid-template-columns: 1.2fr .8fr;
+			gap: 14px;
+			align-items:stretch;
+		}
+		@media (max-width: 980px){
+			.slideInner{ grid-template-columns: 1fr; }
+		}
 
-		.tagline{
-			display:flex; flex-wrap:wrap; gap: 10px; align-items:center;
+		/* Premium panels */
+		.panel{
+			border: 1px solid var(--line);
+			background: rgba(255,255,255,.02);
+			border-radius: var(--r2);
+			padding: 18px;
+			box-shadow: 0 18px 46px rgba(0,0,0,.25);
+		}
+		.panel h1{
+			margin: 10px 0 10px;
+			font-size: clamp(28px, 3.2vw, 46px);
+			line-height: 1.05;
+			letter-spacing: -0.7px;
+		}
+		.panel h2{
+			margin: 0 0 10px;
+			font-size: 18px;
+			letter-spacing: .2px;
+		}
+		.panel p{ margin: 0; color: var(--muted); line-height: 1.55; }
+		.subline{
+			display:flex; flex-wrap:wrap; gap: 10px;
 			color: var(--muted);
 			font-size: 13px;
+			align-items:center;
 		}
 		.badge{
 			padding: 6px 10px;
 			border-radius: 999px;
 			border: 1px solid var(--line);
 			background: rgba(255,255,255,.03);
+			font-size: 12px;
+			color: var(--muted);
 		}
-		.badge.dot::before{
+		.badge.dot:before{
 			content:"";
 			display:inline-block;
 			width:8px; height:8px;
 			border-radius: 99px;
 			background: var(--good);
 			margin-right:8px;
-			box-shadow: 0 0 0 3px rgba(77,255,181,.12);
+			box-shadow: 0 0 0 3px rgba(77,255,181,.10);
 		}
 
-		h1{
-			margin: 12px 0 10px;
-			font-size: clamp(30px, 3.4vw, 46px);
-			letter-spacing: -0.6px;
-			line-height: 1.05;
-		}
-		.lede{
-			color: var(--muted);
-			font-size: 15px;
-			line-height: 1.55;
-			margin: 0 0 14px;
-			max-width: 62ch;
-		}
-
-		.metrics{
+		/* KPI tiles */
+		.kpis{
 			display:grid;
 			grid-template-columns: repeat(4, 1fr);
 			gap: 10px;
 			margin-top: 14px;
 		}
-		@media (max-width: 920px){
-			.metrics{ grid-template-columns: repeat(2, 1fr); }
-		}
-		.metric{
-			background: rgba(255,255,255,.02);
-			border: 1px solid var(--line);
-			border-radius: 16px;
+		@media (max-width: 980px){ .kpis{ grid-template-columns: repeat(2, 1fr);} }
+		.kpi{
 			padding: 12px;
-		}
-		.metric b{ font-size: 18px; display:block; }
-		.metric span{ color: var(--muted); font-size: 12px; }
-
-		.side{
-			background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-			border: 1px solid var(--line);
-			border-radius: var(--radius2);
-			box-shadow: var(--shadow);
-		}
-		.side .inner{ padding: 22px; }
-		.side h3{ margin: 0 0 10px; font-size: 14px; color: var(--muted); font-weight: 600; letter-spacing: .2px; }
-		.quick{
-			display:grid; gap: 10px;
-		}
-		.qitem{
-			border: 1px solid var(--line);
-			border-radius: 16px;
-			padding: 12px;
-			background: rgba(255,255,255,.02);
-		}
-		.qitem b{ display:block; font-size: 13px; }
-		.qitem small{ color: var(--muted); font-size: 12px; line-height: 1.4; }
-
-		/* Sections */
-		section{ padding: 16px 0 8px; }
-		.section-title{
-			display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
-			margin: 14px 0 10px;
-		}
-		.section-title h2{ margin:0; font-size: 18px; letter-spacing:.2px; }
-		.section-title p{ margin:0; color: var(--muted); font-size: 13px; }
-
-		.grid{
-			display:grid;
-			grid-template-columns: repeat(12, 1fr);
-			gap: 12px;
-		}
-		.panel{
-			grid-column: span 12;
-			background: rgba(255,255,255,.02);
-			border: 1px solid var(--line);
-			border-radius: var(--radius);
-			padding: 16px;
-		}
-		@media (min-width: 920px){
-			.panel.half{ grid-column: span 6; }
-			.panel.third{ grid-column: span 4; }
-			.panel.twothird{ grid-column: span 8; }
-		}
-
-		/* Case studies */
-		.filters{ display:flex; flex-wrap:wrap; gap: 8px; }
-		.chip{
-			padding: 8px 10px;
-			border-radius: 999px;
+			border-radius: 18px;
 			border: 1px solid var(--line);
 			background: rgba(255,255,255,.02);
-			font-size: 12px;
-			color: var(--muted);
-			cursor:pointer;
-			transition:.18s ease;
 		}
-		.chip:hover{ color: var(--text); border-color: var(--line2); transform: translateY(-1px); }
-		.chip.active{ color: var(--text); border-color: rgba(41,211,255,.55); background: rgba(41,211,255,.10); }
+		.kpi b{ display:block; font-size: 18px; }
+		.kpi span{ display:block; margin-top:4px; font-size: 12px; color: var(--muted); }
 
+		/* Case cards */
 		.cards{
 			display:grid;
 			grid-template-columns: repeat(12, 1fr);
-			gap: 12px;
-			margin-top: 12px;
+			gap: 10px;
 		}
 		.case{
 			grid-column: span 12;
-			border-radius: var(--radius2);
+			border-radius: 20px;
 			border: 1px solid var(--line);
-			background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
-			padding: 16px;
+			background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+			padding: 14px;
+			cursor:pointer;
+			transition: .18s ease;
 			position: relative;
 			overflow:hidden;
-			cursor:pointer;
-			transition:.18s ease;
 		}
-		@media (min-width: 920px){
-			.case{ grid-column: span 6; }
+		@media (min-width: 980px){ .case{ grid-column: span 6; } }
+		.case:hover{
+			transform: translateY(-2px);
+			border-color: rgba(124,92,255,.50);
+			box-shadow: 0 22px 58px rgba(124,92,255,.08);
 		}
-		.case:hover{ transform: translateY(-2px); border-color: rgba(124,92,255,.45); }
-		.case h3{ margin: 2px 0 8px; font-size: 16px; }
-		.case .meta{ display:flex; gap: 8px; flex-wrap:wrap; color: var(--muted); font-size: 12px; }
-		.case .kpi{ display:flex; gap: 12px; flex-wrap:wrap; margin-top: 12px; }
-		.kpi span{
-			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
-			border-radius: 999px;
+		.case h3{ margin: 6px 0 10px; font-size: 16px; }
+		.meta{ color: var(--muted); font-size: 12px; display:flex; flex-wrap:wrap; gap: 8px;}
+		.tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 10px;}
+		.tag{
 			padding: 6px 10px;
-			font-size: 12px;
-			color: var(--text);
-		}
-		.case .hint{
-			color: var(--muted);
-			margin-top: 10px;
-			font-size: 12px;
-		}
-
-		/* Timeline */
-		.timeline{ display:grid; gap: 10px; }
-		.role{
+			border-radius: 999px;
 			border: 1px solid var(--line);
 			background: rgba(255,255,255,.02);
-			border-radius: 18px;
-			padding: 14px;
+			color: var(--text);
+			font-size: 12px;
 		}
-		.role header{ padding:0; }
-		.role b{ font-size: 14px; display:block; }
-		.role small{ color: var(--muted); }
-		.role ul{ margin: 10px 0 0 18px; color: var(--muted); }
-		.role li{ margin: 6px 0; }
+		.hint{ margin-top: 10px; color: var(--faint); font-size: 12px; }
 
-		/* Footer contact */
-		.contact{
-			display:flex; flex-wrap:wrap; gap: 10px; align-items:center;
+		/* Missions */
+		.missions{
+			display:grid; gap: 10px;
+		}
+		.mission{
+			display:flex; align-items:flex-start; gap: 10px;
+			padding: 12px;
+			border-radius: 18px;
+			border: 1px solid var(--line);
+			background: rgba(255,255,255,.02);
+		}
+		.mission input{ margin-top: 3px; }
+		.mission b{ display:block; font-size: 13px; }
+		.mission small{ display:block; color: var(--muted); margin-top: 3px; line-height:1.4; }
+
+		/* Deck nav */
+		.deckNav{
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
+			gap: 10px;
+			padding: 12px 14px;
+			border-top: 1px solid var(--line);
+			background: rgba(0,0,0,.18);
+			backdrop-filter: blur(10px);
+		}
+		.dots{ display:flex; gap: 8px; align-items:center; justify-content:center; flex: 1; }
+		.dot{
+			width: 9px; height:9px;
+			border-radius: 99px;
+			border: 1px solid rgba(255,255,255,.18);
+			background: rgba(255,255,255,.10);
+			cursor:pointer;
+			transition: .18s ease;
+		}
+		.dot.active{
+			width: 24px;
+			background: linear-gradient(90deg, rgba(124,92,255,.95), rgba(41,211,255,.8));
+			border-color: rgba(255,255,255,.20);
+		}
+		.smallNote{
+			color: var(--muted);
+			font-size: 12px;
+			min-width: 230px;
 		}
 
 		/* Modal */
 		.modal{
-			position: fixed;
-			inset: 0;
-			background: rgba(0,0,0,.55);
-			backdrop-filter: blur(10px);
+			position: fixed; inset:0;
+			background: rgba(0,0,0,.62);
+			backdrop-filter: blur(12px);
 			display:none;
-			align-items:center;
-			justify-content:center;
+			align-items:center; justify-content:center;
 			padding: 18px;
 			z-index: 1000;
 		}
 		.modal.open{ display:flex; }
-		.modal-card{
+		.modalCard{
 			width: min(980px, 96vw);
-			max-height: min(85vh, 820px);
+			max-height: min(85vh, 900px);
 			overflow:auto;
-			background: linear-gradient(180deg, rgba(14,22,51,.98), rgba(10,16,38,.98));
-			border: 1px solid rgba(255,255,255,.12);
 			border-radius: 22px;
-			box-shadow: 0 30px 80px rgba(0,0,0,.6);
-			position: relative;
+			border: 1px solid rgba(255,255,255,.14);
+			background: linear-gradient(180deg, rgba(12,18,41,.98), rgba(7,10,22,.98));
+			box-shadow: 0 34px 92px rgba(0,0,0,.65);
 		}
-		.modal-inner{ padding: 18px; }
-		.modal-top{
-			display:flex;
-			align-items:flex-start;
-			justify-content:space-between;
-			gap: 12px;
+		.modalInner{ padding: 16px; }
+		.modalTop{
+			display:flex; justify-content:space-between; gap: 12px;
 			border-bottom: 1px solid var(--line);
 			padding-bottom: 12px;
 			margin-bottom: 12px;
 		}
-		.modal-top h3{ margin: 0; font-size: 18px; }
-		.modal-top p{ margin: 6px 0 0; color: var(--muted); font-size: 13px; line-height: 1.45; }
-		.close{
-			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
-			color: var(--text);
-			border-radius: 14px;
-			padding: 10px 12px;
-			cursor:pointer;
-		}
-		.twocol{
+		.modalTop h3{ margin:0; font-size: 18px; }
+		.modalTop p{ margin:6px 0 0; color: var(--muted); font-size: 13px; line-height:1.45; }
+		.cols{
 			display:grid;
 			grid-template-columns: 1fr;
 			gap: 12px;
 		}
-		@media (min-width: 920px){
-			.twocol{ grid-template-columns: 1fr 1fr; }
-		}
+		@media (min-width: 980px){ .cols{ grid-template-columns: 1fr 1fr; } }
 		.box{
 			border: 1px solid var(--line);
 			background: rgba(255,255,255,.02);
 			border-radius: 18px;
 			padding: 14px;
 		}
-		.box h4{ margin: 0 0 8px; font-size: 13px; color: var(--muted); letter-spacing:.2px; }
-		.box p, .box li{ color: var(--muted); }
+		.box h4{ margin:0 0 8px; font-size: 13px; color: var(--muted); letter-spacing:.2px;}
+		.box p,.box li{ color: var(--muted); }
 		.box ul{ margin: 10px 0 0 18px; }
-		hr.sep{ border: none; border-top: 1px solid var(--line); margin: 14px 0; }
+
+		/* Dashboard */
+		.dashTop{
+			display:flex; flex-wrap:wrap; gap: 10px; align-items:center; justify-content:space-between;
+			margin-bottom: 10px;
+		}
+		select{
+			background: rgba(255,255,255,.04);
+			border: 1px solid rgba(255,255,255,.14);
+			color: var(--text);
+			padding: 10px 12px;
+			border-radius: 14px;
+			outline:none;
+		}
+		.chart{
+			border-radius: 18px;
+			border: 1px solid var(--line);
+			background: rgba(255,255,255,.02);
+			padding: 10px;
+		}
+		canvas{ width: 100%; height: 220px; display:block; }
 
 		/* Command menu */
 		.cmdk{
-			position: fixed;
-			inset: 0;
-			background: rgba(0,0,0,.58);
-			backdrop-filter: blur(10px);
+			position: fixed; inset:0;
+			background: rgba(0,0,0,.62);
+			backdrop-filter: blur(12px);
 			display:none;
-			align-items: flex-start;
-			justify-content: center;
+			align-items:flex-start; justify-content:center;
 			padding: 70px 16px 16px;
 			z-index: 1200;
 		}
 		.cmdk.open{ display:flex; }
-		.cmdk-card{
+		.cmdkCard{
 			width: min(760px, 96vw);
-			background: linear-gradient(180deg, rgba(14,22,51,.98), rgba(10,16,38,.98));
-			border: 1px solid rgba(255,255,255,.12);
 			border-radius: 22px;
-			box-shadow: 0 30px 80px rgba(0,0,0,.65);
+			border: 1px solid rgba(255,255,255,.14);
+			background: linear-gradient(180deg, rgba(12,18,41,.98), rgba(7,10,22,.98));
+			box-shadow: 0 34px 92px rgba(0,0,0,.65);
 			overflow:hidden;
 		}
-		.cmdk-top{
+		.cmdkTop{
 			padding: 14px;
 			border-bottom: 1px solid var(--line);
-			display:flex; align-items:center; gap: 10px;
+			display:flex; gap: 10px; align-items:center;
 		}
-		.cmdk-top input{
+		.cmdkTop input{
 			width: 100%;
 			background: rgba(255,255,255,.04);
-			border: 1px solid rgba(255,255,255,.10);
+			border: 1px solid rgba(255,255,255,.12);
 			color: var(--text);
-			border-radius: 14px;
 			padding: 12px 12px;
+			border-radius: 14px;
+			outline:none;
 			font-size: 14px;
-			outline: none;
 		}
-		.cmdk-list{ padding: 6px; max-height: 340px; overflow:auto; }
-		.cmdk-item{
+		.cmdkList{ padding: 6px; max-height: 340px; overflow:auto; }
+		.cmdkItem{
 			padding: 12px 12px;
 			border-radius: 16px;
-			display:flex; align-items:center; justify-content:space-between;
 			cursor:pointer;
+			display:flex; justify-content:space-between; align-items:center;
 			color: var(--muted);
 		}
-		.cmdk-item:hover{ background: rgba(124,92,255,.10); color: var(--text); }
-		.cmdk-item b{ color: var(--text); font-weight: 600; }
-
-		/* Reveal animation */
-		.reveal{ opacity: 0; transform: translateY(10px); transition: .55s ease; }
-		.reveal.show{ opacity: 1; transform: translateY(0); }
+		.cmdkItem:hover{
+			background: rgba(124,92,255,.10);
+			color: var(--text);
+		}
+		.cmdkItem b{ color: var(--text); font-weight: 650; }
 	</style>
 </head>
 
 <body>
-	<div id="progress"></div>
+	<div id="topProgress"></div>
+	<div class="noise" aria-hidden="true"></div>
 
-	<nav class="nav">
-		<div class="container nav-inner">
-			<div class="brand">
-				<div class="avatar" aria-hidden="true"></div>
-				<div>
-					<b>Ajay Chakravarthy H J</b>
-					<small>Assistant Manager · Performance Marketing</small>
+	<div class="shell">
+		<!-- Topbar -->
+		<div class="topbar">
+			<div class="container inner">
+				<div class="brand">
+					<div class="avatar" aria-hidden="true"></div>
+					<div>
+						<b>Ajay Chakravarthy H J</b>
+						<small>Assistant Manager · Performance Marketing</small>
+					</div>
 				</div>
-			</div>
 
-			<div class="navlinks" aria-label="Primary navigation">
-				<a class="pill" href="#impact">Impact</a>
-				<a class="pill" href="#casefiles">Case files</a>
-				<a class="pill" href="#experience">Experience</a>
-				<a class="pill" href="#toolkit">Toolkit</a>
-				<a class="pill" href="#contact">Contact</a>
-			</div>
+				<!-- Game HUD -->
+				<div class="hud" aria-label="Progress">
+					<div class="hudCard">
+						<b id="levelTxt">LVL 1</b>
+						<span>Performance Architect</span>
+					</div>
+					<div class="hudCard">
+						<span>XP</span>
+						<div class="xpbar" aria-hidden="true"><i id="xpFill"></i></div>
+						<b id="xpTxt">0 / 100</b>
+					</div>
+					<div class="hudCard">
+						<span>Badges</span>
+						<b id="badgeTxt">0</b>
+					</div>
+				</div>
 
-			<div class="nav-cta">
-				<button class="btn" id="cmdkBtn" title="Open quick menu">
-					Quick menu <span class="kbd">/</span>
-				</button>
-				<a class="btn primary" href="#contact">Let’s collaborate</a>
+				<div class="controls">
+					<button class="btn ghost" id="cmdkBtn" title="Quick menu">
+						Quick <span class="kbd">/</span>
+					</button>
+					<button class="btn" id="prevBtn" title="Previous slide">
+						<span class="kbd">←</span> Prev
+					</button>
+					<button class="btn primary" id="nextBtn" title="Next slide">
+						Next <span class="kbd">→</span>
+					</button>
+				</div>
 			</div>
 		</div>
-	</nav>
 
-	<header class="container">
-		<div class="hero">
-			<div class="card reveal">
-				<div class="inner">
-					<div class="tagline">
-						<span class="badge dot">Open to: roles + advisory/freelance</span>
-						<span class="badge">Google Ads · PMax · Meta Ads</span>
-						<span class="badge">GA4 + GTM · Looker Studio</span>
-						<span class="badge">GBP (multi-market)</span>
+		<!-- Deck -->
+		<div class="deckWrap">
+			<div class="container">
+				<div class="deck" role="region" aria-label="Portfolio story deck">
+					<div class="slides" id="slides">
+
+						<!-- Slide 1: Hero -->
+						<section class="slide">
+							<div class="slideInner">
+								<div class="panel">
+									<div class="subline">
+										<span class="badge dot">Open to roles + advisory/freelance</span>
+										<span class="badge">Google Ads · PMax · Meta</span>
+										<span class="badge">GA4 + GTM · Looker Studio</span>
+										<span class="badge">GBP multi-market</span>
+									</div>
+
+									<h1>Turning ad spend into profit engines — with systems, not hacks.</h1>
+									<p>
+										Performance Marketing Specialist with 3+ years managing paid media for Tier‑1 tech retail brands (Lenovo, Dell, Acer, Asus, MSI) and hospitality.
+										Delivered <b>4,08,708 tracked conversions</b> at <b>₹19.42 avg CPA</b> across <b>₹79.38L</b> managed spend (194 campaigns).
+										Currently an <b>Assistant Manager</b> leading a <b>6‑member team</b> and serving as <b>Lenovo APAC SPOC</b> for <b>250+ GBP profiles</b>.
+									</p>
+
+									<div class="kpis" style="margin-top:14px">
+										<div class="kpi"><b data-count="408708">0</b><span>Tracked conversions</span></div>
+										<div class="kpi"><b>₹<span data-count="79.38">0</span>L</b><span>Spend managed</span></div>
+										<div class="kpi"><b>₹<span data-count="19.42">0</span></b><span>Avg. CPA</span></div>
+										<div class="kpi"><b><span data-count="3.34">0</span>%</b><span>Avg. CTR · 17.2Cr+ imps</span></div>
+									</div>
+
+									<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
+										<a class="btn primary" href="mailto:ajay.hulikallu@gmail.com">Email</a>
+										<a class="btn" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">LinkedIn</a>
+										<button class="btn" id="copyEmailBtn" type="button">Copy email</button>
+									</div>
+
+									<p style="margin-top:12px; color: var(--faint); font-size: 12px;">
+										Story mode: use <span class="kbd">←</span> <span class="kbd">→</span> to navigate.
+										Complete missions to unlock badges.
+									</p>
+								</div>
+
+								<div class="panel">
+									<h2>Missions (unlock badges)</h2>
+									<p style="margin-bottom:12px">These keep the experience interactive, but still premium.</p>
+
+									<div class="missions" id="missions">
+										<label class="mission">
+											<input type="checkbox" data-xp="25" data-badge="Tracking Guardian" />
+											<div>
+												<b>Fix tracking hygiene</b>
+												<small>GTM + GA4: clean conversions, dedupe, consistent definitions.</small>
+											</div>
+										</label>
+										<label class="mission">
+											<input type="checkbox" data-xp="25" data-badge="PMax Operator" />
+											<div>
+												<b>Scale a PMax system</b>
+												<small>Structure + assets + audience signals + guardrails.</small>
+											</div>
+										</label>
+										<label class="mission">
+											<input type="checkbox" data-xp="25" data-badge="Multi‑Location Strategist" />
+											<div>
+												<b>Standardize multi-location growth</b>
+												<small>GBP + store pages + governance across markets.</small>
+											</div>
+										</label>
+										<label class="mission">
+											<input type="checkbox" data-xp="25" data-badge="Revenue Architect" />
+											<div>
+												<b>Turn spend into outcomes</b>
+												<small>Bid strategy, experiment cadence, landing alignment.</small>
+											</div>
+										</label>
+									</div>
+
+									<div style="margin-top:12px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px;">
+										<b>Unlocked badges:</b>
+										<div id="badgeList" style="margin-top:8px; display:flex; flex-wrap:wrap; gap:8px;"></div>
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<!-- Slide 2: Case Files -->
+						<section class="slide">
+							<div class="slideInner">
+								<div class="panel">
+									<h2>Impact case files (click to open)</h2>
+									<p>Each case opens as a premium “case file” modal: problem → approach → outcome.</p>
+
+									<div class="cards" style="margin-top:12px">
+										<article class="case" data-id="icb">
+											<div class="meta"><span>🇮🇳 India</span><span>·</span><span>Policy-restricted</span><span>·</span><span>Search + PMax</span></div>
+											<h3>Indian Craft Brewery — lowest CPA across portfolio</h3>
+											<div class="tags">
+												<span class="tag">1,64,367 conv</span>
+												<span class="tag">₹4.58 avg CPA</span>
+												<span class="tag">Peak CTR 11.46%</span>
+											</div>
+											<div class="hint">Open case file →</div>
+										</article>
+
+										<article class="case" data-id="acer">
+											<div class="meta"><span>🇮🇳 India</span><span>·</span><span>Retail network</span><span>·</span><span>PMax system</span></div>
+											<h3>Acer — PMax system across 10+ outlets</h3>
+											<div class="tags">
+												<span class="tag">1,28,000+ conv</span>
+												<span class="tag">₹11.30 brand CPA</span>
+												<span class="tag">Lowest CPC ₹0.25</span>
+											</div>
+											<div class="hint">Open case file →</div>
+										</article>
+
+										<article class="case" data-id="lenovo">
+											<div class="meta"><span>🌏 APAC</span><span>·</span><span>GBP + SEO</span><span>·</span><span>PH awareness</span></div>
+											<h3>Lenovo APAC — GBP + 12k store pages + PH campaign</h3>
+											<div class="tags">
+												<span class="tag">250+ GBP</span>
+												<span class="tag">12,000 pages</span>
+												<span class="tag">+15% discoverability</span>
+											</div>
+											<div class="hint">Open case file →</div>
+										</article>
+
+										<article class="case" data-id="leadership">
+											<div class="meta"><span>👥 Team</span><span>·</span><span>6 members</span><span>·</span><span>Operating cadence</span></div>
+											<h3>Leadership — QA + KPI cadence + cross-brand planning</h3>
+											<div class="tags">
+												<span class="tag">Weekly KPI rhythm</span>
+												<span class="tag">Templates + QA</span>
+												<span class="tag">Fast iteration loops</span>
+											</div>
+											<div class="hint">Open case file →</div>
+										</article>
+									</div>
+								</div>
+
+								<div class="panel">
+									<h2>What I deliver (for jobs + freelance)</h2>
+									<p style="margin-bottom:12px">
+										A premium portfolio should show not only metrics—but your operating system.
+									</p>
+
+									<div class="missions">
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent2);margin-top:6px"></div>
+											<div>
+												<b>Google Ads systems</b>
+												<small>Search/PMax structure, query hygiene, bidding guardrails, asset governance.</small>
+											</div>
+										</div>
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--good);margin-top:6px"></div>
+											<div>
+												<b>Measurement & reporting</b>
+												<small>GTM + GA4 conversion discipline + Looker dashboards + action-oriented insights.</small>
+											</div>
+										</div>
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--warn);margin-top:6px"></div>
+											<div>
+												<b>Multi-location growth</b>
+												<small>GBP playbooks, standardization, store locator pages, local discoverability.</small>
+											</div>
+										</div>
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent);margin-top:6px"></div>
+											<div>
+												<b>Team leadership</b>
+												<small>Weekly KPI cadence, QA, structured feedback cycles, cross-brand planning.</small>
+											</div>
+										</div>
+									</div>
+
+									<div style="margin-top:12px; color: var(--faint); font-size: 12px;">
+										Tip: press <span class="kbd">/</span> for quick jump menu.
+									</div>
+								</div>
+							</div>
+						</section>
+
+						<!-- Slide 3: Data Room Dashboard -->
+						<section class="slide">
+							<div class="slideInner">
+								<div class="panel">
+									<div class="dashTop">
+										<div>
+											<h2>Data Room (interactive dashboard)</h2>
+											<p>Switch brands to see KPIs + a mini chart (premium, lightweight, no external libraries).</p>
+										</div>
+										<div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+											<select id="brandSelect" aria-label="Select brand">
+												<option value="ICB">Indian Craft Brewery (ICB)</option>
+												<option value="Acer">Acer</option>
+												<option value="Portfolio">All brands (Portfolio)</option>
+												<option value="LenovoAPAC">Lenovo APAC (Ops)</option>
+											</select>
+											<button class="btn" id="randBtn" type="button">Shuffle view</button>
+										</div>
+									</div>
+
+									<div class="kpis" id="dashKpis">
+										<div class="kpi"><b id="d1">—</b><span id="d1s">—</span></div>
+										<div class="kpi"><b id="d2">—</b><span id="d2s">—</span></div>
+										<div class="kpi"><b id="d3">—</b><span id="d3s">—</span></div>
+										<div class="kpi"><b id="d4">—</b><span id="d4s">—</span></div>
+									</div>
+
+									<div class="chart" style="margin-top:12px">
+										<canvas id="chart" width="900" height="260"></canvas>
+									</div>
+
+									<p style="margin-top:10px; color:var(--faint); font-size: 12px;">
+										Note: Chart is a visual story layer (not raw exports). Metrics are based on your campaign reporting statements.
+									</p>
+								</div>
+
+								<div class="panel">
+									<h2>Premium narrative (what recruiters/clients want)</h2>
+									<p style="margin-bottom:12px">
+										The dashboard + case files show the “what”. This slide shows the “how I think”.
+									</p>
+									<div class="missions">
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent2);margin-top:6px"></div>
+											<div>
+												<b>System > campaign</b>
+												<small>I standardize structures so performance is repeatable across outlets and markets.</small>
+											</div>
+										</div>
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--good);margin-top:6px"></div>
+											<div>
+												<b>Clean measurement</b>
+												<small>Without conversion hygiene, smart bidding is guessing. I fix that first.</small>
+											</div>
+										</div>
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--warn);margin-top:6px"></div>
+											<div>
+												<b>Cadence & QA</b>
+												<small>Weekly KPIs, experiments, and feedback loops keep teams aligned and scalable.</small>
+											</div>
+										</div>
+										<div class="mission">
+											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent);margin-top:6px"></div>
+											<div>
+												<b>Pragmatic creativity</b>
+												<small>Assets + landing alignment + audience signals—creative that improves outcomes.</small>
+											</div>
+										</div>
+									</div>
+
+									<div style="margin-top:12px; border-top:1px solid var(--line); padding-top:12px;">
+										<h2 style="margin:0 0 10px">Contact (public)</h2>
+										<div style="display:flex; gap:10px; flex-wrap:wrap;">
+											<a class="btn primary" href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a>
+											<a class="btn" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">LinkedIn</a>
+										</div>
+										<p style="margin-top:10px; color:var(--muted);">
+											Phone number kept private. Share it only in your resume/PDF for 1:1 conversations.
+										</p>
+									</div>
+								</div>
+							</div>
+						</section>
+
 					</div>
 
-					<h1>Turning ad spend into profit engines — with systems, not hacks.</h1>
+					<!-- Deck navigation footer -->
+					<div class="deckNav">
+						<div class="smallNote">
+							<b>Story mode</b> · <span class="kbd">←</span>/<span class="kbd">→</span> slides · <span class="kbd">Esc</span> close · <span class="kbd">/</span> menu
+						</div>
 
-					<p class="lede">
-						Performance Marketing Specialist with 3+ years managing paid media for Tier‑1 tech retail brands
-						(Lenovo, Dell, Acer, Asus, MSI) and hospitality. Delivered <b>4,08,708 tracked conversions</b> at
-						<b>₹19.42 avg CPA</b> across <b>₹79.38L</b> managed spend (194 campaigns). Currently an <b>Assistant Manager</b>
-						leading a <b>6‑member team</b> and serving as <b>Lenovo APAC SPOC</b> for <b>250+ GBP profiles</b>.
-					</p>
+						<div class="dots" id="dots" aria-label="Slide indicators"></div>
 
-					<div class="metrics" id="impact">
-						<div class="metric">
-							<b data-count="408708">0</b>
-							<span>Tracked conversions</span>
-						</div>
-						<div class="metric">
-							<b>₹<span data-count="79.38">0</span>L</b>
-							<span>Ad spend managed</span>
-						</div>
-						<div class="metric">
-							<b>₹<span data-count="19.42">0</span></b>
-							<span>Avg. CPA (portfolio)</span>
-						</div>
-						<div class="metric">
-							<b><span data-count="3.34">0</span>%</b>
-							<span>Avg. CTR · 17.2Cr+ imps</span>
+						<div class="smallNote" style="text-align:right">
+							<span id="slideTxt">Slide 1 / 3</span>
 						</div>
 					</div>
-
-					<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-						<a class="btn primary" href="#casefiles">View case files</a>
-						<a class="btn" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">LinkedIn</a>
-						<a class="btn" href="mailto:ajay.hulikallu@gmail.com">Email</a>
-					</div>
-
-					<p style="margin: 12px 0 0; color: var(--faint); font-size: 12px;">
-						Tip: Press <span class="kbd">/</span> for quick navigation. Click any case file to open the full story.
-					</p>
 				</div>
-			</div>
 
-			<aside class="side reveal">
-				<div class="inner">
-					<h3>Highlights</h3>
-					<div class="quick">
-						<div class="qitem">
-							<b>ICB (policy-restricted)</b>
-							<small>1,64,367 conversions @ ₹4.58 avg CPA (lowest across portfolio)</small>
-						</div>
-						<div class="qitem">
-							<b>Acer retail network (PMax)</b>
-							<small>1,28,000+ conversions · Brand avg CPA ₹11.30 · lowest CPC ₹0.25</small>
-						</div>
-						<div class="qitem">
-							<b>Lenovo APAC SPOC</b>
-							<small>250+ GBP profiles + 12k store pages SEO + PH awareness via PMax</small>
-						</div>
-						<div class="qitem">
-							<b>Team leadership</b>
-							<small>6 performance marketers · weekly KPI cadence · cross-brand planning</small>
-						</div>
-					</div>
-				</div>
-			</aside>
-		</div>
-	</header>
-
-	<main class="container">
-
-		<section id="casefiles" class="reveal">
-			<div class="section-title">
-				<div>
-					<h2>Impact case files</h2>
-					<p>Click a case file to open the full breakdown (problem → approach → outcome).</p>
-				</div>
-				<div class="filters" aria-label="Filters">
-					<button class="chip active" data-filter="all">All</button>
-					<button class="chip" data-filter="pmax">PMax</button>
-					<button class="chip" data-filter="search">Search</button>
-					<button class="chip" data-filter="gbp">GBP</button>
-					<button class="chip" data-filter="seo">SEO</button>
-					<button class="chip" data-filter="leadership">Leadership</button>
-				</div>
-			</div>
-
-			<div class="cards" id="cases">
-				<article class="case" data-tags="pmax,search" data-id="icb">
-					<div class="meta">
-						<span>🇮🇳 India</span><span>·</span><span>Policy-restricted category</span><span>·</span><span>Hospitality</span>
-					</div>
-					<h3>Indian Craft Brewery — lowest CPA across portfolio</h3>
-					<div class="kpi">
-						<span>1,64,367 conv</span>
-						<span>₹4.58 avg CPA</span>
-						<span>Peak CTR 11.46%</span>
-						<span>PMax Feb’25: ₹3.19 CPA</span>
-					</div>
-					<div class="hint">Open case file →</div>
-				</article>
-
-				<article class="case" data-tags="pmax" data-id="acer">
-					<div class="meta">
-						<span>🇮🇳 India</span><span>·</span><span>Retail network</span><span>·</span><span>10+ outlets</span>
-					</div>
-					<h3>Acer Dotcom & partners — PMax system for multi-outlet growth</h3>
-					<div class="kpi">
-						<span>1,28,000+ conv</span>
-						<span>₹11.30 brand CPA</span>
-						<span>Lowest CPC ₹0.25</span>
-						<span>Peak CTR 6.29%</span>
-					</div>
-					<div class="hint">Open case file →</div>
-				</article>
-
-				<article class="case" data-tags="gbp,seo,pmax" data-id="lenovo-apac">
-					<div class="meta">
-						<span>🌏 APAC</span><span>·</span><span>250+ GBP profiles</span><span>·</span><span>12k store pages</span>
-					</div>
-					<h3>Lenovo APAC — GBP + SEO + paid awareness (PH)</h3>
-					<div class="kpi">
-						<span>+15% discoverability</span>
-						<span>250+ GBP</span>
-						<span>12,000 pages</span>
-						<span>PH: 8,488 clicks</span>
-					</div>
-					<div class="hint">Open case file →</div>
-				</article>
-
-				<article class="case" data-tags="leadership" data-id="leadership">
-					<div class="meta">
-						<span>👥 Team</span><span>·</span><span>6 members</span><span>·</span><span>Multi-brand delivery</span>
-					</div>
-					<h3>From execution to leadership — operating cadence & quality control</h3>
-					<div class="kpi">
-						<span>Weekly KPI reviews</span>
-						<span>Feedback cycles</span>
-						<span>Cross-brand planning</span>
-						<span>Reporting discipline</span>
-					</div>
-					<div class="hint">Open case file →</div>
-				</article>
-			</div>
-		</section>
-
-		<section id="experience" class="reveal">
-			<div class="section-title">
-				<h2>Professional arc</h2>
-				<p>Title is kept as Assistant Manager (current role).</p>
-			</div>
-
-			<div class="grid">
-				<div class="panel twothird">
-					<div class="timeline">
-						<div class="role">
-							<header>
-								<b>Assistant Manager – Performance Marketing</b>
-								<small>HashConnect Integrated Services Pvt. Ltd. · Bengaluru · Jul 2025 – Present</small>
-							</header>
-							<ul>
-								<li>Lead a <b>6-member</b> performance team across Lenovo, Dell, Acer, Asus, MSI — KPI cadence, QA, workload planning.</li>
-								<li>Owned paid media strategy across <b>250+ retail partner outlets</b>: <b>4,08,708 conversions</b> at <b>₹19.42 avg CPA</b> from <b>₹79.38L</b> spend (Target CPA/ROAS, Max Conversions).</li>
-								<li>Lenovo APAC SPOC: managed <b>250+ GBP profiles</b> and ran PH PMax awareness on locate.lenovo.com (Dec 2025).</li>
-								<li>Maintained <b>3.34% avg CTR</b> across <b>17.22Cr+ impressions</b> via segmentation, testing, and tracking hygiene (GTM + GA4).</li>
-							</ul>
-						</div>
-
-						<div class="role">
-							<header>
-								<b>Digital Marketing Executive → Senior Executive</b>
-								<small>HashConnect Integrated Services Pvt. Ltd. · Aug 2022 – Jul 2025</small>
-							</header>
-							<ul>
-								<li>Executed and scaled multi-brand Google Ads (PMax/Search/Display) across 194 campaigns for Acer, Dell, Asus, MSI, ICB, Lenovo.</li>
-								<li>Built Lenovo APAC GBP mandate: audit + standardization playbook (NAP, attributes, reviews) → <b>+15% discoverability</b>.</li>
-								<li>Implemented GTM + GA4 conversion tracking and Looker Studio reporting; introduced Smart Bidding (tCPA/tROAS).</li>
-								<li>Built Britannia’s Shopify store end-to-end and managed ongoing site updates.</li>
-							</ul>
-						</div>
-
-						<div class="role">
-							<header>
-								<b>Marketing Executive</b>
-								<small>Vyram Constructions Ltd. & CDG Certification Ltd. · 2019 – 2021</small>
-							</header>
-							<ul>
-								<li>B2B lead generation, CRM pipeline management, proposals/presentations, and client relationship support.</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-
-				<div class="panel third">
-					<h3 style="margin:0 0 10px; font-size:14px; color:var(--muted);">What I’m open to</h3>
-					<div style="display:grid; gap:10px;">
-						<div class="qitem">
-							<b>Full-time (roles)</b>
-							<small>Assistant Manager / Manager-track Performance Marketing · Growth · Paid Media Lead</small>
-						</div>
-						<div class="qitem">
-							<b>Advisory / Freelance</b>
-							<small>Google Ads audits, PMax scaling systems, tracking fixes (GTM/GA4), GBP playbooks</small>
-						</div>
-						<div class="qitem">
-							<b>Location</b>
-							<small>Bengaluru, India · Open to remote/hybrid depending on scope</small>
-						</div>
-					</div>
-
-					<hr class="sep" />
-
-					<h3 style="margin:0 0 10px; font-size:14px; color:var(--muted);">Certifications</h3>
-					<div style="display:grid; gap:10px;">
-						<div class="qitem"><b>Google Ads Certified</b><small>Skillshop</small></div>
-						<div class="qitem"><b>Google Analytics Certified</b><small>Skillshop</small></div>
-						<div class="qitem"><b>MBA – Marketing</b><small>Jain University (CIMS), 2018</small></div>
-					</div>
-				</div>
-			</div>
-		</section>
-
-		<section id="toolkit" class="reveal">
-			<div class="section-title">
-				<h2>Core toolkit</h2>
-				<p>Stack I use to run, measure, and scale.</p>
-			</div>
-
-			<div class="grid">
-				<div class="panel half">
-					<h3 style="margin:0 0 10px; font-size:14px; color:var(--muted);">Paid media</h3>
-					<p style="margin:0; color:var(--muted); line-height:1.6;">
-						Google Ads (Search / Display / Performance Max), Meta Ads (FB/IG), Shopping campaigns, Smart Bidding (tCPA / tROAS / Max Conversions).
-					</p>
-				</div>
-
-				<div class="panel half">
-					<h3 style="margin:0 0 10px; font-size:14px; color:var(--muted);">Measurement</h3>
-					<p style="margin:0; color:var(--muted); line-height:1.6;">
-						GTM, GA4, Meta Pixel, conversion hygiene, Looker Studio dashboards, reporting cadence, experimentation + QA.
-					</p>
-				</div>
-
-				<div class="panel half">
-					<h3 style="margin:0 0 10px; font-size:14px; color:var(--muted);">GBP & local growth</h3>
-					<p style="margin:0; color:var(--muted); line-height:1.6;">
-						Google Business Profile (multi-market), NAP standardization, review protocols, store locator pages, local SEO coordination.
-					</p>
-				</div>
-
-				<div class="panel half">
-					<h3 style="margin:0 0 10px; font-size:14px; color:var(--muted);">Automation + AI</h3>
-					<p style="margin:0; color:var(--muted); line-height:1.6;">
-						AiSensy (WhatsApp), Marketo (email), Shopify, ChatGPT + Claude for briefs, ad copy, and performance summaries.
-					</p>
-				</div>
-			</div>
-		</section>
-
-		<section id="contact" class="reveal" style="padding-bottom: 40px;">
-			<div class="section-title">
-				<h2>Contact</h2>
-				<p>Email + LinkedIn are public (phone kept private).</p>
-			</div>
-
-			<div class="panel">
-				<div class="contact">
-					<a class="btn primary" href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a>
-					<a class="btn" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">linkedin.com/in/ajay-chakravarthy-h-j</a>
-					<button class="btn" id="copyEmailBtn" type="button">Copy email</button>
-				</div>
-				<p style="margin: 12px 0 0; color: var(--muted); line-height:1.6;">
-					If you’re reaching out for freelance/advisory: include your website, monthly spend range, region, and primary goal (leads/sales/store visits).
+				<p style="margin: 12px 0 0; color: var(--faint); font-size: 12px;">
+					© <span id="year"></span> Ajay Chakravarthy · Built on GitHub Pages
 				</p>
 			</div>
-		</section>
+		</div>
 
-		<p style="color: var(--faint); font-size: 12px; padding: 0 0 28px;">
-			© <span id="year"></span> Ajay Chakravarthy · Built on GitHub Pages
-		</p>
-	</main>
+	</div>
 
-	<!-- Case Study Modal -->
+	<!-- Case Modal -->
 	<div class="modal" id="modal" aria-hidden="true">
-		<div class="modal-card" role="dialog" aria-modal="true" aria-label="Case study">
-			<div class="modal-inner">
-				<div class="modal-top">
+		<div class="modalCard" role="dialog" aria-modal="true" aria-label="Case file">
+			<div class="modalInner">
+				<div class="modalTop">
 					<div>
 						<h3 id="mTitle">Case file</h3>
 						<p id="mSub">—</p>
 					</div>
-					<button class="close" id="closeModal" type="button">Close <span class="kbd">Esc</span></button>
+					<button class="btn" id="closeModal" type="button">Close <span class="kbd">Esc</span></button>
 				</div>
-
-				<div class="twocol">
+				<div class="cols">
 					<div class="box">
 						<h4>Problem</h4>
 						<p id="mProblem"></p>
@@ -806,10 +865,8 @@
 						<p id="mNotes"></p>
 					</div>
 				</div>
-
-				<hr class="sep" />
-				<p style="margin:0; color: var(--faint); font-size: 12px;">
-					Note: Metrics reflect campaign reports and may vary by timeframe/attribution settings.
+				<p style="margin: 12px 0 0; color: var(--faint); font-size: 12px;">
+					Metrics reflect campaign reports and may vary by attribution/timeframe.
 				</p>
 			</div>
 		</div>
@@ -817,230 +874,50 @@
 
 	<!-- Command Menu -->
 	<div class="cmdk" id="cmdk" aria-hidden="true">
-		<div class="cmdk-card" role="dialog" aria-modal="true" aria-label="Quick menu">
-			<div class="cmdk-top">
-				<input id="cmdkInput" placeholder="Type to search sections (e.g., case, experience, contact)…" />
-				<button class="close" id="closeCmdk" type="button">Close <span class="kbd">Esc</span></button>
+		<div class="cmdkCard" role="dialog" aria-modal="true" aria-label="Quick menu">
+			<div class="cmdkTop">
+				<input id="cmdkInput" placeholder="Jump to: hero, missions, case files, data room…" />
+				<button class="btn" id="closeCmdk" type="button">Close <span class="kbd">Esc</span></button>
 			</div>
-			<div class="cmdk-list" id="cmdkList"></div>
+			<div class="cmdkList" id="cmdkList"></div>
 		</div>
 	</div>
 
 	<script>
-		// ===== Data (edit here anytime) =====
-		const CASES = {
-			"icb": {
-				title: "Indian Craft Brewery — lowest CPA across portfolio",
-				sub: "🇮🇳 India · Policy-restricted category · Google Ads (Search + PMax)",
-				problem: "Alcohol-adjacent brand: broken campaigns, frequent policy disapprovals, high waste, and inconsistent lead/conversion flow.",
-				approach: [
-					"Built 6 intent-segmented Search campaigns (Brewery / Restaurant / Near me / etc.)",
-					"Deployed policy-compliant Performance Max with controlled assets",
-					"Tight keyword + query hygiene, negatives, and landing alignment",
-					"Smart bidding tuned to stable CPA (tCPA) with learning discipline"
-				],
-				outcome: [
-					"Total: 1,64,367 conversions at ₹4.58 avg CPA (lowest across managed brands)",
-					"PMax Feb’25: 1,09,923 conversions at ₹3.19 CPA",
-					"Peak CTR reached 11.46% during high-performing windows"
-				],
-				notes: "This case is a good fit for brands in restricted or compliance-heavy categories where structure + policy-safe creatives matter."
-			},
-			"acer": {
-				title: "Acer Dotcom & partners — PMax system for multi-outlet growth",
-				sub: "🇮🇳 India · 10+ retail outlets · Performance Max (per outlet structure)",
-				problem: "Fragmented campaigns, no consistent audience signals across outlets, CPC variance and inconsistent performance by location.",
-				approach: [
-					"Created individual PMax campaigns per outlet for controllability",
-					"Store-specific asset groups and landing alignment",
-					"GA4 past-converter signals and clean conversion definitions",
-					"tCPA-based scaling with guardrails (budget, learning, creative refresh)"
-				],
-				outcome: [
-					"1,28,000+ conversions with brand avg CPA at ₹11.30",
-					"Lowest recorded CPC: ₹0.25 (Airport, Nov’24)",
-					"Peak CTR reached 6.29% on best-performing setups"
-				],
-				notes: "Useful blueprint for brands that operate through partner outlets and need a repeatable system rather than one-off optimizations."
-			},
-			"lenovo-apac": {
-				title: "Lenovo APAC — GBP + SEO + paid awareness (PH)",
-				sub: "🌏 APAC · 250+ GBP profiles · 12k store pages · Paid awareness (PH)",
-				problem: "Multi-market listing inconsistency and store locator visibility gaps across countries; need scalable governance + improvements.",
-				approach: [
-					"GBP audit across ~200 Lenovo APAC exclusive stores + ~50 MSI India profiles",
-					"NAP alignment, review templates, photo cadence, and standardization playbook",
-					"SEO updates across 12k store pages: titles, landmarks, technical fixes, local citations",
-					"Philippines awareness via PMax to drive store-locator traffic (Dec 2025)"
-				],
-				outcome: [
-					"+15% improvement in local discoverability (map pack visibility)",
-					"250+ profiles managed under one optimization system",
-					"Philippines campaign: 8,488 clicks, 1,35,931 impressions (awareness objective)"
-				],
-				notes: "This work sits at the intersection of paid, local, and scalable operations—ideal for multi-location orgs."
-			},
-			"leadership": {
-				title: "From execution to leadership — operating cadence & quality control",
-				sub: "👥 Team leadership · Weekly KPI cadence · Multi-brand delivery",
-				problem: "Scaling delivery across multiple brands requires consistent QA, decision cadence, and clear ownership (or performance becomes chaotic).",
-				approach: [
-					"Weekly KPI reviews and structured feedback cycles",
-					"Cross-brand workload planning to protect learning & creative refresh",
-					"Tracking hygiene checks (GTM/GA4) + reporting discipline",
-					"Standard templates for briefs, insights, and next actions"
-				],
-				outcome: [
-					"More consistent performance monitoring and faster iteration loops",
-					"Clear accountability across brands and channels",
-					"Improved operational predictability for campaigns and reporting"
-				],
-				notes: "If you’re hiring for a lead role, this is how I think about systems, not just dashboards."
-			}
-		};
-
-		// ===== Helpers =====
-		const $ = (sel, el=document) => el.querySelector(sel);
-		const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+		// ===== Utilities =====
+		const $ = (s, el=document) => el.querySelector(s);
+		const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
 
 		// Year
 		$("#year").textContent = new Date().getFullYear();
 
-		// Smooth scroll for anchors
-		$$('a[href^="#"]').forEach(a=>{
-			a.addEventListener("click", (e)=>{
-				const id = a.getAttribute("href");
-				if(!id || id === "#") return;
-				const target = document.querySelector(id);
-				if(target){
-					e.preventDefault();
-					target.scrollIntoView({behavior:"smooth", block:"start"});
-				}
-			});
-		});
-
-		// Scroll progress bar
-		const progress = $("#progress");
+		// Top scroll progress
+		const topProgress = $("#topProgress");
 		window.addEventListener("scroll", ()=>{
 			const h = document.documentElement;
 			const sc = h.scrollTop;
 			const max = h.scrollHeight - h.clientHeight;
-			const pct = max > 0 ? sc / max : 0;
-			progress.style.transform = `scaleX(${pct})`;
+			const p = max > 0 ? sc / max : 0;
+			topProgress.style.transform = `scaleX(${p})`;
 		}, {passive:true});
 
-		// Scrollspy
-		const navPills = $$(".navlinks .pill");
-		const sections = navPills.map(p => document.querySelector(p.getAttribute("href"))).filter(Boolean);
-		const spy = new IntersectionObserver((entries)=>{
-			entries.forEach(entry=>{
-				if(entry.isIntersecting){
-					const id = "#" + entry.target.id;
-					navPills.forEach(p => p.classList.toggle("active", p.getAttribute("href") === id));
-				}
-			});
-		},{ threshold: 0.45 });
-		sections.forEach(s=> spy.observe(s));
-
-		// Reveal animations
-		const reveals = $$(".reveal");
-		const ro = new IntersectionObserver((entries)=>{
-			entries.forEach(e=>{
-				if(e.isIntersecting) e.target.classList.add("show");
-			});
-		},{ threshold: 0.12 });
-		reveals.forEach(r => ro.observe(r));
-
-		// Count-up animation
+		// Count up (hero KPIs)
 		function animateCount(el){
 			const raw = el.dataset.count;
 			if(!raw) return;
 			const target = parseFloat(raw);
 			const isFloat = raw.includes(".");
-			const start = 0;
 			const dur = 950;
 			const t0 = performance.now();
 			function tick(t){
 				const p = Math.min(1, (t - t0)/dur);
-				const val = start + (target-start) * (1 - Math.pow(1-p, 3));
-				el.textContent = isFloat ? val.toFixed(2) : Math.round(val).toLocaleString("en-IN");
+				const v = target * (1 - Math.pow(1-p, 3));
+				el.textContent = isFloat ? v.toFixed(2) : Math.round(v).toLocaleString("en-IN");
 				if(p < 1) requestAnimationFrame(tick);
 			}
 			requestAnimationFrame(tick);
 		}
-		const impactCounts = $$("[data-count]");
-		const countObserver = new IntersectionObserver((entries)=>{
-			entries.forEach(e=>{
-				if(e.isIntersecting){
-					$$("[data-count]", e.target).forEach(animateCount);
-					countObserver.unobserve(e.target);
-				}
-			});
-		},{ threshold: 0.35 });
-		countObserver.observe($("#impact"));
-
-		// Filters
-		const chips = $$(".chip");
-		const caseCards = $$("#cases .case");
-		function setFilter(tag){
-			chips.forEach(c => c.classList.toggle("active", c.dataset.filter === tag));
-			caseCards.forEach(card=>{
-				const tags = (card.dataset.tags || "").split(",").map(s=>s.trim());
-				const show = (tag === "all") || tags.includes(tag);
-				card.style.display = show ? "" : "none";
-			});
-		}
-		chips.forEach(c => c.addEventListener("click", ()=> setFilter(c.dataset.filter)));
-
-		// Modal
-		const modal = $("#modal");
-		const closeModal = $("#closeModal");
-		function openModal(caseId){
-			const data = CASES[caseId];
-			if(!data) return;
-
-			$("#mTitle").textContent = data.title;
-			$("#mSub").textContent = data.sub;
-			$("#mProblem").textContent = data.problem;
-
-			const a = $("#mApproach"); a.innerHTML = "";
-			data.approach.forEach(x=>{
-				const li = document.createElement("li");
-				li.textContent = x;
-				a.appendChild(li);
-			});
-
-			const o = $("#mOutcome"); o.innerHTML = "";
-			data.outcome.forEach(x=>{
-				const li = document.createElement("li");
-				li.textContent = x;
-				o.appendChild(li);
-			});
-
-			$("#mNotes").textContent = data.notes;
-
-			modal.classList.add("open");
-			modal.setAttribute("aria-hidden","false");
-			document.body.style.overflow = "hidden";
-		}
-		function hideModal(){
-			modal.classList.remove("open");
-			modal.setAttribute("aria-hidden","true");
-			document.body.style.overflow = "";
-		}
-		caseCards.forEach(card=>{
-			card.addEventListener("click", ()=> openModal(card.dataset.id));
-		});
-		closeModal.addEventListener("click", hideModal);
-		modal.addEventListener("click", (e)=>{
-			if(e.target === modal) hideModal();
-		});
-		window.addEventListener("keydown", (e)=>{
-			if(e.key === "Escape"){
-				if(modal.classList.contains("open")) hideModal();
-				if(cmdk.classList.contains("open")) closeCmdkFn();
-			}
-		});
+		$$("[data-count]").forEach(el => animateCount(el));
 
 		// Copy email
 		$("#copyEmailBtn").addEventListener("click", async ()=>{
@@ -1048,12 +925,359 @@
 				await navigator.clipboard.writeText("ajay.hulikallu@gmail.com");
 				$("#copyEmailBtn").textContent = "Copied!";
 				setTimeout(()=> $("#copyEmailBtn").textContent = "Copy email", 900);
-			}catch(err){
-				alert("Could not copy. Email: ajay.hulikallu@gmail.com");
+			}catch(e){
+				alert("Email: ajay.hulikallu@gmail.com");
 			}
 		});
 
-		// Command menu
+		// ===== Story Deck =====
+		const slidesEl = $("#slides");
+		const slideCount = $$(".slide", slidesEl).length;
+		const dotsEl = $("#dots");
+		const slideTxt = $("#slideTxt");
+		let slideIndex = 0;
+
+		function renderDots(){
+			dotsEl.innerHTML = "";
+			for(let i=0;i<slideCount;i++){
+				const d = document.createElement("div");
+				d.className = "dot" + (i===slideIndex ? " active" : "");
+				d.addEventListener("click", ()=> goTo(i));
+				dotsEl.appendChild(d);
+			}
+		}
+		function goTo(i){
+			slideIndex = Math.max(0, Math.min(slideCount-1, i));
+			slidesEl.style.transform = `translateX(${-100*slideIndex}%)`;
+			renderDots();
+			slideTxt.textContent = `Slide ${slideIndex+1} / ${slideCount}`;
+			awardXP(8); // tiny XP for navigating
+		}
+		$("#prevBtn").addEventListener("click", ()=> goTo(slideIndex-1));
+		$("#nextBtn").addEventListener("click", ()=> goTo(slideIndex+1));
+		window.addEventListener("keydown", (e)=>{
+			if(modal.classList.contains("open") || cmdk.classList.contains("open")) return;
+			if(e.key === "ArrowRight") goTo(slideIndex+1);
+			if(e.key === "ArrowLeft") goTo(slideIndex-1);
+		});
+		renderDots();
+		slideTxt.textContent = `Slide 1 / ${slideCount}`;
+
+		// ===== Game Layer (XP + badges) =====
+		let xp = 0;
+		let level = 1;
+		const xpFill = $("#xpFill");
+		const xpTxt = $("#xpTxt");
+		const levelTxt = $("#levelTxt");
+		const badgeTxt = $("#badgeTxt");
+		const badgeList = $("#badgeList");
+		const unlocked = new Set(JSON.parse(localStorage.getItem("badges")||"[]"));
+
+		function saveGame(){
+			localStorage.setItem("xp", String(xp));
+			localStorage.setItem("level", String(level));
+			localStorage.setItem("badges", JSON.stringify(Array.from(unlocked)));
+		}
+		function loadGame(){
+			xp = parseInt(localStorage.getItem("xp")||"0", 10);
+			level = parseInt(localStorage.getItem("level")||"1", 10);
+		}
+		function awardXP(amount){
+			xp = Math.min(300, xp + amount); // cap (premium feel: no infinite farm)
+			// level every 100 xp
+			level = 1 + Math.floor(xp / 100);
+			updateHUD();
+			saveGame();
+		}
+		function unlockBadge(name){
+			if(unlocked.has(name)) return;
+			unlocked.add(name);
+			updateHUD();
+			saveGame();
+		}
+		function updateHUD(){
+			const inLevel = xp % 100;
+			xpFill.style.width = `${inLevel}%`;
+			xpTxt.textContent = `${inLevel} / 100`;
+			levelTxt.textContent = `LVL ${level}`;
+			badgeTxt.textContent = String(unlocked.size);
+
+			badgeList.innerHTML = "";
+			Array.from(unlocked).forEach(b=>{
+				const el = document.createElement("span");
+				el.className = "badge";
+				el.textContent = b;
+				badgeList.appendChild(el);
+			});
+		}
+
+		loadGame();
+		updateHUD();
+
+		// Missions checkboxes
+		$$('#missions input[type="checkbox"]').forEach(cb=>{
+			const badge = cb.dataset.badge;
+			// restore state if badge unlocked
+			if(unlocked.has(badge)) cb.checked = true;
+
+			cb.addEventListener("change", ()=>{
+				const xpVal = parseInt(cb.dataset.xp||"0",10);
+				if(cb.checked){
+					awardXP(xpVal);
+					unlockBadge(badge);
+				}else{
+					// keep premium (no penalty), just uncheck doesn't remove badge
+					cb.checked = true;
+				}
+			});
+		});
+
+		// ===== Case Files Modal =====
+		const modal = $("#modal");
+		const closeModal = $("#closeModal");
+		const CASES = {
+			icb: {
+				title: "Indian Craft Brewery — lowest CPA across portfolio",
+				sub: "🇮🇳 India · Policy-restricted category · Google Ads (Search + PMax)",
+				problem: "Alcohol-adjacent brand: broken campaigns, policy disapprovals, high waste, inconsistent conversion flow.",
+				approach: [
+					"Built 6 intent-segmented Search campaigns (Brewery / Restaurant / Near me / etc.)",
+					"Deployed policy-compliant Performance Max with controlled assets",
+					"Query hygiene (negatives), landing alignment, and creative governance",
+					"Smart bidding tuned to stable CPA (tCPA) with learning discipline"
+				],
+				outcome: [
+					"Total: 1,64,367 conversions at ₹4.58 avg CPA (lowest across managed brands)",
+					"PMax Feb’25: 1,09,923 conversions at ₹3.19 CPA",
+					"Peak CTR reached 11.46% during top-performing windows"
+				],
+				notes: "Strong example of performance under restrictions: structure + compliance + measurement."
+			},
+			acer: {
+				title: "Acer — PMax system across 10+ outlets",
+				sub: "🇮🇳 India · Retail network · Performance Max (per outlet structure)",
+				problem: "Fragmented campaigns, inconsistent audience signals across outlets, CPC variance and uneven results by location.",
+				approach: [
+					"Individual PMax campaigns per outlet for controllability",
+					"Store-specific asset groups and landing alignment",
+					"GA4 past-converter signals and clean conversion definitions",
+					"tCPA-based scaling with guardrails (budget, learning, refresh)"
+				],
+				outcome: [
+					"1,28,000+ conversions with brand avg CPA at ₹11.30",
+					"Lowest recorded CPC: ₹0.25 (Airport, Nov’24)",
+					"Peak CTR 6.29% on best-performing setups"
+				],
+				notes: "A repeatable blueprint for partner-outlet businesses."
+			},
+			lenovo: {
+				title: "Lenovo APAC — GBP + 12k store pages + PH campaign",
+				sub: "🌏 APAC · 250+ GBP profiles · 12,000 store pages · PH awareness (Dec 2025)",
+				problem: "Multi-market listing inconsistency and discoverability gaps; need scalable governance + visibility lift.",
+				approach: [
+					"GBP audit across ~200 Lenovo APAC stores + ~50 MSI India profiles",
+					"NAP alignment, review templates, photo cadence, standard playbook",
+					"SEO updates across 12k store pages: titles, landmarks, technical fixes",
+					"Philippines awareness via PMax to drive store-locator traffic"
+				],
+				outcome: [
+					"+15% improvement in local discoverability (map pack visibility)",
+					"250+ profiles managed under one optimization system",
+					"PH campaign: 8,488 clicks, 1,35,931 impressions (awareness objective)"
+				],
+				notes: "Operations + local + paid combined—ideal for multi-location brands."
+			},
+			leadership: {
+				title: "Leadership — QA + KPI cadence + cross-brand planning",
+				sub: "👥 Team leadership · Weekly KPI rhythm · Multi-brand delivery",
+				problem: "Scaling across brands requires quality control, clear ownership, and a decision cadence—or performance becomes chaotic.",
+				approach: [
+					"Weekly KPI reviews and structured feedback cycles",
+					"Cross-brand workload planning and QA checklists",
+					"Tracking hygiene checks (GTM/GA4) + reporting discipline",
+					"Templates for briefs, insights, and next actions"
+				],
+				outcome: [
+					"More consistent performance monitoring and faster iteration loops",
+					"Clear accountability across brands and channels",
+					"Improved operational predictability for delivery and reporting"
+				],
+				notes: "This is how I scale performance with teams, not just dashboards."
+			}
+		};
+
+		function openCase(id){
+			const d = CASES[id];
+			if(!d) return;
+
+			$("#mTitle").textContent = d.title;
+			$("#mSub").textContent = d.sub;
+			$("#mProblem").textContent = d.problem;
+
+			const a = $("#mApproach"); a.innerHTML = "";
+			d.approach.forEach(x=>{ const li=document.createElement("li"); li.textContent=x; a.appendChild(li); });
+
+			const o = $("#mOutcome"); o.innerHTML = "";
+			d.outcome.forEach(x=>{ const li=document.createElement("li"); li.textContent=x; o.appendChild(li); });
+
+			$("#mNotes").textContent = d.notes;
+
+			modal.classList.add("open");
+			modal.setAttribute("aria-hidden","false");
+			document.body.style.overflow = "hidden";
+
+			awardXP(12);
+			unlockBadge("Case File Reader");
+		}
+		function closeCase(){
+			modal.classList.remove("open");
+			modal.setAttribute("aria-hidden","true");
+			document.body.style.overflow = "";
+		}
+		$$(".case").forEach(c=> c.addEventListener("click", ()=> openCase(c.dataset.id)));
+		closeModal.addEventListener("click", closeCase);
+		modal.addEventListener("click", (e)=>{ if(e.target === modal) closeCase(); });
+
+		// ===== Data Room Dashboard =====
+		const brandSelect = $("#brandSelect");
+		const randBtn = $("#randBtn");
+		const chart = $("#chart");
+		const ctx = chart.getContext("2d");
+
+		const BRANDS = {
+			ICB: {
+				kpis: [
+					["1,64,367", "Total conversions"],
+					["₹4.58", "Avg. CPA"],
+					["11.46%", "Peak CTR"],
+					["₹3.19", "PMax Feb’25 CPA"]
+				],
+				series: [12, 18, 22, 40, 55, 72, 90, 100] // stylized growth story
+			},
+			Acer: {
+				kpis: [
+					["1,28,000+", "Conversions"],
+					["₹11.30", "Brand avg CPA"],
+					["₹0.25", "Lowest CPC"],
+					["6.29%", "Peak CTR"]
+				],
+				series: [10, 16, 24, 38, 50, 61, 73, 88]
+			},
+			Portfolio: {
+				kpis: [
+					["4,08,708", "Tracked conversions"],
+					["₹79.38L", "Spend managed"],
+					["₹19.42", "Avg. CPA"],
+					["3.34%", "Avg. CTR"]
+				],
+				series: [18, 24, 30, 44, 54, 66, 78, 92]
+			},
+			LenovoAPAC: {
+				kpis: [
+					["250+", "GBP profiles managed"],
+					["12,000", "Store pages SEO"],
+					["+15%", "Discoverability uplift"],
+					["8,488", "PH clicks (awareness)"]
+				],
+				series: [20, 28, 36, 48, 58, 64, 72, 82]
+			}
+		};
+
+		function setDash(brandKey){
+			const d = BRANDS[brandKey];
+			if(!d) return;
+
+			$("#d1").textContent = d.kpis[0][0]; $("#d1s").textContent = d.kpis[0][1];
+			$("#d2").textContent = d.kpis[1][0]; $("#d2s").textContent = d.kpis[1][1];
+			$("#d3").textContent = d.kpis[2][0]; $("#d3s").textContent = d.kpis[2][1];
+			$("#d4").textContent = d.kpis[3][0]; $("#d4s").textContent = d.kpis[3][1];
+
+			drawChart(d.series);
+			awardXP(10);
+			unlockBadge("Data Room Analyst");
+		}
+
+		function drawChart(series){
+			// HiDPI friendly
+			const dpr = window.devicePixelRatio || 1;
+			const w = chart.clientWidth, h = 220;
+			chart.width = Math.floor(w * dpr);
+			chart.height = Math.floor(h * dpr);
+			ctx.setTransform(dpr,0,0,dpr,0,0);
+
+			// background
+			ctx.clearRect(0,0,w,h);
+			ctx.fillStyle = "rgba(255,255,255,.02)";
+			ctx.fillRect(0,0,w,h);
+
+			// grid
+			ctx.strokeStyle = "rgba(255,255,255,.08)";
+			ctx.lineWidth = 1;
+			for(let i=1;i<=4;i++){
+				const y = (h/5)*i;
+				ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+			}
+
+			// line
+			const pad = 18;
+			const max = Math.max(...series);
+			const min = Math.min(...series);
+			const xStep = (w - pad*2) / (series.length - 1);
+
+			const pts = series.map((v,i)=>{
+				const x = pad + i*xStep;
+				const y = pad + (h - pad*2) * (1 - (v - min) / (max - min || 1));
+				return {x,y};
+			});
+
+			// gradient stroke
+			const grad = ctx.createLinearGradient(0,0,w,0);
+			grad.addColorStop(0, "rgba(124,92,255,.95)");
+			grad.addColorStop(1, "rgba(41,211,255,.95)");
+
+			ctx.lineWidth = 3;
+			ctx.strokeStyle = grad;
+			ctx.beginPath();
+			pts.forEach((p,i)=> i? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
+			ctx.stroke();
+
+			// area fill
+			const gradFill = ctx.createLinearGradient(0,0,0,h);
+			gradFill.addColorStop(0, "rgba(124,92,255,.20)");
+			gradFill.addColorStop(1, "rgba(41,211,255,.02)");
+			ctx.fillStyle = gradFill;
+			ctx.beginPath();
+			pts.forEach((p,i)=> i? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
+			ctx.lineTo(pts[pts.length-1].x, h-pad);
+			ctx.lineTo(pts[0].x, h-pad);
+			ctx.closePath();
+			ctx.fill();
+
+			// points
+			pts.forEach(p=>{
+				ctx.fillStyle = "rgba(255,255,255,.92)";
+				ctx.beginPath(); ctx.arc(p.x,p.y,3.2,0,Math.PI*2); ctx.fill();
+				ctx.fillStyle = "rgba(41,211,255,.9)";
+				ctx.beginPath(); ctx.arc(p.x,p.y,6.8,0,Math.PI*2); ctx.fill();
+				ctx.fillStyle = "rgba(0,0,0,.55)";
+				ctx.beginPath(); ctx.arc(p.x,p.y,6.0,0,Math.PI*2); ctx.fill();
+			});
+		}
+
+		brandSelect.addEventListener("change", ()=> setDash(brandSelect.value));
+		randBtn.addEventListener("click", ()=>{
+			const keys = Object.keys(BRANDS);
+			const pick = keys[Math.floor(Math.random()*keys.length)];
+			brandSelect.value = pick;
+			setDash(pick);
+			unlockBadge("Curiosity Mode");
+		});
+
+		// initial dashboard
+		setDash("ICB");
+		window.addEventListener("resize", ()=> setDash(brandSelect.value), {passive:true});
+
+		// ===== Command menu (deck navigation) =====
 		const cmdk = $("#cmdk");
 		const cmdkBtn = $("#cmdkBtn");
 		const cmdkInput = $("#cmdkInput");
@@ -1061,36 +1285,30 @@
 		const closeCmdk = $("#closeCmdk");
 
 		const CMD_ITEMS = [
-			{label:"Impact", hint:"#impact", href:"#impact"},
-			{label:"Case files", hint:"#casefiles", href:"#casefiles"},
-			{label:"Experience", hint:"#experience", href:"#experience"},
-			{label:"Toolkit", hint:"#toolkit", href:"#toolkit"},
-			{label:"Contact", hint:"#contact", href:"#contact"},
-			{label:"LinkedIn", hint:"external", href:"https://www.linkedin.com/in/ajay-chakravarthy-h-j"},
-			{label:"Email", hint:"external", href:"mailto:ajay.hulikallu@gmail.com"}
+			{label:"Hero + Missions", hint:"Slide 1", action: ()=> goTo(0)},
+			{label:"Case Files", hint:"Slide 2", action: ()=> goTo(1)},
+			{label:"Data Room Dashboard", hint:"Slide 3", action: ()=> goTo(2)},
+			{label:"Email", hint:"mailto", action: ()=> window.location.href="mailto:ajay.hulikallu@gmail.com"},
+			{label:"LinkedIn", hint:"external", action: ()=> window.open("https://www.linkedin.com/in/ajay-chakravarthy-h-j","_blank","noreferrer")}
 		];
 
-		function renderCmdk(filter=""){
+		function renderCmdk(f=""){
 			cmdkList.innerHTML = "";
-			const f = filter.trim().toLowerCase();
+			const q = f.trim().toLowerCase();
 			CMD_ITEMS
-				.filter(x => !f || x.label.toLowerCase().includes(f) || x.hint.toLowerCase().includes(f))
+				.filter(x => !q || x.label.toLowerCase().includes(q) || x.hint.toLowerCase().includes(q))
 				.forEach(item=>{
-					const div = document.createElement("div");
-					div.className = "cmdk-item";
-					div.innerHTML = `<b>${item.label}</b><span class="kbd">${item.hint}</span>`;
-					div.addEventListener("click", ()=>{
+					const row = document.createElement("div");
+					row.className = "cmdkItem";
+					row.innerHTML = `<b>${item.label}</b><span class="kbd">${item.hint}</span>`;
+					row.addEventListener("click", ()=>{
 						closeCmdkFn();
-						if(item.href.startsWith("#")){
-							document.querySelector(item.href)?.scrollIntoView({behavior:"smooth", block:"start"});
-						}else{
-							window.open(item.href, "_blank", "noreferrer");
-						}
+						item.action();
+						awardXP(6);
 					});
-					cmdkList.appendChild(div);
+					cmdkList.appendChild(row);
 				});
 		}
-
 		function openCmdk(){
 			cmdk.classList.add("open");
 			cmdk.setAttribute("aria-hidden","false");
@@ -1110,15 +1328,25 @@
 		cmdk.addEventListener("click", (e)=>{ if(e.target === cmdk) closeCmdkFn(); });
 		cmdkInput.addEventListener("input", ()=> renderCmdk(cmdkInput.value));
 
-		// Press "/" to open command menu (when not typing)
 		window.addEventListener("keydown", (e)=>{
+			if(e.key === "Escape"){
+				if(modal.classList.contains("open")) closeCase();
+				if(cmdk.classList.contains("open")) closeCmdkFn();
+			}
 			const tag = (document.activeElement && document.activeElement.tagName) || "";
-			const typing = ["INPUT","TEXTAREA"].includes(tag);
+			const typing = ["INPUT","TEXTAREA","SELECT"].includes(tag);
 			if(!typing && e.key === "/"){
 				e.preventDefault();
 				openCmdk();
 			}
 		});
+
+		// Seed a couple of starter badges for premium feel (only once)
+		if(!localStorage.getItem("seeded")){
+			localStorage.setItem("seeded","1");
+			unlockBadge("Premium Deck");
+			awardXP(12);
+		}
 	</script>
 </body>
 </html>
