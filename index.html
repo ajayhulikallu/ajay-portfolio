@@ -3,401 +3,367 @@
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<meta name="description" content="Ajay Chakravarthy H J — Assistant Manager (Performance Marketing). Premium interactive portfolio: story mode + game layer + data room dashboard." />
-	<title>Ajay Chakravarthy · Performance Architecture</title>
+	<meta name="description" content="Ajay Chakravarthy H J — Assistant Manager (Performance Marketing). Google Ads, PMax, Meta Ads, GA4/GTM, GBP." />
+	<title>Ajay Chakravarthy · Performance Marketing</title>
 
 	<style>
 		:root{
-			--bg:#060810;
-			--bg2:#0A0F22;
-			--glass: rgba(255,255,255,.05);
-			--glass2: rgba(255,255,255,.035);
-			--line: rgba(255,255,255,.10);
-			--line2: rgba(255,255,255,.14);
-			--text:#EAF0FF;
-			--muted:#A9B4D6;
-			--faint:#7F8BB3;
+			/* Premium light theme */
+			--bg: #f7f7fb;
+			--bg2:#ffffff;
+			--card:#ffffff;
+			--text:#111322;
+			--muted:#4a5166;
+			--faint:#6c748c;
+			--line: rgba(17,19,34,.10);
 
-			--accent:#7C5CFF;
-			--accent2:#29D3FF;
-			--good:#4DFFB5;
-			--warn:#FFD36E;
-			--bad:#FF6B8B;
+			--accent:#5b5cff;     /* premium indigo */
+			--accent2:#00b3ff;    /* clean cyan */
+			--good:#12b981;       /* emerald */
+			--warn:#f59e0b;
 
-			--shadow: 0 22px 70px rgba(0,0,0,.55);
-			--shadow2: 0 18px 48px rgba(0,0,0,.42);
+			--shadow: 0 18px 60px rgba(17,19,34,.10);
+			--shadow2: 0 12px 30px rgba(17,19,34,.08);
 
-			--r: 18px;
-			--r2: 26px;
+			--r: 16px;
+			--r2: 24px;
 
 			--mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 			--sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
 		}
 
-		*{box-sizing:border-box}
-		html,body{height:100%}
+		*{ box-sizing:border-box; }
+		html,body{ height:100%; }
 		body{
 			margin:0;
 			font-family: var(--sans);
 			color: var(--text);
 			background:
-				radial-gradient(1200px 600px at 10% 10%, rgba(124,92,255,.20), transparent 55%),
-				radial-gradient(900px 520px at 86% 14%, rgba(41,211,255,.16), transparent 55%),
-				radial-gradient(900px 520px at 68% 84%, rgba(77,255,181,.08), transparent 60%),
-				linear-gradient(180deg, var(--bg), #04050B 75%);
+				radial-gradient(1000px 520px at 15% 0%, rgba(91,92,255,.12), transparent 55%),
+				radial-gradient(900px 520px at 85% 10%, rgba(0,179,255,.10), transparent 55%),
+				linear-gradient(180deg, var(--bg), #ffffff 60%);
 			overflow-x:hidden;
 		}
-		a{color:inherit; text-decoration:none}
-		.container{width:min(1120px, 92vw); margin:0 auto}
+		a{ color: inherit; text-decoration:none; }
+		.container{ width:min(1140px, 92vw); margin:0 auto; }
 
-		/* Top progress */
-		#topProgress{
-			position:fixed; inset:0 0 auto 0;
-			height:3px;
+		/* Top progress bar */
+		#progress{
+			position: fixed;
+			inset: 0 0 auto 0;
+			height: 3px;
 			background: linear-gradient(90deg, var(--accent), var(--accent2));
 			transform-origin: 0 50%;
 			transform: scaleX(0);
 			z-index: 9999;
 		}
 
-		/* Premium noise overlay */
-		.noise{
-			position: fixed; inset:0;
-			pointer-events:none;
-			opacity: .08;
-			mix-blend-mode: overlay;
-			background-image:
-				url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E");
-			z-index: 2;
-		}
-
-		/* App shell */
-		.shell{
-			position: relative;
-			z-index: 5;
-			min-height: 100vh;
-			display:flex;
-			flex-direction:column;
-		}
-
-		/* Header bar */
-		.topbar{
+		/* Header */
+		header{
 			position: sticky;
-			top:0;
+			top: 0;
 			z-index: 50;
-			backdrop-filter: blur(14px);
-			background: rgba(6,8,16,.62);
+			backdrop-filter: blur(10px);
+			background: rgba(247,247,251,.75);
 			border-bottom: 1px solid var(--line);
 		}
-		.topbar .inner{
-			display:flex; align-items:center; justify-content:space-between;
+		.nav{
+			display:flex;
+			align-items:center;
+			justify-content:space-between;
 			gap: 14px;
 			padding: 12px 0;
 		}
 		.brand{
-			display:flex; align-items:center; gap: 12px;
+			display:flex;
+			align-items:center;
+			gap: 12px;
 			min-width: 240px;
 		}
-		.avatar{
-			width: 36px; height:36px;
-			border-radius: 12px;
-			background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.85));
-			box-shadow: 0 18px 42px rgba(124,92,255,.16);
-			position: relative;
-			overflow:hidden;
+		.logo{
+			width: 38px; height: 38px;
+			border-radius: 14px;
+			background: linear-gradient(135deg, rgba(91,92,255,1), rgba(0,179,255,.85));
+			box-shadow: 0 14px 30px rgba(91,92,255,.18);
 		}
-		.avatar:after{
-			content:"";
-			position:absolute; inset:-80px;
-			background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.25), transparent 45%);
-			transform: rotate(12deg);
-		}
-		.brand b{display:block; font-weight: 760; letter-spacing:-.2px}
-		.brand small{display:block; color: var(--muted); font-size: 12px; margin-top:2px}
+		.brand b{ display:block; font-weight: 750; letter-spacing:-.2px; }
+		.brand small{ display:block; color: var(--muted); font-size: 12px; margin-top:2px; }
 
 		.kbd{
 			font-family: var(--mono);
 			font-size: 12px;
-			border: 1px solid rgba(255,255,255,.16);
-			background: rgba(0,0,0,.28);
-			color: rgba(255,255,255,.85);
+			border: 1px solid rgba(17,19,34,.18);
+			background: rgba(255,255,255,.65);
 			padding: 2px 7px;
-			border-radius: 9px;
+			border-radius: 10px;
+			color: rgba(17,19,34,.9);
 		}
 
-		/* Game HUD (premium) */
 		.hud{
-			display:flex; align-items:center; justify-content:center;
-			gap: 10px;
-			flex-wrap:wrap;
+			display:flex; gap: 10px; align-items:center; flex-wrap:wrap;
+			justify-content:center;
 		}
 		.hudCard{
-			display:flex; align-items:center; gap: 10px;
-			padding: 8px 10px;
-			border-radius: 14px;
 			border: 1px solid var(--line);
-			background: rgba(255,255,255,.03);
+			background: rgba(255,255,255,.70);
 			box-shadow: var(--shadow2);
+			border-radius: 16px;
+			padding: 8px 10px;
+			display:flex; gap: 10px; align-items:center;
 		}
 		.hudCard span{ color: var(--muted); font-size: 12px; }
-		.hudCard b{ font-size: 12px; letter-spacing:.2px }
+		.hudCard b{ font-size: 12px; }
+
 		.xpbar{
-			width: 160px; height: 8px;
+			width: 140px; height: 8px;
+			background: rgba(17,19,34,.08);
 			border-radius: 99px;
-			background: rgba(255,255,255,.08);
 			overflow:hidden;
-			border: 1px solid rgba(255,255,255,.10);
 		}
-		.xpbar > i{
+		.xpbar i{
 			display:block; height:100%;
 			width: 0%;
-			background: linear-gradient(90deg, rgba(77,255,181,.9), rgba(41,211,255,.9));
-			box-shadow: 0 0 0 1px rgba(255,255,255,.12) inset;
-			transition: width .55s ease;
+			background: linear-gradient(90deg, var(--good), var(--accent2));
+			transition: width .4s ease;
 		}
 
-		/* Right controls */
-		.controls{
+		.actions{
+			display:flex; gap: 10px; flex-wrap:wrap;
+			justify-content:flex-end;
 			min-width: 240px;
-			display:flex; justify-content:flex-end; gap: 10px; flex-wrap:wrap;
 		}
 		.btn{
 			border: 1px solid var(--line);
-			background: rgba(255,255,255,.03);
+			background: rgba(255,255,255,.80);
 			color: var(--text);
 			padding: 10px 12px;
 			border-radius: 14px;
 			font-size: 13px;
 			cursor:pointer;
-			display:inline-flex; gap: 10px; align-items:center;
+			display:inline-flex; align-items:center; gap: 10px;
 			transition: .18s ease;
 		}
-		.btn:hover{
-			transform: translateY(-1px);
-			border-color: rgba(124,92,255,.55);
-			box-shadow: 0 18px 44px rgba(124,92,255,.10);
-		}
+		.btn:hover{ transform: translateY(-1px); box-shadow: var(--shadow2); }
 		.btn.primary{
-			background: linear-gradient(135deg, rgba(124,92,255,.95), rgba(41,211,255,.55));
-			border-color: rgba(255,255,255,.12);
+			background: linear-gradient(135deg, rgba(91,92,255,1), rgba(0,179,255,.75));
+			color: white;
+			border-color: rgba(255,255,255,.20);
 		}
-		.btn.ghost{
-			background: rgba(255,255,255,.02);
+		.btn.ghost{ background: rgba(255,255,255,.55); }
+
+		@media (max-width: 940px){
+			.brand, .actions{ min-width: unset; }
+			.hud{ display:none; } /* clean mobile header */
 		}
 
-		@media (max-width: 900px){
-			.brand, .controls{ min-width: unset; }
-			.hud{ display:none; }
+		/* Sections */
+		main{ padding: 22px 0 60px; }
+		.section{ padding: 26px 0; }
+		.titleRow{
+			display:flex; align-items:flex-end; justify-content:space-between; gap: 12px;
+			margin-bottom: 14px;
 		}
+		.titleRow h2{ margin:0; font-size: 18px; letter-spacing:.2px; }
+		.titleRow p{ margin:0; color: var(--muted); font-size: 13px; }
 
-		/* Story deck */
-		.deckWrap{
-			padding: 20px 0 24px;
-			flex: 1;
-		}
-		.deck{
-			position: relative;
-			border-radius: var(--r2);
-			border: 1px solid var(--line);
-			background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
-			box-shadow: var(--shadow);
-			overflow:hidden;
-		}
-		.deck:before{
-			content:"";
-			position:absolute; inset:-2px;
-			background:
-				radial-gradient(900px 260px at 20% 0%, rgba(124,92,255,.22), transparent 60%),
-				radial-gradient(760px 240px at 85% 12%, rgba(41,211,255,.18), transparent 60%);
-			pointer-events:none;
-			opacity:.9;
-		}
-
-		/* Slide rail */
-		.slides{
-			position: relative;
-			display:flex;
-			transition: transform .55s cubic-bezier(.2,.9,.2,1);
-			will-change: transform;
-		}
-		.slide{
-			min-width: 100%;
-			position: relative;
-			padding: 22px;
-		}
-		.slideInner{
-			position: relative;
+		.hero{
 			display:grid;
 			grid-template-columns: 1.2fr .8fr;
 			gap: 14px;
 			align-items:stretch;
 		}
-		@media (max-width: 980px){
-			.slideInner{ grid-template-columns: 1fr; }
+		@media (max-width: 940px){
+			.hero{ grid-template-columns: 1fr; }
 		}
-
-		/* Premium panels */
-		.panel{
+		.card{
+			background: var(--card);
 			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
 			border-radius: var(--r2);
+			box-shadow: var(--shadow);
 			padding: 18px;
-			box-shadow: 0 18px 46px rgba(0,0,0,.25);
 		}
-		.panel h1{
-			margin: 10px 0 10px;
-			font-size: clamp(28px, 3.2vw, 46px);
-			line-height: 1.05;
-			letter-spacing: -0.7px;
-		}
-		.panel h2{
-			margin: 0 0 10px;
-			font-size: 18px;
-			letter-spacing: .2px;
-		}
-		.panel p{ margin: 0; color: var(--muted); line-height: 1.55; }
-		.subline{
-			display:flex; flex-wrap:wrap; gap: 10px;
-			color: var(--muted);
-			font-size: 13px;
-			align-items:center;
-		}
-		.badge{
+		.pills{ display:flex; flex-wrap:wrap; gap: 8px; margin-bottom: 10px; }
+		.pill{
+			border: 1px solid var(--line);
+			background: rgba(247,247,251,.9);
 			padding: 6px 10px;
 			border-radius: 999px;
-			border: 1px solid var(--line);
-			background: rgba(255,255,255,.03);
 			font-size: 12px;
 			color: var(--muted);
 		}
-		.badge.dot:before{
+		.pill.dot:before{
 			content:"";
 			display:inline-block;
 			width:8px; height:8px;
 			border-radius: 99px;
 			background: var(--good);
 			margin-right:8px;
-			box-shadow: 0 0 0 3px rgba(77,255,181,.10);
 		}
-
-		/* KPI tiles */
+		h1{
+			margin: 10px 0 10px;
+			font-size: clamp(30px, 3.4vw, 44px);
+			line-height: 1.08;
+			letter-spacing: -0.6px;
+		}
+		.lede{
+			margin:0;
+			color: var(--muted);
+			line-height: 1.65;
+			font-size: 15px;
+			max-width: 68ch;
+		}
 		.kpis{
 			display:grid;
 			grid-template-columns: repeat(4, 1fr);
 			gap: 10px;
 			margin-top: 14px;
 		}
-		@media (max-width: 980px){ .kpis{ grid-template-columns: repeat(2, 1fr);} }
+		@media (max-width: 940px){
+			.kpis{ grid-template-columns: repeat(2, 1fr); }
+		}
 		.kpi{
-			padding: 12px;
-			border-radius: 18px;
 			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
+			background: rgba(247,247,251,.75);
+			border-radius: 18px;
+			padding: 12px;
 		}
 		.kpi b{ display:block; font-size: 18px; }
-		.kpi span{ display:block; margin-top:4px; font-size: 12px; color: var(--muted); }
+		.kpi span{ display:block; margin-top: 4px; color: var(--muted); font-size: 12px; }
 
-		/* Case cards */
-		.cards{
-			display:grid;
-			grid-template-columns: repeat(12, 1fr);
-			gap: 10px;
-		}
-		.case{
-			grid-column: span 12;
-			border-radius: 20px;
-			border: 1px solid var(--line);
-			background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-			padding: 14px;
-			cursor:pointer;
-			transition: .18s ease;
+		/* Story carousel */
+		.carousel{
 			position: relative;
 			overflow:hidden;
-		}
-		@media (min-width: 980px){ .case{ grid-column: span 6; } }
-		.case:hover{
-			transform: translateY(-2px);
-			border-color: rgba(124,92,255,.50);
-			box-shadow: 0 22px 58px rgba(124,92,255,.08);
-		}
-		.case h3{ margin: 6px 0 10px; font-size: 16px; }
-		.meta{ color: var(--muted); font-size: 12px; display:flex; flex-wrap:wrap; gap: 8px;}
-		.tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 10px;}
-		.tag{
-			padding: 6px 10px;
-			border-radius: 999px;
+			border-radius: var(--r2);
 			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
-			color: var(--text);
-			font-size: 12px;
+			background: var(--card);
+			box-shadow: var(--shadow);
 		}
-		.hint{ margin-top: 10px; color: var(--faint); font-size: 12px; }
-
-		/* Missions */
-		.missions{
-			display:grid; gap: 10px;
-		}
-		.mission{
-			display:flex; align-items:flex-start; gap: 10px;
-			padding: 12px;
-			border-radius: 18px;
-			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
-		}
-		.mission input{ margin-top: 3px; }
-		.mission b{ display:block; font-size: 13px; }
-		.mission small{ display:block; color: var(--muted); margin-top: 3px; line-height:1.4; }
-
-		/* Deck nav */
-		.deckNav{
+		.track{
 			display:flex;
-			align-items:center;
-			justify-content:space-between;
-			gap: 10px;
+			transition: transform .45s cubic-bezier(.2,.9,.2,1);
+			will-change: transform;
+		}
+		.slide{
+			min-width: 100%;
+			padding: 18px;
+		}
+		.slideGrid{
+			display:grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 12px;
+		}
+		@media (max-width: 940px){
+			.slideGrid{ grid-template-columns: 1fr; }
+		}
+		.box{
+			border: 1px solid var(--line);
+			background: rgba(247,247,251,.70);
+			border-radius: 18px;
+			padding: 14px;
+		}
+		.box h3{ margin:0 0 8px; font-size: 14px; }
+		.box p, .box li{ color: var(--muted); line-height:1.6; }
+		.box ul{ margin: 10px 0 0 18px; }
+
+		.carouselNav{
+			display:flex; justify-content:space-between; align-items:center;
 			padding: 12px 14px;
 			border-top: 1px solid var(--line);
-			background: rgba(0,0,0,.18);
-			backdrop-filter: blur(10px);
+			background: rgba(247,247,251,.85);
 		}
-		.dots{ display:flex; gap: 8px; align-items:center; justify-content:center; flex: 1; }
+		.dots{ display:flex; gap: 8px; align-items:center; justify-content:center; flex:1; }
 		.dot{
-			width: 9px; height:9px;
+			width: 9px; height: 9px;
 			border-radius: 99px;
-			border: 1px solid rgba(255,255,255,.18);
-			background: rgba(255,255,255,.10);
+			background: rgba(17,19,34,.18);
 			cursor:pointer;
 			transition: .18s ease;
 		}
 		.dot.active{
-			width: 24px;
-			background: linear-gradient(90deg, rgba(124,92,255,.95), rgba(41,211,255,.8));
-			border-color: rgba(255,255,255,.20);
+			width: 26px;
+			background: linear-gradient(90deg, var(--accent), var(--accent2));
 		}
-		.smallNote{
-			color: var(--muted);
+
+		/* Case grid (not cramped) */
+		.caseGrid{
+			display:grid;
+			grid-template-columns: repeat(12, 1fr);
+			gap: 12px;
+		}
+		.case{
+			grid-column: span 12;
+			background: var(--card);
+			border: 1px solid var(--line);
+			border-radius: var(--r2);
+			box-shadow: var(--shadow2);
+			padding: 16px;
+			cursor:pointer;
+			transition: .18s ease;
+		}
+		@media (min-width: 940px){
+			.case{ grid-column: span 6; }
+		}
+		.case:hover{ transform: translateY(-2px); }
+		.case h3{ margin: 6px 0 10px; font-size: 16px; }
+		.meta{ color: var(--muted); font-size: 12px; display:flex; flex-wrap:wrap; gap: 8px; }
+		.tags{ display:flex; flex-wrap:wrap; gap: 8px; margin-top: 10px; }
+		.tag{
+			border: 1px solid var(--line);
+			background: rgba(247,247,251,.85);
+			padding: 6px 10px;
+			border-radius: 999px;
 			font-size: 12px;
-			min-width: 230px;
 		}
+		.hint{ margin-top: 10px; color: var(--faint); font-size: 12px; }
+
+		/* Dashboard */
+		.dashTop{
+			display:flex; flex-wrap:wrap; gap: 10px; align-items:center; justify-content:space-between;
+			margin-bottom: 12px;
+		}
+		.tabs{ display:flex; flex-wrap:wrap; gap: 8px; }
+		.tab{
+			border: 1px solid var(--line);
+			background: rgba(255,255,255,.85);
+			padding: 8px 10px;
+			border-radius: 999px;
+			font-size: 12px;
+			cursor:pointer;
+			color: var(--muted);
+		}
+		.tab.active{
+			color: white;
+			background: linear-gradient(90deg, var(--accent), var(--accent2));
+			border-color: transparent;
+		}
+		.chart{
+			border: 1px solid var(--line);
+			background: rgba(255,255,255,.85);
+			border-radius: 18px;
+			padding: 10px;
+		}
+		canvas{ width: 100%; height: 220px; display:block; }
 
 		/* Modal */
 		.modal{
 			position: fixed; inset:0;
-			background: rgba(0,0,0,.62);
-			backdrop-filter: blur(12px);
+			background: rgba(0,0,0,.40);
+			backdrop-filter: blur(10px);
 			display:none;
 			align-items:center; justify-content:center;
-			padding: 18px;
+			padding: 16px;
 			z-index: 1000;
 		}
 		.modal.open{ display:flex; }
 		.modalCard{
 			width: min(980px, 96vw);
-			max-height: min(85vh, 900px);
+			max-height: min(86vh, 900px);
 			overflow:auto;
+			background: white;
 			border-radius: 22px;
-			border: 1px solid rgba(255,255,255,.14);
-			background: linear-gradient(180deg, rgba(12,18,41,.98), rgba(7,10,22,.98));
-			box-shadow: 0 34px 92px rgba(0,0,0,.65);
+			border: 1px solid rgba(17,19,34,.12);
+			box-shadow: 0 40px 90px rgba(0,0,0,.25);
 		}
 		.modalInner{ padding: 16px; }
 		.modalTop{
@@ -413,940 +379,42 @@
 			grid-template-columns: 1fr;
 			gap: 12px;
 		}
-		@media (min-width: 980px){ .cols{ grid-template-columns: 1fr 1fr; } }
-		.box{
-			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
-			border-radius: 18px;
-			padding: 14px;
+		@media (min-width: 940px){
+			.cols{ grid-template-columns: 1fr 1fr; }
 		}
-		.box h4{ margin:0 0 8px; font-size: 13px; color: var(--muted); letter-spacing:.2px;}
-		.box p,.box li{ color: var(--muted); }
-		.box ul{ margin: 10px 0 0 18px; }
 
-		/* Dashboard */
-		.dashTop{
-			display:flex; flex-wrap:wrap; gap: 10px; align-items:center; justify-content:space-between;
-			margin-bottom: 10px;
+		footer{
+			padding-top: 14px;
+			color: var(--faint);
+			font-size: 12px;
 		}
-		select{
-			background: rgba(255,255,255,.04);
-			border: 1px solid rgba(255,255,255,.14);
-			color: var(--text);
-			padding: 10px 12px;
-			border-radius: 14px;
-			outline:none;
-		}
-		.chart{
-			border-radius: 18px;
-			border: 1px solid var(--line);
-			background: rgba(255,255,255,.02);
-			padding: 10px;
-		}
-		canvas{ width: 100%; height: 220px; display:block; }
-
-		/* Command menu */
-		.cmdk{
-			position: fixed; inset:0;
-			background: rgba(0,0,0,.62);
-			backdrop-filter: blur(12px);
-			display:none;
-			align-items:flex-start; justify-content:center;
-			padding: 70px 16px 16px;
-			z-index: 1200;
-		}
-		.cmdk.open{ display:flex; }
-		.cmdkCard{
-			width: min(760px, 96vw);
-			border-radius: 22px;
-			border: 1px solid rgba(255,255,255,.14);
-			background: linear-gradient(180deg, rgba(12,18,41,.98), rgba(7,10,22,.98));
-			box-shadow: 0 34px 92px rgba(0,0,0,.65);
-			overflow:hidden;
-		}
-		.cmdkTop{
-			padding: 14px;
-			border-bottom: 1px solid var(--line);
-			display:flex; gap: 10px; align-items:center;
-		}
-		.cmdkTop input{
-			width: 100%;
-			background: rgba(255,255,255,.04);
-			border: 1px solid rgba(255,255,255,.12);
-			color: var(--text);
-			padding: 12px 12px;
-			border-radius: 14px;
-			outline:none;
-			font-size: 14px;
-		}
-		.cmdkList{ padding: 6px; max-height: 340px; overflow:auto; }
-		.cmdkItem{
-			padding: 12px 12px;
-			border-radius: 16px;
-			cursor:pointer;
-			display:flex; justify-content:space-between; align-items:center;
-			color: var(--muted);
-		}
-		.cmdkItem:hover{
-			background: rgba(124,92,255,.10);
-			color: var(--text);
-		}
-		.cmdkItem b{ color: var(--text); font-weight: 650; }
 	</style>
 </head>
-
 <body>
-	<div id="topProgress"></div>
-	<div class="noise" aria-hidden="true"></div>
+	<div id="progress"></div>
 
-	<div class="shell">
-		<!-- Topbar -->
-		<div class="topbar">
-			<div class="container inner">
-				<div class="brand">
-					<div class="avatar" aria-hidden="true"></div>
-					<div>
-						<b>Ajay Chakravarthy H J</b>
-						<small>Assistant Manager · Performance Marketing</small>
-					</div>
-				</div>
-
-				<!-- Game HUD -->
-				<div class="hud" aria-label="Progress">
-					<div class="hudCard">
-						<b id="levelTxt">LVL 1</b>
-						<span>Performance Architect</span>
-					</div>
-					<div class="hudCard">
-						<span>XP</span>
-						<div class="xpbar" aria-hidden="true"><i id="xpFill"></i></div>
-						<b id="xpTxt">0 / 100</b>
-					</div>
-					<div class="hudCard">
-						<span>Badges</span>
-						<b id="badgeTxt">0</b>
-					</div>
-				</div>
-
-				<div class="controls">
-					<button class="btn ghost" id="cmdkBtn" title="Quick menu">
-						Quick <span class="kbd">/</span>
-					</button>
-					<button class="btn" id="prevBtn" title="Previous slide">
-						<span class="kbd">←</span> Prev
-					</button>
-					<button class="btn primary" id="nextBtn" title="Next slide">
-						Next <span class="kbd">→</span>
-					</button>
+	<header>
+		<div class="container nav">
+			<div class="brand">
+				<div class="logo" aria-hidden="true"></div>
+				<div>
+					<b>Ajay Chakravarthy H J</b>
+					<small>Assistant Manager · Performance Marketing</small>
 				</div>
 			</div>
-		</div>
 
-		<!-- Deck -->
-		<div class="deckWrap">
-			<div class="container">
-				<div class="deck" role="region" aria-label="Portfolio story deck">
-					<div class="slides" id="slides">
+			<div class="hud" aria-label="XP and badges">
+				<div class="hudCard"><b id="lvl">LVL 1</b><span>Performance Architect</span></div>
+				<div class="hudCard"><span>XP</span><div class="xpbar" aria-hidden="true"><i id="xpFill"></i></div><b id="xpTxt">0/100</b></div>
+				<div class="hudCard"><span>Badges</span><b id="badgeCount">0</b></div>
+			</div>
 
-						<!-- Slide 1: Hero -->
-						<section class="slide">
-							<div class="slideInner">
-								<div class="panel">
-									<div class="subline">
-										<span class="badge dot">Open to roles + advisory/freelance</span>
-										<span class="badge">Google Ads · PMax · Meta</span>
-										<span class="badge">GA4 + GTM · Looker Studio</span>
-										<span class="badge">GBP multi-market</span>
-									</div>
-
-									<h1>Turning ad spend into profit engines — with systems, not hacks.</h1>
-									<p>
-										Performance Marketing Specialist with 3+ years managing paid media for Tier‑1 tech retail brands (Lenovo, Dell, Acer, Asus, MSI) and hospitality.
-										Delivered <b>4,08,708 tracked conversions</b> at <b>₹19.42 avg CPA</b> across <b>₹79.38L</b> managed spend (194 campaigns).
-										Currently an <b>Assistant Manager</b> leading a <b>6‑member team</b> and serving as <b>Lenovo APAC SPOC</b> for <b>250+ GBP profiles</b>.
-									</p>
-
-									<div class="kpis" style="margin-top:14px">
-										<div class="kpi"><b data-count="408708">0</b><span>Tracked conversions</span></div>
-										<div class="kpi"><b>₹<span data-count="79.38">0</span>L</b><span>Spend managed</span></div>
-										<div class="kpi"><b>₹<span data-count="19.42">0</span></b><span>Avg. CPA</span></div>
-										<div class="kpi"><b><span data-count="3.34">0</span>%</b><span>Avg. CTR · 17.2Cr+ imps</span></div>
-									</div>
-
-									<div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:14px;">
-										<a class="btn primary" href="mailto:ajay.hulikallu@gmail.com">Email</a>
-										<a class="btn" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">LinkedIn</a>
-										<button class="btn" id="copyEmailBtn" type="button">Copy email</button>
-									</div>
-
-									<p style="margin-top:12px; color: var(--faint); font-size: 12px;">
-										Story mode: use <span class="kbd">←</span> <span class="kbd">→</span> to navigate.
-										Complete missions to unlock badges.
-									</p>
-								</div>
-
-								<div class="panel">
-									<h2>Missions (unlock badges)</h2>
-									<p style="margin-bottom:12px">These keep the experience interactive, but still premium.</p>
-
-									<div class="missions" id="missions">
-										<label class="mission">
-											<input type="checkbox" data-xp="25" data-badge="Tracking Guardian" />
-											<div>
-												<b>Fix tracking hygiene</b>
-												<small>GTM + GA4: clean conversions, dedupe, consistent definitions.</small>
-											</div>
-										</label>
-										<label class="mission">
-											<input type="checkbox" data-xp="25" data-badge="PMax Operator" />
-											<div>
-												<b>Scale a PMax system</b>
-												<small>Structure + assets + audience signals + guardrails.</small>
-											</div>
-										</label>
-										<label class="mission">
-											<input type="checkbox" data-xp="25" data-badge="Multi‑Location Strategist" />
-											<div>
-												<b>Standardize multi-location growth</b>
-												<small>GBP + store pages + governance across markets.</small>
-											</div>
-										</label>
-										<label class="mission">
-											<input type="checkbox" data-xp="25" data-badge="Revenue Architect" />
-											<div>
-												<b>Turn spend into outcomes</b>
-												<small>Bid strategy, experiment cadence, landing alignment.</small>
-											</div>
-										</label>
-									</div>
-
-									<div style="margin-top:12px; border-top:1px solid var(--line); padding-top:12px; color:var(--muted); font-size:13px;">
-										<b>Unlocked badges:</b>
-										<div id="badgeList" style="margin-top:8px; display:flex; flex-wrap:wrap; gap:8px;"></div>
-									</div>
-								</div>
-							</div>
-						</section>
-
-						<!-- Slide 2: Case Files -->
-						<section class="slide">
-							<div class="slideInner">
-								<div class="panel">
-									<h2>Impact case files (click to open)</h2>
-									<p>Each case opens as a premium “case file” modal: problem → approach → outcome.</p>
-
-									<div class="cards" style="margin-top:12px">
-										<article class="case" data-id="icb">
-											<div class="meta"><span>🇮🇳 India</span><span>·</span><span>Policy-restricted</span><span>·</span><span>Search + PMax</span></div>
-											<h3>Indian Craft Brewery — lowest CPA across portfolio</h3>
-											<div class="tags">
-												<span class="tag">1,64,367 conv</span>
-												<span class="tag">₹4.58 avg CPA</span>
-												<span class="tag">Peak CTR 11.46%</span>
-											</div>
-											<div class="hint">Open case file →</div>
-										</article>
-
-										<article class="case" data-id="acer">
-											<div class="meta"><span>🇮🇳 India</span><span>·</span><span>Retail network</span><span>·</span><span>PMax system</span></div>
-											<h3>Acer — PMax system across 10+ outlets</h3>
-											<div class="tags">
-												<span class="tag">1,28,000+ conv</span>
-												<span class="tag">₹11.30 brand CPA</span>
-												<span class="tag">Lowest CPC ₹0.25</span>
-											</div>
-											<div class="hint">Open case file →</div>
-										</article>
-
-										<article class="case" data-id="lenovo">
-											<div class="meta"><span>🌏 APAC</span><span>·</span><span>GBP + SEO</span><span>·</span><span>PH awareness</span></div>
-											<h3>Lenovo APAC — GBP + 12k store pages + PH campaign</h3>
-											<div class="tags">
-												<span class="tag">250+ GBP</span>
-												<span class="tag">12,000 pages</span>
-												<span class="tag">+15% discoverability</span>
-											</div>
-											<div class="hint">Open case file →</div>
-										</article>
-
-										<article class="case" data-id="leadership">
-											<div class="meta"><span>👥 Team</span><span>·</span><span>6 members</span><span>·</span><span>Operating cadence</span></div>
-											<h3>Leadership — QA + KPI cadence + cross-brand planning</h3>
-											<div class="tags">
-												<span class="tag">Weekly KPI rhythm</span>
-												<span class="tag">Templates + QA</span>
-												<span class="tag">Fast iteration loops</span>
-											</div>
-											<div class="hint">Open case file →</div>
-										</article>
-									</div>
-								</div>
-
-								<div class="panel">
-									<h2>What I deliver (for jobs + freelance)</h2>
-									<p style="margin-bottom:12px">
-										A premium portfolio should show not only metrics—but your operating system.
-									</p>
-
-									<div class="missions">
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent2);margin-top:6px"></div>
-											<div>
-												<b>Google Ads systems</b>
-												<small>Search/PMax structure, query hygiene, bidding guardrails, asset governance.</small>
-											</div>
-										</div>
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--good);margin-top:6px"></div>
-											<div>
-												<b>Measurement & reporting</b>
-												<small>GTM + GA4 conversion discipline + Looker dashboards + action-oriented insights.</small>
-											</div>
-										</div>
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--warn);margin-top:6px"></div>
-											<div>
-												<b>Multi-location growth</b>
-												<small>GBP playbooks, standardization, store locator pages, local discoverability.</small>
-											</div>
-										</div>
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent);margin-top:6px"></div>
-											<div>
-												<b>Team leadership</b>
-												<small>Weekly KPI cadence, QA, structured feedback cycles, cross-brand planning.</small>
-											</div>
-										</div>
-									</div>
-
-									<div style="margin-top:12px; color: var(--faint); font-size: 12px;">
-										Tip: press <span class="kbd">/</span> for quick jump menu.
-									</div>
-								</div>
-							</div>
-						</section>
-
-						<!-- Slide 3: Data Room Dashboard -->
-						<section class="slide">
-							<div class="slideInner">
-								<div class="panel">
-									<div class="dashTop">
-										<div>
-											<h2>Data Room (interactive dashboard)</h2>
-											<p>Switch brands to see KPIs + a mini chart (premium, lightweight, no external libraries).</p>
-										</div>
-										<div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-											<select id="brandSelect" aria-label="Select brand">
-												<option value="ICB">Indian Craft Brewery (ICB)</option>
-												<option value="Acer">Acer</option>
-												<option value="Portfolio">All brands (Portfolio)</option>
-												<option value="LenovoAPAC">Lenovo APAC (Ops)</option>
-											</select>
-											<button class="btn" id="randBtn" type="button">Shuffle view</button>
-										</div>
-									</div>
-
-									<div class="kpis" id="dashKpis">
-										<div class="kpi"><b id="d1">—</b><span id="d1s">—</span></div>
-										<div class="kpi"><b id="d2">—</b><span id="d2s">—</span></div>
-										<div class="kpi"><b id="d3">—</b><span id="d3s">—</span></div>
-										<div class="kpi"><b id="d4">—</b><span id="d4s">—</span></div>
-									</div>
-
-									<div class="chart" style="margin-top:12px">
-										<canvas id="chart" width="900" height="260"></canvas>
-									</div>
-
-									<p style="margin-top:10px; color:var(--faint); font-size: 12px;">
-										Note: Chart is a visual story layer (not raw exports). Metrics are based on your campaign reporting statements.
-									</p>
-								</div>
-
-								<div class="panel">
-									<h2>Premium narrative (what recruiters/clients want)</h2>
-									<p style="margin-bottom:12px">
-										The dashboard + case files show the “what”. This slide shows the “how I think”.
-									</p>
-									<div class="missions">
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent2);margin-top:6px"></div>
-											<div>
-												<b>System > campaign</b>
-												<small>I standardize structures so performance is repeatable across outlets and markets.</small>
-											</div>
-										</div>
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--good);margin-top:6px"></div>
-											<div>
-												<b>Clean measurement</b>
-												<small>Without conversion hygiene, smart bidding is guessing. I fix that first.</small>
-											</div>
-										</div>
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--warn);margin-top:6px"></div>
-											<div>
-												<b>Cadence & QA</b>
-												<small>Weekly KPIs, experiments, and feedback loops keep teams aligned and scalable.</small>
-											</div>
-										</div>
-										<div class="mission">
-											<div style="width:10px;height:10px;border-radius:99px;background:var(--accent);margin-top:6px"></div>
-											<div>
-												<b>Pragmatic creativity</b>
-												<small>Assets + landing alignment + audience signals—creative that improves outcomes.</small>
-											</div>
-										</div>
-									</div>
-
-									<div style="margin-top:12px; border-top:1px solid var(--line); padding-top:12px;">
-										<h2 style="margin:0 0 10px">Contact (public)</h2>
-										<div style="display:flex; gap:10px; flex-wrap:wrap;">
-											<a class="btn primary" href="mailto:ajay.hulikallu@gmail.com">ajay.hulikallu@gmail.com</a>
-											<a class="btn" href="https://www.linkedin.com/in/ajay-chakravarthy-h-j" target="_blank" rel="noreferrer">LinkedIn</a>
-										</div>
-										<p style="margin-top:10px; color:var(--muted);">
-											Phone number kept private. Share it only in your resume/PDF for 1:1 conversations.
-										</p>
-									</div>
-								</div>
-							</div>
-						</section>
-
-					</div>
-
-					<!-- Deck navigation footer -->
-					<div class="deckNav">
-						<div class="smallNote">
-							<b>Story mode</b> · <span class="kbd">←</span>/<span class="kbd">→</span> slides · <span class="kbd">Esc</span> close · <span class="kbd">/</span> menu
-						</div>
-
-						<div class="dots" id="dots" aria-label="Slide indicators"></div>
-
-						<div class="smallNote" style="text-align:right">
-							<span id="slideTxt">Slide 1 / 3</span>
-						</div>
-					</div>
-				</div>
-
-				<p style="margin: 12px 0 0; color: var(--faint); font-size: 12px;">
-					© <span id="year"></span> Ajay Chakravarthy · Built on GitHub Pages
-				</p>
+			<div class="actions">
+				<button class="btn ghost" id="openMenu">Quick <span class="kbd">/</span></button>
+				<a class="btn" href="#cases">Case files</a>
+				<a class="btn primary" href="#contact">Contact</a>
 			</div>
 		</div>
+	</header>
 
-	</div>
-
-	<!-- Case Modal -->
-	<div class="modal" id="modal" aria-hidden="true">
-		<div class="modalCard" role="dialog" aria-modal="true" aria-label="Case file">
-			<div class="modalInner">
-				<div class="modalTop">
-					<div>
-						<h3 id="mTitle">Case file</h3>
-						<p id="mSub">—</p>
-					</div>
-					<button class="btn" id="closeModal" type="button">Close <span class="kbd">Esc</span></button>
-				</div>
-				<div class="cols">
-					<div class="box">
-						<h4>Problem</h4>
-						<p id="mProblem"></p>
-					</div>
-					<div class="box">
-						<h4>Approach</h4>
-						<ul id="mApproach"></ul>
-					</div>
-					<div class="box">
-						<h4>Outcome</h4>
-						<ul id="mOutcome"></ul>
-					</div>
-					<div class="box">
-						<h4>Notes</h4>
-						<p id="mNotes"></p>
-					</div>
-				</div>
-				<p style="margin: 12px 0 0; color: var(--faint); font-size: 12px;">
-					Metrics reflect campaign reports and may vary by attribution/timeframe.
-				</p>
-			</div>
-		</div>
-	</div>
-
-	<!-- Command Menu -->
-	<div class="cmdk" id="cmdk" aria-hidden="true">
-		<div class="cmdkCard" role="dialog" aria-modal="true" aria-label="Quick menu">
-			<div class="cmdkTop">
-				<input id="cmdkInput" placeholder="Jump to: hero, missions, case files, data room…" />
-				<button class="btn" id="closeCmdk" type="button">Close <span class="kbd">Esc</span></button>
-			</div>
-			<div class="cmdkList" id="cmdkList"></div>
-		</div>
-	</div>
-
-	<script>
-		// ===== Utilities =====
-		const $ = (s, el=document) => el.querySelector(s);
-		const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
-
-		// Year
-		$("#year").textContent = new Date().getFullYear();
-
-		// Top scroll progress
-		const topProgress = $("#topProgress");
-		window.addEventListener("scroll", ()=>{
-			const h = document.documentElement;
-			const sc = h.scrollTop;
-			const max = h.scrollHeight - h.clientHeight;
-			const p = max > 0 ? sc / max : 0;
-			topProgress.style.transform = `scaleX(${p})`;
-		}, {passive:true});
-
-		// Count up (hero KPIs)
-		function animateCount(el){
-			const raw = el.dataset.count;
-			if(!raw) return;
-			const target = parseFloat(raw);
-			const isFloat = raw.includes(".");
-			const dur = 950;
-			const t0 = performance.now();
-			function tick(t){
-				const p = Math.min(1, (t - t0)/dur);
-				const v = target * (1 - Math.pow(1-p, 3));
-				el.textContent = isFloat ? v.toFixed(2) : Math.round(v).toLocaleString("en-IN");
-				if(p < 1) requestAnimationFrame(tick);
-			}
-			requestAnimationFrame(tick);
-		}
-		$$("[data-count]").forEach(el => animateCount(el));
-
-		// Copy email
-		$("#copyEmailBtn").addEventListener("click", async ()=>{
-			try{
-				await navigator.clipboard.writeText("ajay.hulikallu@gmail.com");
-				$("#copyEmailBtn").textContent = "Copied!";
-				setTimeout(()=> $("#copyEmailBtn").textContent = "Copy email", 900);
-			}catch(e){
-				alert("Email: ajay.hulikallu@gmail.com");
-			}
-		});
-
-		// ===== Story Deck =====
-		const slidesEl = $("#slides");
-		const slideCount = $$(".slide", slidesEl).length;
-		const dotsEl = $("#dots");
-		const slideTxt = $("#slideTxt");
-		let slideIndex = 0;
-
-		function renderDots(){
-			dotsEl.innerHTML = "";
-			for(let i=0;i<slideCount;i++){
-				const d = document.createElement("div");
-				d.className = "dot" + (i===slideIndex ? " active" : "");
-				d.addEventListener("click", ()=> goTo(i));
-				dotsEl.appendChild(d);
-			}
-		}
-		function goTo(i){
-			slideIndex = Math.max(0, Math.min(slideCount-1, i));
-			slidesEl.style.transform = `translateX(${-100*slideIndex}%)`;
-			renderDots();
-			slideTxt.textContent = `Slide ${slideIndex+1} / ${slideCount}`;
-			awardXP(8); // tiny XP for navigating
-		}
-		$("#prevBtn").addEventListener("click", ()=> goTo(slideIndex-1));
-		$("#nextBtn").addEventListener("click", ()=> goTo(slideIndex+1));
-		window.addEventListener("keydown", (e)=>{
-			if(modal.classList.contains("open") || cmdk.classList.contains("open")) return;
-			if(e.key === "ArrowRight") goTo(slideIndex+1);
-			if(e.key === "ArrowLeft") goTo(slideIndex-1);
-		});
-		renderDots();
-		slideTxt.textContent = `Slide 1 / ${slideCount}`;
-
-		// ===== Game Layer (XP + badges) =====
-		let xp = 0;
-		let level = 1;
-		const xpFill = $("#xpFill");
-		const xpTxt = $("#xpTxt");
-		const levelTxt = $("#levelTxt");
-		const badgeTxt = $("#badgeTxt");
-		const badgeList = $("#badgeList");
-		const unlocked = new Set(JSON.parse(localStorage.getItem("badges")||"[]"));
-
-		function saveGame(){
-			localStorage.setItem("xp", String(xp));
-			localStorage.setItem("level", String(level));
-			localStorage.setItem("badges", JSON.stringify(Array.from(unlocked)));
-		}
-		function loadGame(){
-			xp = parseInt(localStorage.getItem("xp")||"0", 10);
-			level = parseInt(localStorage.getItem("level")||"1", 10);
-		}
-		function awardXP(amount){
-			xp = Math.min(300, xp + amount); // cap (premium feel: no infinite farm)
-			// level every 100 xp
-			level = 1 + Math.floor(xp / 100);
-			updateHUD();
-			saveGame();
-		}
-		function unlockBadge(name){
-			if(unlocked.has(name)) return;
-			unlocked.add(name);
-			updateHUD();
-			saveGame();
-		}
-		function updateHUD(){
-			const inLevel = xp % 100;
-			xpFill.style.width = `${inLevel}%`;
-			xpTxt.textContent = `${inLevel} / 100`;
-			levelTxt.textContent = `LVL ${level}`;
-			badgeTxt.textContent = String(unlocked.size);
-
-			badgeList.innerHTML = "";
-			Array.from(unlocked).forEach(b=>{
-				const el = document.createElement("span");
-				el.className = "badge";
-				el.textContent = b;
-				badgeList.appendChild(el);
-			});
-		}
-
-		loadGame();
-		updateHUD();
-
-		// Missions checkboxes
-		$$('#missions input[type="checkbox"]').forEach(cb=>{
-			const badge = cb.dataset.badge;
-			// restore state if badge unlocked
-			if(unlocked.has(badge)) cb.checked = true;
-
-			cb.addEventListener("change", ()=>{
-				const xpVal = parseInt(cb.dataset.xp||"0",10);
-				if(cb.checked){
-					awardXP(xpVal);
-					unlockBadge(badge);
-				}else{
-					// keep premium (no penalty), just uncheck doesn't remove badge
-					cb.checked = true;
-				}
-			});
-		});
-
-		// ===== Case Files Modal =====
-		const modal = $("#modal");
-		const closeModal = $("#closeModal");
-		const CASES = {
-			icb: {
-				title: "Indian Craft Brewery — lowest CPA across portfolio",
-				sub: "🇮🇳 India · Policy-restricted category · Google Ads (Search + PMax)",
-				problem: "Alcohol-adjacent brand: broken campaigns, policy disapprovals, high waste, inconsistent conversion flow.",
-				approach: [
-					"Built 6 intent-segmented Search campaigns (Brewery / Restaurant / Near me / etc.)",
-					"Deployed policy-compliant Performance Max with controlled assets",
-					"Query hygiene (negatives), landing alignment, and creative governance",
-					"Smart bidding tuned to stable CPA (tCPA) with learning discipline"
-				],
-				outcome: [
-					"Total: 1,64,367 conversions at ₹4.58 avg CPA (lowest across managed brands)",
-					"PMax Feb’25: 1,09,923 conversions at ₹3.19 CPA",
-					"Peak CTR reached 11.46% during top-performing windows"
-				],
-				notes: "Strong example of performance under restrictions: structure + compliance + measurement."
-			},
-			acer: {
-				title: "Acer — PMax system across 10+ outlets",
-				sub: "🇮🇳 India · Retail network · Performance Max (per outlet structure)",
-				problem: "Fragmented campaigns, inconsistent audience signals across outlets, CPC variance and uneven results by location.",
-				approach: [
-					"Individual PMax campaigns per outlet for controllability",
-					"Store-specific asset groups and landing alignment",
-					"GA4 past-converter signals and clean conversion definitions",
-					"tCPA-based scaling with guardrails (budget, learning, refresh)"
-				],
-				outcome: [
-					"1,28,000+ conversions with brand avg CPA at ₹11.30",
-					"Lowest recorded CPC: ₹0.25 (Airport, Nov’24)",
-					"Peak CTR 6.29% on best-performing setups"
-				],
-				notes: "A repeatable blueprint for partner-outlet businesses."
-			},
-			lenovo: {
-				title: "Lenovo APAC — GBP + 12k store pages + PH campaign",
-				sub: "🌏 APAC · 250+ GBP profiles · 12,000 store pages · PH awareness (Dec 2025)",
-				problem: "Multi-market listing inconsistency and discoverability gaps; need scalable governance + visibility lift.",
-				approach: [
-					"GBP audit across ~200 Lenovo APAC stores + ~50 MSI India profiles",
-					"NAP alignment, review templates, photo cadence, standard playbook",
-					"SEO updates across 12k store pages: titles, landmarks, technical fixes",
-					"Philippines awareness via PMax to drive store-locator traffic"
-				],
-				outcome: [
-					"+15% improvement in local discoverability (map pack visibility)",
-					"250+ profiles managed under one optimization system",
-					"PH campaign: 8,488 clicks, 1,35,931 impressions (awareness objective)"
-				],
-				notes: "Operations + local + paid combined—ideal for multi-location brands."
-			},
-			leadership: {
-				title: "Leadership — QA + KPI cadence + cross-brand planning",
-				sub: "👥 Team leadership · Weekly KPI rhythm · Multi-brand delivery",
-				problem: "Scaling across brands requires quality control, clear ownership, and a decision cadence—or performance becomes chaotic.",
-				approach: [
-					"Weekly KPI reviews and structured feedback cycles",
-					"Cross-brand workload planning and QA checklists",
-					"Tracking hygiene checks (GTM/GA4) + reporting discipline",
-					"Templates for briefs, insights, and next actions"
-				],
-				outcome: [
-					"More consistent performance monitoring and faster iteration loops",
-					"Clear accountability across brands and channels",
-					"Improved operational predictability for delivery and reporting"
-				],
-				notes: "This is how I scale performance with teams, not just dashboards."
-			}
-		};
-
-		function openCase(id){
-			const d = CASES[id];
-			if(!d) return;
-
-			$("#mTitle").textContent = d.title;
-			$("#mSub").textContent = d.sub;
-			$("#mProblem").textContent = d.problem;
-
-			const a = $("#mApproach"); a.innerHTML = "";
-			d.approach.forEach(x=>{ const li=document.createElement("li"); li.textContent=x; a.appendChild(li); });
-
-			const o = $("#mOutcome"); o.innerHTML = "";
-			d.outcome.forEach(x=>{ const li=document.createElement("li"); li.textContent=x; o.appendChild(li); });
-
-			$("#mNotes").textContent = d.notes;
-
-			modal.classList.add("open");
-			modal.setAttribute("aria-hidden","false");
-			document.body.style.overflow = "hidden";
-
-			awardXP(12);
-			unlockBadge("Case File Reader");
-		}
-		function closeCase(){
-			modal.classList.remove("open");
-			modal.setAttribute("aria-hidden","true");
-			document.body.style.overflow = "";
-		}
-		$$(".case").forEach(c=> c.addEventListener("click", ()=> openCase(c.dataset.id)));
-		closeModal.addEventListener("click", closeCase);
-		modal.addEventListener("click", (e)=>{ if(e.target === modal) closeCase(); });
-
-		// ===== Data Room Dashboard =====
-		const brandSelect = $("#brandSelect");
-		const randBtn = $("#randBtn");
-		const chart = $("#chart");
-		const ctx = chart.getContext("2d");
-
-		const BRANDS = {
-			ICB: {
-				kpis: [
-					["1,64,367", "Total conversions"],
-					["₹4.58", "Avg. CPA"],
-					["11.46%", "Peak CTR"],
-					["₹3.19", "PMax Feb’25 CPA"]
-				],
-				series: [12, 18, 22, 40, 55, 72, 90, 100] // stylized growth story
-			},
-			Acer: {
-				kpis: [
-					["1,28,000+", "Conversions"],
-					["₹11.30", "Brand avg CPA"],
-					["₹0.25", "Lowest CPC"],
-					["6.29%", "Peak CTR"]
-				],
-				series: [10, 16, 24, 38, 50, 61, 73, 88]
-			},
-			Portfolio: {
-				kpis: [
-					["4,08,708", "Tracked conversions"],
-					["₹79.38L", "Spend managed"],
-					["₹19.42", "Avg. CPA"],
-					["3.34%", "Avg. CTR"]
-				],
-				series: [18, 24, 30, 44, 54, 66, 78, 92]
-			},
-			LenovoAPAC: {
-				kpis: [
-					["250+", "GBP profiles managed"],
-					["12,000", "Store pages SEO"],
-					["+15%", "Discoverability uplift"],
-					["8,488", "PH clicks (awareness)"]
-				],
-				series: [20, 28, 36, 48, 58, 64, 72, 82]
-			}
-		};
-
-		function setDash(brandKey){
-			const d = BRANDS[brandKey];
-			if(!d) return;
-
-			$("#d1").textContent = d.kpis[0][0]; $("#d1s").textContent = d.kpis[0][1];
-			$("#d2").textContent = d.kpis[1][0]; $("#d2s").textContent = d.kpis[1][1];
-			$("#d3").textContent = d.kpis[2][0]; $("#d3s").textContent = d.kpis[2][1];
-			$("#d4").textContent = d.kpis[3][0]; $("#d4s").textContent = d.kpis[3][1];
-
-			drawChart(d.series);
-			awardXP(10);
-			unlockBadge("Data Room Analyst");
-		}
-
-		function drawChart(series){
-			// HiDPI friendly
-			const dpr = window.devicePixelRatio || 1;
-			const w = chart.clientWidth, h = 220;
-			chart.width = Math.floor(w * dpr);
-			chart.height = Math.floor(h * dpr);
-			ctx.setTransform(dpr,0,0,dpr,0,0);
-
-			// background
-			ctx.clearRect(0,0,w,h);
-			ctx.fillStyle = "rgba(255,255,255,.02)";
-			ctx.fillRect(0,0,w,h);
-
-			// grid
-			ctx.strokeStyle = "rgba(255,255,255,.08)";
-			ctx.lineWidth = 1;
-			for(let i=1;i<=4;i++){
-				const y = (h/5)*i;
-				ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
-			}
-
-			// line
-			const pad = 18;
-			const max = Math.max(...series);
-			const min = Math.min(...series);
-			const xStep = (w - pad*2) / (series.length - 1);
-
-			const pts = series.map((v,i)=>{
-				const x = pad + i*xStep;
-				const y = pad + (h - pad*2) * (1 - (v - min) / (max - min || 1));
-				return {x,y};
-			});
-
-			// gradient stroke
-			const grad = ctx.createLinearGradient(0,0,w,0);
-			grad.addColorStop(0, "rgba(124,92,255,.95)");
-			grad.addColorStop(1, "rgba(41,211,255,.95)");
-
-			ctx.lineWidth = 3;
-			ctx.strokeStyle = grad;
-			ctx.beginPath();
-			pts.forEach((p,i)=> i? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
-			ctx.stroke();
-
-			// area fill
-			const gradFill = ctx.createLinearGradient(0,0,0,h);
-			gradFill.addColorStop(0, "rgba(124,92,255,.20)");
-			gradFill.addColorStop(1, "rgba(41,211,255,.02)");
-			ctx.fillStyle = gradFill;
-			ctx.beginPath();
-			pts.forEach((p,i)=> i? ctx.lineTo(p.x,p.y) : ctx.moveTo(p.x,p.y));
-			ctx.lineTo(pts[pts.length-1].x, h-pad);
-			ctx.lineTo(pts[0].x, h-pad);
-			ctx.closePath();
-			ctx.fill();
-
-			// points
-			pts.forEach(p=>{
-				ctx.fillStyle = "rgba(255,255,255,.92)";
-				ctx.beginPath(); ctx.arc(p.x,p.y,3.2,0,Math.PI*2); ctx.fill();
-				ctx.fillStyle = "rgba(41,211,255,.9)";
-				ctx.beginPath(); ctx.arc(p.x,p.y,6.8,0,Math.PI*2); ctx.fill();
-				ctx.fillStyle = "rgba(0,0,0,.55)";
-				ctx.beginPath(); ctx.arc(p.x,p.y,6.0,0,Math.PI*2); ctx.fill();
-			});
-		}
-
-		brandSelect.addEventListener("change", ()=> setDash(brandSelect.value));
-		randBtn.addEventListener("click", ()=>{
-			const keys = Object.keys(BRANDS);
-			const pick = keys[Math.floor(Math.random()*keys.length)];
-			brandSelect.value = pick;
-			setDash(pick);
-			unlockBadge("Curiosity Mode");
-		});
-
-		// initial dashboard
-		setDash("ICB");
-		window.addEventListener("resize", ()=> setDash(brandSelect.value), {passive:true});
-
-		// ===== Command menu (deck navigation) =====
-		const cmdk = $("#cmdk");
-		const cmdkBtn = $("#cmdkBtn");
-		const cmdkInput = $("#cmdkInput");
-		const cmdkList = $("#cmdkList");
-		const closeCmdk = $("#closeCmdk");
-
-		const CMD_ITEMS = [
-			{label:"Hero + Missions", hint:"Slide 1", action: ()=> goTo(0)},
-			{label:"Case Files", hint:"Slide 2", action: ()=> goTo(1)},
-			{label:"Data Room Dashboard", hint:"Slide 3", action: ()=> goTo(2)},
-			{label:"Email", hint:"mailto", action: ()=> window.location.href="mailto:ajay.hulikallu@gmail.com"},
-			{label:"LinkedIn", hint:"external", action: ()=> window.open("https://www.linkedin.com/in/ajay-chakravarthy-h-j","_blank","noreferrer")}
-		];
-
-		function renderCmdk(f=""){
-			cmdkList.innerHTML = "";
-			const q = f.trim().toLowerCase();
-			CMD_ITEMS
-				.filter(x => !q || x.label.toLowerCase().includes(q) || x.hint.toLowerCase().includes(q))
-				.forEach(item=>{
-					const row = document.createElement("div");
-					row.className = "cmdkItem";
-					row.innerHTML = `<b>${item.label}</b><span class="kbd">${item.hint}</span>`;
-					row.addEventListener("click", ()=>{
-						closeCmdkFn();
-						item.action();
-						awardXP(6);
-					});
-					cmdkList.appendChild(row);
-				});
-		}
-		function openCmdk(){
-			cmdk.classList.add("open");
-			cmdk.setAttribute("aria-hidden","false");
-			renderCmdk("");
-			cmdkInput.value = "";
-			setTimeout(()=> cmdkInput.focus(), 0);
-			document.body.style.overflow = "hidden";
-		}
-		function closeCmdkFn(){
-			cmdk.classList.remove("open");
-			cmdk.setAttribute("aria-hidden","true");
-			document.body.style.overflow = "";
-		}
-
-		cmdkBtn.addEventListener("click", openCmdk);
-		closeCmdk.addEventListener("click", closeCmdkFn);
-		cmdk.addEventListener("click", (e)=>{ if(e.target === cmdk) closeCmdkFn(); });
-		cmdkInput.addEventListener("input", ()=> renderCmdk(cmdkInput.value));
-
-		window.addEventListener("keydown", (e)=>{
-			if(e.key === "Escape"){
-				if(modal.classList.contains("open")) closeCase();
-				if(cmdk.classList.contains("open")) closeCmdkFn();
-			}
-			const tag = (document.activeElement && document.activeElement.tagName) || "";
-			const typing = ["INPUT","TEXTAREA","SELECT"].includes(tag);
-			if(!typing && e.key === "/"){
-				e.preventDefault();
-				openCmdk();
-			}
-		});
-
-		// Seed a couple of starter badges for premium feel (only once)
-		if(!localStorage.getItem("seeded")){
-			localStorage.setItem("seeded","1");
-			unlockBadge("Premium Deck");
-			awardXP(12);
-		}
-	</script>
-</body>
-</html>
+	<main class="container">
